@@ -1,0 +1,120 @@
+site_name: Confidential Computing LinuxONE Workshop
+repo_url: https://github.ibm.com/Garrett-Lee-Woodworth/ConfidentialComputingOnLinuxONE
+site_url: https://pages.github.ibm.com/Garrett-Lee-Woodworth/ConfidentialComputingOnLinuxONE/
+edit_uri: edit/main/docs
+nav:
+  - Home: index.md
+  - Locally Building docs: localdocbuild.md
+
+theme:
+  favicon: images/HPVS2.1.xGraphic.png
+  logo: images/HPVS2.1.xGraphic.png
+  features:
+    - header.autohide
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.tracking
+    - navigation.footer
+    - search.share
+    - navigation.indexes
+    - announce.dismiss
+    - content.tabs.link
+    - content.code.copy
+    - content.action.edit
+    - content.action.view
+    
+  name: material
+  palette:
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      primary: black
+      accent: yello
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      primary: black
+      accent: yellow
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+copyright: >
+  Copyright &copy; 2022 IBM –
+  <a href="#__consent">Change cookie settings</a>
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ibm-wsc
+    - icon: fontawesome/brands/docker
+      link: https://hub.docker.com/u/s390x
+  analytics:
+    provider: google
+    property: G-GYNTJ48K9Y
+    feedback:
+      title: Was this page helpful?
+      ratings:
+        - icon: material/heart
+          name: This page was helpful
+          data: 1
+          note: >-
+            Thanks for your feedback!
+        - icon: material/heart-broken
+          name: This page could be improved
+          data: 0
+          note: >- 
+            Thanks for your feedback! Help me improve this page by
+            using my <a href="https://github.ibm.com/Garrett-Lee-Woodworth/ConfidentialComputingOnLinuxONE/issues/new/?title=[Feedback]+{title}+-+{url}" target="_blank" rel="noopener">feedback form</a>.
+
+  consent:
+    title: Cookie consent
+    description: >- 
+      I use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of my documentation and whether users
+      find what they're searching for. With your consent, you're helping me to
+      make my documentation better.
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - codehilite
+  - footnotes
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.keys
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tilde
+  - attr_list
+  - tables
+  - toc:
+      permalink: true
+plugins:
+  - search
+  - git-revision-date-localized:
+      enable_creation_date: true
+  - print-site:
+      add_to_navigation: true
