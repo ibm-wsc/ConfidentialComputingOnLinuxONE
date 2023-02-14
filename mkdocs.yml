@@ -4,6 +4,15 @@ site_url: https://pages.github.ibm.com/Garrett-Lee-Woodworth/ConfidentialComputi
 edit_uri: edit/main/docs
 nav:
   - Home: index.md
+  - Lab Assignment: assignments.md
+  - Lab:
+    - Lab Overview: lab/labOverview.md
+    - Launch Ubuntu KVM guest: lab/launchKVMguest.md
+    - Configure rsyslog on your kVM guest: lab/configureRsyslog.md
+    - Configure rsyslog client certs on the RHEL host: lab/configureRsyslogForGREP11.md
+    - Create Contract for GREP11 Server: lab/createGREP11Contract.md
+    - Launch GREP11 Server: lab/launchGREP11guest.md
+    - Run GREP11 Client code: lab/configureGrep11TestClient.md
   - Locally Building docs: localdocbuild.md
 
 theme:
