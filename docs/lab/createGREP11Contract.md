@@ -1163,7 +1163,7 @@ We have provided a convenience script to assist in creating the environment sect
    echo "  type: env
      logging:
        syslog:
-         hostname: 172.16.0.41
+         hostname: \"\${GREP11ServerIP}\"
          port: 6514
          server: \"\${ENV_RSYSLOG_SERVER}\"
          cert: \"\${ENV_RSYSLOG_CERT}\"
