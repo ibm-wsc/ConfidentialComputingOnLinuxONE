@@ -42,13 +42,13 @@ If we had our way in supplying a system from which you are running the lab, you 
 
 If you are using your own workstation or laptop, if it is running Linux you are probably either using *bash* or are savvy enough to figure out which shell you are running. 
 
-If you are running it on Apple hardware then you are probably running *zsh* or *bash* or as smart as your Linux brethren and also able to figure out which shell you are running.
+If you are running it on Apple hardware then you are probably running *zsh* or *bash* or are savvy enough to figure out which shell you are running.
 
 If you are running on a Windows machine then we hope that you are using a modern enough version of Windows that you can use the Windows Subsystem for Linux and pretend that you are using a Linux machine.
 
-If you are running on an older Windows machine then you should ask your manager for a newer laptop or go to work for a more hip enterprise where Apple FanBois and Linux Geeks are not only tolerated but also nurtured and venerated.
+If you are running on an older Windows machine then you should ask your manager for a new laptop. If that doesn't work out for you then ask the instructors for help (but not for a new laptop).
 
-If we haven't sufficiently insulted you yet such that you have stormed off in a huff, and you're still not sure what shell you're using, you can use this command to find out what your shell is:
+If you are not sure what shell you're using, you can use this command to find out what your shell is:
 
    ``` bash
    echo ${SHELL}
@@ -133,8 +133,10 @@ A KVM Guest has been defined for each student by the instructors.  This guest ha
 Display your KVM guest's definition with this command:
 
    ``` bash
-   sudo virsh dumpxml ${StudentID}
+   sudo virsh dumpxml `whoami`
    ```
+
+We named your Ubuntu KVM guest the same as your userid on the RHEL host, which is why you can use the `whoami` command.
 
 ???- example "Example virsh dumpxml output [Click me]"
 
@@ -203,7 +205,7 @@ TODO:  describe interesting bits
 Run this command to start your Ubuntu KVM guest:
 
    ``` bash
-   sudo virsh start ${StudentID}
+   sudo virsh start `whoami`
    ```
 
 ???- example "Expected output"
