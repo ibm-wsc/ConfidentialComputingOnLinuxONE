@@ -1163,7 +1163,7 @@ We have provided a convenience script to assist in creating the environment sect
    echo "  type: env
      logging:
        syslog:
-         hostname: \"\${GREP11ServerIP}\"
+         hostname: \"\${StudentGuestIP}\"
          port: 6514
          server: \"\${ENV_RSYSLOG_SERVER}\"
          cert: \"\${ENV_RSYSLOG_CERT}\"
@@ -1354,7 +1354,8 @@ Create `meta-data` which is also required, and it will have a hostname tailored 
 Run this command (RHEL-specific, see product documentation for Ubuntu command) in order to create the startup file, _ciiso.iso_:
 
    ``` bash
-   genisoimage -output ciiso.iso -volid cidata -joliet -rock user-data meta-data vendor-data
+   genisoimage -output /var/lib/libvirt/images/hpvslab/$(whoami)/ciiso.iso \
+      -volid cidata -joliet -rock user-data meta-data vendor-data
 
    ```
    

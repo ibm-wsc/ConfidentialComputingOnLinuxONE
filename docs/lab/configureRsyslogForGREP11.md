@@ -68,7 +68,7 @@ Create a certificate signing request (CSR):
 Now we are going to use a pattern that is similar to a real-world pattern- you are going to send your CSR (which you just created on the host) to the Rsyslog CA (which is on your Ubuntu KVM guest):
 
    ``` bash
-   scp client-req.csr student@${Student_SSH_IP}:./rsyslogWork/.
+   scp client-req.csr student@${StudentGuestIP}:./rsyslogWork/.
    ```
 
 As shown in the sample output below, you may need to type _yes_ since this is the first connection between the two systems, and you may have to enter a password that will be supplied by the instructors:
