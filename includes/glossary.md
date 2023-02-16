@@ -1,2 +1,6 @@
 *[Confidential Computing]: Confidential computing is a cloud computing technology that isolates sensitive data in a protected CPU enclave during processing. The contents of the enclave—the data being processed, and the techniques that are used to process it—are accessible only to authorized programming code, and are invisible and unknowable to anything or anyone else, including the cloud provider.
 *[Secure Execution]: IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.
+*[CA registrar]: certification authority-speak for administrator
+*[mint]: certification authority-speak for create
+*[CSR]: certificate signing request
+*[CA]: certification authority
