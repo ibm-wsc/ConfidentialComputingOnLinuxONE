@@ -332,7 +332,7 @@ Your output will look similar to this:
 
 Within your `${HOME}/GREP11CAWork` directory, you are a certification authority!
 
-If you change to this directory, you will be soon be a customer of your certification authority:
+If you change to this directory, you will be soon be a customer of your CA:
 
    ``` bash
    cd ${HOME}/contract/grep11Server/workload/compose
@@ -344,7 +344,7 @@ You want to create a certificate for your GREP11 Server to use for authenticatin
    openssl genrsa -out grep11-server.key 2048
    ```
 
-Create a configuration file to assist the creation of your GREP11 Server's certificate signing request (CSR):
+Create a configuration file to assist the creation of your GREP11 Server's CSR:
 
    ``` bash
    cat << EOF > serverCSR.cnf
@@ -619,7 +619,7 @@ Of the eight files, you have created five of them- the two _.yaml_ files and the
 
 Now it is time to create or acquire the three files called for from _c16client.yaml_'
 
-There is only one CENA4SEE server that all of the lab students will use.  The instructors have set this up, and have created the "self-signed" certification authority that governs communication between the CENA4SEE server and its clients (each student's GREP11 Server is a client of the CENA4SEE server). You need to acquire the certificate of the CA the instructors created:
+There is only one CENA4SEE server that all of the lab students will use.  The instructors have set this up, and have created the "self-signed" CA that governs communication between the CENA4SEE server and its clients (each student's GREP11 Server is a client of the CENA4SEE server). You need to acquire the certificate of the CA the instructors created:
 
    ```bash
    cp -ipv /data/lab/c16-ca-public/c16-ca.pem .
@@ -675,7 +675,7 @@ Create the following template file to avoid being asked questions from _certtool
    EOF
    ```
 
-Now create a certificate signing request:
+Now create a CSR:
 
    ``` bash
    certtool --generate-request \
@@ -783,9 +783,9 @@ Your output should look similar to this:
       ```
 
 
-The "self-signed" certification authority for the CENA4SEE server is under instructor control- since there is only one CENA4SEE for the class to share, there is only one certification authority.  Let the instructors know that you are ready to have a client certificate created and the instructors will create a certificate for you and place it in the same directory that you are presently working in.  
+The "self-signed" CA for the CENA4SEE server is under instructor control- since there is only one CENA4SEE for the class to share, there is only one CA.  Let the instructors know that you are ready to have a client certificate created and the instructors will create a certificate for you and place it in the same directory that you are presently working in.  
 
-In the interests of transparencey, this is the command the instructors will use to create your certificate.  Don't try to run this command as it won't work for you because you do not have access to the "self-signed" certification authority's private key.  (You can try- if you succeed, you are either an excellent hacker, or the instructors are not excellent system administrators, or some combination thereof).
+In the interests of transparency, this is the command the instructors will use to create your certificate.  Don't try to run this command as it won't work for you because you do not have access to the "self-signed" CA's private key.  (You can try- if you succeed, you are either an excellent hacker, or the instructors are not excellent system administrators, or some combination thereof).
 
    ``` bash
    ### for your information only

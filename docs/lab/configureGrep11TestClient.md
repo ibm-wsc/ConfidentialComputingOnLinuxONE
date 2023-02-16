@@ -522,7 +522,7 @@ It will look like this:
               5d:24:b0:9b
       ```
 
-Your GREP11 certification authority is on your account on the RHEL 8.5 KVM host. Send your CSR to it:
+Your GREP11 CA is on your account on the RHEL 8.5 KVM host. Send your CSR to it:
 
 TODO:  put infrastructure in place for env variable
 

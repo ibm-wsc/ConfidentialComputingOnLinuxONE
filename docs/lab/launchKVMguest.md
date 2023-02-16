@@ -1,6 +1,6 @@
 # Start Ubuntu KVM Guest 
 
-## set environment variable for your student ID
+## Set environment variable for your student ID
 
 Each student has a unique userid assigned to them. It may have been set for you already. Check this by entering this echo command:
 
@@ -33,8 +33,8 @@ If you had to use the previous `export` command, repeat the prior `echo` command
 
       ```
 
-!!! Note
-    **Why did you make me do this?**
+!!! Question "Why did you make me do this?"
+
     This way we could provide instructions throughout this lab that are generic enough that every student can just copy and paste most commands "as-is" from the lab guide. (At least that was our goal).
 
 ### Optional but highly recommended- add your StudentId environment variable to your shell startup script
@@ -62,12 +62,13 @@ If you are not sure what shell you're using, you can use this command to find ou
 
       ```
 
-Don't be ashamed of your shell.  Garrett uses `bash` on his MAC, and he's absolute genius.  Barry uses `zsh` - `zsh` being the default shell on newer versions of MacOS.
+Don't be ashamed of your shell.  Garrett uses `bash` 5.x on his Mac.  Barry uses `zsh` - `zsh` being the default shell on newer versions of MacOS.
 
 We will show two commands to add the environment variable to your shell startup script, one for `bash` and one for `zsh`.  If you are using a different shell, we trust you'll be able to figure out the equivalent command.  
 
-!!! Caution
-    Enter the appropriate command exactly as shown. Use the copy button please.  Approximately 0.47% of students thing they have to make the variable substitution before entering the command.  That doesn't end well.  This advice applies generally to every command in this lab unless we explicitly state otherwise.
+!!! Warning "The Copy Button is Your Friend!"
+
+	Please enter the appropriate command exactly as shown using the copy button whenever possible.  Approximately 0.47% of students think they have to make the variable substitution before entering the command.  That doesn't end well.  This advice applies generally to every command in this lab unless we explicitly state otherwise.
 
 For users of `bash`:
    ``` bash
@@ -79,20 +80,33 @@ For users of `zsh`:
    echo "export StudentID='${StudentID}'" >> "${HOME}/.zshrc"
    ```
 
-!!! Info
-    **Why did I just do that?**  If you want to use more than one terminal window to do this lab, then this would allow new terminal windows to be set with this _StudentID_ variable so that you do not have to re-enter it.  We have written the lab as if you are only going to use one terminal window, but, what if you want to use more than one window?  We won't stop you, and the prior command will make your life much easier.  Even if you only intend to use one terminal window, if your machine crashes or something like that and you have to reboot, again, the prior command will make your life much easier when your machine is up and running again.  We are here to make your flight as comfortable as possible.
+!!! Question "Why did I just do that?"
+
+	If you use more than one terminal window to do this lab, then this would allow new terminal windows to be set with this _StudentID_ variable so that you do not have to re-enter it.  This will be handy if you either want to use multiple terminal windows for the lab or if you need to open a new window due to an old one closing for whatever reason.  We are here to make your flight as comfortable as possible.
 
 
 
-## log in to the RHEL 8.5 host
+## Log in to the RHEL 8.5 host
 
-You will now sign into our z15 LPAR running Red Hat Enterprise Linux 8.5.  This is a system that has been enabled for Secure Execution and so can run workload provisioned with IBM Hyper Protect Virtual Servers 2.1.3.  
+You will now sign into our z15 LPAR running Red Hat Enterprise Linux 8.5.  This is a system that has been enabled for Secure Execution and so can run workloads provisioned with IBM Hyper Protect Virtual Servers 2.1.3.  
 
-Run this command.  One of two things should happen.  If you are on an instructor-provided system and the instructors have had the time to load it with an appropriate RSA private key that matches an RSA public key that has been loaded into your assigned userid's account on the Linux LPAR, then you will be able to sign in without a password! If you are not on an instructor-provided system or we did not have a chance to load the parts of the RSA key pair in the appropriate locations, then you will be prompted to enter a password.  Your instructor will provide you a password by some clandestine means, surely we're not going to put it on a page on the Internet! 
+Run this command:
 
    ``` bash
    ssh -l ${StudentID} 192.168.22.64
    ```
+
+One of two things should happen:  
+
+a. If you are on an instructor-provided system and the instructors have had the time to load it with an appropriate RSA private key that matches an RSA public key that has been loaded into your assigned userid's account on the Linux LPAR
+
+- you will be able to sign in without a password!
+
+**OR**
+
+b. If you are not on an instructor-provided system or we did not have a chance to load the parts of the RSA key pair in the appropriate locations
+
+- you will be prompted to enter a password.  Your instructor will provide you a password by some clandestine means, surely we're not going to put it on a page on the Internet :shushing_face:!
 
 ???- example "Example messages upon login [Click me]"
 
@@ -126,7 +140,7 @@ Run this command.  One of two things should happen.  If you are on an instructor
       [student02@bczkvm(192.168.22.64) ~ [19:11:51] (0)]$ 
       ```
 
-## start your Ubuntu KVM guest
+## Start your Ubuntu KVM guest
 
 A KVM Guest has been defined for each student by the instructors.  This guest has the Ubuntu 22.04.1 operating system installed on it.  A very straightforward installation path was taken with no additional software packages selected during the installation. You will add additional software packages as necessary during the lab. This guest does not take advantage of the additional protection offered by Secure Execution and HPVS.  It could have, but you will already be creating another KVM Guest that is protected by Secure Execution and HPVS.  This also helps to make the point that you can run "regular", i.e., non-Secure Execution-protected guests, and Secure Execution-protected guests on the same LPAR.
 
@@ -215,11 +229,18 @@ Run this command to start your Ubuntu KVM guest:
 
       ```
 
+=== "Your domain (i.e., your KVM guest) has started"
 
-You should see a message indicating that your domain (i.e., your KVM guest) has started. If you don't, ask your instructor for help.  If you do, log out of the RHEL 8.5 host because in the next section of the lab you are going to log into the KVM guest that you just started.
+	!!! Success "You are off to a smashing start! :rocket:"
+		
+		Log out of the RHEL 8.5 host because in the next section of the lab you are going to log into the KVM guest that you just started.
 
-   ``` bash
-   exit
+	``` bash
+	exit
+	```
 
-   ```
+=== "Your domain didn't start for whatever reason"
 
+	!!! Failure "You have departed from the happy path... :disappointed:"
+
+		Please ask your instructor for help.

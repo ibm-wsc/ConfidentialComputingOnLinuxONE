@@ -8,7 +8,7 @@ nav:
   - Lab:
     - Lab Overview: lab/labOverview.md
     - Launch Ubuntu KVM guest: lab/launchKVMguest.md
-    - Configure rsyslog on your kVM guest: lab/configureRsyslog.md
+    - Configure rsyslog on your KVM guest: lab/configureRsyslog.md
     - Configure rsyslog client certs on the RHEL host: lab/configureRsyslogForGREP11.md
     - Create Contract for GREP11 Server: lab/createGREP11Contract.md
     - Launch GREP11 Server: lab/launchGREP11guest.md
@@ -110,7 +110,9 @@ markdown_extensions:
   - pymdownx.magiclink
   - pymdownx.mark
   - pymdownx.smartsymbols
-  - pymdownx.snippets
+  - pymdownx.snippets:
+      auto_append:
+        - includes/glossary.md
   - pymdownx.superfences
   - pymdownx.tasklist:
       custom_checkbox: true
