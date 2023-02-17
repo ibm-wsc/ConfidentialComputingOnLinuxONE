@@ -4,7 +4,7 @@
 
 In the last section you created the following:
 
-1. self-signed CA for the Rsyslog service
+1. self-signed CA for the rsyslog service
 2. server certificate for the rsyslog service
 
 In this section you will use your self-signed CA (1 above) to create:
@@ -18,21 +18,8 @@ Your GREP11 Server will be a client to the rsyslog service. (It serves clients w
 	You'll be switching between userids on the following 2 systems:
 
 	1. KVM host
-	2. Ubuntu KVM guest 1 (that was created for you and hosts the rsyslog service)
+	2. Ubuntu KVM guest (that was created for you and hosts the rsyslog service)
 
-## Set environment variables on KVM host and guest
-
-1. Set KVM guest IP on KVM host
-
-	``` bash
-	ip=$(ssh -p ${Student_SSH_Port} -l student 192.168.22.64 "ip route get 1.1.1.1 | grep -oP 'src \K[^ ]+'") && ssh -l ${StudentID} 192.168.22.64 'echo "export StudentGuestIP='${ip}'" >> "${HOME}/.bashrc"'
-	```
-
-2. Set KVM host user id on KVM guest
-
-	``` bash
-	ssh -p ${Student_SSH_Port} -l student 192.168.22.64 'echo "export StudentID='${StudentID}'" >> "${HOME}/.bashrc"'
-	```
 
 ## Log in to the RHEL host
 
@@ -110,8 +97,6 @@ ssh -l ${StudentID} 192.168.22.64
 		student@172.16.0.42's password: 
 		client-req.csr                                                          100% 1691     9.2MB/s   00:00 
 		```
-
-	TODO:  set up for passwordless scp/ssh between 22.64 and student kvm guest
 
 6. Log off from the host:
 
@@ -232,7 +217,9 @@ ssh -l ${StudentID} 192.168.22.64
 		For the purposes of this lab assume you've done a background check on the customer, checked their reviews on Yelp and NextDoor, looked at their Facebook page and LinkedIn profiles.  You're a little concerned with some of those college fraternity party pictures on Facebook, but, what the heck, their check has cleared the bank, so you decide to go ahead and _mint_ the certificate.
 
 	``` bash
-	openssl x509 -req -in client-req.csr -days 365 -CA ca.crt -CAkey ca-key.pem -CAcreateserial -out client.crt
+	openssl x509 -req -in client-req.csr \
+          -days 365 -CA ca.crt -CAkey ca-key.pem \
+          -CAcreateserial -out client.crt
 	```
 
 	???- example "Output from creating the certificate"

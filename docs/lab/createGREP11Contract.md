@@ -28,7 +28,7 @@ One of the things we just mentioned in the previous paragraph was _separation of
 Then, you could imagine the following scenario taking place:
 
 1. application owner can encrypt their piece of the contract such that it can only be decrypted within the HPVS 2.1.3 runtime
-2. application owner passes the contract to the _systems administrator_
+2. application owner passes their encrypted piece of the contract to the _systems administrator_
 3. the _systems administrator_ encrypts their own section
 4. the _systems administrator_ combines the two sections and signs the resultant contract so that it can be verified by the HPVS 2.1.3 runtime.
 
@@ -63,12 +63,14 @@ HPVS expects the contract to specify an OCI container specified by a _Docker Com
 - listening ports
 - configuration file
 - another configuration file that describes its connection to the CENA4SEE server
-- certificates and keys to enable TLS communicate with the CENA4SEE server
+- certificates and keys to enable TLS communication with the CENA4SEE server
 - certificates and keys to enable TLS communication between clients that call the GREP11 Server
 
 That's right, two more "sets" of X509 certificates, egads!!  You've already worked with one set for the rsyslog service, and yet you're still here! We'll offer the commands for these next two sets without as much commentary.
 
-TODO: make sure you've explained CENA4SEE
+!!! Information "A brief history of the term 'CENA4SEE', or, you say to-MAY-toe and I say to-MAH-toe"
+
+        You will not see the term _CENA4SEE_ in any official product documentation.  Try googling it. CENA4SEE is the instructor's abbreviation for _Crypto Express Network API for Secure Execution Enclaves_.  The product documentation often uses the term _c16_.  When the instructor inquired to the developers what _c16_ stood for, because he is sure that customers will ask that question, and was told that it doesn't stand for anything, he coined this acronym and will continue to use it until he is threatened with either legal action or involuntary termination of employment.  
 
 You are going to put the building blocks for the workload section of the contract together in the following order:
 
@@ -234,9 +236,9 @@ EOF
 			client_cert_file: "/cfg/c16-client.pem"
 		```
 
-### Create x509 material for GREP11 clients to GREP11 Server communication
+### Create x509 material for GREP11 client to GREP11 Server communication
 
-Your GREP11 Server acts as both a server and a client. It's primary purpose is to be a server- to serve requests from GREP11 Clients.  But in order to get its job done, it must relay send requests to the CENA4SEE server, so it is a client to the CENA4SEE server.  Yes, it's confusing, but that's why the IT profession offers a living wage in some parts of the world.
+Your GREP11 Server acts as both a server and a client. Its primary purpose is to be a server- to serve requests from GREP11 Clients.  But in order to get its job done, it must send requests to the CENA4SEE server, so it is a client to the CENA4SEE server.  (It is also a client to the rsyslog service so that it can send its log messages there). Yes, it's confusing, but that's why the IT profession offers a living wage in some parts of the world.
 
 In this section, you'll set up the material to enable GREP11 Server's role as a, well, GREP11 Server!
 
@@ -288,7 +290,11 @@ In this section, you'll set up the material to enable GREP11 Server's role as a,
 4. Create your self-signed CA for the GREP11 Server. Notice it uses the private key you created two commands ago and refers to the configuration file your last command created:
 
 	``` bash
-	openssl req -new -x509 -key grep11-ca-key.pem -out grep11-ca.pem -days 395 -config ca.cnf -extensions x509_extensions
+	openssl req -new -x509 \
+          -key grep11-ca-key.pem \
+          -out grep11-ca.pem \
+          -days 395 -config ca.cnf \
+          -extensions x509_extensions
 	```
 
 5. Display the CA certificate that you just created:
@@ -434,9 +440,7 @@ In this section, you'll set up the material to enable GREP11 Server's role as a,
 		-out grep11-server.csr -config serverCSR.cnf
 	```
 
-	TODO:  Ensure infrastructure is in place for GREP11ServerIP environment variable at student login
-
-10. In your current directory, `\${HOME}/contract/grep11Server/workload/compose`, you are a "customer" of the CA you created in `${HOME}/GREP11CAwork`. 
+10. In your current directory, `${HOME}/contract/grep11Server/workload/compose`, you are a "customer" of the CA you created in `${HOME}/GREP11CAwork`. 
 	Thus, "send" your CSR to your CA:
 
 	``` bash
@@ -510,8 +514,6 @@ In this section, you'll set up the material to enable GREP11 Server's role as a,
 	```
 
 13. Now, create the certificate:
-
-	TODO: put infrastructure in place to set GREP11ServerForwardedPort
 
 	``` bash
 	SUBJECT_ALT_NAME=DNS:192.168.22.64:${GREP11ServerForwardedPort},IP:192.168.22.64,DNS:${GREP11ServerIP}:9876,IP:${GREP11ServerIP} \
@@ -652,9 +654,10 @@ In this section, you'll set up the material to enable GREP11 Server's role as a,
 
 	- [x] 2 _.yaml_ files
 	- [x] 3 _grep11-\*_ files
-	- [ ] 3 _c16client.yaml_ files
+	- [ ] 3 _c16-\*_ files
 
-2. Now it is time to create or acquire the three files called for from _c16client.yaml_'
+2. Now it is time to create or acquire the three files called for from _c16client.yaml_.
+
 
 	There is only one CENA4SEE server that all of the lab students will use.  The instructors have set this up, and have created the "self-signed" CA that governs communication between the CENA4SEE server and its clients (each student's GREP11 Server is a client of the CENA4SEE server). You need to acquire the certificate of the CA the instructors created:
 
@@ -842,8 +845,6 @@ In this section, you'll set up the material to enable GREP11 Server's role as a,
 		chown student01:hpvs_students /home/student01/contract/grep11Server/workload/compose/c16-client.pem 
 		```
 
-		TODO: automate the above
-
 		This is also for information only- it is the contents of the configuration file _cert.cfg_ that the instructors use in the above command:
 
 		``` cfg title="cert.cfg"
@@ -1013,6 +1014,7 @@ In this section, you'll set up the material to enable GREP11 Server's role as a,
 supplied with the product, but is very useful in the creation of the contract.  Create it now and feel free to peruse it but do not run it now.
 It will be called later by another script.  Comments have been added to help explain what the script does. 
 
+
 	``` yaml
 	cat << EOF > flow.workload
 	# Create the workload section of the contract and add the contents in the workload.yaml file.
@@ -1040,7 +1042,7 @@ It will be called later by another script.  Comments have been added to help exp
 
 	echo "  type: workload
 		compose:
-		archive: \${COMPOSE_B64}" > \${WORKLOAD_PLAIN}
+			archive: \${COMPOSE_B64}" > \${WORKLOAD_PLAIN}
 
 	#
 	# This is the encryption certificate for Hyper Protect Container Runtime and it is
@@ -1115,8 +1117,6 @@ order to have your GREP11 Server log to the rsyslog that you configured earlier 
 		```
 
 	2. You will need the CA certificate of the rsyslog service that you created on your Ubuntu KVM guest which you can get via _scp_:
-
-		TODO: put in infrastructure for password-less scp
 
 		``` bash
 		scp student@${StudentGuestIP}:rsyslogWork/ca.crt .
@@ -1204,13 +1204,13 @@ order to have your GREP11 Server log to the rsyslog that you configured earlier 
 
 
 		echo "  type: env
-			logging:
-			syslog:
-				hostname: \"\${StudentGuestIP}\"
-				port: 6514
-				server: \"\${ENV_RSYSLOG_SERVER}\"
-				cert: \"\${ENV_RSYSLOG_CERT}\"
-				key: \"\${ENV_RSYSLOG_KEY}\"" >\${ENV_PLAIN}
+	    	logging:
+				syslog:
+					hostname: \"\${StudentGuestIP}\"
+					port: 6514
+					server: \"\${ENV_RSYSLOG_SERVER}\"
+					cert: \"\${ENV_RSYSLOG_CERT}\"
+					key: \"\${ENV_RSYSLOG_KEY}\"" >\${ENV_PLAIN}
 
 		#
 		# This command adds the public signing key to the plaintext environment yaml.  This key is used inside 
@@ -1359,13 +1359,13 @@ order to have your GREP11 Server log to the rsyslog that you configured earlier 
 
 	```
 
-The script creates the final contract in a file names `user_data.yaml`.  It also displays the contents of this file to the screen. At the bottom of the output you will see an _envWorkloadSignature_ key.  If there is a gobbledygook value (base64-encoded text) associated with this key then things went well.
+The script creates the final contract in a file named `user_data.yaml`.  It also displays the contents of this file to the screen. At the bottom of the output you will see an _envWorkloadSignature_ key.  If there is a gobbledygook value (base64-encoded text) associated with this key then things went well.
 
 ## Create the startup file for the HPVS 2.1.3 GREP11 guest
 
 1. Create a copy of the `user_data.yaml` file that your created
 
-	The contract that you just created is going to packaged with some other files into a startup file for the HPVS 2.1.3 guest that will run your GREP11 Server. One of the files expected is a file named `user-data` that is just a copy of the `user_data.yaml` file that was just created
+	The contract that you just created is going to be packaged with some other files into a startup file for the HPVS 2.1.3 guest that will run your GREP11 Server. One of the files expected is a file named `user-data` that is just a copy of the `user_data.yaml` file that was just created
 
 	``` bash
 	cp -ipv user_data.yaml user-data

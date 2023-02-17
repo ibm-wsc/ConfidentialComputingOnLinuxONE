@@ -11,7 +11,7 @@ echo ${StudentID}
 ???- example "Example output [click to expand me]"
 
       ```
-      silliman@nat-147 ~ % echo ${StudentID}         
+      silliman@nat-147 ~ % echo ${StudentID}
       student02
 
       ```
@@ -37,14 +37,14 @@ If you had to use the previous `export` command, repeat the prior `echo` command
 
     This way we could provide instructions throughout this lab that are generic enough that every student can just copy and paste most commands "as-is" from the lab guide. (At least that was our goal).
 
-### Optional but highly recommended- add your StudentId environment variable to your shell startup script
-If we had our way in supplying a system from which you are running the lab, you are probably using bash.
+### Optional but highly recommended- add your StudentID environment variable to your shell startup script
+If we had our way in supplying a system from which you are running the lab, you are probably using _bash_.
 
-If you are using your own workstation or laptop, if it is running Linux you are probably either using *bash* or are savvy enough to figure out which shell you are running. 
+If you are using your own workstation or laptop, if it is running Linux you are probably either using *bash* or you are savvy enough to figure out which shell you are running. 
 
 If you are running it on Apple hardware then you are probably running *zsh* or *bash* or are savvy enough to figure out which shell you are running.
 
-If you are running on a Windows machine then we hope that you are using a modern enough version of Windows that you can use the Windows Subsystem for Linux and pretend that you are using a Linux machine.
+If you are running on a Windows machine then we hope that you are using a modern enough version of Windows so that you can use the Windows Subsystem for Linux and pretend that you are using a Linux machine.
 
 If you are running on an older Windows machine then you should ask your manager for a new laptop. If that doesn't work out for you then ask the instructors for help (but not for a new laptop).
 
@@ -213,8 +213,8 @@ We named your Ubuntu KVM guest the same as your userid on the RHEL host, which i
       </domain>
       ```
 
+Look for the your userid in the output of the *virsh dumpxml* command.  You'll see it in two places- at the top where it names your guest, and then within the filepath and filename of the *qcow2* image that provides your KVM guest.  
 
-TODO:  describe interesting bits
 
 Run this command to start your Ubuntu KVM guest:
 

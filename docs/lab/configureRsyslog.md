@@ -1,6 +1,6 @@
 # Configure rsyslog service
 
-The HPVS 2.1.3-protected GREP11 Server that you will create later in the lab will log its output to a rsyslog service on the Ubuntu KVM guest that you just started in the previous section. Rsyslog is currently not set up for this, so you will configure rsyslog in this section of the lab.
+The HPVS 2.1.3-protected GREP11 Server that you will create later in the lab will log its output to an rsyslog service on the Ubuntu KVM guest that you just started in the previous section. Rsyslog is currently not set up for this, so you will configure rsyslog in this section of the lab.
 
 !!! Note "Logging to LogDNA"
     Did you know that you could also log the output of an HPVS 2.1.3 guest to a LogDNA instance on IBM Cloud?  It's true! That is not covered in this lab but if you are interested in this, you can consult the [product documentation](https://cloud.ibm.com/catalog/services/logdna){target="_blank" rel="noopener"} or contact the instructors, who have done this and probably wouldn't object to getting you started on this.
@@ -15,7 +15,7 @@ The HPVS 2.1.3-protected GREP11 Server that you will create later in the lab wil
 
 		Your cable modem or DSL modem or satellite modem provides NAT services for your home network. This modem connects to your network router either:
 
-		- combined into a single physical unit that acts as a modem and a router (and maybe a toaster or coffee maker) at least it should be given how much my wallet shrinks after paying my monthly bill!
+		- combined into a single physical unit that acts as a modem and a router (and maybe a toaster or coffee maker- at least it should be given how much my wallet shrinks after paying my monthly bill!)
 
 		*OR*
 
@@ -115,11 +115,11 @@ The initial installation of Ubuntu installed an _rsyslog_ service.  Display it w
 
       ```
 
+If you're having trouble getting back to a command prompt, press _q_ (for _quit_). 
+
 The default installation of rsyslog needs to be modified to allow it to receive messages sent across the network using the TCP protocol and with mutual TLS authentication.
 
-TODO:  ensure it is mutual and not just server
-
-We'll modify the configuration to allow this.  
+You'll modify the configuration to allow this.  
 
 1. Become the root user:
 
@@ -177,7 +177,7 @@ We'll modify the configuration to allow this.
 	EOF
 	```
 
-	We might have had you put the cart before the horse a little bit because, there is some work to do to ensure that what you've added to this configuration file actually works! But we did this so that we can point out the sections that are requiring this extra work.
+	We might have had you put the cart before the horse a little bit because there is some work to do to ensure that what you've added to this configuration file actually works! But we did this so that we can point out the sections that are requiring this extra work.
 
 	!!! Tip "Take a look close to the bottom of the file"
 
@@ -309,7 +309,7 @@ So if you receive a piece of digital information and a public key, you can prove
 
 1. An individual or organization submits a request for a certificate (CSR) with their public key
 2. CA takes the effort to verify that the owner of the public key is a good actor and is who they say they are and that they can be trusted
-3. CA creates the certificate that holds the public key (essentially stating "I am a CA and you can trust me and the holder of this certificate that I just signed is a good person and they are who they say they are, so you can trust this certificate and anything it signs").
+3. CA creates the certificate that holds the public key (essentially stating "I am a CA and you can trust me and the holder of this certificate that I just signed is a good person and they are who they say they are, so you can trust this certificate and anything it signs")
 
 ??? Question "How is that working out for us?"
 
@@ -427,7 +427,7 @@ The process is similar:
 	openssl genrsa -out server-key.pem 4096
 	```
    
-2. Create the configuration file to pre-emptively answer the inevitable questions.  See if you can find the two places where I use an amazingly complicated command pipe that somehow puts a whole bunch of information in a blender and comes up with your machine's IP address. (Brought to you by the "Just because you can do something, doesn't mean you should" Department)
+2. Create the configuration file to preemptively answer the inevitable questions.  See if you can find the two places where I use an amazingly complicated command pipe that somehow puts a whole bunch of information in a blender and comes up with your machine's IP address. (Brought to you by the "Just because you can do something, doesn't mean you should" Department)
 
 	``` bash
 	export ipline="IP:$(ip route get 1.1.1.1 | grep -oP 'src \K[^ ]+')" && \
@@ -449,6 +449,12 @@ The process is similar:
 	CN = ${ipline}
 	EOF
 	```
+
+      *Optional*: You know you can't resist looking at the output file to see if that IP magic worked, so just do it:
+
+      ``` bash
+      cat server.cnf
+      ```
 
 3. Create the rsyslog service's CSR:
 
@@ -572,11 +578,9 @@ The process is similar:
 					6b:6d:d8:4e:84:0e:ab:a1
 			```
 
-TODO:  Check out setting ca.srl you may have missed it in these instructions and I'm not sure that it matters.
-
 ## Copy certificates and private key to the location specified in the /etc/rsyslog.d/server.conf file
 
-The configuration file you created in rsyslog a while ago (near the top of this page) specified `/var/lib/rsyslog/x509` as the directory to hold some files. You just created these files in your _rsyslogWork_ directory, so now create the _/var/lib/rsyslog/x509_ directory and copy the files in there:
+The configuration file you created in rsyslog a little while ago (near the top of this page) specified `/var/lib/rsyslog/x509` as the directory to hold some files. You just created these files in your _rsyslogWork_ directory, so now create the _/var/lib/rsyslog/x509_ directory and copy the files in there:
 
    ``` bash
    sudo mkdir -p /var/lib/rsyslog/x509 && \
@@ -626,6 +630,8 @@ Display the rsyslog service's status and notice it hasn't been active very long,
    ``` bash
    sudo systemctl status rsyslog
    ```
+
+*Reminder*:  *q* gets you back to a command prompt.
 
 ???- example "Output showing rsyslog status after restart"
 
