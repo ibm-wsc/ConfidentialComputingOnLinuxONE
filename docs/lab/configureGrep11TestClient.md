@@ -529,7 +529,7 @@ TODO:  put infrastructure in place for env variable
 TODO:  put infrastructure in place for passwordless scp
 
    ``` bash
-   scp client.csr ${UseridOnHost}@192.168.22.64:GREP11CAwork/. 
+   scp client.csr ${StudentID}@192.168.22.64:GREP11CAwork/. 
    ```
 
 Log out of your Ubuntu kvm guest because you will be putting your CA hat on for one last time up on the RHEL 8.5 host:
@@ -707,7 +707,7 @@ TODO: put infrastructure in place for env GREP11ServerIP
 Run this command to ensure that you made the change correctly:
 
    ```
-   grep --after-context 3 ${Student_GREP11Server_IP} server_test.go
+   grep --after-context 3 ${GREP11ServerIP} server_test.go
    ```
 
 ???- example "Expected output (your IP will differ, example shown for student02)"
