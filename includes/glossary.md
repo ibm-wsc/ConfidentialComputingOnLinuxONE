@@ -4,3 +4,7 @@
 *[mint]: certification authority-speak for create
 *[CSR]: certificate signing request
 *[CA]: certification authority
+*[Docker Compose]: a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.
+*[OCI image]: a package of all the things needed to run your software
+*[OCI]: Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)
+*[container]: a running instance of an OCI image.
