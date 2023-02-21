@@ -109,7 +109,7 @@ Start your GREP11 Server and attach to its console.  Watch the messages carefull
       hpcr-catch-success[1391]: VSI has started successfully.
       ```
 
-You will have enter the `Ctrl + ]` key-combination to break out of the console.
+You will have to enter the `Ctrl + ]` key-combination to break out of the console.
 
 ## verify that GREP11 server log messages are received by rsyslog
 

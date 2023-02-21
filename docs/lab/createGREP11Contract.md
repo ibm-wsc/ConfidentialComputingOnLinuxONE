@@ -52,7 +52,7 @@ It's easy to feel overwhelmed at first, but hopefully as you progress through th
 
 ## Create workload section of the contract
 
-Switch to the your workload directory:
+Switch to your workload directory:
 
 ``` bash
 cd ${HOME}/contract/grep11Server/workload
@@ -97,7 +97,7 @@ Create the docker-compose file:
 ``` bash
 cat << EOF > docker-compose.yml
 services:
-	$(whoami)-ep11server:
+  $(whoami)-ep11server:
 	user: "0"
 	image: quay.io/gmoney23/grep11server@sha256:a864174faadc39650e61ca45d8a3ceb01ea88602cfe6f4bd4e35c48e60556900
 	ports:
@@ -134,9 +134,9 @@ cat << EOF > grep11server.yaml
 #
 
 logging:
-	# Package log levels
-	# Levels: info, warning, debug, error, fatal, trace, and panic
-	levels:
+  # Package log levels
+  # Levels: info, warning, debug, error, fatal, trace, and panic
+  levels:
 	entry: debug
 	# example below
 	# entry: info
@@ -144,8 +144,8 @@ logging:
 ###################################
 ## GRPC SERVICES TALKING TO GREP11 server ##
 ep11crypto:
-	enabled: true
-	connection:
+  enabled: true
+  connection:
 	address: 0.0.0.0
 	port: 9876
 
@@ -177,7 +177,7 @@ ep11crypto:
 
 	# Comma-separated list of card.domain tuples. card and domain are hex numbers
 	# i.e. "08.0016,0a.0016" corresponds to 22nd (x16) domain on eighth card and 22nd domain on tenth (x0a) card
-	domain: "08.0016,0a.0016"
+  domain: "08.0016,0a.0016"
 EOF
 ```
    
@@ -185,20 +185,20 @@ EOF
 
 1. Run this command to create the client configuration for the the CENA4SEE server:
 
-	``` bash
-	cat << EOF > c16client.yaml
-	#trace, debug, info, warn, err, error, critical, off
-	loglevel: 'debug'
-	servers:
-		- hostname: 192.168.22.80
-		port: 9001
-		mTLS: true
-		server_cert_file: "/cfg/c16-ca.pem"
-		client_key_file: "/cfg/c16-client.key"
-		client_cert_file: "/cfg/c16-client.pem"
+    ``` bash
+    cat << EOF > c16client.yaml
+    #trace, debug, info, warn, err, error, critical, off
+    loglevel: 'debug'
+    servers:
+      - hostname: 192.168.22.80
+        port: 9001
+        mTLS: true
+        server_cert_file: "/cfg/c16-ca.pem"
+        client_key_file: "/cfg/c16-client.key"
+        client_cert_file: "/cfg/c16-client.pem"
 
-	EOF
-	```
+    EOF
+    ```
 
 	!!! Tip "Debug log level for lab purposes"
 
@@ -829,20 +829,20 @@ In this section, you'll set up the material to enable GREP11 Server's role as a,
 
 	!!! Info "How and why the instructors will create this certificate for you"
 
-		In the interests of transparency, this is the command the instructors will use to create your certificate.  Don't try to run this command as it won't work for you because you do not have access to the "self-signed" CA's private key.  (You can try- if you succeed, you are either an excellent hacker, or the instructors are not excellent system administrators, or some combination thereof).
+		In the interests of transparency, this is the command the instructors will use to create your certificate (after setting the _${student}_ environment variable appropriately).  Don't try to run this command as it won't work for you because you do not have access to the "self-signed" CA's private key.  (You can try- if you succeed, you are either an excellent hacker, or the instructors are not excellent system administrators, or some combination thereof).
 
 		``` bash
 		### for your information only
 		certtool --generate-certificate \
-		--load-request /home/student01/contract/grep11Server/workload/compose/c16-client.csr \
-		--outfile student01-c16-client.pem \
+		--load-request /home/${student}/contract/grep11Server/workload/compose/c16-client.csr \
+		--outfile ${student}-c16-client.pem \
 		--load-ca-certificate c16server-ca.pem \
 		--load-ca-privkey c16server-ca.key \
 		--template cert.cfg 
 
-		cp -ipv student01-c16-client.pem /home/student01/contract/grep11Server/workload/compose/c16-client.pem
+		cp -ipv ${student}-c16-client.pem /home/${student}/contract/grep11Server/workload/compose/c16-client.pem
 
-		chown student01:hpvs_students /home/student01/contract/grep11Server/workload/compose/c16-client.pem 
+		chown ${student}:hpvs_students /home/${student}/contract/grep11Server/workload/compose/c16-client.pem 
 		```
 
 		This is also for information only- it is the contents of the configuration file _cert.cfg_ that the instructors use in the above command:
@@ -1016,7 +1016,7 @@ It will be called later by another script.  Comments have been added to help exp
 
 
 	``` yaml
-	cat << EOF > flow.workload
+	cat <<-EOF > flow.workload
 	# Create the workload section of the contract and add the contents in the workload.yaml file.
 
 	# 
@@ -1041,8 +1041,8 @@ It will be called later by another script.  Comments have been added to help exp
 	WORKLOAD=workload.yaml
 
 	echo "  type: workload
-		compose:
-			archive: \${COMPOSE_B64}" > \${WORKLOAD_PLAIN}
+	  compose:
+	    archive: \${COMPOSE_B64}" > \${WORKLOAD_PLAIN}
 
 	#
 	# This is the encryption certificate for Hyper Protect Container Runtime and it is
@@ -1153,7 +1153,7 @@ order to have your GREP11 Server log to the rsyslog that you configured earlier 
 		This script is not supplied with the product, but is very useful in the creation of the contract. Create it now and feel free to peruse it but do not run it now. It will be called later by another script. Comments have been added to help explain what the script does. 
 
 		``` yaml
-		cat << EOF > flow.env
+		cat <<-EOF > flow.env
 		# Create the env section of the contract and add the contents in the env.yaml file.
 
 		#
@@ -1204,13 +1204,13 @@ order to have your GREP11 Server log to the rsyslog that you configured earlier 
 
 
 		echo "  type: env
-	    	logging:
-				syslog:
-					hostname: \"\${StudentGuestIP}\"
-					port: 6514
-					server: \"\${ENV_RSYSLOG_SERVER}\"
-					cert: \"\${ENV_RSYSLOG_CERT}\"
-					key: \"\${ENV_RSYSLOG_KEY}\"" >\${ENV_PLAIN}
+		  logging:
+		    syslog:
+		      hostname: \"\${StudentGuestIP}\"
+		      port: 6514
+		      server: \"\${ENV_RSYSLOG_SERVER}\"
+		      cert: \"\${ENV_RSYSLOG_CERT}\"
+		      key: \"\${ENV_RSYSLOG_KEY}\"" >\${ENV_PLAIN}
 
 		#
 		# This command adds the public signing key to the plaintext environment yaml.  This key is used inside 

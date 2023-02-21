@@ -382,7 +382,7 @@ But this is a lab and you're going to create your own CA.  Hopefully, you trust 
 	openssl req -config ca.cnf -key ca-key.pem -new -out ca-req.csr
 	```
 
-	!!! Info "Cerficiate Signing Request (CSR)"
+	!!! Info "Certificate Signing Request (CSR)"
 
 		The RSA algorithm is a magical mystery tour to most mortals, but the algorithm is such that the public key can be extracted from a private key. You will use the private key as input to a command that will create what is known as a CSR. A CSR is a file that contains the public key (the yellow dough) and other information (the icing and the sprinkles) that you then send to the CA and say "please, please, I'm a good person and you can trust me and please create a real certificate for me".  A CSR is like a caterpillar :bug: and the resulting certificate is like a beautiful butterfly :butterfly:.
 
@@ -430,7 +430,7 @@ The process is similar:
 2. Create the configuration file to preemptively answer the inevitable questions.  See if you can find the two places where I use an amazingly complicated command pipe that somehow puts a whole bunch of information in a blender and comes up with your machine's IP address. (Brought to you by the "Just because you can do something, doesn't mean you should" Department)
 
 	``` bash
-	export ipline="IP:$(ip route get 1.1.1.1 | grep -oP 'src \K[^ ]+')" && \
+	export ipline="$(ip route get 1.1.1.1 | grep -oP 'src \K[^ ]+')" && \
 	cat << EOF > server.cnf
 	[ req ]
 	default_bits = 2048
@@ -440,7 +440,7 @@ The process is similar:
 	distinguished_name = dn
 
 	[ server ]
-	subjectAltName = ${ipline}
+	subjectAltName = IP:${ipline}
 	extendedKeyUsage = serverAuth
 
 	[ dn ]

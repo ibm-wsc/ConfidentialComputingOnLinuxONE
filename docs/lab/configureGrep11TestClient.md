@@ -524,9 +524,6 @@ It will look like this:
 
 Your GREP11 CA is on your account on the RHEL 8.5 KVM host. Send your CSR to it:
 
-TODO:  put infrastructure in place for env variable
-
-TODO:  put infrastructure in place for passwordless scp
 
    ``` bash
    scp client.csr ${StudentID}@192.168.22.64:GREP11CAwork/. 
@@ -636,7 +633,7 @@ Display the certificate before sending it to the client:
 Send the certificate back to the client that requested it:
 
    ``` bash
-   scp client.pem student@${Student_SSH_IP}:./hpcs-grep11-go/certs/.   
+   scp client.pem student@${StudentGuestIP}:./hpcs-grep11-go/certs/.   
    ```
 
 Your work as a CA registrar is done for the remainder of the lab!  Log out of your session on the RHEL 8.5 host:
@@ -698,7 +695,6 @@ Your output will look like this:
 
 This also shows the three files in the _certs_ directory that you have already taken care of, but the first line is the only line you need to change:
 
-TODO: put infrastructure in place for env GREP11ServerIP
 
    ```
    sed -i -e "s/STUDENT_GREP11SERVER_IP/${GREP11ServerIP}/g" server_test.go
