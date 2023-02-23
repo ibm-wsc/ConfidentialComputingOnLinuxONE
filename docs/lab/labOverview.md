@@ -30,5 +30,7 @@ During the lab you will log in to two servers:
 
 You will not log in directly to your HPVS 2.1.3 GREP11 Server, nor to the CENA4SEE SSC LPAR, but you will make use of them via your GREP11 Client code. 
 
-
-
+<figure markdown>
+  ![Overview Picture](../images/LinuxONEConfidentialComputing.svg)
+  <figcaption>Confidential Computing Lab Architecture</figcaption>
+</figure>
