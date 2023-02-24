@@ -2,7 +2,7 @@
 
 !!! warning "For Documentation Contributors Only"
 
-    This is for people who want to update the documentation of `Confidential Computing LinuxONE Workshop` and see the updates locally or if you are a regular user and are curious on how to do it. In most cases, just accessing the documentation via the site https://github.ibm.com/Garrett-Lee-Woodworth/ConfidentialComputingOnLinuxONE is best. If you want to access the documentation without internet access, instead of following this documentation, you should navigate to the print page (which displays the documentation in printable format). Then, Print->Save to pdf in your web browser and access the PDF freely offline.
+    This is for people who want to update the documentation of `Confidential Computing LinuxONE Workshop` and see the updates locally or if you are a regular user and are curious on how to do it. In most cases, just accessing the documentation via this site (https://ibm-wsc.github.io/ConfidentialComputingOnLinuxONE/) is best. If you want to access the documentation without internet access, instead of following this documentation, you should navigate to the print page (which displays the documentation in printable format). Then, Print->Save to pdf in your web browser and access the PDF freely offline.
 
 ## Installing Necessary Pre-requisites
 
@@ -18,13 +18,13 @@
     === "HTTPS"
 
         ``` bash
-        git clone https://github.ibm.com/Garrett-Lee-Woodworth/ConfidentialComputingOnLinuxONE.git
+        git clone https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE.git
         ```
 
     === "SSH"
 
         ``` bash
-        git clone git@github.ibm.com:Garrett-Lee-Woodworth/ConfidentialComputingOnLinuxONE.git
+        git clone git@github.com:ibm-wsc/ConfidentialComputingOnLinuxONE.git
         ```
 
 4. Change into the source code directory in your terminal

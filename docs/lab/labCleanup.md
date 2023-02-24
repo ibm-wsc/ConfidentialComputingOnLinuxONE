@@ -16,7 +16,7 @@ Enter this command to shut down your regular Ubuntu KVM guest:
    suffix=$(temp=$(whoami) && echo ${temp: -2}) ; sudo virsh shutdown grep11se${suffix} 
    ```
 
-## Clean up the home directory of your userid on the REHL 8.5 host:
+## Clean up the home directory of your userid on the RHEL 8.5 host:
 
    ``` bash 
    cd ${HOME} && rm -rf rsyslogWork GREP11CAwork contract $(whoami).dump

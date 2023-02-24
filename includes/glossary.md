@@ -10,6 +10,7 @@
 *[mint]: certification authority-speak for create
 *[OCI]: Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)
 *[OCI image]: a package of all the things needed to run your software
+*[RHEL]: Red Hat Enterprise Linux
 *[rsyslog]: rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging
 *[Secure Execution]: IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.
 *[Secure Service Container]: a type of LPAR introduced by IBM with the z14 hardware generation.  Hyper Protect Virtual Servers v1.x was built on SSC technology, and the Crypto Express Network API for Secure Execution Enclaves component of HPVS v2.x is also built on SSC technology.
