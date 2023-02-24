@@ -2,6 +2,11 @@
 
 ## Lab environment topology
 
+<figure markdown>
+  ![Overview Picture](../images/LinuxONEConfidentialComputing.svg)
+  <figcaption>Confidential Computing Lab Architecture</figcaption>
+</figure>
+
 Hyper Protect Virtual Servers 2.1.3 provides an IBM-provided and -supported Secure Execution-enabled KVM image that runs on a Linux LPAR on an IBM zSystems or LinuxONE server. 
 
 Hyper Protect Virtual Servers allows you to specify your workload via a "contract" that you define. 
@@ -28,9 +33,4 @@ During the lab you will log in to two servers:
 
 2. You will log in to your Ubuntu KVM guest for configuring the rsyslog service and for running the GREP11 client code
 
-You will not log in directly to your HPVS 2.1.3 GREP11 Server, nor to the CENA4SEE SSC LPAR, but you will make use of them via your GREP11 Client code. 
-
-<figure markdown>
-  ![Overview Picture](../images/LinuxONEConfidentialComputing.svg)
-  <figcaption>Confidential Computing Lab Architecture</figcaption>
-</figure>
+You will not log in directly to your HPVS 2.1.3 GREP11 Server, nor to the CENA4SEE SSC LPAR, but you will make use of them via your GREP11 Client code.

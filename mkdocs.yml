@@ -5,8 +5,8 @@ edit_uri: edit/main/docs
 nav:
   - Home: index.md
   - Lab Assignment: assignments.md
-  - Lab:
-    - Lab Overview: lab/labOverview.md
+  - Lab: 
+    - lab/index.md
     - Launch Ubuntu KVM guest: lab/launchKVMguest.md
     - Configure rsyslog on your KVM guest: lab/configureRsyslog.md
     - Configure rsyslog client certs on the RHEL host: lab/configureRsyslogForGREP11.md
