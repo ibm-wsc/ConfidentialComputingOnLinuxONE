@@ -1,0 +1,2405 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ibm-wsc.github.io/ConfidentialComputingOnLinuxONE/lab/createGREP11Contract/">
+      
+      
+        <link rel="prev" href="../configureRsyslogForGREP11/">
+      
+      
+        <link rel="next" href="../launchGREP11guest/">
+      
+      <link rel="icon" href="../../images/HPVS2.1.xGraphic.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.13">
+    
+    
+      
+        <title>Create Contract for GREP11 Server - Confidential Computing LinuxONE Workshop</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ffa9267a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/print-site-enum-headings1.css">
+    
+      <link rel="stylesheet" href="../../css/print-site-enum-headings2.css">
+    
+      <link rel="stylesheet" href="../../css/print-site-enum-headings3.css">
+    
+      <link rel="stylesheet" href="../../css/print-site-enum-headings4.css">
+    
+      <link rel="stylesheet" href="../../css/print-site-enum-headings5.css">
+    
+      <link rel="stylesheet" href="../../css/print-site-enum-headings6.css">
+    
+      <link rel="stylesheet" href="../../css/print-site.css">
+    
+      <link rel="stylesheet" href="../../css/print-site-material.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-GYNTJ48K9Y"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-GYNTJ48K9Y",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-GYNTJ48K9Y",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>var consent;"undefined"==typeof __md_analytics||(consent=__md_get("__consent"))&&consent.analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="yellow">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#create-contract-for-grep11-server" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Confidential Computing LinuxONE Workshop" class="md-header__button md-logo" aria-label="Confidential Computing LinuxONE Workshop" data-md-component="logo">
+      
+  <img src="../../images/HPVS2.1.xGraphic.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Confidential Computing LinuxONE Workshop
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Create Contract for GREP11 Server
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="yellow"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="yellow"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../assignments.md" class="md-tabs__link">
+      Lab Assignment
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../labOverview/" class="md-tabs__link md-tabs__link--active">
+        Lab
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../localdocbuild/" class="md-tabs__link">
+      Locally Building docs
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../print_page/" class="md-tabs__link">
+      Print Site
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Confidential Computing LinuxONE Workshop" class="md-nav__button md-logo" aria-label="Confidential Computing LinuxONE Workshop" data-md-component="logo">
+      
+  <img src="../../images/HPVS2.1.xGraphic.png" alt="logo">
+
+    </a>
+    Confidential Computing LinuxONE Workshop
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../assignments.md" class="md-nav__link">
+        Lab Assignment
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          Lab
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Lab
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../labOverview/" class="md-nav__link">
+        Lab Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../launchKVMguest/" class="md-nav__link">
+        Launch Ubuntu KVM guest
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configureRsyslog/" class="md-nav__link">
+        Configure rsyslog on your KVM guest
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configureRsyslogForGREP11/" class="md-nav__link">
+        Configure rsyslog client certs on the RHEL host
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Create Contract for GREP11 Server
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Create Contract for GREP11 Server
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview-of-this-section" class="md-nav__link">
+    Overview of this section
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creation-of-directory-structure-for-contract" class="md-nav__link">
+    Creation of directory structure for contract
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-workload-section-of-the-contract" class="md-nav__link">
+    Create workload section of the contract
+  </a>
+  
+    <nav class="md-nav" aria-label="Create workload section of the contract">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-docker-compose-file" class="md-nav__link">
+    Create docker-compose file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-the-configuration-file-for-the-grep11-server" class="md-nav__link">
+    Create the configuration file for the GREP11 server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-the-client-configuration-file-for-the-cena4see-server" class="md-nav__link">
+    Create the client configuration file for the CENA4SEE server.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-x509-material-for-grep11-client-to-grep11-server-communication" class="md-nav__link">
+    Create x509 material for GREP11 client to GREP11 Server communication
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-x509-material-for-grep11-server-to-cena4see-server-communication" class="md-nav__link">
+    Create x509 material for GREP11 Server to CENA4SEE Server communication
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-environment-section-of-the-contract" class="md-nav__link">
+    Create environment section of the contract
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#encrypt-and-sign-the-contract" class="md-nav__link">
+    Encrypt and sign the contract
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-the-startup-file-for-the-hpvs-213-grep11-guest" class="md-nav__link">
+    Create the startup file for the HPVS 2.1.3 GREP11 guest
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../launchGREP11guest/" class="md-nav__link">
+        Launch GREP11 Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configureGrep11TestClient/" class="md-nav__link">
+        Run GREP11 Client code
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hackMeIfYouCan/" class="md-nav__link">
+        Regular guest vs. SE-enabled HPVS 2.1.x guest
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../labCleanup/" class="md-nav__link">
+        Lab Cleanup
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../localdocbuild/" class="md-nav__link">
+        Locally Building docs
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../print_page/" class="md-nav__link">
+        Print Site
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview-of-this-section" class="md-nav__link">
+    Overview of this section
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creation-of-directory-structure-for-contract" class="md-nav__link">
+    Creation of directory structure for contract
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-workload-section-of-the-contract" class="md-nav__link">
+    Create workload section of the contract
+  </a>
+  
+    <nav class="md-nav" aria-label="Create workload section of the contract">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-docker-compose-file" class="md-nav__link">
+    Create docker-compose file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-the-configuration-file-for-the-grep11-server" class="md-nav__link">
+    Create the configuration file for the GREP11 server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-the-client-configuration-file-for-the-cena4see-server" class="md-nav__link">
+    Create the client configuration file for the CENA4SEE server.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-x509-material-for-grep11-client-to-grep11-server-communication" class="md-nav__link">
+    Create x509 material for GREP11 client to GREP11 Server communication
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-x509-material-for-grep11-server-to-cena4see-server-communication" class="md-nav__link">
+    Create x509 material for GREP11 Server to CENA4SEE Server communication
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-environment-section-of-the-contract" class="md-nav__link">
+    Create environment section of the contract
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#encrypt-and-sign-the-contract" class="md-nav__link">
+    Encrypt and sign the contract
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-the-startup-file-for-the-hpvs-213-grep11-guest" class="md-nav__link">
+    Create the startup file for the HPVS 2.1.3 GREP11 guest
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE/edit/main/docs/lab/createGREP11Contract.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE/raw/main/docs/lab/createGREP11Contract.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="create-contract-for-grep11-server">Create Contract for <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server<a class="headerlink" href="#create-contract-for-grep11-server" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">You should be logged in to the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5 host</p>
+<p>This section assumes you are logged in to the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5 host, so we are not repeating the <em>ssh</em> command here.  If say you took a break and are logged out just click the <em>Previous</em> link at the bottom of this page, go to the bottom, scroll up until you see the <em>ssh</em> command.  The inconvenience of having you do this is outweighted by the inconvenience that would be caused by trying to log in when you are already logged in.  </p>
+</div>
+<h2 id="overview-of-this-section">Overview of this section<a class="headerlink" href="#overview-of-this-section" title="Permanent link">&para;</a></h2>
+<p>IBM provides the <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr> feature on z15 and newer generations of its IBM zSystems and LinuxONE servers.  Currently, that's z15 and LinuxONE III for the "z15" generation and z16 and LinuxONE Emperor 4 for the "z16" generation.</p>
+<p>You could create your own <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-enabled KVM guests and run a workload in it without Hyper Protect Virtual Servers 2.1.3.  However, there's non-trivial work involved in setting this up.  (Unlike the trivial effort you've expended so far in this lab, right?).  HPVS 2.1.3 has done that hard work for you, and provided a KVM guest image that will run your application workload as an <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr>-compliant (again, think "Docker" in the popular vernacular) <abbr title="a running instance of an OCI image.">container</abbr> within the HPVS 2.1.3 KVM guest.  There is still some work involved in setting up the contract that HPVS 2.1.3 expects- but this is work closer to the <em>application</em> or <em>business</em> level. There is also added value in HPVS 2.1.3 in areas such as:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> logging</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> attestation</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> verification during boot</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> encryption</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> persistent disk protection</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> separation of duties</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> even more</li>
+</ul>
+<p>In fact, this lab in its current iteration only covers a subset of these features (the checked boxes).  (We won't rest on our laurels until we've built this lab out to cover everything under the sun, but, as the saying goes, <em>Rome wasn't built in a day</em>).</p>
+<p>One of the things we just mentioned in the previous paragraph was <em>separation of duties</em>. In a real world situation, multiple personas could create different portions of the contract:</p>
+<ul>
+<li>an <em>application owner</em> deployer might create the <em>workload</em> section of the contract</li>
+<li>a <em>systems administrator</em> might create the <em>environment</em> section of the contract</li>
+</ul>
+<p>Then, you could imagine the following scenario taking place:</p>
+<ol>
+<li>application owner can encrypt their piece of the contract such that it can only be decrypted within the HPVS 2.1.3 runtime</li>
+<li>application owner passes their encrypted piece of the contract to the <em>systems administrator</em></li>
+<li>the <em>systems administrator</em> encrypts their own section</li>
+<li>the <em>systems administrator</em> combines the two sections and signs the resultant contract so that it can be verified by the HPVS 2.1.3 runtime.</li>
+</ol>
+<div class="admonition question">
+<p class="admonition-title">Your inquiring mind may say, well that's all well and good, but what about the disk storage of the machine?</p>
+<p>If your workload requires persistent disk storage (to survive a <abbr title="a running instance of an OCI image.">container</abbr> restart) then each of the two personas supplies part of a seed that is used in the calculation of an encryption key for the persistent disk. Neither persona has knowledge of the other's part of the seed if it is passed between parties encrypted, so that no human has the ability to decrypt the persistent disk.  The HPVS developers have thought through security very carefully! <img alt="🤓" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f913.svg" title=":nerd_face:" /> </p>
+</div>
+<p>Now our lab does not include all of the above features (yet)- for example, the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server is stateless (this is a feature, not a bug) so we do not need persistent disk storage.  And for this lab, you have and will continue to wear many hats, including both the <em>application owner</em> workload deployer and the <em>system administrator</em> environment deployer.  We are not going to cover <em>attestation</em> in this lab either, but when the HPVS Product Manager reads this he will try to convince us into making this the next major addition to the lab, and he will succeed.</p>
+<h2 id="creation-of-directory-structure-for-contract">Creation of directory structure for contract<a class="headerlink" href="#creation-of-directory-structure-for-contract" title="Permanent link">&para;</a></h2>
+<p>This command will create the directory structure expected by the lab instructions:</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/contract/grep11Server/<span class="o">{</span>workload,environment<span class="o">}</span>
+</code></pre></div>
+<p>A contract consists of a <em>workload</em> section and an <em>environment</em> section, so they each get their own directory. Then the sections are packaged together, and signed, and the signature is added as the third section.  This final result- the contract-  will be stored in your <code>${HOME}/contract/grep11Server</code> directory.</p>
+<p>It's easy to feel overwhelmed at first, but hopefully as you progress through the lab your level of enlightenment will increase. Most things in life that are worthwhile take a bit of effort.</p>
+<h2 id="create-workload-section-of-the-contract">Create workload section of the contract<a class="headerlink" href="#create-workload-section-of-the-contract" title="Permanent link">&para;</a></h2>
+<p>Switch to your workload directory:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/contract/grep11Server/workload
+</code></pre></div>
+<p>HPVS expects the contract to specify an <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> <abbr title="a running instance of an OCI image.">container</abbr> specified by a <em><abbr title="a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.">Docker Compose</abbr></em> file.  The <em><abbr title="a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.">Docker Compose</abbr></em> file specifies an <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> image to run and other information necessary to configure the resulting <abbr title="a running instance of an OCI image.">container</abbr>. Your workload is the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server, so, yes, there's an <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> image for that. The <abbr title="a running instance of an OCI image.">container</abbr> that runs the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server will be configured with information such as:</p>
+<ul>
+<li>listening ports</li>
+<li>configuration file</li>
+<li>another configuration file that describes its connection to the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> server</li>
+<li>certificates and keys to enable TLS communication with the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> server</li>
+<li>certificates and keys to enable TLS communication between clients that call the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server</li>
+</ul>
+<p>That's right, two more "sets" of X509 certificates, egads!!  You've already worked with one set for the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service, and yet you're still here! We'll offer the commands for these next two sets without as much commentary.</p>
+<div class="admonition information">
+<p class="admonition-title">A brief history of the term '<abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr>', or, you say to-MAY-toe and I say to-MAH-toe<p>You will not see the term <em><abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr></em> in any official product documentation.  Try googling it. <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> is the instructor's abbreviation for <em>Crypto Express Network API for <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr> Enclaves</em>.  The product documentation often uses the term <em>c16</em>.  When the instructor inquired to the developers what <em>c16</em> stood for, because he is sure that customers will ask that question, and was told that it doesn't stand for anything, he coined this acronym and will continue to use it until he is threatened with either legal action or involuntary termination of employment.  </p>
+</p>
+</div>
+<p>You are going to put the building blocks for the workload section of the contract together in the following order:</p>
+<ol>
+<li>
+<p>Create docker-compose file</p>
+</li>
+<li>
+<p>Create <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server configuration file</p>
+</li>
+<li>
+<p>Create configuration file for the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server to the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> server connection</p>
+</li>
+<li>
+<p>Create x509 material to enable secure communication between <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> clients and the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server </p>
+</li>
+<li>
+<p>Create x509 material to enable secure communication between <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server and the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> server </p>
+</li>
+</ol>
+<h3 id="create-docker-compose-file">Create docker-compose file<a class="headerlink" href="#create-docker-compose-file" title="Permanent link">&para;</a></h3>
+<p>Create a directory and switch to it:</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>compose<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>compose
+</code></pre></div>
+<p>Create the docker-compose file:</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; docker-compose.yml</span>
+<span class="s">services:</span>
+<span class="s">  $(whoami)-ep11server:</span>
+<span class="s">    user: &quot;0&quot;</span>
+<span class="s">    image: quay.io/gmoney23/grep11server@sha256:a864174faadc39650e61ca45d8a3ceb01ea88602cfe6f4bd4e35c48e60556900</span>
+<span class="s">    ports:</span>
+<span class="s">        - 9876:9876</span>
+<span class="s">    volumes:</span>
+<span class="s">        - ./c16client.yaml:/etc/c16/c16client.yaml</span>
+<span class="s">        - ./c16-ca.pem:/cfg/c16-ca.pem</span>
+<span class="s">        - ./c16-client.key:/cfg/c16-client.key</span>
+<span class="s">        - ./c16-client.pem:/cfg/c16-client.pem</span>
+<span class="s">        - ./grep11server.yaml:/etc/ep11server/ep11server.yaml</span>
+<span class="s">        - ./grep11-ca.pem:/cfg/grep11-ca.pem</span>
+<span class="s">        - ./grep11-server.pem:/cfg/grep11-server.pem</span>
+<span class="s">        - ./grep11-server.key:/cfg/grep11-server.key</span>
+
+<span class="s">EOF</span>
+</code></pre></div>
+<p>Notice the value of the <em>image</em> key.  This is the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> image provided with the Crypto Express Network API for <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr> Enclaves 1.1.1.2 (<abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr>) that Garrett (<em>gmoney23</em>) has uploaded to his account on Quay.io for this lab. (Not for your production usage as it could disappear at any time).</p>
+<p>Notice the list of eight items under the <em>volumes</em> section.  You get to create them!  </p>
+<p>Each entry in the list has a filename on the host that you will create.  The value after the ':' specifies where that file is mapped to within the <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> <abbr title="a running instance of an OCI image.">container</abbr> that will run in the HPVS 2.1.3 guest.  Taking the first item in the list as an example, you will create a file named <em>c16client.yaml</em> and then within the <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> <abbr title="a running instance of an OCI image.">container</abbr> it will be available at <em>/etc/c16/c16client.yaml</em>.  (As an aside, you can also map entire directories from your host to a Docker <abbr title="a running instance of an OCI image.">container</abbr>, although this example only maps individual files).</p>
+<h3 id="create-the-configuration-file-for-the-grep11-server">Create the configuration file for the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> server<a class="headerlink" href="#create-the-configuration-file-for-the-grep11-server" title="Permanent link">&para;</a></h3>
+<p>Run this command to create the configuration file for the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> server:</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; grep11server.yaml</span>
+<span class="s">#</span>
+<span class="s"># Copyright IBM Corp. All Rights Reserved.</span>
+<span class="s">#</span>
+<span class="s"># SPDX-License-Identifier: Apache-2.0</span>
+<span class="s">#</span>
+
+<span class="s">logging:</span>
+<span class="s">  # Package log levels</span>
+<span class="s">  # Levels: info, warning, debug, error, fatal, trace, and panic</span>
+<span class="s">  levels:</span>
+<span class="s">    entry: debug</span>
+<span class="s">    # example below</span>
+<span class="s">    # entry: info</span>
+
+<span class="s">###################################</span>
+<span class="s">## GRPC SERVICES TALKING TO GREP11 server ##</span>
+<span class="s">ep11crypto:</span>
+<span class="s">  enabled: true</span>
+<span class="s">  connection:</span>
+<span class="s">    address: 0.0.0.0</span>
+<span class="s">    port: 9876</span>
+
+<span class="s">    # Secure connection TLS options</span>
+<span class="s">    tls:</span>
+<span class="s">        enabled: true</span>
+<span class="s">        # certfile, keyfilie and cacert refer to the pem files that holds the certs</span>
+<span class="s">        certfile: /cfg/grep11-server.pem</span>
+<span class="s">        keyfile: /cfg/grep11-server.key</span>
+
+<span class="s">        mutual: true</span>
+<span class="s">        cacert: /cfg/grep11-ca.pem</span>
+
+<span class="s">        # same as above, but instead of filename, contents of PEM can be in an environment</span>
+<span class="s">        # variable (i.e. to avoid mounting files into docker container)</span>
+<span class="s">        cacertbytes:</span>
+<span class="s">        certfilebytes:</span>
+<span class="s">        keyfilebytes:</span>
+
+<span class="s">    # Server TCP/IP connection monitoring</span>
+<span class="s">    # serverKeepaliveTime is the duration in seconds after which if the server</span>
+<span class="s">    # does not see any activity from the client it pings the client to see</span>
+<span class="s">    # if it is alive</span>
+<span class="s">    # serverKeepaliveTimeout is the duration the server waits for a response</span>
+<span class="s">    # from the client after sending a ping before closing the connection</span>
+<span class="s">    keepalive:</span>
+<span class="s">        serverKeepaliveTime: 30</span>
+<span class="s">        serverKeepaliveTimeout: 5</span>
+
+<span class="s">    # Comma-separated list of card.domain tuples. card and domain are hex numbers</span>
+<span class="s">    # i.e. &quot;08.0016,0a.0016&quot; corresponds to 22nd (x16) domain on eighth card and 22nd domain on tenth (x0a) card</span>
+<span class="s">  domain: &quot;08.0016,0a.0016&quot;</span>
+<span class="s">EOF</span>
+</code></pre></div>
+<h3 id="create-the-client-configuration-file-for-the-cena4see-server">Create the client configuration file for the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> server.<a class="headerlink" href="#create-the-client-configuration-file-for-the-cena4see-server" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Run this command to create the client configuration for the the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> server:</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; c16client.yaml</span>
+<span class="s">#trace, debug, info, warn, err, error, critical, off</span>
+<span class="s">loglevel: &#39;debug&#39;</span>
+<span class="s">servers:</span>
+<span class="s">  - hostname: 192.168.22.80</span>
+<span class="s">    port: 9001</span>
+<span class="s">    mTLS: true</span>
+<span class="s">    server_cert_file: &quot;/cfg/c16-ca.pem&quot;</span>
+<span class="s">    client_key_file: &quot;/cfg/c16-client.key&quot;</span>
+<span class="s">    client_cert_file: &quot;/cfg/c16-client.pem&quot;</span>
+
+<span class="s">EOF</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Debug log level for lab purposes</p>
+<p>For the two configuration files you just created, you set the log level to debug. We would probably not recommend a log level of debug for most normal production use cases but you won't be trodding too heavily on the server in the lab and it provides extra information for your current pursuit of knowledge.</p>
+</div>
+<p>The value for the hostname in <em>c16client.yaml</em>,  <em>192.168.22.80</em>, is the IP address of the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> server running on the <abbr title="Secure Service Container- a type of LPAR introduced by IBM with the z14 hardware generation.  Hyper Protect Virtual Servers v1.x was built on SSC technology, and the Crypto Express Network API for Secure Execution Enclaves component of HPVS v2.x is also built on SSC technology.">SSC</abbr> LPAR used in the lab.</p>
+</li>
+<li>
+<p>Pick out the names of the files you will be creating from the <em>grep11server.yaml</em> file with the following command:</p>
+<div class="highlight"><pre><span></span><code>grep<span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;file:&#39;</span><span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;cacert:&#39;</span><span class="w"> </span>grep11server.yaml
+</code></pre></div>
+<p>Your output should look like this:</p>
+<details class="- example">
+<summary>You will create these files in the lab [Click me]</summary>
+<div class="highlight"><pre><span></span><code>    certfile: /cfg/grep11-server.pem
+    keyfile: /cfg/grep11-server.key
+    cacert: /cfg/grep11-ca.pem
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Pick out the names of the files you will be creating or getting from the instructors from the <em>c16client.yaml</em> file with the following command:</p>
+<div class="highlight"><pre><span></span><code>grep<span class="w"> </span><span class="s1">&#39;file:&#39;</span><span class="w"> </span>c16client.yaml
+</code></pre></div>
+<details class="- example">
+<summary>You get the first file and create the other two [Click me]</summary>
+<div class="highlight"><pre><span></span><code>    server_cert_file: &quot;/cfg/c16-ca.pem&quot;
+    client_key_file: &quot;/cfg/c16-client.key&quot;
+    client_cert_file: &quot;/cfg/c16-client.pem&quot;
+</code></pre></div>
+</details>
+</li>
+</ol>
+<h3 id="create-x509-material-for-grep11-client-to-grep11-server-communication">Create x509 material for <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> client to <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server communication<a class="headerlink" href="#create-x509-material-for-grep11-client-to-grep11-server-communication" title="Permanent link">&para;</a></h3>
+<p>Your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server acts as both a server and a client. Its primary purpose is to be a server- to serve requests from <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Clients.  But in order to get its job done, it must send requests to the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> server, so it is a client to the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> server.  (It is also a client to the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service so that it can send its log messages there). Yes, it's confusing, but that's why the IT profession offers a living wage in some parts of the world.</p>
+<p>In this section, you'll set up the material to enable <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server's role as a, well, <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server!</p>
+<ol>
+<li>
+<p>Create and change to a new directory which you will use for your self-signed <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server <abbr title="certification authority">CA</abbr>:</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/GREP11CAwork<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/GREP11CAwork
+</code></pre></div>
+</li>
+<li>
+<p>Create an RSA private key for your self-signed <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server <abbr title="certification authority">CA</abbr>:</p>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>genrsa<span class="w"> </span>-out<span class="w"> </span>grep11-ca-key.pem<span class="w"> </span><span class="m">2048</span>
+</code></pre></div>
+</li>
+<li>
+<p>Create a configuration file to assist in creation of your self-signed <abbr title="certification authority">CA</abbr> for the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server:</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; ca.cnf</span>
+
+<span class="s">[ req ]</span>
+<span class="s">default_bits           = 2048</span>
+<span class="s">default_keyfile        = keyfile.pem</span>
+<span class="s">distinguished_name     = req_distinguished_name</span>
+<span class="s">attributes             = req_attributes</span>
+<span class="s">prompt                 = no</span>
+<span class="s">output_password        = mypass</span>
+
+<span class="s">[ req_distinguished_name ]</span>
+<span class="s">C                      = US</span>
+<span class="s">ST                     = Virginia</span>
+<span class="s">L                      = Herndon</span>
+<span class="s">O                      = IBM</span>
+<span class="s">OU                     = Washington Systems Center - IBM zSystems and LinuxONE</span>
+<span class="s">CN                     = WSC $(whoami) HPVS CA</span>
+<span class="s">emailAddress           = student@notreal.email.com</span>
+
+<span class="s">[ req_attributes ]</span>
+<span class="s">challengePassword              = A challenge password</span>
+
+<span class="s">[ x509_extensions ]</span>
+<span class="s">subjectKeyIdentifier   = hash</span>
+<span class="s">authorityKeyIdentifier = keyid,issuer</span>
+<span class="s">basicConstraints       = critical,CA:TRUE</span>
+
+<span class="s">EOF</span>
+</code></pre></div>
+</li>
+<li>
+<p>Create your self-signed <abbr title="certification authority">CA</abbr> for the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server. Notice it uses the private key you created two commands ago and refers to the configuration file your last command created:</p>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>req<span class="w"> </span>-new<span class="w"> </span>-x509<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>-key<span class="w"> </span>grep11-ca-key.pem<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>-out<span class="w"> </span>grep11-ca.pem<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>-days<span class="w"> </span><span class="m">395</span><span class="w"> </span>-config<span class="w"> </span>ca.cnf<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>-extensions<span class="w"> </span>x509_extensions
+</code></pre></div>
+</li>
+<li>
+<p>Display the <abbr title="certification authority">CA</abbr> certificate that you just created:</p>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-noout<span class="w"> </span>-text<span class="w"> </span>-in<span class="w"> </span>grep11-ca.pem
+</code></pre></div>
+<p>Your output will look similar to this:</p>
+<details class="- example">
+<summary>Example of display of certificate:</summary>
+<div class="highlight"><pre><span></span><code>Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            61:1d:d1:10:f4:34:bd:84:7b:ca:0b:59:2b:cf:1e:e2:16:5a:01:5c
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM zSystems and LinuxONE, CN = WSC student02 HPVS CA, emailAddress = student@notreal.email.com.com
+        Validity
+            Not Before: Feb 14 14:36:41 2023 GMT
+            Not After : Mar 15 14:36:41 2024 GMT
+        Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM zSystems and LinuxONE, CN = WSC student02 HPVS CA, emailAddress = student@notreal.email.com
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                RSA Public-Key: (2048 bit)
+                Modulus:
+                    00:a6:56:f3:c4:81:58:e0:d5:cd:87:28:38:bc:6b:
+                    e3:0f:b4:c7:61:2e:bd:4e:17:b0:a2:65:2e:ad:63:
+                    d1:2a:b4:a2:45:d6:f3:9d:ba:8a:0d:66:72:fd:15:
+                    b1:d3:4c:08:ff:3c:8d:c0:c4:23:86:c2:65:18:19:
+                    35:03:bb:3c:d5:e2:7a:66:47:4a:6e:d1:eb:37:3f:
+                    f7:62:c0:35:45:5f:38:7a:2f:4a:1e:aa:f7:8b:4a:
+                    55:6f:bb:b4:e3:1e:a6:62:20:55:df:1f:04:1e:70:
+                    73:c5:32:b5:5e:77:6f:45:6d:43:fd:01:76:84:83:
+                    6f:c8:9a:6e:20:27:81:94:af:e7:fb:7c:c0:8c:91:
+                    bf:f1:47:d3:05:a7:56:69:29:bd:1b:59:0d:54:c0:
+                    53:e1:d8:58:a9:f1:d1:fb:d4:c0:e1:9d:f3:f2:36:
+                    51:ff:60:2a:91:28:9d:07:5e:27:5f:3a:68:f0:7e:
+                    5a:29:cb:1a:5e:b1:c5:98:e1:14:fa:38:29:67:81:
+                    4e:e3:4b:a2:bb:c7:c3:b5:24:c4:d4:c5:23:d8:70:
+                    2b:98:97:e2:ef:26:32:5a:ea:02:ea:3f:48:90:7f:
+                    a5:6f:b3:49:68:0a:31:d6:c9:18:c8:57:f7:7c:e0:
+                    4d:e4:46:f7:3c:30:7a:4a:16:df:f4:c9:b7:d8:c0:
+                    e7:bb
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Subject Key Identifier: 
+                E3:62:2B:39:9A:DB:57:77:DE:A2:C5:7E:11:A6:76:22:5F:F7:91:9D
+            X509v3 Authority Key Identifier: 
+                keyid:E3:62:2B:39:9A:DB:57:77:DE:A2:C5:7E:11:A6:76:22:5F:F7:91:9D
+
+            X509v3 Basic Constraints: critical
+                CA:TRUE
+    Signature Algorithm: sha256WithRSAEncryption
+        88:11:95:13:b8:fb:f8:b0:67:2c:a7:8f:d5:7b:27:24:e1:77:
+        45:4a:9d:af:fe:8b:34:f8:84:dc:80:69:a6:fb:50:5f:ce:86:
+        5d:a2:30:f5:f0:d9:1b:7a:92:9e:c1:69:78:f3:42:65:9f:2f:
+        3e:c9:61:96:bf:93:5a:4f:e9:70:16:de:b1:91:78:b7:0a:38:
+        2c:54:6c:21:32:be:90:e9:b5:25:29:d7:df:b2:a5:86:2d:bc:
+        04:9a:ca:ee:cb:1b:29:02:6e:59:4f:86:85:d9:06:a3:1b:8e:
+        94:df:9b:9b:56:20:f2:33:02:3c:ff:17:c3:46:04:2d:db:64:
+        1a:0f:9d:7b:2d:b6:af:dd:c4:5b:ad:70:89:09:5d:3b:02:b7:
+        74:24:79:e2:b5:a4:1a:ed:f9:8a:55:73:f6:20:4d:4f:88:42:
+        24:77:08:92:09:7d:42:2e:40:88:fa:42:1a:2b:10:b6:8f:28:
+        a1:b8:33:7c:99:fa:c6:29:0f:50:85:cd:f7:e0:b1:b7:ea:14:
+        0f:ac:a6:cd:16:3a:a9:7a:0e:f4:13:b5:35:f0:87:0d:5d:67:
+        d3:14:c3:e8:0e:b7:b1:4f:60:0b:c5:ca:23:93:6e:38:15:ee:
+        0b:e4:97:79:f9:97:43:ff:9d:42:f5:ea:80:96:d7:7b:b3:2b:
+        d1:4d:7f:36
+</code></pre></div>
+</details>
+<p>Within your <code>${HOME}/GREP11CAWork</code> directory, you are a certification authority!</p>
+</li>
+<li>
+<p>If you change to this directory, you will be soon be a customer of your <abbr title="certification authority">CA</abbr>:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/contract/grep11Server/workload/compose
+</code></pre></div>
+</li>
+<li>
+<p>You want to create a certificate for your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server to use for authenticating to <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> clients.  Start by creating an RSA private key:</p>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>genrsa<span class="w"> </span>-out<span class="w"> </span>grep11-server.key<span class="w"> </span><span class="m">2048</span>
+</code></pre></div>
+</li>
+<li>
+<p>Create a configuration file to assist the creation of your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server's <abbr title="certificate signing request">CSR</abbr>:</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; serverCSR.cnf</span>
+<span class="s"># OpenSSL configuration file.</span>
+<span class="s">#</span>
+
+<span class="s"># Establish working directory.</span>
+
+<span class="s">dir   = .</span>
+
+<span class="s">[ ca ]</span>
+<span class="s">default_ca  = CA_default</span>
+
+<span class="s">[ CA_default ]</span>
+<span class="s">serial   = $dir/serial</span>
+<span class="s">default_days  = 365</span>
+<span class="s">default_md  = sha256</span>
+<span class="s">preserve  = no</span>
+<span class="s">email_in_dn  = no</span>
+<span class="s">nameopt   = default_ca</span>
+<span class="s">certopt   = default_ca</span>
+<span class="s">default_crl_days = 45</span>
+<span class="s">policy   = policy_match</span>
+
+<span class="s">[ policy_match ]</span>
+<span class="s">countryName  = match</span>
+<span class="s">stateOrProvinceName = optional</span>
+<span class="s">organizationName = match</span>
+<span class="s">organizationalUnitName = optional</span>
+<span class="s">commonName  = supplied</span>
+<span class="s">emailAddress  = optional</span>
+
+<span class="s">[ req ]</span>
+<span class="s">default_md  = sha256</span>
+<span class="s">distinguished_name = req_distinguished_name</span>
+<span class="s">prompt             = no</span>
+
+<span class="s">[ req_distinguished_name ]</span>
+
+<span class="s">C  = US</span>
+<span class="s">ST = Virginia</span>
+<span class="s">L  = Herndon</span>
+<span class="s">O  = IBM  </span>
+<span class="s">OU = Washington Systems Center - IBM zSystems and LinuxONE</span>
+
+<span class="s">CN = \$ENV::COMMON_NAME</span>
+
+<span class="s">EOF</span>
+</code></pre></div>
+</li>
+<li>
+<p>Create the certificate signing request:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">COMMON_NAME</span><span class="o">=</span><span class="si">${</span><span class="nv">GREP11ServerIP</span><span class="si">}</span><span class="w">  </span>openssl<span class="w"> </span>req<span class="w"> </span>-new<span class="w"> </span>-key<span class="w"> </span>grep11-server.key<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-out<span class="w"> </span>grep11-server.csr<span class="w"> </span>-config<span class="w"> </span>serverCSR.cnf
+</code></pre></div>
+</li>
+<li>
+<p>In your current directory, <code>${HOME}/contract/grep11Server/workload/compose</code>, you are a "customer" of the <abbr title="certification authority">CA</abbr> you created in <code>${HOME}/GREP11CAwork</code>. 
+    Thus, "send" your <abbr title="certificate signing request">CSR</abbr> to your <abbr title="certification authority">CA</abbr>:</p>
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-ipv<span class="w"> </span>grep11-server.csr<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/GREP11CAwork/.
+</code></pre></div>
+</li>
+<li>
+<p>Put your <abbr title="certification authority">CA</abbr> hat back on and go to the <abbr title="certification authority">CA</abbr> directory:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/GREP11CAwork/
+</code></pre></div>
+</li>
+<li>
+<p>Create a configuration file to assist the creation of your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server certificate:</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; server.cnf</span>
+<span class="s"># OpenSSL configuration file.</span>
+<span class="s">#</span>
+
+<span class="s"># Establish working directory.</span>
+
+<span class="s">dir   = .</span>
+
+<span class="s">[ ca ]</span>
+<span class="s">default_ca  = CA_default</span>
+
+<span class="s">[ CA_default ]</span>
+<span class="s">serial   = $dir/serial</span>
+<span class="s">default_days  = 365</span>
+<span class="s">default_md  = sha256</span>
+<span class="s">preserve  = no</span>
+<span class="s">email_in_dn  = no</span>
+<span class="s">nameopt   = default_ca</span>
+<span class="s">certopt   = default_ca</span>
+<span class="s">default_crl_days = 45</span>
+<span class="s">policy   = policy_match</span>
+
+<span class="s">[ policy_match ]</span>
+<span class="s">countryName  = match</span>
+<span class="s">stateOrProvinceName = optional</span>
+<span class="s">organizationName = match</span>
+<span class="s">organizationalUnitName = optional</span>
+<span class="s">commonName  = supplied</span>
+<span class="s">emailAddress  = optional</span>
+
+<span class="s">[ req ]</span>
+<span class="s">default_md  = sha256</span>
+<span class="s">distinguished_name = req_distinguished_name</span>
+<span class="s">prompt             = no</span>
+
+<span class="s">[ req_distinguished_name ]</span>
+<span class="s">C  = US</span>
+<span class="s">ST = Virginia</span>
+<span class="s">L  = Herndon</span>
+<span class="s">O  = IBM  </span>
+<span class="s">OU = Washington Systems Center - IBM zSystems and LinuxONE</span>
+<span class="s">CN = \${ENV::COMMON_NAME}</span>
+
+<span class="s">[ server ]</span>
+<span class="s">basicConstraints = CA:FALSE</span>
+<span class="s">keyUsage = digitalSignature, keyEncipherment, dataEncipherment</span>
+<span class="s">extendedKeyUsage = serverAuth</span>
+<span class="s">nsCertType = server</span>
+<span class="s">crlDistributionPoints = @crl</span>
+<span class="s">subjectAltName = \${ENV::SUBJECT_ALT_NAME}</span>
+
+<span class="s">[ crl ]</span>
+<span class="s">URI=http://localhost/ca.crl</span>
+
+<span class="s">EOF</span>
+</code></pre></div>
+</li>
+<li>
+<p>Now, create the certificate:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">SUBJECT_ALT_NAME</span><span class="o">=</span>DNS:192.168.22.64:<span class="si">${</span><span class="nv">GREP11ServerForwardedPort</span><span class="si">}</span>,IP:192.168.22.64,DNS:<span class="si">${</span><span class="nv">GREP11ServerIP</span><span class="si">}</span>:9876,IP:<span class="si">${</span><span class="nv">GREP11ServerIP</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nv">COMMON_NAME</span><span class="o">=</span><span class="si">${</span><span class="nv">GREP11ServerIP</span><span class="si">}</span><span class="w"> </span>openssl<span class="w"> </span>x509<span class="w"> </span>-sha256<span class="w"> </span>-req<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-in<span class="w"> </span>grep11-server.csr<span class="w"> </span>-CA<span class="w"> </span>grep11-ca.pem<span class="w"> </span>-CAkey<span class="w"> </span>grep11-ca-key.pem<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-set_serial<span class="w"> </span><span class="m">8086</span><span class="w"> </span>-extfile<span class="w"> </span>server.cnf<span class="w"> </span>-extensions<span class="w"> </span>server<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-days<span class="w"> </span><span class="m">390</span><span class="w"> </span>-outform<span class="w"> </span>PEM<span class="w"> </span>-out<span class="w"> </span>grep11-server.pem
+</code></pre></div>
+<details class="- example">
+<summary>Example output from certificate creation</summary>
+<div class="highlight"><pre><span></span><code>Signature ok
+subject=C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM zSystems and LinuxONE, CN = 172.16.0.61
+Getting CA Private Key
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Display the info of the certificate you just created:</p>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-noout<span class="w"> </span>-text<span class="w"> </span>-in<span class="w"> </span>grep11-server.pem
+</code></pre></div>
+<p>Your certificate will look similar to this:</p>
+<details class="- example">
+<summary>Certificate info</summary>
+<div class="highlight"><pre><span></span><code>Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 8086 (0x1f96)
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM zSystems and LinuxONE, CN = WSC student02 HPVS CA, emailAddress = student@notreal.email.com.com
+        Validity
+            Not Before: Feb 14 14:47:20 2023 GMT
+            Not After : Mar 10 14:47:20 2024 GMT
+        Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM zSystems and LinuxONE, CN = 172.16.0.61
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                RSA Public-Key: (2048 bit)
+                Modulus:
+                    00:ac:16:8c:e2:82:f2:18:4d:b0:c2:6b:1e:62:93:
+                    a2:6b:58:8f:eb:60:78:49:20:e1:68:64:d9:b7:a1:
+                    a7:3d:ce:ae:ca:f9:86:8e:c8:bd:f8:fc:e3:b6:bb:
+                    19:7d:d7:8d:59:36:c6:d6:63:44:d3:14:06:ff:92:
+                    d6:ee:c9:fe:ad:4c:a0:fe:c6:96:fa:5b:29:e4:bd:
+                    08:0b:da:1a:d0:38:eb:f6:90:12:a4:34:a4:b3:21:
+                    63:31:06:32:19:9b:33:d6:f1:93:36:f1:b7:27:c3:
+                    8f:9b:31:c7:ce:e9:b6:61:15:48:c7:a2:c6:80:18:
+                    46:79:73:75:67:6d:78:d1:ec:28:19:24:fc:72:38:
+                    37:49:be:05:60:54:0c:9f:fe:52:5f:a1:16:77:98:
+                    fc:a3:d8:2e:fe:f3:b2:4f:eb:2f:45:ad:b1:c9:35:
+                    05:f3:ab:e5:44:13:24:53:e9:67:93:47:08:a8:42:
+                    f3:68:61:66:14:65:d2:c1:fe:09:05:06:3d:5f:72:
+                    5c:8b:8b:6b:c4:13:3d:71:9b:f3:5b:29:95:33:e4:
+                    3e:d4:1a:04:9a:93:71:07:ec:02:58:c9:f2:47:b8:
+                    d3:dc:db:6f:c4:bc:ff:67:e9:b0:bb:f7:5e:f8:ca:
+                    a4:cf:5e:ef:05:cf:06:25:56:1e:c4:ee:24:0d:4e:
+                    c9:e7
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            X509v3 Key Usage: 
+                Digital Signature, Key Encipherment, Data Encipherment
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication
+            Netscape Cert Type: 
+                SSL Server
+            X509v3 CRL Distribution Points: 
+
+                Full Name:
+                URI:http://localhost/ca.crl
+
+            X509v3 Subject Alternative Name: 
+                DNS:192.168.22.64:19878, IP Address:192.168.22.64, DNS:172.16.0.61:9876, IP Address:172.16.0.61
+    Signature Algorithm: sha256WithRSAEncryption
+        84:1e:74:25:f5:7b:d5:c4:d1:7a:7e:5d:c6:84:87:96:2a:75:
+        7c:20:ce:40:c4:8d:54:d5:2a:cd:53:81:b6:c0:46:73:e8:55:
+        88:ac:8c:21:0e:71:3c:1a:8f:3e:25:34:55:fc:aa:23:dc:9b:
+        ba:0b:5f:4a:e3:c3:09:d6:c4:d7:4c:27:a1:d3:d2:0d:f0:a2:
+        e0:64:d2:89:b6:61:18:1e:c9:a7:ee:66:fb:36:53:58:3d:a9:
+        5c:03:4a:fa:5f:e7:10:08:5a:8b:e0:24:1a:90:48:b2:1c:5e:
+        63:d9:23:60:24:80:5f:f6:27:7e:9f:6c:d9:9e:58:98:71:80:
+        e3:ea:1b:fa:4a:dc:67:7e:e9:23:fe:5f:d1:09:a9:3f:bc:6e:
+        9b:09:47:3a:4e:df:50:8d:26:0f:e2:75:25:ec:ce:80:1d:a7:
+        38:29:ef:b2:d6:f0:4e:7d:68:c2:b4:7e:00:7a:ff:79:8f:32:
+        8e:c1:79:54:38:3a:40:de:6b:d3:b7:6f:31:7d:ac:71:7e:37:
+        27:ac:7c:e7:b9:7e:12:b2:78:41:68:f4:5e:35:77:8c:d9:3c:
+        94:f7:0f:95:1c:1b:31:62:9c:f9:99:09:2c:60:03:7c:9c:c1:
+        56:c7:a0:7e:7b:0e:c3:22:42:95:76:ee:9c:1a:b4:e5:a8:a8:
+        6d:0f:b3:1f
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>"Send" the completed certificate to the "customer":</p>
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-ipv<span class="w"> </span>grep11-server.pem<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/contract/grep11Server/workload/compose/.
+</code></pre></div>
+</li>
+<li>
+<p>Also send your public certificate to the customer as they will need it to verify certificates that are sent by their connection partners. (<abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> clients in this case).</p>
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-ipv<span class="w"> </span>grep11-ca.pem<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/contract/grep11Server/workload/compose/.
+</code></pre></div>
+</li>
+<li>
+<p>Switch directories again:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/contract/grep11Server/workload/compose
+</code></pre></div>
+</li>
+</ol>
+<h3 id="create-x509-material-for-grep11-server-to-cena4see-server-communication">Create x509 material for <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server to <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> Server communication<a class="headerlink" href="#create-x509-material-for-grep11-server-to-cena4see-server-communication" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Learn a new argument (<em>--after-context</em>) to the <em>grep</em> command and display just a portion of the docker-compose file:</p>
+<div class="highlight"><pre><span></span><code>grep<span class="w"> </span>--after-context<span class="w"> </span><span class="m">8</span><span class="w"> </span>volumes<span class="w"> </span>docker-compose.yml
+</code></pre></div>
+<details class="- example">
+<summary>Expected output</summary>
+<div class="highlight"><pre><span></span><code>    volumes:
+    - ./c16client.yaml:/etc/c16/c16client.yaml
+    - ./c16-ca.pem:/cfg/c16-ca.pem
+    - ./c16-client.key:/cfg/c16-client.key
+    - ./c16-client.pem:/cfg/c16-client.pem
+    - ./grep11server.yaml:/etc/ep11server/ep11server.yaml
+    - ./grep11-ca.pem:/cfg/grep11-ca.pem
+    - ./grep11-server.pem:/cfg/grep11-server.pem
+    - ./grep11-server.key:/cfg/grep11-server.key
+</code></pre></div>
+</details>
+<p>Of the eight files, you have created five of them:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 2 <em>.yaml</em> files</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 3 <em>grep11-*</em> files</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 3 <em>c16-*</em> files</li>
+</ul>
+</li>
+<li>
+<p>Now it is time to create or acquire the three files called for from <em>c16client.yaml</em>.</p>
+<p>There is only one <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> server that all of the lab students will use.  The instructors have set this up, and have created the "self-signed" <abbr title="certification authority">CA</abbr> that governs communication between the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> server and its clients (each student's <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server is a client of the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> server). You need to acquire the certificate of the <abbr title="certification authority">CA</abbr> the instructors created:</p>
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-ipv<span class="w"> </span>/data/lab/c16-ca-public/c16-ca.pem<span class="w"> </span>.
+</code></pre></div>
+</li>
+<li>
+<p>Create an RSA private key using <em>certtool</em>:</p>
+<div class="admonition info">
+<p class="admonition-title">Certtool</p>
+<p>You used <em>openssl</em> for your previous certificate work.  You will use another tool called <em>certtool</em> now.  </p>
+</div>
+<div class="highlight"><pre><span></span><code>certtool<span class="w"> </span>--generate-privkey<span class="w"> </span>--outfile<span class="w"> </span>c16-client.key
+</code></pre></div>
+<details class="- example">
+<summary>Output from private key creation</summary>
+<div class="highlight"><pre><span></span><code>Generating a 3072 bit RSA private key...
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Create the following template file to avoid being asked questions from <em>certtool</em>:</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; csr.cfg</span>
+<span class="s"># The common name of the certificate owner.</span>
+<span class="s">cn = &quot;c16client&quot;</span>
+
+<span class="s"># The organizational unit of the subject.</span>
+<span class="s">unit = &quot;IBM WSC zSystems and LinuxONE&quot;</span>
+
+<span class="s"># The organization of the subject</span>
+<span class="s">organization = &quot;IBM WSC&quot;</span>
+
+<span class="s"># The location of the subject</span>
+<span class="s">locality = &quot;Herndon&quot;</span>
+
+<span class="s"># The state of the subject.</span>
+<span class="s">state = &quot;Virginia&quot;</span>
+
+<span class="s"># The country of the subject. Two letter code.</span>
+<span class="s">country = &quot;US&quot;</span>
+
+<span class="s"># The subject&#39;s domain component</span>
+<span class="s">dc = &quot;bczkvm&quot;</span>
+
+<span class="s"># A dnsname </span>
+<span class="s">dns_name = ${GREP11ServerIP}</span>
+
+<span class="s"># An IP address </span>
+<span class="s">ip_address = ${GREP11ServerIP}</span>
+
+<span class="s"># Use certificate for TLS client</span>
+<span class="s">tls_www_client</span>
+<span class="s">EOF</span>
+</code></pre></div>
+</li>
+<li>
+<p>Now create a <abbr title="certificate signing request">CSR</abbr>:</p>
+<div class="highlight"><pre><span></span><code>certtool<span class="w"> </span>--generate-request<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--load-privkey<span class="w"> </span>c16-client.key<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--template<span class="w"> </span>csr.cfg<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--outfile<span class="w"> </span>c16-client.csr<span class="w"> </span>
+</code></pre></div>
+<details class="- example">
+<summary>Output from creating <abbr title="certificate signing request">CSR</abbr></summary>
+<div class="highlight"><pre><span></span><code>Generating a PKCS #10 certificate request...
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Display information about your <abbr title="certificate signing request">CSR</abbr>:</p>
+<div class="highlight"><pre><span></span><code>certtool<span class="w"> </span>--crq-info<span class="w"> </span>--infile<span class="w"> </span>c16-client.csr
+</code></pre></div>
+<p>Your output should look similar to this:</p>
+<details class="- example">
+<summary>Example <abbr title="certificate signing request">CSR</abbr> info</summary>
+<div class="highlight"><pre><span></span><code>PKCS #10 Certificate Request Information:
+        Version: 1
+        Subject: DC=bczkvm,C=US,ST=Virginia,L=Herndon,O=IBM WSC,OU=IBM WSC zSystems and LinuxONE,CN=c16client
+        Subject Public Key Algorithm: RSA
+        Algorithm Security Level: High (3072 bits)
+            Modulus (bits 3072):
+                00:b8:89:6a:97:6f:fd:78:30:e0:c0:16:0e:64:42:fa
+                e6:b9:6b:b1:c2:fd:25:c2:0f:f6:9d:f8:29:14:c5:38
+                0f:a2:0e:57:07:30:4f:bb:23:03:af:52:fb:65:e5:5b
+                e6:fe:93:21:74:8d:5c:e3:de:e0:1c:3b:47:1f:2f:4d
+                c2:8d:e1:87:01:f7:6b:d9:c0:5d:c4:2e:53:d1:64:39
+                90:be:a9:76:38:5b:52:14:aa:26:b1:9c:1b:24:18:f4
+                7c:d7:02:27:3d:08:4a:16:b3:83:c5:70:37:d9:ae:a9
+                b4:94:cf:a9:77:d0:96:19:f1:06:5d:5e:b6:ff:76:85
+                d3:88:fe:b1:b3:40:a7:75:61:1b:d8:23:93:1f:01:3f
+                4a:5e:a3:4b:95:26:36:37:b7:3e:14:c8:dc:c2:d1:1c
+                ee:0a:60:a8:57:18:c1:ef:6f:9a:4f:e7:95:93:6a:a6
+                15:41:34:d1:9c:51:f6:74:28:5c:79:cb:61:86:f2:73
+                db:f0:7d:78:1b:4f:a2:08:92:c5:6d:8f:11:02:28:fd
+                70:27:17:88:7f:6c:42:d5:c5:90:06:06:34:a7:bc:cd
+                d9:c5:c3:4e:00:48:88:7b:d4:53:d2:63:9e:c6:6e:a8
+                6e:29:a5:57:38:7d:c3:02:05:8c:ec:83:95:43:b9:5e
+                28:fd:1d:a0:9d:b0:98:58:2e:31:b4:fd:78:75:e7:6a
+                40:60:eb:1c:53:eb:ef:31:6a:fd:96:49:c1:db:c7:53
+                c6:f8:ca:7c:db:c3:16:31:37:32:2e:25:ed:d4:96:08
+                4e:bc:ce:04:b2:ed:c4:91:c1:72:1b:b0:9f:16:3d:17
+                df:0f:b3:b7:4d:25:db:c4:ad:b4:42:b9:b2:a8:3c:41
+                52:5c:d7:20:40:62:61:29:cf:89:0f:29:db:e9:53:17
+                51:65:fc:50:0b:79:13:b5:d6:ab:cb:f8:92:e2:e9:b5
+                0d:87:d3:c9:5f:d1:dc:c7:03:c4:e9:6c:ce:f2:09:22
+                f1
+            Exponent (bits 24):
+                01:00:01
+    Signature Algorithm: RSA-SHA256
+        Attributes:
+            Extensions:
+                Subject Alternative Name (not critical):
+                    DNSname: 172.16.0.61
+                    IPAddress: 172.16.0.61
+                Basic Constraints (critical):
+                    Certificate Authority (CA): FALSE
+                Key Usage (critical):
+                    Digital signature.
+                Key Purpose (critical):
+                    TLS WWW Client.
+Other Information:
+        Public Key ID:
+            sha1:70d0427d152be23fc9015be370581d19f3c47ff7
+            sha256:8f5547027afe8e10cd64d840903692e6a703b61a63fdbaebf9e0f446013a2ee6
+        Public Key PIN:
+            pin-sha256:j1VHAnr+jhDNZNhAkDaS5qcDthpj/brr+eD0RgE6LuY=
+
+Self signature: verified
+
+-----BEGIN NEW CERTIFICATE REQUEST-----
+MIIERDCCAqwCAQAwgZgxEjAQBgNVBAMTCWMxNmNsaWVudDEmMCQGA1UECxMdSUJN
+IFdTQyB6U3lzdGVtcyBhbmQgTGludXhPTkUxEDAOBgNVBAoTB0lCTSBXU0MxEDAO
+BgNVBAcTB0hlcm5kb24xETAPBgNVBAgTCFZpcmdpbmlhMQswCQYDVQQGEwJVUzEW
+MBQGCgmSJomT8ixkARkWBmJjemt2bTCCAaIwDQYJKoZIhvcNAQEBBQADggGPADCC
+AYoCggGBALiJapdv/Xgw4MAWDmRC+ua5a7HC/SXCD/ad+CkUxTgPog5XBzBPuyMD
+r1L7ZeVb5v6TIXSNXOPe4Bw7Rx8vTcKN4YcB92vZwF3ELlPRZDmQvql2OFtSFKom
+sZwbJBj0fNcCJz0IShazg8VwN9muqbSUz6l30JYZ8QZdXrb/doXTiP6xs0CndWEb
+2COTHwE/Sl6jS5UmNje3PhTI3MLRHO4KYKhXGMHvb5pP55WTaqYVQTTRnFH2dChc
+ecthhvJz2/B9eBtPogiSxW2PEQIo/XAnF4h/bELVxZAGBjSnvM3ZxcNOAEiIe9RT
+0mOexm6obimlVzh9wwIFjOyDlUO5Xij9HaCdsJhYLjG0/Xh152pAYOscU+vvMWr9
+lknB28dTxvjKfNvDFjE3Mi4l7dSWCE68zgSy7cSRwXIbsJ8WPRffD7O3TSXbxK20
+QrmyqDxBUlzXIEBiYSnPiQ8p2+lTF1Fl/FALeRO11qvL+JLi6bUNh9PJX9HcxwPE
+6WzO8gki8QIDAQABoGYwZAYJKoZIhvcNAQkOMVcwVTAcBgNVHREEFTATggsxNzIu
+MTYuMC42MYcErBAAPTAMBgNVHRMBAf8EAjAAMA8GA1UdDwEB/wQFAwMHgAAwFgYD
+VR0lAQH/BAwwCgYIKwYBBQUHAwIwDQYJKoZIhvcNAQELBQADggGBAA17uU7a2aJx
+FNi2syniSomFbZSVQBBTJop7mplzpdyH+/IN/2eJU6wakXuuvCp6Yo2UYd6wMD5V
+jl9AuZssXYZZRxfCzLtZ/KhCmNzFqnJIGMPpaPW5W72Jtmo3GE1VRRYEnVGZGqbx
+hnUzY0uiHThT+M31P+ZwpYwsPZmWYm0zBT2NfMAPpgYC0EqXstSqUdksgK1Qxa/L
+T3pede66CtIDbO+cRCv2ITWyfElZ7HZU93fDAG+R9kSMQDxNyjFQQ1H/b0F155hZ
+DjkGJ/VSU5RAv59oud4ZUYkGFOFOXlH+4fRhszAGOA53mDGUxL+Oh1VuYijeWyWo
+kepWkbYZ1o39pb5Zj1PEN6V2pwrLVg1My0VWNoxgnOWVJOGUnAt1jFYo+1fNMBsg
+xx44AFTZKvKJmHoOnbcSw/maVqg8taeF4vyPHOddsrK9fC4lg5+ZWrLoqhh7t0Ac
+TNVxGDGmyklOsttcINyIfbyQGMUTURDEDYLl7xLNX8IFTcG+xtlS1g==
+-----END NEW CERTIFICATE REQUEST-----
+</code></pre></div>
+</details>
+<p>The "self-signed" <abbr title="certification authority">CA</abbr> for the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> server is under instructor control- since there is only one <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> for the class to share, there is only one <abbr title="certification authority">CA</abbr>.  Let the instructors know that you are ready to have a client certificate created and the instructors will create a certificate for you and place it in the same directory that you are presently working in.  </p>
+<div class="admonition info">
+<p class="admonition-title">How and why the instructors will create this certificate for you</p>
+<p>In the interests of transparency, this is the command the instructors will use to create your certificate (after setting the <em>${student}</em> environment variable appropriately).  Don't try to run this command as it won't work for you because you do not have access to the "self-signed" <abbr title="certification authority">CA</abbr>'s private key.  (You can try- if you succeed, you are either an excellent hacker, or the instructors are not excellent system administrators, or some combination thereof).</p>
+<div class="highlight"><pre><span></span><code><span class="c1">### for your information only</span>
+certtool<span class="w"> </span>--generate-certificate<span class="w"> </span><span class="se">\</span>
+--load-request<span class="w"> </span>/home/<span class="si">${</span><span class="nv">student</span><span class="si">}</span>/contract/grep11Server/workload/compose/c16-client.csr<span class="w"> </span><span class="se">\</span>
+--outfile<span class="w"> </span><span class="si">${</span><span class="nv">student</span><span class="si">}</span>-c16-client.pem<span class="w"> </span><span class="se">\</span>
+--load-ca-certificate<span class="w"> </span>c16server-ca.pem<span class="w"> </span><span class="se">\</span>
+--load-ca-privkey<span class="w"> </span>c16server-ca.key<span class="w"> </span><span class="se">\</span>
+--template<span class="w"> </span>cert.cfg<span class="w"> </span>
+
+cp<span class="w"> </span>-ipv<span class="w"> </span><span class="si">${</span><span class="nv">student</span><span class="si">}</span>-c16-client.pem<span class="w"> </span>/home/<span class="si">${</span><span class="nv">student</span><span class="si">}</span>/contract/grep11Server/workload/compose/c16-client.pem
+
+chown<span class="w"> </span><span class="si">${</span><span class="nv">student</span><span class="si">}</span>:hpvs_students<span class="w"> </span>/home/<span class="si">${</span><span class="nv">student</span><span class="si">}</span>/contract/grep11Server/workload/compose/c16-client.pem<span class="w"> </span>
+</code></pre></div>
+<p>This is also for information only- it is the contents of the configuration file <em>cert.cfg</em> that the instructors use in the above command:</p>
+<div class="highlight"><span class="filename">cert.cfg</span><pre><span></span><code><span class="c1"># Expiration days</span>
+<span class="na">expiration_days</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">300</span>
+
+<span class="c1"># Honor certificate request extensions </span>
+<span class="c1">#honor_crq_extensions</span>
+
+<span class="c1"># keyUsage </span>
+<span class="na">honor_crq_ext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">2.5.29.15</span>
+
+<span class="c1"># extKeyUsage</span>
+<span class="na">honor_crq_ext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">2.5.27.39</span>
+
+<span class="c1"># subjectAltName</span>
+<span class="na">honor_crq_ext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">2.5.29.17</span>
+
+<span class="c1"># basicConstraints</span>
+<span class="na">honor_crq_ext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">2.5.29.19</span>
+
+<span class="na">tls_www_client</span>
+</code></pre></div>
+</div>
+</li>
+<li>
+<p>After the instructors notify you that your certificate is ready <img alt="🕰" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f570.svg" title=":clock:" />, display it:</p>
+<div class="highlight"><pre><span></span><code>certtool<span class="w"> </span>--certificate-info<span class="w"> </span>--infile<span class="w"> </span>c16-client.pem
+</code></pre></div>
+<p>Your certificate will look like this:</p>
+<details class="- example">
+<summary><abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> client certificate info</summary>
+<div class="highlight"><pre><span></span><code>X.509 Certificate Information:
+        Version: 3
+        Serial Number (hex): 6c8e1ecbc1ee385c441c03bd1dd64759641c5073
+        Issuer: DC=hpvs1,C=US,ST=Virginia,L=Herndon,O=IBM WSC zSystems and LinuxONE,OU=IBM WSC,CN=c16server CA
+        Validity:
+            Not Before: Tue Feb 14 15:41:45 UTC 2023
+            Not After: Mon Dec 11 15:41:45 UTC 2023
+        Subject: DC=bczkvm,C=US,ST=Virginia,L=Herndon,O=IBM WSC,OU=IBM WSC zSystems and LinuxONE,CN=c16client
+        Subject Public Key Algorithm: RSA
+        Algorithm Security Level: High (3072 bits)
+            Modulus (bits 3072):
+                00:b8:89:6a:97:6f:fd:78:30:e0:c0:16:0e:64:42:fa
+                e6:b9:6b:b1:c2:fd:25:c2:0f:f6:9d:f8:29:14:c5:38
+                0f:a2:0e:57:07:30:4f:bb:23:03:af:52:fb:65:e5:5b
+                e6:fe:93:21:74:8d:5c:e3:de:e0:1c:3b:47:1f:2f:4d
+                c2:8d:e1:87:01:f7:6b:d9:c0:5d:c4:2e:53:d1:64:39
+                90:be:a9:76:38:5b:52:14:aa:26:b1:9c:1b:24:18:f4
+                7c:d7:02:27:3d:08:4a:16:b3:83:c5:70:37:d9:ae:a9
+                b4:94:cf:a9:77:d0:96:19:f1:06:5d:5e:b6:ff:76:85
+                d3:88:fe:b1:b3:40:a7:75:61:1b:d8:23:93:1f:01:3f
+                4a:5e:a3:4b:95:26:36:37:b7:3e:14:c8:dc:c2:d1:1c
+                ee:0a:60:a8:57:18:c1:ef:6f:9a:4f:e7:95:93:6a:a6
+                15:41:34:d1:9c:51:f6:74:28:5c:79:cb:61:86:f2:73
+                db:f0:7d:78:1b:4f:a2:08:92:c5:6d:8f:11:02:28:fd
+                70:27:17:88:7f:6c:42:d5:c5:90:06:06:34:a7:bc:cd
+                d9:c5:c3:4e:00:48:88:7b:d4:53:d2:63:9e:c6:6e:a8
+                6e:29:a5:57:38:7d:c3:02:05:8c:ec:83:95:43:b9:5e
+                28:fd:1d:a0:9d:b0:98:58:2e:31:b4:fd:78:75:e7:6a
+                40:60:eb:1c:53:eb:ef:31:6a:fd:96:49:c1:db:c7:53
+                c6:f8:ca:7c:db:c3:16:31:37:32:2e:25:ed:d4:96:08
+                4e:bc:ce:04:b2:ed:c4:91:c1:72:1b:b0:9f:16:3d:17
+                df:0f:b3:b7:4d:25:db:c4:ad:b4:42:b9:b2:a8:3c:41
+                52:5c:d7:20:40:62:61:29:cf:89:0f:29:db:e9:53:17
+                51:65:fc:50:0b:79:13:b5:d6:ab:cb:f8:92:e2:e9:b5
+                0d:87:d3:c9:5f:d1:dc:c7:03:c4:e9:6c:ce:f2:09:22
+                f1
+            Exponent (bits 24):
+                01:00:01
+        Extensions:
+            Key Usage (critical):
+                Digital signature.
+            Subject Alternative Name (not critical):
+                DNSname: 172.16.0.61
+                IPAddress: 172.16.0.61
+            Basic Constraints (critical):
+                Certificate Authority (CA): FALSE
+            Key Purpose (not critical):
+                TLS WWW Client.
+            Subject Key Identifier (not critical):
+                70d0427d152be23fc9015be370581d19f3c47ff7
+            Authority Key Identifier (not critical):
+                a9a6c37c6e9d71c63f44db39cb5d5fca84228467
+        Signature Algorithm: RSA-SHA256
+        Signature:
+            16:5d:90:43:8d:ab:7e:5a:d5:7f:3a:20:36:0c:8e:04
+            5d:58:32:27:e1:80:19:f2:7e:2a:9e:9d:c1:11:50:6e
+            11:03:16:f5:90:4a:32:32:73:b5:59:1d:ef:a0:2e:26
+            3b:dc:09:ee:9b:c9:02:99:97:7e:54:d5:93:b1:18:5d
+            42:4f:f8:29:5e:f0:60:2c:b0:51:28:52:a3:6f:5c:93
+            be:e3:38:2a:cf:23:bf:3e:ce:6e:39:ff:7f:02:44:c3
+            9e:2b:54:8a:a7:14:17:75:32:38:ea:e4:0f:12:db:22
+            0b:07:93:bd:8f:5a:5e:00:1f:40:67:77:4a:1c:6a:5e
+            bf:d2:46:53:42:80:87:d5:67:0e:54:dc:ce:60:92:9b
+            15:4f:0c:eb:d2:4a:cb:5e:c0:ad:1c:00:80:66:fb:22
+            b1:87:fd:cf:43:f1:21:0d:e6:76:03:ed:99:d0:01:e2
+            07:fb:e3:b1:d6:a9:b3:5f:28:8e:48:4b:0b:b8:fa:b3
+            3e:f6:c4:66:39:ea:2d:97:fe:56:38:69:52:bb:31:ba
+            bc:04:6f:99:ee:f5:0e:02:e7:d1:56:87:22:a8:cd:09
+            c2:be:1a:31:a4:87:42:ff:ba:f7:43:d5:b1:d7:f5:5d
+            8c:fc:18:8d:5c:78:ef:ce:83:30:76:7c:99:dd:98:d4
+            cd:3b:ba:24:5b:bf:a0:be:d4:e5:aa:c2:db:fb:ca:9a
+            52:99:6d:02:f4:c7:da:bc:f0:76:d3:54:3a:91:5d:55
+            37:13:84:e4:ca:71:6e:1d:24:8b:05:ad:54:15:ee:02
+            9d:66:04:2a:eb:82:9e:53:a1:90:7d:43:4d:0e:ab:61
+            76:2e:ba:32:4a:10:41:c5:8b:4c:e7:1f:11:0a:7b:17
+            37:4b:b6:28:60:5c:69:6c:ae:ac:53:6b:6a:e4:f7:2a
+            b6:d1:7d:c4:9b:ea:8c:88:d4:de:11:13:ee:15:7e:d7
+            3e:4a:37:bc:19:de:8e:8e:ac:3d:e7:55:bf:8f:8d:6c
+Other Information:
+        Fingerprint:
+            sha1:479b56297c57950ebc2a112e651f9e2031bb3e5f
+            sha256:63bbb36695023e4abcb92222eccb15b43d2b8bc8d80b9e35ec9eb89ea5dd816b
+        Public Key ID:
+            sha1:70d0427d152be23fc9015be370581d19f3c47ff7
+            sha256:8f5547027afe8e10cd64d840903692e6a703b61a63fdbaebf9e0f446013a2ee6
+        Public Key PIN:
+            pin-sha256:j1VHAnr+jhDNZNhAkDaS5qcDthpj/brr+eD0RgE6LuY=
+
+-----BEGIN CERTIFICATE-----
+MIIFWDCCA8CgAwIBAgIUbI4ey8HuOFxEHAO9HdZHWWQcUHMwDQYJKoZIhvcNAQEL
+BQAwgZoxFTATBgNVBAMTDGMxNnNlcnZlciBDQTEQMA4GA1UECxMHSUJNIFdTQzEm
+MCQGA1UEChMdSUJNIFdTQyB6U3lzdGVtcyBhbmQgTGludXhPTkUxEDAOBgNVBAcT
+B0hlcm5kb24xETAPBgNVBAgTCFZpcmdpbmlhMQswCQYDVQQGEwJVUzEVMBMGCgmS
+JomT8ixkARkWBWhwdnMxMB4XDTIzMDIxNDE1NDE0NVoXDTIzMTIxMTE1NDE0NVow
+gZgxEjAQBgNVBAMTCWMxNmNsaWVudDEmMCQGA1UECxMdSUJNIFdTQyB6U3lzdGVt
+cyBhbmQgTGludXhPTkUxEDAOBgNVBAoTB0lCTSBXU0MxEDAOBgNVBAcTB0hlcm5k
+b24xETAPBgNVBAgTCFZpcmdpbmlhMQswCQYDVQQGEwJVUzEWMBQGCgmSJomT8ixk
+ARkWBmJjemt2bTCCAaIwDQYJKoZIhvcNAQEBBQADggGPADCCAYoCggGBALiJapdv
+/Xgw4MAWDmRC+ua5a7HC/SXCD/ad+CkUxTgPog5XBzBPuyMDr1L7ZeVb5v6TIXSN
+XOPe4Bw7Rx8vTcKN4YcB92vZwF3ELlPRZDmQvql2OFtSFKomsZwbJBj0fNcCJz0I
+Shazg8VwN9muqbSUz6l30JYZ8QZdXrb/doXTiP6xs0CndWEb2COTHwE/Sl6jS5Um
+Nje3PhTI3MLRHO4KYKhXGMHvb5pP55WTaqYVQTTRnFH2dChcecthhvJz2/B9eBtP
+ogiSxW2PEQIo/XAnF4h/bELVxZAGBjSnvM3ZxcNOAEiIe9RT0mOexm6obimlVzh9
+wwIFjOyDlUO5Xij9HaCdsJhYLjG0/Xh152pAYOscU+vvMWr9lknB28dTxvjKfNvD
+FjE3Mi4l7dSWCE68zgSy7cSRwXIbsJ8WPRffD7O3TSXbxK20QrmyqDxBUlzXIEBi
+YSnPiQ8p2+lTF1Fl/FALeRO11qvL+JLi6bUNh9PJX9HcxwPE6WzO8gki8QIDAQAB
+o4GVMIGSMA8GA1UdDwEB/wQFAwMHgAAwHAYDVR0RBBUwE4ILMTcyLjE2LjAuNjGH
+BKwQAD0wDAYDVR0TAQH/BAIwADATBgNVHSUEDDAKBggrBgEFBQcDAjAdBgNVHQ4E
+FgQUcNBCfRUr4j/JAVvjcFgdGfPEf/cwHwYDVR0jBBgwFoAUqabDfG6dccY/RNs5
+y11fyoQihGcwDQYJKoZIhvcNAQELBQADggGBABZdkEONq35a1X86IDYMjgRdWDIn
+4YAZ8n4qnp3BEVBuEQMW9ZBKMjJztVkd76AuJjvcCe6byQKZl35U1ZOxGF1CT/gp
+XvBgLLBRKFKjb1yTvuM4Ks8jvz7Objn/fwJEw54rVIqnFBd1Mjjq5A8S2yILB5O9
+j1peAB9AZ3dKHGpev9JGU0KAh9VnDlTczmCSmxVPDOvSSstewK0cAIBm+yKxh/3P
+Q/EhDeZ2A+2Z0AHiB/vjsdaps18ojkhLC7j6sz72xGY56i2X/lY4aVK7Mbq8BG+Z
+7vUOAufRVociqM0Jwr4aMaSHQv+690PVsdf1XYz8GI1ceO/OgzB2fJndmNTNO7ok
+W7+gvtTlqsLb+8qaUpltAvTH2rzwdtNUOpFdVTcThOTKcW4dJIsFrVQV7gKdZgQq
+64KeU6GQfUNNDqthdi66MkoQQcWLTOcfEQp7FzdLtihgXGlsrqxTa2rk9yq20X3E
+m+qMiNTeERPuFX7XPko3vBnejo6sPedVv4+NbA==
+-----END CERTIFICATE-----
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Switch directories:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/contract/grep11Server/workload/.
+</code></pre></div>
+</li>
+<li>
+<p>Time to add a convenience script</p>
+<p>You are almost finished with the workload section.  One thing to do is to add a convenience script to the workload directory.  This script is not
+supplied with the product, but is very useful in the creation of the contract.  Create it now and feel free to peruse it but do not run it now.
+It will be called later by another script.  Comments have been added to help explain what the script does. </p>
+<div class="highlight"><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">cat &lt;&lt;-EOF &gt; flow.workload</span>
+<span class="l l-Scalar l-Scalar-Plain"># Create the workload section of the contract and add the contents in the workload.yaml file.</span>
+
+<span class="l l-Scalar l-Scalar-Plain">#</span><span class="w"> </span>
+<span class="l l-Scalar l-Scalar-Plain"># The Docker Compose file and all supporting configuration files are assumed to be in the ./compose directory</span>
+<span class="l l-Scalar l-Scalar-Plain"># There should not be any unnecessary files as they will get tarred up and added to the COMPOSE_B64 variable</span>
+<span class="l l-Scalar l-Scalar-Plain">#</span>
+<span class="l l-Scalar l-Scalar-Plain">COMPOSE_B64=\$(tar -czv -C compose . | base64 -w0)</span>
+
+<span class="l l-Scalar l-Scalar-Plain">#</span>
+<span class="l l-Scalar l-Scalar-Plain"># This specifies an intermediate file that could be deleted at the end of the script but</span><span class="w"> </span>
+<span class="l l-Scalar l-Scalar-Plain"># is left intact for lab learning purposes-  it is plaintext so keeping it implies that</span>
+<span class="l l-Scalar l-Scalar-Plain"># you would have to protect it appropriately.  In production you&#39;ll probably want to delete it</span>
+<span class="l l-Scalar l-Scalar-Plain">#</span>
+<span class="l l-Scalar l-Scalar-Plain">WORKLOAD_PLAIN=./workload.yaml.plaintext</span>
+
+<span class="l l-Scalar l-Scalar-Plain">#</span>
+<span class="l l-Scalar l-Scalar-Plain"># This specifies a file will be encrypted and signed and is the primary output of this script.</span><span class="w">  </span>
+<span class="l l-Scalar l-Scalar-Plain"># It is combined with the encrypted and signed environment section that is created by</span><span class="w"> </span>
+<span class="l l-Scalar l-Scalar-Plain"># another script (flow.signature which is one directory level higher)</span>
+<span class="l l-Scalar l-Scalar-Plain"># Note</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">this file will also wind up one directory level higher</span>
+<span class="c1">#</span>
+<span class="l l-Scalar l-Scalar-Plain">WORKLOAD=workload.yaml</span>
+
+<span class="l l-Scalar l-Scalar-Plain">echo &quot;  type</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">workload</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">compose</span><span class="p p-Indicator">:</span>
+<span class="w">    </span><span class="nt">archive</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">\${COMPOSE_B64}&quot; &gt; \${WORKLOAD_PLAIN}</span>
+
+<span class="c1">#</span>
+<span class="c1"># This is the encryption certificate for Hyper Protect Container Runtime and it is</span>
+<span class="c1"># provided with the Hyper Protect Virtual Servers v2.1.3 product</span>
+<span class="c1">#</span>
+<span class="l l-Scalar l-Scalar-Plain">CONTRACT_KEY=/disk/software/hpvs213/config/certs/ibm-hyper-protect-container-runtime-23.1.0-encrypt.crt</span>
+
+<span class="c1">#</span>
+<span class="c1"># This variable holds a random password:</span>
+<span class="c1">#</span>
+<span class="l l-Scalar l-Scalar-Plain">PASSWORD_WORKLOAD=&quot;\$(openssl rand 32 | base64 -w0)&quot;</span>
+
+<span class="c1">#</span>
+<span class="c1"># This variable holds the output of the command pipe that</span>
+<span class="c1"># takes your plaintext workload yaml ($WORKLOAD_PLAIN) and encrypts it using the password that </span>
+<span class="c1"># was generated above ($PASSWORD_WORKLOAD) and then base64 encodes this encrypted workload</span>
+<span class="c1">#</span>
+<span class="c1"># As long as nobody else knows your random password ($PASSWORD_WORKLOAD) your data is safe.  </span>
+<span class="c1"># But, the Hyper Protect Container Runtime has to encrypt it, so it needs your password. </span>
+<span class="c1"># How will it get that password securely?  Read the next set of comment lines to find out.</span>
+<span class="c1">#</span>
+<span class="l l-Scalar l-Scalar-Plain">ENCRYPTED_WORKLOAD=&quot;\$(echo -n &quot;\$PASSWORD_WORKLOAD&quot; | base64 -d | openssl enc -aes-256-cbc -pbkdf2 -pass stdin -in &quot;\$WORKLOAD_PLAIN&quot; | base64 -w0)&quot;</span>
+
+<span class="c1">#</span>
+<span class="c1"># This variable provides secure passage of your random password.  How?  </span>
+<span class="c1"># It encrypts it with the encryption key of the Hyper Protect Container Runtime (HPCR).</span>
+<span class="c1"># (A key that is encrypted by another key is often called a wrapped key).</span>
+<span class="c1"># Only the HPCR image has the private key which can decrypt this. It is protected from </span>
+<span class="c1"># access from any administrators.  So, malicious actors cannot do anything with this</span>
+<span class="c1"># wrapped key, even if they were able to get a hold of it.</span>
+<span class="c1"># </span>
+<span class="c1">#</span>
+<span class="l l-Scalar l-Scalar-Plain">ENCRYPTED_WORKLOAD_PASSWORD=&quot;\$(echo -n &quot;\$PASSWORD_WORKLOAD&quot; | base64 -d | openssl rsautl -encrypt -inkey \$CONTRACT_KEY -certin | base64 -w0 )&quot;</span>
+
+<span class="c1">#</span>
+<span class="c1"># Use the following command to get the encrypted section of the contract:</span>
+<span class="c1"># This variable holds the output of a concatenation of a header, &quot;hyper-protect-basic&quot;,</span>
+<span class="c1"># Your wrapped key, and your encrypted workload. </span>
+<span class="c1">#</span>
+<span class="l l-Scalar l-Scalar-Plain">WORKLOAD_ENCRYPTED=&quot;hyper-protect-basic.\${ENCRYPTED_WORKLOAD_PASSWORD}.\${ENCRYPTED_WORKLOAD}&quot;</span>
+
+<span class="c1">#</span>
+<span class="c1"># The above variable is echoed to the a file the directory one level above</span>
+<span class="c1">#</span>
+<span class="l l-Scalar l-Scalar-Plain">echo &quot;\$WORKLOAD_ENCRYPTED&quot; &gt; ../\$WORKLOAD</span>
+
+<span class="c1"># </span>
+<span class="c1"># NOTE: In a production scenario the plaintext workload section would be </span>
+<span class="c1"># deleted or stored securely but it has been left here for student perusal.  </span>
+<span class="c1"># The filename is workload.yaml.plaintext</span>
+<span class="c1">#</span>
+<span class="l l-Scalar l-Scalar-Plain">EOF</span>
+</code></pre></div>
+</li>
+</ol>
+<h2 id="create-environment-section-of-the-contract">Create environment section of the contract<a class="headerlink" href="#create-environment-section-of-the-contract" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Change to the directory where you will prepare for environment section of the contract:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>../environment
+</code></pre></div>
+</li>
+<li>
+<p>In the environment section of the contract you are going to specify the information in 
+order to have your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server log to the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> that you configured earlier in the lab.</p>
+<ol>
+<li>
+<p>Create a directory to gather some files you will need for this <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> configuration and change to it:</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>rsyslog<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>rsyslog
+</code></pre></div>
+</li>
+<li>
+<p>You will need the <abbr title="certification authority">CA</abbr> certificate of the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service that you created on your Ubuntu KVM guest which you can get via <em>scp</em>:</p>
+<div class="highlight"><pre><span></span><code>scp<span class="w"> </span>student@<span class="si">${</span><span class="nv">StudentGuestIP</span><span class="si">}</span>:rsyslogWork/ca.crt<span class="w"> </span>.
+</code></pre></div>
+</li>
+<li>
+<p>Copy your <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> client certificate from your working directory:</p>
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-ipv<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/rsyslogClientWork/client.crt<span class="w"> </span>.
+</code></pre></div>
+</li>
+<li>
+<p>Convert the client certificate to PKCS#8 format</p>
+<p>The directory you just copied the client certificate from also has your private key that you need. However, the <abbr title="Hyper Protect Container Runtime- this is the name given to the Secure Execution-enabled qcow2 image that is provided with Hyper Protect Virtual Servers 2.1.x. The container runtime provided within this image launches the customer's workload as an OCI container, in accordance with the &quot;contract&quot; specified by the customer.">HPCR</abbr> image requires this to be in PKCS#8  (Public Key Cryptography Standard #8) format. Therefore you can't just copy it over- you need to convert it to PKCS#8 format:</p>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>pkcs8<span class="w"> </span>-topk8<span class="w"> </span>-inform<span class="w"> </span>PEM<span class="w"> </span>-outform<span class="w"> </span>PEM<span class="w"> </span>-nocrypt<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-in<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/rsyslogClientWork/client-key.pem<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-out<span class="w"> </span>client-key-pkcs8.pem
+</code></pre></div>
+</li>
+<li>
+<p>Go back up one directory level:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>..<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">pwd</span>
+</code></pre></div>
+</li>
+<li>
+<p>We have provided a convenience script to assist in creating the environment section of the contract</p>
+<p>This script is not supplied with the product, but is very useful in the creation of the contract. Create it now and feel free to peruse it but do not run it now. It will be called later by another script. Comments have been added to help explain what the script does. </p>
+<div class="highlight"><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">cat &lt;&lt;-EOF &gt; flow.env</span>
+<span class="l l-Scalar l-Scalar-Plain"># Create the env section of the contract and add the contents in the env.yaml file.</span>
+
+<span class="l l-Scalar l-Scalar-Plain">#</span>
+<span class="l l-Scalar l-Scalar-Plain"># set some file locations at the top of the file here</span>
+<span class="l l-Scalar l-Scalar-Plain">#</span>
+<span class="l l-Scalar l-Scalar-Plain">RSYSLOG_CA_CRT=&quot;./rsyslog/ca.crt&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">RSYSLOG_CLIENT_CRT=&quot;./rsyslog/client.crt&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">RSYSLOG_CLIENT_KEY=&quot;./rsyslog/client-key-pkcs8.pem&quot;</span>
+
+<span class="l l-Scalar l-Scalar-Plain">#</span>
+<span class="l l-Scalar l-Scalar-Plain"># This specifies an intermediate file that could be deleted at the end of the script but</span><span class="w"> </span>
+<span class="l l-Scalar l-Scalar-Plain"># is left intact for lab learning purposes-  it is plaintext so keeping it implies that</span>
+<span class="l l-Scalar l-Scalar-Plain"># you would have to protect it appropriately.  In production you&#39;ll probably want to delete it</span>
+<span class="l l-Scalar l-Scalar-Plain">#</span>
+<span class="l l-Scalar l-Scalar-Plain">ENV_PLAIN=&quot;./env.yaml.plaintext&quot;</span>
+
+<span class="l l-Scalar l-Scalar-Plain">#</span>
+<span class="l l-Scalar l-Scalar-Plain"># This specifies a file will be encrypted and signed and is the primary output of this script.</span><span class="w">  </span>
+<span class="l l-Scalar l-Scalar-Plain"># It is combined with the encrypted and signed workload section that is created by</span><span class="w"> </span>
+<span class="l l-Scalar l-Scalar-Plain"># another script (flow.signature which is one directory level higher)</span>
+<span class="l l-Scalar l-Scalar-Plain"># Note</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">this file will also wind up one directory level higher</span>
+<span class="c1">#</span>
+<span class="l l-Scalar l-Scalar-Plain">ENV=&quot;env.yaml&quot;</span>
+
+<span class="c1">#</span>
+<span class="c1"># This variable holds the output of taking all the newlines out of the rsyslog CA certificate and</span>
+<span class="c1"># replacing them with the &quot;\n&quot; characters.  In other words, a multiple line file is squashed down </span>
+<span class="c1"># to one line.  The HPCR runtime image will then convert it back to the multiple line format</span>
+<span class="c1">#</span>
+<span class="l l-Scalar l-Scalar-Plain">ENV_RSYSLOG_SERVER=\$(awk -vRS=&quot;\n&quot; -vORS=&quot;\\\\\n&quot; &#39;1&#39; \${RSYSLOG_CA_CRT})</span>
+
+<span class="c1">#</span>
+<span class="c1"># This variable holds the output of taking all the newlines out of the client certificate that the</span>
+<span class="c1"># HPCR runtime uses for communicating with rsyslog and replacing them with the &quot;\n&quot; characters.</span>
+<span class="c1"># In other words, a multiple line file is squashed down to one line. THe HPCR runtime image will </span>
+<span class="c1"># then convert it back to the multiple line format</span>
+<span class="c1">#</span>
+<span class="l l-Scalar l-Scalar-Plain">ENV_RSYSLOG_CERT=\$(awk -vRS=&quot;\n&quot; -vORS=&quot;\\\\\n&quot; &#39;1&#39; \${RSYSLOG_CLIENT_CRT})</span>
+
+<span class="c1">#</span>
+<span class="c1"># This variable holds the output of taking all the newlines out of the client private key that the</span>
+<span class="c1"># HPCR runtime uses for communicating with rsyslog and replacing them with the &quot;\n&quot; characters.</span>
+<span class="c1"># In other words, a multiple line file is squashed down to one line. THe HPCR runtime image will </span>
+<span class="c1"># then convert it back to the multiple line format. Before this all happens, the Private Key is </span>
+<span class="c1"># converted to PKCS#8 format</span>
+<span class="c1">#</span>
+<span class="l l-Scalar l-Scalar-Plain">ENV_RSYSLOG_KEY=\$(awk -vRS=&quot;\n&quot; -vORS=&quot;\\\\\n&quot; &#39;1&#39;  \${RSYSLOG_CLIENT_KEY})</span>
+
+
+<span class="l l-Scalar l-Scalar-Plain">echo &quot;  type</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">env</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">logging</span><span class="p p-Indicator">:</span>
+<span class="w">    </span><span class="nt">syslog</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">\&quot;\${StudentGuestIP}\&quot;</span>
+<span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6514</span>
+<span class="w">      </span><span class="nt">server</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">\&quot;\${ENV_RSYSLOG_SERVER}\&quot;</span>
+<span class="w">      </span><span class="nt">cert</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">\&quot;\${ENV_RSYSLOG_CERT}\&quot;</span>
+<span class="w">      </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">\&quot;\${ENV_RSYSLOG_KEY}\&quot;&quot; &gt;\${ENV_PLAIN}</span>
+
+<span class="c1">#</span>
+<span class="c1"># This command adds the public signing key to the plaintext environment yaml.  This key is used inside </span>
+<span class="c1"># the Hyper Protect Container Runtime image to verify the signature over workload and environment sections of</span>
+<span class="c1"># the contract. </span>
+<span class="c1">#</span>
+<span class="l l-Scalar l-Scalar-Plain">cat ./pubSigningKey.yaml &gt;&gt; \${ENV_PLAIN}</span>
+
+<span class="c1"># This is the encryption certificate for Hyper Protect Container Runtime and it is</span>
+<span class="c1"># provided with the Hyper Protect Virtual Servers v2.1.3 product</span>
+<span class="c1">#</span>
+<span class="l l-Scalar l-Scalar-Plain">CONTRACT_KEY=/disk/software/hpvs213/config/certs/ibm-hyper-protect-container-runtime-23.1.0-encrypt.crt</span>
+
+<span class="c1">#</span>
+<span class="c1"># This variable holds a random password:</span>
+<span class="c1">#</span>
+<span class="l l-Scalar l-Scalar-Plain">PASSWORD_ENV=&quot;\$(openssl rand 32 | base64 -w0)&quot;</span>
+
+<span class="c1">#</span>
+<span class="c1"># This variable holds the output of the command pipe that</span>
+<span class="c1"># takes your plaintext environment yaml (\$ENV_PLAIN) and encrypts it using the password that </span>
+<span class="c1"># was generated above (\$PASSWORD_ENV) and then base64 encodes this encrypted environment yaml</span>
+<span class="c1">#</span>
+<span class="c1"># As long as nobody else knows your random password (\$PASSWORD_ENV) your data is safe.  </span>
+<span class="c1"># But, the Hyper Protect Container Runtime has to encrypt it, so it needs your password. </span>
+<span class="c1"># How will it get that password securely?  Read the next set of comment lines to find out.</span>
+<span class="c1">#</span>
+<span class="l l-Scalar l-Scalar-Plain">ENCRYPTED_ENV=&quot;\$(echo -n &quot;\$PASSWORD_ENV&quot; | base64 -d | openssl enc -aes-256-cbc -pbkdf2 -pass stdin -in &quot;\$ENV_PLAIN&quot; | base64 -w0)&quot;</span>
+
+<span class="c1">#</span>
+<span class="c1"># This variable provides secure passage for your random password.  How?  </span>
+<span class="c1"># It encrypts it with the encryption key of the Hyper Protect Container Runtime (HPCR).</span>
+<span class="c1"># (A key that is encrypted by another key is often called a wrapped key).</span>
+<span class="c1"># Only the HPCR image has the private key which can decrypt this. It is protected from </span>
+<span class="c1"># access from any administrators.  So, malicious actors cannot do anything with this</span>
+<span class="c1"># wrapped key, even if they were able to get a hold of it.</span>
+<span class="c1">#</span>
+<span class="l l-Scalar l-Scalar-Plain">ENCRYPTED_ENV_PASSWORD=&quot;\$(echo -n &quot;\$PASSWORD_ENV&quot; | base64 -d | openssl rsautl -encrypt -inkey \$CONTRACT_KEY -certin | base64 -w0 )&quot;</span>
+
+<span class="c1">#</span>
+<span class="c1"># Use the following command to get the encrypted environment section of the contract:</span>
+<span class="c1"># This variable holds the output of a concatenation of a header, &quot;hyper-protect-basic&quot;,</span>
+<span class="c1"># Your wrapped key, and your encrypted environment yaml.. </span>
+<span class="c1">#</span>
+<span class="l l-Scalar l-Scalar-Plain">ENV_ENCRYPTED=&quot;hyper-protect-basic.\${ENCRYPTED_ENV_PASSWORD}.\${ENCRYPTED_ENV}&quot;</span>
+<span class="c1">#</span>
+<span class="c1"># The above variable writes the encrypted environment section to the directory one level above</span>
+<span class="c1">#</span>
+<span class="l l-Scalar l-Scalar-Plain">echo &quot;\$ENV_ENCRYPTED&quot; &gt; ../\$ENV</span>
+<span class="l l-Scalar l-Scalar-Plain">EOF</span>
+</code></pre></div>
+</li>
+</ol>
+</li>
+<li>
+<p>Backup one more directory level:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>..
+</code></pre></div>
+</li>
+<li>
+<p>You will create three more files that are convenience scripts, similar to <em>flow.workload</em> and <em>flow.env</em> which you have already created:</p>
+<ol>
+<li>
+<p>The first script will provide some preparation steps.  Create it, peruse it, love it, but don't run it yet:</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; flow.prepare</span>
+
+<span class="s"># Use the following command to generate a key pair to sign the contract </span>
+<span class="s">openssl genrsa -aes128 -passout pass:test1234 -out private.pem 4096</span>
+<span class="s">openssl rsa -in private.pem -passin pass:test1234 -pubout -out public.pem</span>
+
+<span class="s"># The following command is an example of how you can get the signing key:</span>
+<span class="s">key=\$(awk -vRS=&quot;\n&quot; -vORS=&quot;\\\\\n&quot; &#39;1&#39; public.pem)</span>
+<span class="s">echo &quot;  signingKey: \&quot;\${key%\\\\n}\&quot;&quot; &gt; environment/pubSigningKey.yaml</span>
+<span class="s">EOF</span>
+</code></pre></div>
+</li>
+<li>
+<p>Create the second script which signs the concatenated workload and environment sections of the contract and then appends the signature as the third and final element of the contract.  Don't run it yet!</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; flow.signature</span>
+<span class="s"># combine workload and environment</span>
+<span class="s">cat workload.yaml env.yaml | tr -d &#39;\n&#39; &gt; contract.yaml</span>
+
+<span class="s"># Sign the combination from workload and env being approved</span>
+<span class="s">echo \$( cat contract.yaml | openssl dgst -sha256 -sign private.pem | openssl enc -base64) | tr -d &#39; &#39; &gt; signature.yaml</span>
+
+<span class="s"># Create user data and add signature:</span>
+<span class="s">echo &quot;workload: \$(cat workload.yaml)</span>
+<span class="s">env: \$(cat env.yaml)</span>
+<span class="s">envWorkloadSignature: \$(cat signature.yaml)&quot; &gt; user_data.yaml</span>
+
+<span class="s">echo &quot;&quot;</span>
+<span class="s">echo &quot;import \`pwd\`/user_data.yaml into User Data or copy and paste from below:&quot;</span>
+<span class="s">echo &quot;&quot;</span>
+
+<span class="s">cat user_data.yaml</span>
+<span class="s">EOF</span>
+</code></pre></div>
+</li>
+<li>
+<p>This script isn't strictly necessary for the lab for reasons stated in the comments in the script, but you can create it anyway:</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; flow.clear</span>
+<span class="s">#</span>
+<span class="s"># It isn&#39;t really necessary to run this in our lab environment </span>
+<span class="s"># because the other scripts will happy trod on these files </span>
+<span class="s"># as necessary.</span>
+<span class="s">#</span>
+<span class="s"># It is more likely that you would run this after running the</span>
+<span class="s"># other scripts in order to remove these files for security</span>
+<span class="s"># reasons</span>
+<span class="s">#</span>
+<span class="s"># But if you ever had a need to save your signing key pair, </span>
+<span class="s"># you would want to save private.pem somewhere safe.</span>
+<span class="s"># </span>
+<span class="s">rm private.pem public.pem</span>
+<span class="s">rm environment/pubSigningKey.yaml environment/env.yaml.plaintext</span>
+<span class="s">rm workload/workload.yaml.plaintext</span>
+<span class="s">rm env.yaml workload.yaml contract.yaml signature.yaml user_data.yaml</span>
+<span class="s">EOF</span>
+</code></pre></div>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="encrypt-and-sign-the-contract">Encrypt and sign the contract<a class="headerlink" href="#encrypt-and-sign-the-contract" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Create a final helper script which calls the <em>flow.*</em> scripts you created earlier:</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; makeContract</span>
+<span class="s">. ./flow.prepare</span>
+<span class="s">cd workload</span>
+<span class="s">. ./flow.workload</span>
+<span class="s">cd ../environment</span>
+<span class="s">. ./flow.env</span>
+<span class="s">cd ..</span>
+<span class="s">. ./flow.signature</span>
+
+<span class="s">EOF</span>
+</code></pre></div>
+<p>TODO: do we really need the passphrase for the signing key?</p>
+</li>
+<li>
+<p>Now run the helper script that you just created:</p>
+<div class="highlight"><pre><span></span><code>.<span class="w"> </span>./makeContract
+</code></pre></div>
+</li>
+</ol>
+<p>The script creates the final contract in a file named <code>user_data.yaml</code>.  It also displays the contents of this file to the screen. At the bottom of the output you will see an <em>envWorkloadSignature</em> key.  If there is a gobbledygook value (base64-encoded text) associated with this key then things went well.</p>
+<h2 id="create-the-startup-file-for-the-hpvs-213-grep11-guest">Create the startup file for the HPVS 2.1.3 <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> guest<a class="headerlink" href="#create-the-startup-file-for-the-hpvs-213-grep11-guest" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Create a copy of the <code>user_data.yaml</code> file that your created</p>
+<p>The contract that you just created is going to be packaged with some other files into a startup file for the HPVS 2.1.3 guest that will run your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server. One of the files expected is a file named <code>user-data</code> that is just a copy of the <code>user_data.yaml</code> file that was just created</p>
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-ipv<span class="w"> </span>user_data.yaml<span class="w"> </span>user-data
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Why didn't the script just do the above copy for me</p>
+<p>We kept <em>user-data</em> intact in case something went wrong in the process, in which case <em>user_data.yaml</em> may be rubbish but at least you haven't trampled on a good <em>user-data</em> that might already be in use.  </p>
+</div>
+</li>
+<li>
+<p>Create <code>vendor-data</code> which is another file required by the process:</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; vendor-data</span>
+<span class="s">#cloud-config</span>
+<span class="s">users:</span>
+<span class="s">- default</span>
+<span class="s">EOF</span>
+</code></pre></div>
+</li>
+<li>
+<p>Create <code>meta-data</code> which is also required, and it will have a hostname tailored for your userid:</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; meta-data</span>
+<span class="s">local-hostname: $(whoami)-grep11server</span>
+<span class="s">EOF</span>
+</code></pre></div>
+</li>
+<li>
+<p>Run this command (<abbr title="Red Hat Enterprise Linux">RHEL</abbr>-specific, see product documentation for Ubuntu command) in order to create the startup file, <em>ciiso.iso</em>:</p>
+<div class="highlight"><pre><span></span><code>genisoimage<span class="w"> </span>-output<span class="w"> </span>/var/lib/libvirt/images/hpvslab/<span class="k">$(</span>whoami<span class="k">)</span>/ciiso.iso<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-volid<span class="w"> </span>cidata<span class="w"> </span>-joliet<span class="w"> </span>-rock<span class="w"> </span>user-data<span class="w"> </span>meta-data<span class="w"> </span>vendor-data
+</code></pre></div>
+<p>Your output will look like this:</p>
+<details class="- example">
+<summary>Output from genisoimage command</summary>
+<div class="highlight"><pre><span></span><code>I: -input-charset not specified, using utf-8 (detected in locale settings)
+Total translation table size: 0
+Total rockridge attributes bytes: 414
+Total directory bytes: 0
+Path table size(bytes): 10
+Max brk space used 0
+203 extents written (0 MB)
+</code></pre></div>
+</details>
+</li>
+</ol>
+<p>Please click the <em>Next</em> link at the bottom of the page to continue with the lab.</p>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 21, 2023</span>
+      
+        <br>
+        Created:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 14, 2023</span>
+      
+    
+  </small>
+</div>
+
+
+  
+
+
+
+  <form class="md-feedback" name="feedback" hidden>
+    <fieldset>
+      <legend class="md-feedback__title">
+        Was this page helpful?
+      </legend>
+      <div class="md-feedback__inner">
+        <div class="md-feedback__list">
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page was helpful" data-md-value="1">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 21.35-1.45-1.32C5.4 15.36 2 12.27 2 8.5 2 5.41 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.08C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53L12 21.35Z"/></svg>
+            </button>
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page could be improved" data-md-value="0">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 21.35-1.45-1.32C5.4 15.36 2 12.27 2 8.5 2 5.41 4.42 3 7.5 3c.67 0 1.32.12 1.94.33L13 9.35l-4 5 3 7M16.5 3C19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53L12 21.35l-1-7 4.5-5-2.65-5.08C13.87 3.47 15.17 3 16.5 3Z"/></svg>
+            </button>
+          
+        </div>
+        <div class="md-feedback__note">
+          
+            <div data-md-value="1" hidden>
+              
+              
+                
+              
+              Thanks for your feedback!
+            </div>
+          
+            <div data-md-value="0" hidden>
+              
+              
+                
+              
+              Thanks for your feedback! Help us improve this page by using our <a href="https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE/issues/new/?title=[Feedback]+Create%20Contract%20for%20GREP11%20Server+-+/lab/createGREP11Contract/" target="_blank" rel="noopener">feedback form</a>.
+            </div>
+          
+        </div>
+      </div>
+    </fieldset>
+  </form>
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../configureRsyslogForGREP11/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Configure rsyslog client certs on the RHEL host" rel="prev">
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <div class="md-ellipsis">
+                <span class="md-footer__direction">
+                  Previous
+                </span>
+                Configure rsyslog client certs on the RHEL host
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../launchGREP11guest/" class="md-footer__link md-footer__link--next" aria-label="Next: Launch GREP11 Server" rel="next">
+            <div class="md-footer__title">
+              <div class="md-ellipsis">
+                <span class="md-footer__direction">
+                  Next
+                </span>
+                Launch GREP11 Server
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 IBM – <a href="#__consent">Change cookie settings</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/ibm-wsc" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://hub.docker.com/u/s390x" target="_blank" rel="noopener" title="hub.docker.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+  
+    
+  
+
+
+  
+    
+  
+
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make the documentation as good as possible.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="analytics" checked>
+          <span class="task-list-indicator"></span>
+          Google Analytics
+        </label>
+      </li>
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="github" checked>
+          <span class="task-list-indicator"></span>
+          GitHub
+        </label>
+      </li>
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.footer", "search.share", "navigation.indexes", "announce.dismiss", "content.tabs.link", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.2a6f1dda.min.js"></script>
+      
+        <script src="../../js/print-site.js"></script>
+      
+    
+  </body>
+</html>

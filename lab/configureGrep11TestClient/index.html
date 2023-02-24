@@ -1,0 +1,1678 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ibm-wsc.github.io/ConfidentialComputingOnLinuxONE/lab/configureGrep11TestClient/">
+      
+      
+        <link rel="prev" href="../launchGREP11guest/">
+      
+      
+        <link rel="next" href="../hackMeIfYouCan/">
+      
+      <link rel="icon" href="../../images/HPVS2.1.xGraphic.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.13">
+    
+    
+      
+        <title>Run GREP11 Client code - Confidential Computing LinuxONE Workshop</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ffa9267a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/print-site-enum-headings1.css">
+    
+      <link rel="stylesheet" href="../../css/print-site-enum-headings2.css">
+    
+      <link rel="stylesheet" href="../../css/print-site-enum-headings3.css">
+    
+      <link rel="stylesheet" href="../../css/print-site-enum-headings4.css">
+    
+      <link rel="stylesheet" href="../../css/print-site-enum-headings5.css">
+    
+      <link rel="stylesheet" href="../../css/print-site-enum-headings6.css">
+    
+      <link rel="stylesheet" href="../../css/print-site.css">
+    
+      <link rel="stylesheet" href="../../css/print-site-material.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-GYNTJ48K9Y"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-GYNTJ48K9Y",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-GYNTJ48K9Y",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>var consent;"undefined"==typeof __md_analytics||(consent=__md_get("__consent"))&&consent.analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="yellow">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#run-grep11-client-code" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Confidential Computing LinuxONE Workshop" class="md-header__button md-logo" aria-label="Confidential Computing LinuxONE Workshop" data-md-component="logo">
+      
+  <img src="../../images/HPVS2.1.xGraphic.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Confidential Computing LinuxONE Workshop
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Run GREP11 Client code
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="yellow"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="yellow"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../assignments.md" class="md-tabs__link">
+      Lab Assignment
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../labOverview/" class="md-tabs__link md-tabs__link--active">
+        Lab
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../localdocbuild/" class="md-tabs__link">
+      Locally Building docs
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../print_page/" class="md-tabs__link">
+      Print Site
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Confidential Computing LinuxONE Workshop" class="md-nav__button md-logo" aria-label="Confidential Computing LinuxONE Workshop" data-md-component="logo">
+      
+  <img src="../../images/HPVS2.1.xGraphic.png" alt="logo">
+
+    </a>
+    Confidential Computing LinuxONE Workshop
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../assignments.md" class="md-nav__link">
+        Lab Assignment
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          Lab
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Lab
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../labOverview/" class="md-nav__link">
+        Lab Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../launchKVMguest/" class="md-nav__link">
+        Launch Ubuntu KVM guest
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configureRsyslog/" class="md-nav__link">
+        Configure rsyslog on your KVM guest
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configureRsyslogForGREP11/" class="md-nav__link">
+        Configure rsyslog client certs on the RHEL host
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../createGREP11Contract/" class="md-nav__link">
+        Create Contract for GREP11 Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../launchGREP11guest/" class="md-nav__link">
+        Launch GREP11 Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Run GREP11 Client code
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Run GREP11 Client code
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview-of-this-section" class="md-nav__link">
+    Overview of this section
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#log-in-to-your-ubuntu-kvm-guest" class="md-nav__link">
+    Log in to your Ubuntu KVM guest
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-go" class="md-nav__link">
+    Install Go
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#download-the-grep11-code-repo" class="md-nav__link">
+    Download the GREP11 code repo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-tls-certificate-and-key-for-your-grep11-client" class="md-nav__link">
+    Create TLS certificate and key for your GREP11 Client
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modify-grep11-code-for-authentication-to-your-grep11-server" class="md-nav__link">
+    Modify GREP11 code for authentication to your GREP11 Server
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-the-grep11-client-code" class="md-nav__link">
+    Run the GREP11 client code
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hackMeIfYouCan/" class="md-nav__link">
+        Regular guest vs. SE-enabled HPVS 2.1.x guest
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../labCleanup/" class="md-nav__link">
+        Lab Cleanup
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../localdocbuild/" class="md-nav__link">
+        Locally Building docs
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../print_page/" class="md-nav__link">
+        Print Site
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview-of-this-section" class="md-nav__link">
+    Overview of this section
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#log-in-to-your-ubuntu-kvm-guest" class="md-nav__link">
+    Log in to your Ubuntu KVM guest
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-go" class="md-nav__link">
+    Install Go
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#download-the-grep11-code-repo" class="md-nav__link">
+    Download the GREP11 code repo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-tls-certificate-and-key-for-your-grep11-client" class="md-nav__link">
+    Create TLS certificate and key for your GREP11 Client
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modify-grep11-code-for-authentication-to-your-grep11-server" class="md-nav__link">
+    Modify GREP11 code for authentication to your GREP11 Server
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-the-grep11-client-code" class="md-nav__link">
+    Run the GREP11 client code
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE/edit/main/docs/lab/configureGrep11TestClient.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE/raw/main/docs/lab/configureGrep11TestClient.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="run-grep11-client-code">Run <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Client code<a class="headerlink" href="#run-grep11-client-code" title="Permanent link">&para;</a></h1>
+<h2 id="overview-of-this-section">Overview of this section<a class="headerlink" href="#overview-of-this-section" title="Permanent link">&para;</a></h2>
+<p>You have done a lot of work in this lab, have learned so much, and yet have had so much fun! 
+It doesn't get any better than this!</p>
+<p>Let's recap the highlights:</p>
+<p>You configured an <em><abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr></em> service on your Ubuntu KVM guest</p>
+<p>You did the X509 work to enable communication between the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> server and the <em><abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr></em> service.</p>
+<p>You did the X509 work to enable the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server to communicate with the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> server.</p>
+<p>You did the server side of the X509 work to enable the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server to communicate with <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> clients</p>
+<p>You created the <em>contract</em> expected by HPVS 2.1.3.</p>
+<p>You successfully launched the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> server as a <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-protected HPVS 2.1.3 KVM Guest!</p>
+<p>Your last task is to run some <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> client code to verify that everything is working from end-to-end!</p>
+<p>In this section you will:</p>
+<ol>
+<li>
+<p>Install Go on your Ubuntu KVM guest</p>
+</li>
+<li>
+<p>Download the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> client code from GitHub</p>
+</li>
+<li>
+<p>Do the client side of the X509 work to enable communication between your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server and this <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> client code.</p>
+</li>
+<li>
+<p>Modify the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> client code to point to your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server</p>
+</li>
+<li>
+<p>Run the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> client code</p>
+</li>
+</ol>
+<h2 id="log-in-to-your-ubuntu-kvm-guest">Log in to your Ubuntu KVM guest<a class="headerlink" href="#log-in-to-your-ubuntu-kvm-guest" title="Permanent link">&para;</a></h2>
+<p>All of the work in this section is performed on your Ubuntu KVM guest, and you are already logged in to it if you have followed this lab without interruption. 
+If you are not logged in, click on the <em>Previous</em> link at the bottom left of the page, go to the bottom of that page and scroll up just a little bit and you'll 
+see the <em>ssh</em> command to log in.  Then come back here.</p>
+<h2 id="install-go">Install Go<a class="headerlink" href="#install-go" title="Permanent link">&para;</a></h2>
+<p>The <em>Go</em> language compiler is not installed on your system.  Prove that with this command:</p>
+<div class="highlight"><pre><span></span><code>go<span class="w"> </span>version
+</code></pre></div>
+<p>You'll be given some ideas on how to install it:</p>
+<details class="- example">
+<summary>Output when go is not installed</summary>
+<div class="highlight"><pre><span></span><code>sudo snap install go         # version 1.19.5, or
+sudo apt  install golang-go  # version 2:1.18~0ubuntu2
+sudo apt  install gccgo-go   # version 2:1.18~0ubuntu2
+See &#39;snap info go&#39; for additional versions.
+</code></pre></div>
+</details>
+<p>Please pick the second option as that is the one the instructors used for creating the lab, and they are just as exhausted as you are.</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>golang-go
+</code></pre></div>
+<p>Type <em>Y</em> when prompted to continue.  The output from the installation will look like this:</p>
+<details class="- example">
+<summary>Output from installation of golang-go</summary>
+<div class="highlight"><pre><span></span><code>Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+  bzip2 cpp cpp-11 fontconfig-config fonts-dejavu-core g++ g++-11 gcc gcc-11 gcc-11-base golang-1.18-go golang-1.18-src golang-src libasan6
+  libatomic1 libc-dev-bin libc-devtools libc6-dev libcc1-0 libcrypt-dev libdeflate0 libdpkg-perl libfile-fcntllock-perl libfontconfig1
+  libfreetype6 libgcc-11-dev libgd3 libgomp1 libisl23 libitm1 libjbig0 libjpeg-turbo8 libjpeg8 libmpc3 libnsl-dev libstdc++-11-dev libtiff5
+  libtirpc-dev libubsan1 libwebp7 libxpm4 linux-libc-dev manpages-dev pkg-config rpcsvc-proto
+Suggested packages:
+  bzip2-doc cpp-doc gcc-11-locales g++-multilib g++-11-multilib gcc-11-doc gcc-multilib make autoconf automake libtool flex bison gdb
+  gcc-doc gcc-11-multilib bzr | brz mercurial subversion glibc-doc debian-keyring bzr libgd-tools libstdc++-11-doc dpkg-dev
+The following NEW packages will be installed:
+  bzip2 cpp cpp-11 fontconfig-config fonts-dejavu-core g++ g++-11 gcc gcc-11 gcc-11-base golang-1.18-go golang-1.18-src golang-go
+  golang-src libasan6 libatomic1 libc-dev-bin libc-devtools libc6-dev libcc1-0 libcrypt-dev libdeflate0 libdpkg-perl libfile-fcntllock-perl
+  libfontconfig1 libfreetype6 libgcc-11-dev libgd3 libgomp1 libisl23 libitm1 libjbig0 libjpeg-turbo8 libjpeg8 libmpc3 libnsl-dev
+  libstdc++-11-dev libtiff5 libtirpc-dev libubsan1 libwebp7 libxpm4 linux-libc-dev manpages-dev pkg-config rpcsvc-proto
+0 upgraded, 46 newly installed, 0 to remove and 12 not upgraded.
+Need to get 127 MB of archives.
+After this operation, 592 MB of additional disk space will be used.
+Do you want to continue? [Y/n] Y
+Get:1 http://ports.ubuntu.com/ubuntu-ports jammy/main s390x bzip2 s390x 1.0.8-5build1 [34.4 kB]
+Get:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main s390x gcc-11-base s390x 11.3.0-1ubuntu1~22.04 [20.8 kB]
+Get:3 http://ports.ubuntu.com/ubuntu-ports jammy/main s390x libisl23 s390x 0.24-2build1 [701 kB]
+Get:4 http://ports.ubuntu.com/ubuntu-ports jammy/main s390x libmpc3 s390x 1.2.1-2build1 [47.7 kB]
+Get:5 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main s390x cpp-11 s390x 11.3.0-1ubuntu1~22.04 [7848 kB]
+Get:6 http://ports.ubuntu.com/ubuntu-ports jammy/main s390x cpp s390x 4:11.2.0-1ubuntu1 [27.7 kB]
+Get:7 http://ports.ubuntu.com/ubuntu-ports jammy/main s390x fonts-dejavu-core all 2.37-2build1 [1041 kB]
+Get:8 http://ports.ubuntu.com/ubuntu-ports jammy/main s390x fontconfig-config all 2.13.1-4.2ubuntu5 [29.1 kB]
+Get:9 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main s390x libcc1-0 s390x 12.1.0-2ubuntu1~22.04 [46.3 kB]
+Get:10 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main s390x libgomp1 s390x 12.1.0-2ubuntu1~22.04 [123 kB]
+Get:11 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main s390x libitm1 s390x 12.1.0-2ubuntu1~22.04 [29.9 kB]
+Get:12 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main s390x libatomic1 s390x 12.1.0-2ubuntu1~22.04 [9008 B]
+Get:13 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main s390x libasan6 s390x 11.3.0-1ubuntu1~22.04 [2242 kB]
+Get:14 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main s390x libubsan1 s390x 12.1.0-2ubuntu1~22.04 [967 kB]
+Get:15 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main s390x libgcc-11-dev s390x 11.3.0-1ubuntu1~22.04 [825 kB]
+Get:16 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main s390x gcc-11 s390x 11.3.0-1ubuntu1~22.04 [15.7 MB]
+Get:17 http://ports.ubuntu.com/ubuntu-ports jammy/main s390x gcc s390x 4:11.2.0-1ubuntu1 [5118 B]
+Get:18 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main s390x libc-dev-bin s390x 2.35-0ubuntu3.1 [20.0 kB]
+Get:19 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main s390x linux-libc-dev s390x 5.15.0-60.66 [1338 kB]
+Get:20 http://ports.ubuntu.com/ubuntu-ports jammy/main s390x libcrypt-dev s390x 1:4.4.27-1 [114 kB]
+Get:21 http://ports.ubuntu.com/ubuntu-ports jammy/main s390x rpcsvc-proto s390x 1.4.2-0ubuntu6 [64.7 kB]
+Get:22 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main s390x libtirpc-dev s390x 1.3.2-2ubuntu0.1 [189 kB]
+Get:23 http://ports.ubuntu.com/ubuntu-ports jammy/main s390x libnsl-dev s390x 1.3.0-2build2 [70.9 kB]
+Get:24 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main s390x libc6-dev s390x 2.35-0ubuntu3.1 [1499 kB]
+Get:25 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main s390x libstdc++-11-dev s390x 11.3.0-1ubuntu1~22.04 [2089 kB]
+Get:26 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main s390x g++-11 s390x 11.3.0-1ubuntu1~22.04 [9169 kB]
+Get:27 http://ports.ubuntu.com/ubuntu-ports jammy/main s390x g++ s390x 4:11.2.0-1ubuntu1 [1408 B]
+Get:28 http://ports.ubuntu.com/ubuntu-ports jammy/main s390x golang-1.18-src all 1.18.1-1ubuntu1 [16.2 MB]
+Get:29 http://ports.ubuntu.com/ubuntu-ports jammy/main s390x golang-1.18-go s390x 1.18.1-1ubuntu1 [62.6 MB]
+Get:30 http://ports.ubuntu.com/ubuntu-ports jammy/main s390x golang-src all 2:1.18~0ubuntu2 [4438 B]
+Get:31 http://ports.ubuntu.com/ubuntu-ports jammy/main s390x golang-go s390x 2:1.18~0ubuntu2 [41.8 kB]
+Get:32 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main s390x libfreetype6 s390x 2.11.1+dfsg-1ubuntu0.1 [382 kB]
+Get:33 http://ports.ubuntu.com/ubuntu-ports jammy/main s390x libfontconfig1 s390x 2.13.1-4.2ubuntu5 [133 kB]
+Get:34 http://ports.ubuntu.com/ubuntu-ports jammy/main s390x libjpeg-turbo8 s390x 2.1.2-0ubuntu1 [119 kB]
+Get:35 http://ports.ubuntu.com/ubuntu-ports jammy/main s390x libjpeg8 s390x 8c-2ubuntu10 [2264 B]                                           
+Get:36 http://ports.ubuntu.com/ubuntu-ports jammy/main s390x libdeflate0 s390x 1.10-2 [72.1 kB]                                             
+Get:37 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main s390x libjbig0 s390x 2.1-3.1ubuntu0.22.04.1 [29.9 kB]                        
+Get:38 http://ports.ubuntu.com/ubuntu-ports jammy/main s390x libwebp7 s390x 1.2.2-2 [167 kB]                                                
+Get:39 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main s390x libtiff5 s390x 4.3.0-6ubuntu0.3 [178 kB]                               
+Get:40 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main s390x libxpm4 s390x 1:3.5.12-1ubuntu0.22.04.1 [36.7 kB]                      
+Get:41 http://ports.ubuntu.com/ubuntu-ports jammy/main s390x libgd3 s390x 2.3.0-2ubuntu2 [131 kB]                                           
+Get:42 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main s390x libc-devtools s390x 2.35-0ubuntu3.1 [29.2 kB]                          
+Get:43 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main s390x libdpkg-perl all 1.21.1ubuntu2.1 [237 kB]                              
+Get:44 http://ports.ubuntu.com/ubuntu-ports jammy/main s390x libfile-fcntllock-perl s390x 0.22-3build7 [33.6 kB]                            
+Get:45 http://ports.ubuntu.com/ubuntu-ports jammy/main s390x manpages-dev all 5.10-1ubuntu1 [2309 kB]                                       
+Get:46 http://ports.ubuntu.com/ubuntu-ports jammy/main s390x pkg-config s390x 0.29.2-1ubuntu3 [47.3 kB]                                     
+Fetched 127 MB in 7s (17.1 MB/s)                                                                                                            
+Extracting templates from packages: 100%
+Selecting previously unselected package bzip2.
+(Reading database ... 56573 files and directories currently installed.)
+Preparing to unpack .../00-bzip2_1.0.8-5build1_s390x.deb ...
+Unpacking bzip2 (1.0.8-5build1) ...
+Selecting previously unselected package gcc-11-base:s390x.
+Preparing to unpack .../01-gcc-11-base_11.3.0-1ubuntu1~22.04_s390x.deb ...
+Unpacking gcc-11-base:s390x (11.3.0-1ubuntu1~22.04) ...
+Selecting previously unselected package libisl23:s390x.
+Preparing to unpack .../02-libisl23_0.24-2build1_s390x.deb ...
+Unpacking libisl23:s390x (0.24-2build1) ...
+Selecting previously unselected package libmpc3:s390x.
+Preparing to unpack .../03-libmpc3_1.2.1-2build1_s390x.deb ...
+Unpacking libmpc3:s390x (1.2.1-2build1) ...
+Selecting previously unselected package cpp-11.
+Preparing to unpack .../04-cpp-11_11.3.0-1ubuntu1~22.04_s390x.deb ...
+Unpacking cpp-11 (11.3.0-1ubuntu1~22.04) ...
+Selecting previously unselected package cpp.
+Preparing to unpack .../05-cpp_4%3a11.2.0-1ubuntu1_s390x.deb ...
+Unpacking cpp (4:11.2.0-1ubuntu1) ...
+Selecting previously unselected package fonts-dejavu-core.
+Preparing to unpack .../06-fonts-dejavu-core_2.37-2build1_all.deb ...
+Unpacking fonts-dejavu-core (2.37-2build1) ...
+Selecting previously unselected package fontconfig-config.
+Preparing to unpack .../07-fontconfig-config_2.13.1-4.2ubuntu5_all.deb ...
+Unpacking fontconfig-config (2.13.1-4.2ubuntu5) ...
+Selecting previously unselected package libcc1-0:s390x.
+Preparing to unpack .../08-libcc1-0_12.1.0-2ubuntu1~22.04_s390x.deb ...
+Unpacking libcc1-0:s390x (12.1.0-2ubuntu1~22.04) ...
+Selecting previously unselected package libgomp1:s390x.
+Preparing to unpack .../09-libgomp1_12.1.0-2ubuntu1~22.04_s390x.deb ...
+Unpacking libgomp1:s390x (12.1.0-2ubuntu1~22.04) ...
+Selecting previously unselected package libitm1:s390x.
+Preparing to unpack .../10-libitm1_12.1.0-2ubuntu1~22.04_s390x.deb ...
+Unpacking libitm1:s390x (12.1.0-2ubuntu1~22.04) ...
+Selecting previously unselected package libatomic1:s390x.
+Preparing to unpack .../11-libatomic1_12.1.0-2ubuntu1~22.04_s390x.deb ...
+Unpacking libatomic1:s390x (12.1.0-2ubuntu1~22.04) ...
+Selecting previously unselected package libasan6:s390x.
+Preparing to unpack .../12-libasan6_11.3.0-1ubuntu1~22.04_s390x.deb ...
+Unpacking libasan6:s390x (11.3.0-1ubuntu1~22.04) ...
+Selecting previously unselected package libubsan1:s390x.
+Preparing to unpack .../13-libubsan1_12.1.0-2ubuntu1~22.04_s390x.deb ...
+Unpacking libubsan1:s390x (12.1.0-2ubuntu1~22.04) ...
+Selecting previously unselected package libgcc-11-dev:s390x.
+Preparing to unpack .../14-libgcc-11-dev_11.3.0-1ubuntu1~22.04_s390x.deb ...
+Unpacking libgcc-11-dev:s390x (11.3.0-1ubuntu1~22.04) ...
+Selecting previously unselected package gcc-11.
+Preparing to unpack .../15-gcc-11_11.3.0-1ubuntu1~22.04_s390x.deb ...
+Unpacking gcc-11 (11.3.0-1ubuntu1~22.04) ...
+Selecting previously unselected package gcc.
+Preparing to unpack .../16-gcc_4%3a11.2.0-1ubuntu1_s390x.deb ...
+Unpacking gcc (4:11.2.0-1ubuntu1) ...
+Selecting previously unselected package libc-dev-bin.
+Preparing to unpack .../17-libc-dev-bin_2.35-0ubuntu3.1_s390x.deb ...
+Unpacking libc-dev-bin (2.35-0ubuntu3.1) ...
+Selecting previously unselected package linux-libc-dev:s390x.
+Preparing to unpack .../18-linux-libc-dev_5.15.0-60.66_s390x.deb ...
+Unpacking linux-libc-dev:s390x (5.15.0-60.66) ...
+Selecting previously unselected package libcrypt-dev:s390x.
+Preparing to unpack .../19-libcrypt-dev_1%3a4.4.27-1_s390x.deb ...
+Unpacking libcrypt-dev:s390x (1:4.4.27-1) ...
+Selecting previously unselected package rpcsvc-proto.
+Preparing to unpack .../20-rpcsvc-proto_1.4.2-0ubuntu6_s390x.deb ...
+Unpacking rpcsvc-proto (1.4.2-0ubuntu6) ...
+Selecting previously unselected package libtirpc-dev:s390x.
+Preparing to unpack .../21-libtirpc-dev_1.3.2-2ubuntu0.1_s390x.deb ...
+Unpacking libtirpc-dev:s390x (1.3.2-2ubuntu0.1) ...
+Selecting previously unselected package libnsl-dev:s390x.
+Preparing to unpack .../22-libnsl-dev_1.3.0-2build2_s390x.deb ...
+Unpacking libnsl-dev:s390x (1.3.0-2build2) ...
+Selecting previously unselected package libc6-dev:s390x.
+Preparing to unpack .../23-libc6-dev_2.35-0ubuntu3.1_s390x.deb ...
+Unpacking libc6-dev:s390x (2.35-0ubuntu3.1) ...
+Selecting previously unselected package libstdc++-11-dev:s390x.
+Preparing to unpack .../24-libstdc++-11-dev_11.3.0-1ubuntu1~22.04_s390x.deb ...
+Unpacking libstdc++-11-dev:s390x (11.3.0-1ubuntu1~22.04) ...
+Selecting previously unselected package g++-11.
+Preparing to unpack .../25-g++-11_11.3.0-1ubuntu1~22.04_s390x.deb ...
+Unpacking g++-11 (11.3.0-1ubuntu1~22.04) ...
+Selecting previously unselected package g++.
+Preparing to unpack .../26-g++_4%3a11.2.0-1ubuntu1_s390x.deb ...
+Unpacking g++ (4:11.2.0-1ubuntu1) ...
+Selecting previously unselected package golang-1.18-src.
+Preparing to unpack .../27-golang-1.18-src_1.18.1-1ubuntu1_all.deb ...
+Unpacking golang-1.18-src (1.18.1-1ubuntu1) ...
+Selecting previously unselected package golang-1.18-go.
+Preparing to unpack .../28-golang-1.18-go_1.18.1-1ubuntu1_s390x.deb ...
+Unpacking golang-1.18-go (1.18.1-1ubuntu1) ...
+Selecting previously unselected package golang-src.
+Preparing to unpack .../29-golang-src_2%3a1.18~0ubuntu2_all.deb ...
+Unpacking golang-src (2:1.18~0ubuntu2) ...
+Selecting previously unselected package golang-go:s390x.
+Preparing to unpack .../30-golang-go_2%3a1.18~0ubuntu2_s390x.deb ...
+Unpacking golang-go:s390x (2:1.18~0ubuntu2) ...
+Selecting previously unselected package libfreetype6:s390x.
+Preparing to unpack .../31-libfreetype6_2.11.1+dfsg-1ubuntu0.1_s390x.deb ...
+Unpacking libfreetype6:s390x (2.11.1+dfsg-1ubuntu0.1) ...
+Selecting previously unselected package libfontconfig1:s390x.
+Preparing to unpack .../32-libfontconfig1_2.13.1-4.2ubuntu5_s390x.deb ...
+Unpacking libfontconfig1:s390x (2.13.1-4.2ubuntu5) ...
+Selecting previously unselected package libjpeg-turbo8:s390x.
+Preparing to unpack .../33-libjpeg-turbo8_2.1.2-0ubuntu1_s390x.deb ...
+Unpacking libjpeg-turbo8:s390x (2.1.2-0ubuntu1) ...
+Selecting previously unselected package libjpeg8:s390x.
+Preparing to unpack .../34-libjpeg8_8c-2ubuntu10_s390x.deb ...
+Unpacking libjpeg8:s390x (8c-2ubuntu10) ...
+Selecting previously unselected package libdeflate0:s390x.
+Preparing to unpack .../35-libdeflate0_1.10-2_s390x.deb ...
+Unpacking libdeflate0:s390x (1.10-2) ...
+Selecting previously unselected package libjbig0:s390x.
+Preparing to unpack .../36-libjbig0_2.1-3.1ubuntu0.22.04.1_s390x.deb ...
+Unpacking libjbig0:s390x (2.1-3.1ubuntu0.22.04.1) ...
+Selecting previously unselected package libwebp7:s390x.
+Preparing to unpack .../37-libwebp7_1.2.2-2_s390x.deb ...
+Unpacking libwebp7:s390x (1.2.2-2) ...
+Selecting previously unselected package libtiff5:s390x.
+Preparing to unpack .../38-libtiff5_4.3.0-6ubuntu0.3_s390x.deb ...
+Unpacking libtiff5:s390x (4.3.0-6ubuntu0.3) ...
+Selecting previously unselected package libxpm4:s390x.
+Preparing to unpack .../39-libxpm4_1%3a3.5.12-1ubuntu0.22.04.1_s390x.deb ...
+Unpacking libxpm4:s390x (1:3.5.12-1ubuntu0.22.04.1) ...
+Selecting previously unselected package libgd3:s390x.
+Preparing to unpack .../40-libgd3_2.3.0-2ubuntu2_s390x.deb ...
+Unpacking libgd3:s390x (2.3.0-2ubuntu2) ...
+Selecting previously unselected package libc-devtools.
+Preparing to unpack .../41-libc-devtools_2.35-0ubuntu3.1_s390x.deb ...
+Unpacking libc-devtools (2.35-0ubuntu3.1) ...
+Selecting previously unselected package libdpkg-perl.
+Preparing to unpack .../42-libdpkg-perl_1.21.1ubuntu2.1_all.deb ...
+Unpacking libdpkg-perl (1.21.1ubuntu2.1) ...
+Selecting previously unselected package libfile-fcntllock-perl.
+Preparing to unpack .../43-libfile-fcntllock-perl_0.22-3build7_s390x.deb ...
+Unpacking libfile-fcntllock-perl (0.22-3build7) ...
+Selecting previously unselected package manpages-dev.
+Preparing to unpack .../44-manpages-dev_5.10-1ubuntu1_all.deb ...
+Unpacking manpages-dev (5.10-1ubuntu1) ...
+Selecting previously unselected package pkg-config.
+Preparing to unpack .../45-pkg-config_0.29.2-1ubuntu3_s390x.deb ...
+Unpacking pkg-config (0.29.2-1ubuntu3) ...
+Setting up gcc-11-base:s390x (11.3.0-1ubuntu1~22.04) ...
+Setting up manpages-dev (5.10-1ubuntu1) ...
+Setting up libxpm4:s390x (1:3.5.12-1ubuntu0.22.04.1) ...
+Setting up libfile-fcntllock-perl (0.22-3build7) ...
+Setting up libdeflate0:s390x (1.10-2) ...
+Setting up linux-libc-dev:s390x (5.15.0-60.66) ...
+Setting up libgomp1:s390x (12.1.0-2ubuntu1~22.04) ...
+Setting up bzip2 (1.0.8-5build1) ...
+Setting up libjbig0:s390x (2.1-3.1ubuntu0.22.04.1) ...
+Setting up libasan6:s390x (11.3.0-1ubuntu1~22.04) ...
+Setting up libtirpc-dev:s390x (1.3.2-2ubuntu0.1) ...
+Setting up rpcsvc-proto (1.4.2-0ubuntu6) ...
+Setting up libfreetype6:s390x (2.11.1+dfsg-1ubuntu0.1) ...
+Setting up libmpc3:s390x (1.2.1-2build1) ...
+Setting up libatomic1:s390x (12.1.0-2ubuntu1~22.04) ...
+Setting up fonts-dejavu-core (2.37-2build1) ...
+Setting up golang-1.18-src (1.18.1-1ubuntu1) ...
+Setting up libjpeg-turbo8:s390x (2.1.2-0ubuntu1) ...
+Setting up libdpkg-perl (1.21.1ubuntu2.1) ...
+Setting up libwebp7:s390x (1.2.2-2) ...
+Setting up libubsan1:s390x (12.1.0-2ubuntu1~22.04) ...
+Setting up libnsl-dev:s390x (1.3.0-2build2) ...
+Setting up libcrypt-dev:s390x (1:4.4.27-1) ...
+Setting up libisl23:s390x (0.24-2build1) ...
+Setting up libc-dev-bin (2.35-0ubuntu3.1) ...
+Setting up golang-src (2:1.18~0ubuntu2) ...
+Setting up libcc1-0:s390x (12.1.0-2ubuntu1~22.04) ...
+Setting up libitm1:s390x (12.1.0-2ubuntu1~22.04) ...
+Setting up libjpeg8:s390x (8c-2ubuntu10) ...
+Setting up cpp-11 (11.3.0-1ubuntu1~22.04) ...
+Setting up fontconfig-config (2.13.1-4.2ubuntu5) ...
+Setting up golang-1.18-go (1.18.1-1ubuntu1) ...
+Setting up pkg-config (0.29.2-1ubuntu3) ...
+Setting up libgcc-11-dev:s390x (11.3.0-1ubuntu1~22.04) ...
+Setting up gcc-11 (11.3.0-1ubuntu1~22.04) ...
+Setting up cpp (4:11.2.0-1ubuntu1) ...
+Setting up libc6-dev:s390x (2.35-0ubuntu3.1) ...
+Setting up libtiff5:s390x (4.3.0-6ubuntu0.3) ...
+Setting up libfontconfig1:s390x (2.13.1-4.2ubuntu5) ...
+Setting up golang-go:s390x (2:1.18~0ubuntu2) ...
+Setting up gcc (4:11.2.0-1ubuntu1) ...
+Setting up libgd3:s390x (2.3.0-2ubuntu2) ...
+Setting up libstdc++-11-dev:s390x (11.3.0-1ubuntu1~22.04) ...
+Setting up libc-devtools (2.35-0ubuntu3.1) ...
+Setting up g++-11 (11.3.0-1ubuntu1~22.04) ...
+Setting up g++ (4:11.2.0-1ubuntu1) ...
+update-alternatives: using /usr/bin/g++ to provide /usr/bin/c++ (c++) in auto mode
+Processing triggers for man-db (2.10.2-1) ...
+Processing triggers for libc-bin (2.35-0ubuntu3.1) ...
+Scanning processes...                                                                                                                        
+Scanning linux images...                                                                                                                     
+
+Running kernel seems to be up-to-date (ABI upgrades are not detected).
+
+No services need to be restarted.
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+</code></pre></div>
+</details>
+<p>Now convince yourself that you have installed Go correctly:</p>
+<div class="highlight"><pre><span></span><code>go<span class="w"> </span>version
+</code></pre></div>
+<details class="- example">
+<summary>Go has been installed if you see this:</summary>
+<div class="highlight"><pre><span></span><code>go version go1.18.1 linux/s390x
+</code></pre></div>
+</details>
+<p>The version of go that you see may differ slightly if a newer version has become available.</p>
+<h2 id="download-the-grep11-code-repo">Download the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> code repo<a class="headerlink" href="#download-the-grep11-code-repo" title="Permanent link">&para;</a></h2>
+<p>You are probably already in your home directory, but this command won't cause any harm if you are:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~
+</code></pre></div>
+<p>The instructor has created a <em>fork</em> of a GitHub repo that is provided by an <em>IBM Cloud</em> GitHub repo. 
+The instructor could have just pointed you to the <em>IBM Cloud</em> GitHub repo, but, had he done that, you can
+be assured that a file that had not been changed in nineteen months would have changed an hour before 
+you started the lab, breaking this section, frustrating you, humiliating the instructor, and by creating
+his own fork he can ensure he has complete control of the code, and you probably think he's being paranoid 
+and that this sort of thing would never have happened to him during a live demo (on a different product) in
+front of an audience of hundreds of people.  Nope, that would never happen.  Fortunately it was only an IBM 
+internal audience.</p>
+<p>Having said that, clone the instructor's GitHub repo:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/silliman/hpcs-grep11-go<span class="w"> </span>
+</code></pre></div>
+<details class="- example">
+<summary>Example output from git clone</summary>
+<div class="highlight"><pre><span></span><code>Cloning into &#39;hpcs-grep11-go&#39;...
+remote: Enumerating objects: 61, done.
+remote: Counting objects: 100% (61/61), done.
+remote: Compressing objects: 100% (32/32), done.
+remote: Total 61 (delta 22), reused 56 (delta 20), pack-reused 0
+Receiving objects: 100% (61/61), 121.04 KiB | 8.07 MiB/s, done.
+Resolving deltas: 100% (22/22), done.
+</code></pre></div>
+</details>
+<p>The git clone created a directory named <code>hpcs-grep11-go</code>, change into it:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>hpcs-grep11-go
+</code></pre></div>
+<p>List the contents of the <code>cert</code> directory, see that there is a single file named <code>README</code> </p>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-l<span class="w"> </span>certs/
+</code></pre></div>
+<p>READ IT (weeping is optional):</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>certs/README
+</code></pre></div>
+<p>You read that right- more X509 work!! </p>
+<h2 id="create-tls-certificate-and-key-for-your-grep11-client">Create TLS certificate and key for your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Client<a class="headerlink" href="#create-tls-certificate-and-key-for-your-grep11-client" title="Permanent link">&para;</a></h2>
+<p>Go to the <code>certs</code> directory:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>certs
+</code></pre></div>
+<p>Create an RSA private key (this is one of three files needed in this directory)</p>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>genrsa<span class="w"> </span>-out<span class="w"> </span>client.key<span class="w"> </span><span class="m">2048</span>
+</code></pre></div>
+<p>Create a configuration file to avoid interrogation by <em>openssl</em>:</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; client.cnf</span>
+<span class="s">RANDFILE               = \$ENV::HOME/.rnd</span>
+
+<span class="s">[ req ]</span>
+<span class="s">default_bits           = 2048</span>
+<span class="s">default_keyfile        = keyfile.pem</span>
+<span class="s">distinguished_name     = req_distinguished_name</span>
+<span class="s">attributes             = req_attributes</span>
+<span class="s">prompt                 = no</span>
+<span class="s">output_password        = mypass</span>
+
+<span class="s">[ req_distinguished_name ]</span>
+<span class="s">C                      = US</span>
+<span class="s">ST                     = Virginia</span>
+<span class="s">L                      = Herndon</span>
+<span class="s">O                      = IBM</span>
+<span class="s">OU                     = Washington Systems Center - IBM zSystems and LinuxONE</span>
+<span class="s">CN                     = Lab Student</span>
+<span class="s">emailAddress           = student@not.real.email.com</span>
+
+<span class="s">[ req_attributes ]</span>
+<span class="s">challengePassword              = A challenge password</span>
+
+<span class="s">[ x509_extensions ]</span>
+<span class="s">subjectKeyIdentifier   = hash</span>
+<span class="s">authorityKeyIdentifier = keyid,issuer</span>
+<span class="s">basicConstraints       = critical,CA:TRUE</span>
+<span class="s">EOF</span>
+</code></pre></div>
+<p>Create a certificate signing request:</p>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>req<span class="w"> </span>-new<span class="w"> </span>-key<span class="w"> </span>client.key<span class="w"> </span>-out<span class="w"> </span>client.csr<span class="w"> </span>-config<span class="w"> </span>client.cnf
+</code></pre></div>
+<p>Display the <abbr title="certificate signing request">CSR</abbr> that you created:</p>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>req<span class="w"> </span>-noout<span class="w"> </span>-text<span class="w"> </span>-in<span class="w"> </span>client.csr
+</code></pre></div>
+<p>It will look like this:</p>
+<details class="- example">
+<summary>Example <abbr title="certificate signing request">CSR</abbr> display</summary>
+<div class="highlight"><pre><span></span><code>Certificate Request:
+    Data:
+        Version: 1 (0x0)
+        Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM zSystems and LinuxONE, CN = Lab Student, emailAddress = student@not.real.email.com
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:e4:07:f9:43:c6:6b:fd:2c:39:d4:ef:b4:cb:db:
+                    f5:06:b1:82:bc:48:1a:a1:57:3c:1d:05:a9:fe:65:
+                    c2:bb:a0:ed:12:58:51:e0:95:2f:44:95:5c:be:88:
+                    82:a0:c0:4d:28:62:c4:32:90:66:2e:aa:bc:77:cc:
+                    a0:bc:04:3f:22:01:37:58:0a:44:ab:29:9f:4c:01:
+                    8b:24:33:21:a5:bf:27:5d:4e:1e:a3:14:15:79:f1:
+                    8d:02:61:7b:4d:9f:18:d9:4a:5e:b9:62:d9:c3:96:
+                    79:cd:2c:82:f2:f1:3e:8f:ca:29:89:6a:45:b7:48:
+                    b5:54:4a:bc:0d:0e:1c:22:8b:f7:8d:e4:72:54:9e:
+                    8e:ef:b7:2e:d3:3b:e3:10:9e:1c:35:79:eb:57:1b:
+                    aa:61:15:d7:19:6a:89:76:2e:63:19:07:c1:db:92:
+                    98:bb:48:2b:e7:55:8b:cb:74:e1:00:76:f5:0a:8e:
+                    e8:1a:69:a6:14:bf:7c:7f:eb:a8:ee:ad:b1:f0:df:
+                    92:cc:0c:10:3d:42:b3:02:0d:7c:0d:55:38:70:49:
+                    ab:84:da:d0:1e:52:1b:19:47:6e:26:b9:8c:cf:0e:
+                    12:17:b1:cd:d8:bd:55:2f:fd:6b:6e:12:f1:8b:c4:
+                    60:96:67:c4:55:a3:03:43:1b:70:a2:d7:0e:73:c6:
+                    79:23
+                Exponent: 65537 (0x10001)
+        Attributes:
+            challengePassword        :A challenge password
+            Requested Extensions:
+    Signature Algorithm: sha256WithRSAEncryption
+    Signature Value:
+        3d:ef:35:37:b6:aa:e4:33:cb:fe:17:aa:18:a5:77:d2:23:3b:
+        b7:01:ac:6e:65:0c:0c:68:a6:80:37:04:8d:d2:7e:e8:9b:57:
+        9d:63:8f:82:06:22:07:7f:bc:6b:b3:60:1c:3f:a1:3d:75:c5:
+        3a:d5:f6:74:5c:93:9a:60:9e:40:4a:95:09:bf:38:6b:fb:fb:
+        1a:6a:91:be:6d:4d:15:46:79:b4:e1:19:cb:9d:00:97:95:75:
+        c1:3a:1d:4b:10:0f:c0:90:5b:f0:b9:5a:e6:b8:6d:11:84:d3:
+        0b:aa:7c:eb:07:51:4c:0c:c3:7d:e5:7e:d0:5a:81:f8:0e:3f:
+        08:db:3b:78:3d:aa:38:a0:65:60:60:f5:19:4f:47:fe:08:2d:
+        4a:af:f9:40:1d:ff:2b:92:67:91:99:eb:b1:8c:cf:d1:2a:c1:
+        c0:0d:6c:38:2b:ca:69:d2:40:7e:9d:84:c6:7a:2c:33:d0:28:
+        b0:09:97:19:e7:3c:e9:fe:dc:bf:71:a3:00:2f:46:19:f4:1a:
+        7c:fc:0f:ff:18:1f:38:77:78:17:49:0e:3e:e7:8a:f0:29:bb:
+        a2:37:f4:4a:12:48:e2:ea:1f:14:cc:31:ac:19:6d:b5:bf:98:
+        2b:91:aa:a8:71:07:62:54:48:79:55:72:11:9e:87:86:36:3d:
+        5d:24:b0:9b
+</code></pre></div>
+</details>
+<p>Your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> <abbr title="certification authority">CA</abbr> is on your account on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5 KVM host. Send your <abbr title="certificate signing request">CSR</abbr> to it:</p>
+<div class="highlight"><pre><span></span><code>scp<span class="w"> </span>client.csr<span class="w"> </span><span class="si">${</span><span class="nv">StudentID</span><span class="si">}</span>@192.168.22.64:GREP11CAwork/.<span class="w"> </span>
+</code></pre></div>
+<p>Log out of your Ubuntu kvm guest because you will be putting your <abbr title="certification authority">CA</abbr> hat on for one last time up on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5 host:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">exit</span>
+</code></pre></div>
+<p>Log in to the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5 host:</p>
+<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-l<span class="w"> </span><span class="si">${</span><span class="nv">StudentID</span><span class="si">}</span><span class="w"> </span><span class="m">192</span>.168.22.64
+</code></pre></div>
+<p>Change to your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> <abbr title="certification authority">CA</abbr> working directory:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>GREP11CAwork
+</code></pre></div>
+<p>Display the <abbr title="certificate signing request">CSR</abbr> that the client sent you:</p>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>req<span class="w"> </span>-noout<span class="w"> </span>-text<span class="w"> </span>-in<span class="w"> </span>client.csr
+</code></pre></div>
+<p><em>Note:</em> The output is not shown here as it should look the same as when you displayed this same certificate moments ago when you were in "client" mode.</p>
+<p>Create the certificate for the client:</p>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-req<span class="w"> </span>-days<span class="w"> </span><span class="m">300</span><span class="w"> </span>-in<span class="w"> </span>client.csr<span class="w"> </span>-CA<span class="w"> </span>grep11-ca.pem<span class="w"> </span>-CAcreateserial<span class="w"> </span>-CAkey<span class="w"> </span>grep11-ca-key.pem<span class="w"> </span>-out<span class="w"> </span>client.pem
+</code></pre></div>
+<details class="- example">
+<summary>Output from certificate creation</summary>
+<div class="highlight"><pre><span></span><code>Signature ok
+subject=C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM zSystems and LinuxONE, CN = Lab Student, emailAddress = student@not.real.email.com
+Getting CA Private Key
+</code></pre></div>
+</details>
+<p>Display the certificate before sending it to the client:</p>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-noout<span class="w"> </span>-text<span class="w"> </span>-in<span class="w"> </span>client.pem
+</code></pre></div>
+<details class="- example">
+<summary>Display of <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> client certificate</summary>
+<div class="highlight"><pre><span></span><code>Certificate:
+    Data:
+        Version: 1 (0x0)
+        Serial Number:
+            79:dd:5b:25:cc:24:f9:71:e5:e0:71:23:db:f8:9e:b8:92:b9:2d:1a
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM zSystems and LinuxONE, CN = WSC student02 HPVS CA, emailAddress = student@notreal.email.com.com
+        Validity
+            Not Before: Feb 15 16:07:56 2023 GMT
+            Not After : Dec 12 16:07:56 2023 GMT
+        Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM zSystems and LinuxONE, CN = Lab Student, emailAddress = student@not.real.email.com
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                RSA Public-Key: (2048 bit)
+                Modulus:
+                    00:e4:07:f9:43:c6:6b:fd:2c:39:d4:ef:b4:cb:db:
+                    f5:06:b1:82:bc:48:1a:a1:57:3c:1d:05:a9:fe:65:
+                    c2:bb:a0:ed:12:58:51:e0:95:2f:44:95:5c:be:88:
+                    82:a0:c0:4d:28:62:c4:32:90:66:2e:aa:bc:77:cc:
+                    a0:bc:04:3f:22:01:37:58:0a:44:ab:29:9f:4c:01:
+                    8b:24:33:21:a5:bf:27:5d:4e:1e:a3:14:15:79:f1:
+                    8d:02:61:7b:4d:9f:18:d9:4a:5e:b9:62:d9:c3:96:
+                    79:cd:2c:82:f2:f1:3e:8f:ca:29:89:6a:45:b7:48:
+                    b5:54:4a:bc:0d:0e:1c:22:8b:f7:8d:e4:72:54:9e:
+                    8e:ef:b7:2e:d3:3b:e3:10:9e:1c:35:79:eb:57:1b:
+                    aa:61:15:d7:19:6a:89:76:2e:63:19:07:c1:db:92:
+                    98:bb:48:2b:e7:55:8b:cb:74:e1:00:76:f5:0a:8e:
+                    e8:1a:69:a6:14:bf:7c:7f:eb:a8:ee:ad:b1:f0:df:
+                    92:cc:0c:10:3d:42:b3:02:0d:7c:0d:55:38:70:49:
+                    ab:84:da:d0:1e:52:1b:19:47:6e:26:b9:8c:cf:0e:
+                    12:17:b1:cd:d8:bd:55:2f:fd:6b:6e:12:f1:8b:c4:
+                    60:96:67:c4:55:a3:03:43:1b:70:a2:d7:0e:73:c6:
+                    79:23
+                Exponent: 65537 (0x10001)
+    Signature Algorithm: sha256WithRSAEncryption
+         66:9c:1a:d8:75:5b:52:1c:8c:f7:d7:63:f6:ea:1e:4e:b1:fa:
+         92:78:1a:ab:83:11:7d:73:50:b9:ce:34:2b:33:d1:97:1f:90:
+         f6:c7:85:45:20:9f:95:6d:f7:16:f9:64:fd:7b:3d:48:44:33:
+         af:9e:dc:5a:f4:56:dd:50:27:6f:3e:9e:75:f2:52:d1:cf:fe:
+         76:52:98:8a:0b:cd:62:a6:68:49:34:43:f9:d2:e3:ab:f6:b3:
+         3f:fd:ff:3a:92:06:32:2b:c0:64:29:b5:00:c4:b8:66:57:07:
+         de:64:8a:7a:88:0b:27:79:5a:6d:8f:4d:52:bf:cc:5e:03:53:
+         4a:40:4d:22:e5:e7:0f:c3:1e:6c:2a:cf:79:f2:d5:4b:b3:13:
+         be:dd:51:c7:2f:2d:8b:f5:97:1e:3f:86:2e:6c:13:c5:43:0f:
+         a6:49:ed:a4:a2:7e:ec:3f:f9:9b:f4:65:f1:ff:d5:9c:60:0f:
+         90:a8:18:a7:e0:2a:e4:b9:f2:4c:36:d9:f7:94:c9:a5:71:10:
+         bf:56:0d:df:d7:3e:71:a7:f7:d0:cc:dc:52:49:bf:c1:71:72:
+         e3:46:89:d6:5d:d4:60:04:a3:5b:46:84:ef:9f:de:02:8c:c8:
+         69:89:5a:ef:49:5a:48:fc:72:af:09:21:dd:22:f7:91:b5:57:
+         3b:50:e3:58
+</code></pre></div>
+</details>
+<p>Send the certificate back to the client that requested it:</p>
+<div class="highlight"><pre><span></span><code>scp<span class="w"> </span>client.pem<span class="w"> </span>student@<span class="si">${</span><span class="nv">StudentGuestIP</span><span class="si">}</span>:./hpcs-grep11-go/certs/.<span class="w">   </span>
+</code></pre></div>
+<p>Your work as a <abbr title="certification authority">CA</abbr> registrar is done for the remainder of the lab!  Log out of your session on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5 host:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">exit</span>
+</code></pre></div>
+<p>Log in again to your Ubuntu KVM guest:</p>
+<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">Student_SSH_Port</span><span class="si">}</span><span class="w"> </span>-l<span class="w"> </span>student<span class="w"> </span><span class="m">192</span>.168.22.64
+</code></pre></div>
+<p>Change to the directory that has your certificates and key:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>hpcs-grep11-go/certs
+</code></pre></div>
+<p>Display the client certificate that your <abbr title="certification authority">CA</abbr> registrar sent you:</p>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-noout<span class="w"> </span>-text<span class="w"> </span>-in<span class="w"> </span>client.pem
+</code></pre></div>
+<p>You know that you know what it should look like so we won't repeat the output here.</p>
+<p>Get your <abbr title="certification authority">CA</abbr>'s public certificate so that you can authenticate your connection with the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server:</p>
+<div class="highlight"><pre><span></span><code>scp<span class="w"> </span><span class="si">${</span><span class="nv">StudentID</span><span class="si">}</span>@192.168.22.64:GREP11CAwork/grep11-ca.pem<span class="w"> </span>.
+</code></pre></div>
+<h2 id="modify-grep11-code-for-authentication-to-your-grep11-server">Modify <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> code for authentication to your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server<a class="headerlink" href="#modify-grep11-code-for-authentication-to-your-grep11-server" title="Permanent link">&para;</a></h2>
+<p>Switch to this directory:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>../examples
+</code></pre></div>
+<p>Run this command to see the one line you need to change in the source code you downloaded:</p>
+<div class="highlight"><pre><span></span><code>grep<span class="w"> </span>--after-context<span class="w"> </span><span class="m">3</span><span class="w"> </span>STUDENT<span class="w"> </span>server_test.go
+</code></pre></div>
+<p>Your output will look like this:</p>
+<details class="- example">
+<summary>The line you need to change, plus the files you just made</summary>
+<div class="highlight"><pre><span></span><code>const Address = &quot;STUDENT_GREP11SERVER_IP:9876&quot;
+const cert = &quot;../certs/client.pem&quot;
+const key = &quot;../certs/client.key&quot;
+const ca = &quot;../certs/grep11-ca.pem&quot;
+</code></pre></div>
+</details>
+<p>This also shows the three files in the <em>certs</em> directory that you have already taken care of, but the first line is the only line you need to change:</p>
+<div class="highlight"><pre><span></span><code>sed -i -e &quot;s/STUDENT_GREP11SERVER_IP/${GREP11ServerIP}/g&quot; server_test.go
+</code></pre></div>
+<p>Run this command to ensure that you made the change correctly:</p>
+<div class="highlight"><pre><span></span><code>grep --after-context 3 ${GREP11ServerIP} server_test.go
+</code></pre></div>
+<details class="- example">
+<summary>Expected output (your IP will differ, example shown for student02)</summary>
+<div class="highlight"><pre><span></span><code>const Address = &quot;172.16.0.62:9876&quot;
+const cert = &quot;../certs/client.pem&quot;
+const key = &quot;../certs/client.key&quot;
+const ca = &quot;../certs/grep11-ca.pem&quot;
+</code></pre></div>
+</details>
+<h2 id="run-the-grep11-client-code">Run the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> client code<a class="headerlink" href="#run-the-grep11-client-code" title="Permanent link">&para;</a></h2>
+<p>Drum roll please...</p>
+<p>Enter this command to test your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> client code:</p>
+<div class="highlight"><pre><span></span><code>go<span class="w"> </span><span class="nb">test</span><span class="w"> </span>-v
+</code></pre></div>
+<p>Your output should look like this. If it does, you have reached a successful conclusion to the lab!!!</p>
+<details class="- example">
+<summary>Expected output from testing the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> client code</summary>
+<div class="highlight"><pre><span></span><code>=== RUN   Test_signAndVerifyUsingDilithiumKeyPair
+Generated Dilithium key pair
+Data signed
+Verified
+--- PASS: Test_signAndVerifyUsingDilithiumKeyPair (0.05s)
+=== RUN   Test_rewrapKeyBlob
+    server_test.go:1375: 
+
+        Skipping the rewrapKeyBlob test. To enable, comment out the t.Skipf and message lines within the Test_rewrapKeyBlob test
+
+        NOTE: This test contains two pauses that require the user to type CTRL-c after ensuring
+              that the stated pre-requisite activity has been completed.  There needs to be 
+              coordination with your HPCS cloud service contact in order to place your HSM
+              into the required states.
+
+--- SKIP: Test_rewrapKeyBlob (0.00s)
+=== RUN   Example_getMechanismInfo
+--- PASS: Example_getMechanismInfo (0.01s)
+=== RUN   Example_generateGenericKey
+--- PASS: Example_generateGenericKey (0.01s)
+=== RUN   Example_encryptAndDecryptUsingAES
+--- PASS: Example_encryptAndDecryptUsingAES (0.02s)
+=== RUN   Example_digest
+--- PASS: Example_digest (0.01s)
+=== RUN   Example_signAndVerifyUsingRSAKeyPair
+--- PASS: Example_signAndVerifyUsingRSAKeyPair (0.04s)
+=== RUN   Example_signAndVerifyUsingDSAKeyPair
+--- PASS: Example_signAndVerifyUsingDSAKeyPair (0.54s)
+=== RUN   Example_deriveKeyUsingDHKeyPair
+--- PASS: Example_deriveKeyUsingDHKeyPair (1.51s)
+=== RUN   Example_signAndVerifyUsingECDSAKeyPair
+--- PASS: Example_signAndVerifyUsingECDSAKeyPair (0.02s)
+=== RUN   Example_signAndVerifyToTestErrorHandling
+--- PASS: Example_signAndVerifyToTestErrorHandling (0.02s)
+=== RUN   Example_wrapAndUnwrapKey
+--- PASS: Example_wrapAndUnwrapKey (0.04s)
+=== RUN   Example_deriveKey
+--- PASS: Example_deriveKey (0.04s)
+=== RUN   Example_wrapAndUnwrapAttributeBoundKey
+--- PASS: Example_wrapAndUnwrapAttributeBoundKey (0.03s)
+=== RUN   Example_tls
+--- PASS: Example_tls (0.03s)
+PASS
+ok    github.com/IBM-Cloud/hpcs-grep11-go/examples    2.373s
+</code></pre></div>
+</details>
+<p>Before you go, check out the your <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> log messages to see evidence of the test you just ran:</p>
+<div class="highlight"><pre><span></span><code>journalctl<span class="w"> </span>--since<span class="w"> </span><span class="s2">&quot;-5 minutes &quot;</span><span class="w"> </span>--output<span class="w"> </span>short-full<span class="w"> </span>--no-pager
+</code></pre></div>
+<p>The above command assumes you ran this within five minutes of running the test.  If you missed the boat, then just rerun the test again or change the argument to <em>--since</em> to show a longer timeframe of messages.</p>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 21, 2023</span>
+      
+        <br>
+        Created:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 14, 2023</span>
+      
+    
+  </small>
+</div>
+
+
+  
+
+
+
+  <form class="md-feedback" name="feedback" hidden>
+    <fieldset>
+      <legend class="md-feedback__title">
+        Was this page helpful?
+      </legend>
+      <div class="md-feedback__inner">
+        <div class="md-feedback__list">
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page was helpful" data-md-value="1">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 21.35-1.45-1.32C5.4 15.36 2 12.27 2 8.5 2 5.41 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.08C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53L12 21.35Z"/></svg>
+            </button>
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page could be improved" data-md-value="0">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 21.35-1.45-1.32C5.4 15.36 2 12.27 2 8.5 2 5.41 4.42 3 7.5 3c.67 0 1.32.12 1.94.33L13 9.35l-4 5 3 7M16.5 3C19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53L12 21.35l-1-7 4.5-5-2.65-5.08C13.87 3.47 15.17 3 16.5 3Z"/></svg>
+            </button>
+          
+        </div>
+        <div class="md-feedback__note">
+          
+            <div data-md-value="1" hidden>
+              
+              
+                
+              
+              Thanks for your feedback!
+            </div>
+          
+            <div data-md-value="0" hidden>
+              
+              
+                
+              
+              Thanks for your feedback! Help us improve this page by using our <a href="https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE/issues/new/?title=[Feedback]+Run%20GREP11%20Client%20code+-+/lab/configureGrep11TestClient/" target="_blank" rel="noopener">feedback form</a>.
+            </div>
+          
+        </div>
+      </div>
+    </fieldset>
+  </form>
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../launchGREP11guest/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Launch GREP11 Server" rel="prev">
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <div class="md-ellipsis">
+                <span class="md-footer__direction">
+                  Previous
+                </span>
+                Launch GREP11 Server
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../hackMeIfYouCan/" class="md-footer__link md-footer__link--next" aria-label="Next: Regular guest vs. SE-enabled HPVS 2.1.x guest" rel="next">
+            <div class="md-footer__title">
+              <div class="md-ellipsis">
+                <span class="md-footer__direction">
+                  Next
+                </span>
+                Regular guest vs. SE-enabled HPVS 2.1.x guest
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 IBM – <a href="#__consent">Change cookie settings</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/ibm-wsc" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://hub.docker.com/u/s390x" target="_blank" rel="noopener" title="hub.docker.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+  
+    
+  
+
+
+  
+    
+  
+
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make the documentation as good as possible.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="analytics" checked>
+          <span class="task-list-indicator"></span>
+          Google Analytics
+        </label>
+      </li>
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="github" checked>
+          <span class="task-list-indicator"></span>
+          GitHub
+        </label>
+      </li>
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.footer", "search.share", "navigation.indexes", "announce.dismiss", "content.tabs.link", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.2a6f1dda.min.js"></script>
+      
+        <script src="../../js/print-site.js"></script>
+      
+    
+  </body>
+</html>
