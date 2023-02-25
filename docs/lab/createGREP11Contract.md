@@ -1048,7 +1048,7 @@ It will be called later by another script.  Comments have been added to help exp
 	# This is the encryption certificate for Hyper Protect Container Runtime and it is
 	# provided with the Hyper Protect Virtual Servers v2.1.3 product
 	#
-	CONTRACT_KEY=/disk/software/hpvs213/config/certs/ibm-hyper-protect-container-runtime-23.1.0-encrypt.crt
+	CONTRACT_KEY=/data/lab/hpvs213Certs/ibm-hyper-protect-container-runtime-23.1.0-encrypt.crt
 
 	#
 	# This variable holds a random password:
@@ -1222,7 +1222,7 @@ order to have your GREP11 Server log to the rsyslog that you configured earlier 
 		# This is the encryption certificate for Hyper Protect Container Runtime and it is
 		# provided with the Hyper Protect Virtual Servers v2.1.3 product
 		#
-		CONTRACT_KEY=/disk/software/hpvs213/config/certs/ibm-hyper-protect-container-runtime-23.1.0-encrypt.crt
+		CONTRACT_KEY=/data/lab/hpvs213Certs/ibm-hyper-protect-container-runtime-23.1.0-encrypt.crt
 
 		#
 		# This variable holds a random password:
@@ -1350,14 +1350,14 @@ order to have your GREP11 Server log to the rsyslog that you configured earlier 
 	EOF
 	```
 
-	TODO: do we really need the passphrase for the signing key?
-
 2. Now run the helper script that you just created:
 
 	``` bash
 	. ./makeContract
 
 	```
+
+You will be prompted to enter a passphrase.  In real life this is something that you would set yourself and have to keep track off.  For this lab, the script has hard-coded `test1234` so you must type that in and press enter when prompted for it.
 
 The script creates the final contract in a file named `user_data.yaml`.  It also displays the contents of this file to the screen. At the bottom of the output you will see an _envWorkloadSignature_ key.  If there is a gobbledygook value (base64-encoded text) associated with this key then things went well.
 

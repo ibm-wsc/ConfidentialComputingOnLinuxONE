@@ -142,7 +142,7 @@ b. If you are not on an instructor-provided system or we did not have a chance t
 
 ## Start your Ubuntu KVM guest
 
-A KVM Guest has been defined for each student by the instructors.  This guest has the Ubuntu 22.04.1 operating system installed on it.  A very straightforward installation path was taken with no additional software packages selected during the installation. You will add additional software packages as necessary during the lab. This guest does not take advantage of the additional protection offered by Secure Execution and HPVS.  It could have, but you will already be creating another KVM Guest that is protected by Secure Execution and HPVS.  This also helps to make the point that you can run "regular", i.e., non-Secure Execution-protected guests, and Secure Execution-protected guests on the same LPAR.
+A KVM Guest has been defined for each student by the instructors.  This guest has the Ubuntu 22.04.1 operating system installed on it.  A very straightforward installation path was taken with no additional software packages selected during the installation. You will add additional software packages as necessary during the lab. This guest does not take advantage of the additional protection offered by Secure Execution and HPVS.  It could have, but you will already be creating another KVM Guest that is protected by Secure Execution and HPVS.  This also helps to make the point that you can run "standard", i.e., non-Secure Execution-protected guests, and Secure Execution-protected guests on the same LPAR.
 
 Display your KVM guest's definition with this command:
 

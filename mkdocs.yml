@@ -13,7 +13,7 @@ nav:
     - Create Contract for GREP11 Server: lab/createGREP11Contract.md
     - Launch GREP11 Server: lab/launchGREP11guest.md
     - Run GREP11 Client code: lab/configureGrep11TestClient.md
-    - Regular guest vs. SE-enabled HPVS 2.1.x guest: lab/hackMeIfYouCan.md
+    - Standard guest vs. SE-enabled HPVS 2.1.x guest: lab/hackMeIfYouCan.md
     - Lab Cleanup:  lab/labCleanup.md
   - Locally Building docs: localdocbuild.md
 

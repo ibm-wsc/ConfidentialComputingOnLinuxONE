@@ -2,9 +2,9 @@
 
 All of the work in this section is performed on the RHEL 8.5 host.  You should already be logged in to it if you have been following this lab in order.
 
-## Shut down your regular Ubuntu KVM guest
+## Shut down your standard Ubuntu KVM guest
 
-Enter this command to shut down your regular Ubuntu KVM guest:
+Enter this command to shut down your standard Ubuntu KVM guest:
 
    ``` bash
    sudo virsh shutdown $(whoami)
