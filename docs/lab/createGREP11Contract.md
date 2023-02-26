@@ -1316,7 +1316,7 @@ order to have your GREP11 Server log to the rsyslog that you configured earlier 
 		cat << EOF > flow.clear
 		#
 		# It isn't really necessary to run this in our lab environment 
-		# because the other scripts will happy trod on these files 
+		# because the other scripts will happily trod on these files 
 		# as necessary.
 		#
 		# It is more likely that you would run this after running the

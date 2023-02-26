@@ -6,7 +6,7 @@ In this section you will demonstrate the protection offered by the Secure Execut
 
 ## Log out of your Ubuntu KVM guest 
 
-All of the work in this section is performed on the RHEL 8.5 host, so log out of your Ubuntu KVM guest, so log out of your Ubuntu KVM guest:
+All of the work in this section is performed on the RHEL 8.5 host, so log out of your Ubuntu KVM guest:
 
    ``` bash
    exit
