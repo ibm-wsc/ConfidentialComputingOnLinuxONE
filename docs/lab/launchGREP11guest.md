@@ -48,7 +48,7 @@ You aren't going to change anything here since it's already been defined for you
           </disk>
           <disk type='file' device='disk'>
             <driver name='qemu' type='raw' cache='none' io='native' iommu='on'/>
-            <source file='/home/student02/contract/grep11Server/ciiso.iso'/>
+            <source file='/var/lib/libvirt/images/hpvslab/student02/ciiso.iso'/>
             <target dev='vdc' bus='virtio'/>
             <readonly/>
             <address type='ccw' cssid='0xfe' ssid='0x0' devno='0x0002'/>

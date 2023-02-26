@@ -6,7 +6,7 @@ In this section you will demonstrate the protection offered by the Secure Execut
 
 ## Log out of your Ubuntu KVM guest 
 
-All of the work in this section is performed on the RHEL 8.5 host, so log out of your Ubuntu KVM guest, so logo out of your Ubuntu KVM guest:
+All of the work in this section is performed on the RHEL 8.5 host, so log out of your Ubuntu KVM guest, so log out of your Ubuntu KVM guest:
 
    ``` bash
    exit
@@ -37,7 +37,7 @@ Look at the file size:
 We suspect that a malicious actor might have a few more tools in their toolbag than what we will show you here, but try this command:
 
    ``` bash
-   sudo strings ${whoami}.dump
+   sudo strings $(whoami).dump
    ```
 
 The above command will print out all of the strings it recognizes in the memory dump.  You are probably getting tired of seeing them pass by on your terminal screen, so type `Ctrl-C` when you want your command prompt back.

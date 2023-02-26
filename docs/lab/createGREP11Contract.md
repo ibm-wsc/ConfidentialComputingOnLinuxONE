@@ -1357,7 +1357,7 @@ order to have your GREP11 Server log to the rsyslog that you configured earlier 
 
 	```
 
-You will be prompted to enter a passphrase.  In real life this is something that you would set yourself and have to keep track off.  For this lab, the script has hard-coded `test1234` so you must type that in and press enter when prompted for it.
+You will be prompted to enter a passphrase.  In real life this is something that you would set yourself and have to keep track of.  For this lab, the script has hard-coded `test1234` so you must type that in and press enter when prompted for it.
 
 The script creates the final contract in a file named `user_data.yaml`.  It also displays the contents of this file to the screen. At the bottom of the output you will see an _envWorkloadSignature_ key.  If there is a gobbledygook value (base64-encoded text) associated with this key then things went well.
 

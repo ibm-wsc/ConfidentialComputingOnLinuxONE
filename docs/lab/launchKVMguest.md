@@ -147,7 +147,7 @@ A KVM Guest has been defined for each student by the instructors.  This guest ha
 Display your KVM guest's definition with this command:
 
    ``` bash
-   sudo virsh dumpxml `whoami`
+   sudo virsh dumpxml $(whoami)
    ```
 
 We named your Ubuntu KVM guest the same as your userid on the RHEL host, which is why you can use the `whoami` command.
