@@ -15,7 +15,7 @@ Within the contract you specify an OCI-compliant image that provides your worklo
 
 For our lab this LPAR is running RHEL 8.5.  You can use any distribution on IBM zSystems or LinuxONE that supports Secure Execution- i.e., recent versions of Ubuntu and SUSE as well as RHEL.
 
-The Hyper Protect Virtual Servers 2.1.3 product provides a component, Crypto Express Network API for Secure Execution Enclaves (CENA4SEE) 1.1.1.2, that runs as an appliance in a Secure Service Container LPAR that has direct-attached Crypto Express cards.  CENA4SEE also provides a GREP11 Server OCI image that communicates with the CENA4SEE appliance. 
+The Hyper Protect Virtual Servers 2.1.3 product provides a component, Crypto Express Network API for Secure Execution Enclaves (CENA4SEE) 1.1.1.3, that runs as an appliance in a Secure Service Container (SSC) LPAR that has direct-attached Crypto Express cards.  CENA4SEE also provides a GREP11 Server OCI image that communicates with the CENA4SEE appliance. 
 
 This enables GREP11 client code written to call the GREP11 Server API to  access the Crypto Express cards on the CENA4SEE SSC LPAR.
 The GREP11 client code can run from anywhere as long as it has network connectivity to the GREP11 Server.  The GREP11 Server can run anywhere as long as it has network connectivity to the CENA4SEE server.
@@ -34,3 +34,9 @@ During the lab you will log in to two servers:
 2. You will log in to your Ubuntu KVM guest for configuring the rsyslog service and for running the GREP11 client code
 
 You will not log in directly to your HPVS 2.1.3 GREP11 Server, nor to the CENA4SEE SSC LPAR, but you will make use of them via your GREP11 Client code.
+
+## Lab logistics
+
+Except for the RHEL Jumpbox, the systems used in the lab are in the IBM Washington Systems Center (WSC) in the WSC's private network. Access to the WSC private network is through a virtual private network (VPN) client running on the RHEL Jumpbox.  The instructors access each student's RHEL Jumpbox in order to log in via the VPN client.  Students access their jumpbox from a web browser- other than a modern web browser, no additional software is required on the student's laptop or workstation.
+
+During the lab, students will be directed to open two terminal windows on their jumpbox- one will be designated for working on the RHEL host and the other will be designated for working on their KVM standard Ubuntu guest. Two separate terminal profiles have been created on the jumpbox- one for the RHEL host and one for the KVM standard Ubuntu guest- which have different background and text colors which will help the student more easily differentiate between the two windows.  The student may wish to use a single terminal window with two tabs- one with each terminal profile- instead of two different windows.  It is fine to do so.

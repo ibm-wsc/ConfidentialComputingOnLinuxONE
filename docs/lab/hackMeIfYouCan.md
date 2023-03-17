@@ -6,17 +6,15 @@ In this section you will demonstrate the protection offered by the Secure Execut
 
 ## Log out of your Ubuntu KVM guest 
 
-All of the work in this section is performed on the RHEL 8.5 host, so log out of your Ubuntu KVM guest:
+All of the work in this section is performed on the RHEL 8.5 host, so log out of your Ubuntu KVM guest. You have finished your work in the Ubuntu KVM guest for this lab:
 
    ``` bash
    exit
    ```
 
-## Log in to the RHEL 8.5 host:
+## Switch to your RHEL host terminal session 
 
-   ``` bash
-   ssh -l ${StudentID} 192.168.22.64
-   ```
+Switch to your terminal tab or window for your RHEL host session.  You should be logged in still if you have been following the lab in order in one sitting, but if you need to log in again the command is `ssh -l ${StudentID} 192.168.22.64`
 
 ## Snoop into your standard KVM guest with ease
 
@@ -65,7 +63,7 @@ Try to snoop on your Secure Execution-enabled Hyper Protect Virtual Servers 2.1.
     error: internal error: unable to execute QEMU command 'migrate': protected VMs are currently not migrateable.
     ```
 
-The verdict is in:  protection of data in use is **good**.  Unprotected data in use is **not so good**.
+If your name or address or credit card number or social security number or bank card PIN code or cryptocurrency wallet was in memory, would you have preferred it to be in memory in a standard KVM guest or in a Secure Execution-enabled Hyper Protect Virtual Servers guest?  If you answered  _standard KVM guest_, then please return to the beginning of the lab and start over.  If you chose _SE-enabled HPVS guest_, then congratulations, you have successfully completed the lab!! (Except for cleanup).
 
 Please proceed to the next section of the lab for lab cleanup.
 

@@ -1,20 +1,42 @@
 # Start Ubuntu KVM Guest 
 
-## Set environment variable for your student ID
+## Overview of this page
+ 
+This page will help you verify that your jumpbox is configured properly and then guide you to logging in to the RHEL Host from which you will start your student-assigned KVM standard Ubuntu guest.
 
-Each student has a unique userid assigned to them. It may have been set for you already. Check this by entering this echo command:
+## Verify the student-specific environment variables on your jumpbox
+
+You will first ensure that two crucial environment variables are set on your jumpbox.  Under most circumstances, the instructors will have already set these variables for you.  These variables will enable you to enter all of the commands in this lab without modification- where student-specific information is required in a command, the command will contain environment variables that will be resolved with the student-specific information. 
+
+Environment variables are set in three places:
+
+1. On your jumpbox.  In most cases, the instructors will have configured your jumpbox with your student-specific environment variables
+
+2. You will have a userid on the RHEL host, and this userid has been configured with student-specific environment variables 
+
+3. You will have your own KVM standard guest running Ubuntu, and your guest is also configured with student-specific environment variables
+
+### Set or verify the environment variable on your jumpbox for your student ID
+
+On your jumpbox, open a terminal window.  Your terminal window should have a dark background with a green prompt for the font.  You will use this window to perform work on the RHEL host, but before logging in you will ensure that an environment variable specifying your unique student ID has been set properly.
+
+Each student has a unique userid assigned to them. It is likely set for you already. In an instructor-led class, your instructors will let you know if this has been set for you already.
+
+Check this by entering this echo command:
 
 ``` bash
 echo ${StudentID}
 ```
 
-???- example "Example output [click to expand me]"
+???- example "Example output for *student02* [click to expand me]"
 
       ```
       silliman@nat-147 ~ % echo ${StudentID}
       student02
 
       ```
+
+If a value starting with _student_ and ending with a two-digit number is returned to you, then your jumpbox has been configured properly and you may scroll down a bit to the section **_Log in to the RHEL 8.5 host_**. 
 
 If no output is returned, set this variable to the userid assigned to you by the instructor.  E.g., if the instructor assigned you the userid `student00`, enter this command:
     ``` bash
@@ -38,6 +60,9 @@ If you had to use the previous `export` command, repeat the prior `echo` command
     This way we could provide instructions throughout this lab that are generic enough that every student can just copy and paste most commands "as-is" from the lab guide. (At least that was our goal).
 
 ### Optional but highly recommended- add your StudentID environment variable to your shell startup script
+
+**Note:** If your *StudentID* variable was already present then your shell startup script was already updated appropriately and you can scroll down to the section with the title **_Log in to the RHEL 8.5 host_**
+
 If we had our way in supplying a system from which you are running the lab, you are probably using _bash_.
 
 If you are using your own workstation or laptop, if it is running Linux you are probably either using *bash* or you are savvy enough to figure out which shell you are running. 
@@ -62,9 +87,8 @@ If you are not sure what shell you're using, you can use this command to find ou
 
       ```
 
-Don't be ashamed of your shell.  Garrett uses `bash` 5.x on his Mac.  Barry uses `zsh` - `zsh` being the default shell on newer versions of MacOS.
-
-We will show two commands to add the environment variable to your shell startup script, one for `bash` and one for `zsh`.  If you are using a different shell, we trust you'll be able to figure out the equivalent command.  
+Garrett uses `bash` 5.x on his Mac.  Barry uses `zsh` - `zsh` being the default shell on newer versions of MacOS.
+Thus, we will show two commands to add the environment variable to your shell startup script, one for `bash` and one for `zsh`.  If you are using a different shell, we trust you'll be able to figure out the equivalent command.  
 
 !!! Warning "The Copy Button is Your Friend!"
 
@@ -98,7 +122,7 @@ Run this command:
 
 One of two things should happen:  
 
-a. If you are on an instructor-provided system and the instructors have had the time to load it with an appropriate RSA private key that matches an RSA public key that has been loaded into your assigned userid's account on the Linux LPAR
+a. If you are on an instructor-provided system and the instructors have had the time to load it with an appropriate RSA private key that matches an RSA public key that has been loaded into your assigned userid's account on the RHEL host:
 
 - you will be able to sign in without a password!
 
@@ -142,7 +166,7 @@ b. If you are not on an instructor-provided system or we did not have a chance t
 
 ## Start your Ubuntu KVM guest
 
-A KVM Guest has been defined for each student by the instructors.  This guest has the Ubuntu 22.04.1 operating system installed on it.  A very straightforward installation path was taken with no additional software packages selected during the installation. You will add additional software packages as necessary during the lab. This guest does not take advantage of the additional protection offered by Secure Execution and HPVS.  It could have, but you will already be creating another KVM Guest that is protected by Secure Execution and HPVS.  This also helps to make the point that you can run "standard", i.e., non-Secure Execution-protected guests, and Secure Execution-protected guests on the same LPAR.
+A KVM Guest has been defined for each student by the instructors.  This guest has the Ubuntu 22.04.2 operating system installed on it.  A very straightforward installation path was taken with no additional software packages selected during the installation. You will add additional software packages as necessary during the lab. This guest does not take advantage of the additional protection offered by Secure Execution and HPVS.  It could have, but you will already be creating another KVM Guest that is protected by Secure Execution and HPVS.  This also helps to make the point that you can run "standard", i.e., non-Secure Execution-protected guests, and Secure Execution-protected guests on the same LPAR.
 
 Display your KVM guest's definition with this command:
 
@@ -219,10 +243,10 @@ Look for the your userid in the output of the *virsh dumpxml* command.  You'll s
 Run this command to start your Ubuntu KVM guest:
 
    ``` bash
-   sudo virsh start `whoami`
+   sudo virsh start $(whoami)
    ```
 
-???- example "Expected output"
+???- example "Expected output (for *student02*) "
 
       ```
       Domain 'student02' started
@@ -233,11 +257,7 @@ Run this command to start your Ubuntu KVM guest:
 
 	!!! Success "You are off to a smashing start! :rocket:"
 		
-		Log out of the RHEL 8.5 host because in the next section of the lab you are going to log into the KVM guest that you just started.
-
-	``` bash
-	exit
-	```
+		You should now open a new window or tab using the terminal profile named _KVM Standard Guest_. From your current terminal window, click _File_ on the menu bar, and then choose either _New Tab_ or _New Window_ based on your personal preference, but, in either case, choose the profile named _KVM Standard Guest_.  This will create a terminal tab or window with a light beige background and a gray font.  You'll be directed to use this new tab or window when doing work on your KVM Ubuntu guest and you'll be directed to use your original terminal tab or window when doing work on the RHEL host. 
 
 === "Your domain didn't start for whatever reason"
 

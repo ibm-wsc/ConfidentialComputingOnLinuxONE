@@ -2,6 +2,8 @@
 
 ## launch the HPVS 2.1.3 GREP11 server
 
+You will start this section from your login session on the RHEL host, and will soon be instructed to switch to your Ubuntu KVM guest session.
+
 This fancy command figures out the last two characters of your assigned userid and is used in other commands in this section, so that the lab instructions will work for everybody:
 
    ``` bash
@@ -113,17 +115,7 @@ You will have to enter the `Ctrl + ]` key-combination to break out of the consol
 
 ## verify that GREP11 server log messages are received by rsyslog
 
-The logging of the GREP11 server is going to the _rsyslog_ service that you configure on your Ubuntu guest.  Log out from your session on the RHEL 8.5 host:
-
-   ``` bash
-   exit
-   ```
-
-Log in to your Ubuntu KVM guest:
-
-   ``` bash
-   ssh -p ${Student_SSH_Port} -l student 192.168.22.64
-   ```
+**The logging of the GREP11 server is going to the _rsyslog_ service that you configured on your Ubuntu guest, so switch to the terminal tab or window for your KVM standard guest.**
 
 The arguments to the _journalctl_ command here aren't the most elegant in the world, but, unless midnight passed since you started your GREP11 Server, you will be able to see messages in rsyslog from when you just started up your GREP11 Server:
 
@@ -1006,4 +998,4 @@ There are a lot of messages logged, a veritable trove of treasure for the curiou
       Feb 14 17:39:15 ubuntu2204 systemd[1439]:  Finished Online ext4 Metadata Check for All Filesystems.
       ```
 
-*Congratulations!* You have reached a significant milestone in the lab.  You have successfully configured and launched your HPVS 2.1.3 GREP11 Server. Now all that is left is to test its functionality with some sample GREP11 client code.  You will set that up on your Ubuntu KVM guest that are currently logged on to.  Click _Next_ at the bottom right of the page to continue.
+*Congratulations!* You have reached a significant milestone in the lab.  You have successfully configured and launched your HPVS 2.1.3 GREP11 Server. Now all that is left is to test its functionality with some sample GREP11 client code.  You will set that up on your Ubuntu KVM guest.  Click _Next_ at the bottom right of the page to continue.

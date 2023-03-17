@@ -11,25 +11,28 @@ In this section you will use your self-signed CA (1 above) to create:
 
 1. client certificate for your (not-yet-created) HPVS 2.1.3 GREP11 Server
 
-Your GREP11 Server will be a client to the rsyslog service. (It serves clients who want to make GREP11 requests, but it is a client to the rsyslog service. :confused:)
+Your GREP11 Server will be a client to the rsyslog service. (It serves clients who want to make GREP11 requests, but for logging it is a client to the rsyslog service).
 
 !!! Warning "Please read the instructions carefully"
 	
-	You'll be switching between userids on the following 2 systems:
+	You'll be switching between both of your userids in this section:
 
-	1. KVM host
-	2. Ubuntu KVM guest (that was created for you and hosts the rsyslog service)
+	1. your _studentnn_ userid on the RHEL host where _nn_ is unique to you and between 01 and 20
+	2. your _student_ userid on your Ubuntu KVM guest 
+
+	We'll do our part by telling you when to switch.  Please do your part by reading the instructions carefully!
 
 
-## Log in to the RHEL host
+## If necessary, log in to the RHEL host
 
-``` bash
-ssh -l ${StudentID} 192.168.22.64
-```
+If you are following the lab in order in one sitting, you are already logged in and have switched to the correct terminal tab and window.
+But if you need to log in for any reason, the command is `ssh -l ${StudentID} 192.168.22.64`
 
 ## Create certificate for client access to rsyslog
 
-1. Create and switch to a working directory:
+Steps 1 through 5 will be performed on the RHEL host.
+
+1. Create a working directory and switch to it:
 
 	``` bash
 	mkdir ~/rsyslogClientWork && cd rsyslogClientWork
@@ -77,9 +80,9 @@ ssh -l ${StudentID} 192.168.22.64
 	openssl req -config client.cnf -key client-key.pem -new -out client-req.csr
 	```
 
-5. Now we are going to use a pattern that is similar to a real-world pattern:
+5. Now you are going to use a pattern that is similar to a real-world pattern:
 	
-	You are going to send your CSR (which you just created on the host) to the Rsyslog CA (which is on your Ubuntu KVM guest):
+	You are going to send your CSR, which you just created on the RHEL host, to the Rsyslog CA which you created on your Ubuntu KVM guest:
 
 	``` bash
 	scp client-req.csr student@${StudentGuestIP}:./rsyslogWork/.
@@ -98,22 +101,16 @@ ssh -l ${StudentID} 192.168.22.64
 		client-req.csr                                                          100% 1691     9.2MB/s   00:00 
 		```
 
-6. Log off from the host:
+6. Switch to your terminal tab or window for your KVM Ubuntu guest.
 
-	``` bash
-	exit
-	```
 
-7. Put on your CA hat and log in to your Ubuntu KVM guest 
+7. If you are doing the lab in one sitting, in order, then you are already logged in.  If you need to login for any reason the command is `ssh -p ${Student_SSH_Port} -l student 192.168.22.64`.  Steps 8 through 12 will be performed on your Ubuntu KVM guest.
 
-	``` bash
-	ssh -p ${Student_SSH_Port} -l student 192.168.22.64
-	```
 
 8. You are now the CA registrar. Switch to your working directory and find the certificate signing request(CSR) that your customer (i.e., you) sent to you.  
 
 	``` bash
-	cd rsyslogWork && ls -l client*.csr
+	cd ${HOME}/rsyslogWork && ls -l client*.csr
 	```
 
 	???- example "Make sure your csr is listed"
@@ -342,22 +339,14 @@ ssh -l ${StudentID} 192.168.22.64
 		client.crt                                                              100% 1907     9.7MB/s   00:00 
 		```
 
-13. Hang up your CA registrar hat and log out of your Ubuntu KVM guest:
+13. Now switch back to your terminal tab or window for your session on the RHEL host.
 
-	``` bash
-	exit
-	```
-
-14. Log in to the RHEL 8.5 host:
-
-	``` bash
-	ssh -l ${StudentID} 192.168.22.64
-	```
+14. If you are doing the lab in one sitting, in order, then you are still logged in on the RHEL host.  If you need to login for any reason the command is `ssh -l ${StudentID} 192.168.22.64`.  Steps 15 and 16 will be performed on the RHEL 8.5 host.
 
 15. Switch to the directory where the CA "sent" your new certificate and list the files:
 
 	``` bash
-	cd rsyslogClientWork/ && ls -ltr
+	cd ${HOME}/rsyslogClientWork/ && ls -ltr
 	```
 
 	???- example "File listing shows your client certificate (client.crt)"

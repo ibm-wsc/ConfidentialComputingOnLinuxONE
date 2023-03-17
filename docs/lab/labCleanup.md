@@ -22,7 +22,13 @@ Enter this command to shut down your standard Ubuntu KVM guest:
    cd ${HOME} && rm -rf rsyslogClientWork GREP11CAwork contract $(whoami).dump
    ```
 
-Thank you for cleaning up and congratulations on finishing the lab!  We hope you enjoyed it and learned from it and we welcome your feedback on how to make it better!
+## Log out of the RHEL host:
+
+   ``` bash
+   exit
+   ```
+
+Thank you for cleaning up and congratulations on finishing the lab!  We hope you enjoyed it and learned from it and we welcome your feedback on how to make it better.
 
 There is no need to click the `Next` link at the bottom as that will take you to a page that is for instructor usage.  Feel free to check it out though, as it will give you insight into the tools that we use to create and update the lab documentation. 
 

@@ -33,11 +33,10 @@ In this section you will:
 
 5. Run the GREP11 client code
 
-## Log in to your Ubuntu KVM guest 
+## Start this section in your Ubuntu KVM guest session
 
-All of the work in this section is performed on your Ubuntu KVM guest, and you are already logged in to it if you have followed this lab without interruption. 
-If you are not logged in, click on the _Previous_ link at the bottom left of the page, go to the bottom of that page and scroll up just a little bit and you'll 
-see the _ssh_ command to log in.  Then come back here.
+This section starts out in your Ubuntu KVM guest, which is where you should be if you have been doing the lab in order in one sitting. 
+If you are not logged in, the command to log in is `ssh -p ${Student_SSH_Port} -l student 192.168.22.64`
 
 ## Install Go 
 
@@ -58,7 +57,7 @@ You'll be given some ideas on how to install it:
       See 'snap info go' for additional versions.
       ```
 
-Please pick the second option as that is the one the instructors used for creating the lab, and they are just as exhausted as you are.
+Please pick the second option to avoid breaking this lab's warranty :smile: as that is the option the instructors used when creating the lab.
 
    ``` bash
    sudo apt install golang-go
@@ -368,7 +367,7 @@ you started the lab, breaking this section, frustrating you, humiliating the ins
 his own fork he can ensure he has complete control of the code, and you probably think he's being paranoid 
 and that this sort of thing would never have happened to him during a live demo (on a different product) in
 front of an audience of hundreds of people.  Nope, that would never happen.  Fortunately it was only an IBM 
-internal audience.
+internal audience. The instructor has since recovered.
 
 Having said that, clone the instructor's GitHub repo:
 
@@ -522,29 +521,19 @@ It will look like this:
               5d:24:b0:9b
       ```
 
-Your GREP11 CA is on your account on the RHEL 8.5 KVM host. Send your CSR to it:
+Your GREP11 CA is on your account on the RHEL host. Send your CSR to it:
 
 
    ``` bash
    scp client.csr ${StudentID}@192.168.22.64:GREP11CAwork/. 
    ```
 
-Log out of your Ubuntu kvm guest because you will be putting your CA hat on for one last time up on the RHEL 8.5 host:
-
-   ``` bash
-   exit
-   ```
-
-Log in to the RHEL 8.5 host:
-
-   ``` bash
-   ssh -l ${StudentID} 192.168.22.64
-   ```
+**Switch to your terminal tab or window for your RHEL host session.**
 
 Change to your GREP11 CA working directory:
 
    ``` bash
-   cd GREP11CAwork
+   cd ${HOME}/GREP11CAwork
    ```
 
 Display the CSR that the client sent you:
@@ -636,22 +625,13 @@ Send the certificate back to the client that requested it:
    scp client.pem student@${StudentGuestIP}:./hpcs-grep11-go/certs/.   
    ```
 
-Your work as a CA registrar is done for the remainder of the lab!  Log out of your session on the RHEL 8.5 host:
-
-   ``` bash
-   exit
-   ```
-
-Log in again to your Ubuntu KVM guest:
-
-   ``` bash
-   ssh -p ${Student_SSH_Port} -l student 192.168.22.64
-   ```
+Your work as a CA registrar is done for the remainder of the lab!  
+**Switch to your terminal tab or window for your Ubuntu KVM guest session**
 
 Change to the directory that has your certificates and key:
 
    ``` bash
-   cd hpcs-grep11-go/certs
+   cd ${HOME}/hpcs-grep11-go/certs
    ```
 
 Display the client certificate that your CA registrar sent you:
@@ -730,6 +710,14 @@ Your output should look like this. If it does, you have reached a successful con
 ???- example "Expected output from testing the GREP11 client code"
 
       ```
+      go: downloading google.golang.org/grpc v1.34.0
+      go: downloading github.com/gogo/protobuf v1.3.2
+      go: downloading github.com/golang/protobuf v1.4.3
+      go: downloading golang.org/x/net v0.0.0-20201021035429-f5854403a974
+      go: downloading google.golang.org/genproto v0.0.0-20201001141541-efaab9d3c4f7
+      go: downloading google.golang.org/protobuf v1.25.0
+      go: downloading golang.org/x/sys v0.0.0-20200930185726-fdedc70b468f
+      go: downloading golang.org/x/text v0.3.3
       === RUN   Test_signAndVerifyUsingDilithiumKeyPair
       Generated Dilithium key pair
       Data signed

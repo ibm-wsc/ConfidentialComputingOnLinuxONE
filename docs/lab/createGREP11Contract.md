@@ -1,24 +1,19 @@
 # Create Contract for GREP11 Server
 
-!!! Warning "You should be logged in to the RHEL 8.5 host"
-
-    This section assumes you are logged in to the RHEL 8.5 host, so we are not repeating the _ssh_ command here.  If say you took a break and are logged out just click the _Previous_ link at the bottom of this page, go to the bottom, scroll up until you see the _ssh_ command.  The inconvenience of having you do this is outweighted by the inconvenience that would be caused by trying to log in when you are already logged in.  
-
 ## Overview of this section
 
 IBM provides the Secure Execution feature on z15 and newer generations of its IBM zSystems and LinuxONE servers.  Currently, that's z15 and LinuxONE III for the "z15" generation and z16 and LinuxONE Emperor 4 for the "z16" generation.
 
-You could create your own Secure Execution-enabled KVM guests and run a workload in it without Hyper Protect Virtual Servers 2.1.3.  However, there's non-trivial work involved in setting this up.  (Unlike the trivial effort you've expended so far in this lab, right?).  HPVS 2.1.3 has done that hard work for you, and provided a KVM guest image that will run your application workload as an OCI-compliant (again, think "Docker" in the popular vernacular) container within the HPVS 2.1.3 KVM guest.  There is still some work involved in setting up the contract that HPVS 2.1.3 expects- but this is work closer to the _application_ or _business_ level. There is also added value in HPVS 2.1.3 in areas such as:
+You could create your own Secure Execution-enabled KVM guests and run a workload in it without Hyper Protect Virtual Servers 2.1.3.  However, there's non-trivial work involved in setting this up.  HPVS 2.1.3 has done that hard work for you, and provided a KVM guest image that will run your application workload as an OCI-compliant (again, think "Docker" in the popular vernacular) container within the HPVS 2.1.3 KVM guest.  There is still some work involved in setting up the contract that HPVS 2.1.3 expects- but this is work closer to the _application_ or _business_ level. There is also added value in HPVS 2.1.3 in areas such as:
 
 - [x] logging
 - [ ] attestation
 - [x] verification during boot
 - [x] encryption
 - [ ] persistent disk protection
-- [ ] separation of duties
-- [ ] even more
+- [x] separation of duties
 
-In fact, this lab in its current iteration only covers a subset of these features (the checked boxes).  (We won't rest on our laurels until we've built this lab out to cover everything under the sun, but, as the saying goes, _Rome wasn't built in a day_).
+This lab covers the features that are checked in the list above.  (We won't rest on our laurels until we've built this lab out to cover everything under the sun, but, as the saying goes, _Rome wasn't built in a day_).
 
 One of the things we just mentioned in the previous paragraph was _separation of duties_. In a real world situation, multiple personas could create different portions of the contract:
 
@@ -36,7 +31,7 @@ Then, you could imagine the following scenario taking place:
 	
 	If your workload requires persistent disk storage (to survive a container restart) then each of the two personas supplies part of a seed that is used in the calculation of an encryption key for the persistent disk. Neither persona has knowledge of the other's part of the seed if it is passed between parties encrypted, so that no human has the ability to decrypt the persistent disk.  The HPVS developers have thought through security very carefully! :nerd_face: 
 
-Now our lab does not include all of the above features (yet)- for example, the GREP11 Server is stateless (this is a feature, not a bug) so we do not need persistent disk storage.  And for this lab, you have and will continue to wear many hats, including both the _application owner_ workload deployer and the _system administrator_ environment deployer.  We are not going to cover _attestation_ in this lab either, but when the HPVS Product Manager reads this he will try to convince us into making this the next major addition to the lab, and he will succeed.
+Now our lab does not include all of the above features (yet)- for example, the GREP11 Server is stateless (this is a feature, not a bug) so we do not need persistent disk storage.  And for this lab, you have and will continue to wear many hats, including both the _application owner_ workload deployer and the _system administrator_ environment deployer.  We are not going to cover _attestation_ in this lab either, but hope to do so in a future lab.
 
 ## Creation of directory structure for contract 
 
@@ -46,9 +41,7 @@ This command will create the directory structure expected by the lab instruction
 mkdir -p ${HOME}/contract/grep11Server/{workload,environment}
 ```
 
-A contract consists of a _workload_ section and an _environment_ section, so they each get their own directory. Then the sections are packaged together, and signed, and the signature is added as the third section.  This final result- the contract-  will be stored in your `${HOME}/contract/grep11Server` directory.
-
-It's easy to feel overwhelmed at first, but hopefully as you progress through the lab your level of enlightenment will increase. Most things in life that are worthwhile take a bit of effort.
+A contract requires a _workload_ section and an _environment_ section, and they each get their own directory. Then the sections are packaged together, and signed, and the signature is added as the third section.  This final result- the contract-  will be stored in your `${HOME}/contract/grep11Server` directory.
 
 ## Create workload section of the contract
 
@@ -60,13 +53,13 @@ cd ${HOME}/contract/grep11Server/workload
 
 HPVS expects the contract to specify an OCI container specified by a _Docker Compose_ file.  The _Docker Compose_ file specifies an OCI image to run and other information necessary to configure the resulting container. Your workload is the GREP11 Server, so, yes, there's an OCI image for that. The container that runs the GREP11 Server will be configured with information such as:
 
-- listening ports
-- configuration file
+- the port it listens on
+- a configuration file that describes the GREP11 server
 - another configuration file that describes its connection to the CENA4SEE server
 - certificates and keys to enable TLS communication with the CENA4SEE server
-- certificates and keys to enable TLS communication between clients that call the GREP11 Server
+- certificates and keys to enable TLS communication with clients that call the GREP11 Server
 
-That's right, two more "sets" of X509 certificates, egads!!  You've already worked with one set for the rsyslog service, and yet you're still here! We'll offer the commands for these next two sets without as much commentary.
+That's right, two more "sets" of X509 certificates, egads!!  You've already worked with one set for the rsyslog service, so we'll offer the commands for these next two sets without as much commentary.
 
 !!! Information "A brief history of the term 'CENA4SEE', or, you say to-MAY-toe and I say to-MAH-toe"
 
@@ -74,15 +67,35 @@ That's right, two more "sets" of X509 certificates, egads!!  You've already work
 
 You are going to put the building blocks for the workload section of the contract together in the following order:
 
-1. Create docker-compose file
+1. You will create a docker-compose file
 
-2. Create GREP11 Server configuration file
+    1. docker-compose.yml - this file will reference each of the files listed in items 2-5 of this list
 
-3. Create configuration file for the GREP11 Server to the CENA4SEE server connection
+2. You will create a GREP11 Server configuration file
 
-4. Create x509 material to enable secure communication between GREP11 clients and the GREP11 Server 
+    1. ep11server.yaml
 
-5. Create x509 material to enable secure communication between GREP11 Server and the CENA4SEE server 
+3. You will create a configuration file for the GREP11 Server to the CENA4SEE server connection
+
+    1. c16client.yaml
+
+4. You will create x509 material to enable secure communication between GREP11 clients and the GREP11 Server 
+
+    1. grep11-ca.pem
+
+    2. grep11-server.pem
+
+    3. grep11-server.key
+
+5. You will create or obtain x509 material to enable secure communication between GREP11 Server and the CENA4SEE server 
+
+    1. c16-ca.pem - this file has already been created by the instructors
+
+    2. c16-client.key
+
+    3. c16-client.pem - the instructors will create this file upon your request in a subsequent step in the lab
+
+Let's get started!
 
 ### Create docker-compose file
 
@@ -115,11 +128,9 @@ services:
 EOF
 ```
 
-Notice the value of the _image_ key.  This is the GREP11 Server OCI image provided with the Crypto Express Network API for Secure Execution Enclaves 1.1.1.2 (CENA4SEE) that Garrett (_gmoney23_) has uploaded to his account on Quay.io for this lab. (Not for your production usage as it could disappear at any time).
+Notice the value of the _image_ key.  This is the GREP11 Server OCI image provided with the Crypto Express Network API for Secure Execution Enclaves 1.1.1.3 (CENA4SEE) that Garrett (_gmoney23_) has uploaded to his account on Quay.io for this lab. (Not for your production usage as it could disappear at any time).
 
-Notice the list of eight items under the _volumes_ section.  You get to create them!  
-
-Each entry in the list has a filename on the host that you will create.  The value after the ':' specifies where that file is mapped to within the OCI container that will run in the HPVS 2.1.3 guest.  Taking the first item in the list as an example, you will create a file named _c16client.yaml_ and then within the OCI container it will be available at _/etc/c16/c16client.yaml_.  (As an aside, you can also map entire directories from your host to a Docker container, although this example only maps individual files).
+Notice the list of eight items under the _volumes_ section. The left side of each entry in the list specifies the name of the file on the RHEL host.  The value after the ':' specifies where that file is mapped to within the OCI container that will run in the HPVS 2.1.3 guest.  Taking the first item in the list as an example, you will create a file named _c16client.yaml_ and then within the OCI container it will be available at _/etc/c16/c16client.yaml_.  (As an aside, you can also map entire directories from your host to a Docker container, although this example only maps individual files).
 
 ### Create the configuration file for the GREP11 server
 
@@ -238,9 +249,9 @@ EOF
 
 ### Create x509 material for GREP11 client to GREP11 Server communication
 
-Your GREP11 Server acts as both a server and a client. Its primary purpose is to be a server- to serve requests from GREP11 Clients.  But in order to get its job done, it must send requests to the CENA4SEE server, so it is a client to the CENA4SEE server.  (It is also a client to the rsyslog service so that it can send its log messages there). Yes, it's confusing, but that's why the IT profession offers a living wage in some parts of the world.
+Your GREP11 Server acts as both a server and a client. Its primary purpose is to be a server- to serve requests from GREP11 clients.  But in order to get its job done, the GREP11 Server must send requests to the CENA4SEE server, so it is a client to the CENA4SEE server.  (It is also a client to the rsyslog service so that it can send its log messages there). 
 
-In this section, you'll set up the material to enable GREP11 Server's role as a, well, GREP11 Server!
+In this section, you'll set up the material to enable the GREP11 Server's role as a, well, GREP11 Server!
 
 1. Create and change to a new directory which you will use for your self-signed GREP11 Server CA:
 
@@ -827,7 +838,7 @@ In this section, you'll set up the material to enable GREP11 Server's role as a,
 
 	The "self-signed" CA for the CENA4SEE server is under instructor control- since there is only one CENA4SEE for the class to share, there is only one CA.  Let the instructors know that you are ready to have a client certificate created and the instructors will create a certificate for you and place it in the same directory that you are presently working in.  
 
-	!!! Info "How and why the instructors will create this certificate for you"
+	!!! Info "How the instructors will create this certificate for you"
 
 		In the interests of transparency, this is the command the instructors will use to create your certificate (after setting the _${student}_ environment variable appropriately).  Don't try to run this command as it won't work for you because you do not have access to the "self-signed" CA's private key.  (You can try- if you succeed, you are either an excellent hacker, or the instructors are not excellent system administrators, or some combination thereof).
 

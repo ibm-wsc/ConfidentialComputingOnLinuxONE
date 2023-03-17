@@ -1,15 +1,17 @@
 # Configure rsyslog service
 
-The HPVS 2.1.3-protected GREP11 Server that you will create later in the lab will log its output to an rsyslog service on the Ubuntu KVM guest that you just started in the previous section. Rsyslog is currently not set up for this, so you will configure rsyslog in this section of the lab.
+## Overview of this page
 
-!!! Note "Logging to LogDNA"
-    Did you know that you could also log the output of an HPVS 2.1.3 guest to a LogDNA instance on IBM Cloud?  It's true! That is not covered in this lab but if you are interested in this, you can consult the [product documentation](https://cloud.ibm.com/catalog/services/logdna){target="_blank" rel="noopener"} or contact the instructors, who have done this and probably wouldn't object to getting you started on this.
+The HPVS 2.1.3-protected GREP11 Server that you will create later in the lab will log its output to an rsyslog service on the Ubuntu KVM guest that you just started in the previous section. Rsyslog on your Ubuntu KVM guest is currently not set up for this, so you will configure rsyslog in this section of the lab.
+
+!!! Note "Logging to IBM Log Analysis on IBM Cloud"
+    You can also log the output of an HPVS 2.1.3 guest to an [IBM Log Analysis instance on IBM Cloud](https://cloud.ibm.com/catalog/services/logdna){target="_blank" rel="noopener"}.  That is not covered in this lab but if you are interested in this, it is covered in the [product documentation](https://www.ibm.com/docs/en/hpvs/2.1.x?topic=servers-logging-hyper-protect-virtual){target="_blank" rel="noopener"}.
 
 ## Log in to your Ubuntu KVM guest
 
 !!! Question "How tricky can logging in be?"
 
-	The Ubuntu KVM guest that you started is in a KVM internal private network that uses NAT (Network Address Translation) in order to communicate with the "outside world".  "Outside world" in this case refers to any server outside of our RHEL 8.5 host. 
+	The Ubuntu KVM guest that you started is in a KVM internal private network that uses NAT (Network Address Translation) in order to communicate with the "outside world".  "Outside world" in this context refers to any server outside of our RHEL 8.5 host. 
 	
 	!!! Note "Your home network is probably doing the same thing"
 
@@ -19,7 +21,7 @@ The HPVS 2.1.3-protected GREP11 Server that you will create later in the lab wil
 
 		*OR*
 
-		- a separate modem and router you buy yourself for better performance and to save money in the long run (usually you can pay it off instead of the extra fees in a year or two)
+		- a separate modem and router you buy yourself for better performance or to save money in the long run by eliminating monthly equipment rental fees from your internet provider
 			
 	!!! Abstract "tl;dr"
 
@@ -47,7 +49,9 @@ The HPVS 2.1.3-protected GREP11 Server that you will create later in the lab wil
 	export Student_SSH_Port=22222
 	```
 
-	For the same reason as explained the last time we asked you to do this, it is optional but recommended to update your shell so that this change will take effect in new terminal windows as well.  Examples are shown for _bash_ and _zsh_, pick the appropriate command or tailor for your shell:
+	There is nothing magical about the port range 20023 to 20042- this just happens to be the range of ports the instructors configured on the host system. The secret formula used by the instructors is _20022 + last two digits of your student userid_, and the system has been set up to allow twenty students to take the lab at the same time.
+
+	For the same reason as explained the in the beginning of the lab when we had you check that your student userid was set in a variable, if this variable was not already set and you had to set it, it is optional but recommended to update your shell so that this change will take effect in new terminal windows or tabs as well.  Examples are shown for _bash_ and _zsh_- pick the appropriate command or tailor for your shell:
 
 	``` bash
 	echo "export Student_SSH_Port='${Student_SSH_Port}'" >> "${HOME}/.bashrc"
@@ -57,7 +61,7 @@ The HPVS 2.1.3-protected GREP11 Server that you will create later in the lab wil
 	echo "export Student_SSH_Port='${Student_SSH_Port}'" >> "${HOME}/.zshrc"
 	```
 
-You're now ready to log in to your Ubuntu KVM guest:
+Ensure that you are in the terminal tab or window for your KVM Standard Guest since you're now ready to log in to your Ubuntu KVM guest:
 
    ```
    ssh -p ${Student_SSH_Port} -l student 192.168.22.64
@@ -72,11 +76,13 @@ You're now ready to log in to your Ubuntu KVM guest:
       student@ubuntu2204:~$ 
       ```
 
+Continue to enter commands in your KVM Standard Guest terminal tab or window until directed to switch to your other tab or window.
+
 !!! Question "Is my `userid` really student?"
 
-    That's right, your userid is _student_ on your Ubuntu KVM guest.  Each student has a unique userid on the RHEL 8.5 host, but since each student has their own unique Ubuntu KVM guest, they each have the same userid, _student_, since they have this guest all to themselves.
+    That's right, your userid is _student_ on your Ubuntu KVM guest.  Each student has a unique userid on the RHEL 8.5 host, but since each student has their own unique Ubuntu KVM guest, you each have the same userid, _student_, since you have this guest all to yourself.
 
-You may be able to log in without a password prompt, but if not, your instructor will provide you with the password.
+You should be able to log in without a password prompt, but if not, your instructor will provide you with the password.
 
 ## Install rsyslog-gnutls package
 
@@ -181,7 +187,7 @@ You'll modify the configuration to allow this.
 
 	!!! Tip "Take a look close to the bottom of the file"
 
-		There are two sections of interest that are highlighted in the above code block. If these lines could speak to you, they would say, "We are going to receive TCP messages, and we will use TLS to authenticate with the sender of these messages, and here are the certificate and keys needed to enable this to work".
+		There are two sections of interest that are highlighted in the above code block. If these lines could speak to you, they would say, "We are going to receive TCP messages, and we will use TLS to authenticate with the sender of these messages and to enable encryption of the messages, and here are the certificate and keys needed to enable this to work".
 
 	For this configuration file to work, you'll need to install a software package to allow rsyslog to receive TLS-authenticated TCP messages and you'll need to create the certificate and keys and put them where the configuration file says you put them.
 
@@ -287,35 +293,35 @@ You'll modify the configuration to allow this.
 				500 http://ports.ubuntu.com/ubuntu-ports jammy/main s390x Packages
 		```
 
-## Create CA for your rsyslog service
+## Create a Certification Authority (CA) for your rsyslog service
 
 ### Background Information
 
-The TLS authentication for communication with the rysyslog service requires an X509 certificate and private key.  An X509 certificate contains a public key that goes with the private key.  Think of a public key as a yummy cake baked with yellow dough, it's moist and tastes pretty good- but the X509 certificate wrapped around it is like the chocolate icing and the rainbow sprinkles- it's delicious!  (Break time!!) If you haven't given up on the analogy, think of the private key as the secret recipe to bake the cake that nobody but you knows about. 
+The TLS authentication for communication with the rysyslog service requires an X509 certificate and private key.  An X509 certificate contains a public key that goes with the private key.  An X509 certificate also contains metadata including the identification of the holder of the certificate, the purposes the certificate is intended for, and more. Think of a public key as a yummy cake baked with yellow dough, it's moist and tastes pretty good- but the X509 certificate wrapped around it is like the chocolate icing and the rainbow sprinkles- it's delicious!  (Break time!!) If you haven't given up on the analogy, think of the private key as the secret recipe to bake the cake that nobody but you knows about.  For a slightly more technical (but still just scratching the surface), but perhaps not as tasty, description of public key cryptography check out this [description from one of our earlier labs](https://ibm-wsc.github.io/hyper-protect-virtual-servers-workshop/grep11-lab/lab-exercise3/#public-key-cryptography-in-simple-terms){target="_blank" rel="noopener"}.
 
 An X509 certificate needs to be created and signed by a certification authority (CA). 
 
 !!! Info "The authority prefers certification"
 
-    Did you know that 99.999% of people call a CA a "certificate authority" but that the Internet Request for Comment (RFC) that defines the X509 standard uses the term ["_certification_ authority"](https://www.rfc-editor.org/rfc/rfc5280#section-3){target="_blank" rel="noopener"}?
+    Most people call a CA a "certificate authority" but actually the Internet Request for Comment (RFC) that defines the X509 standard uses the term ["_certification_ authority"](https://www.rfc-editor.org/rfc/rfc5280#section-3){target="_blank" rel="noopener"}. Imagine that! :smile:
 
 For the lab you will create your own CA- what is often called a "self-signed" CA. A utility called `openssl` can be used to do this.  A CA signs certificates that it creates. In order to digitally sign something, you use a private key.  In simple terms, a publicly known algorithm- which can be poked at and prodded at by researchers and academics in an effort to prove its security or to hopefully win a large bounty by proving its insecurity- is run against a private key that nobody else knows, and produces a unique output, or signature.  This signature can be verified algorithmically by anybody who holds the private key's corresponding public key.
 
 ???- Question "Who holds the public key?"
 
-	That's right, the public :astonished:!
+	That's right, the public :astonished:! It is safe to share your public key with others- it is your private key that you must protect from loss, theft or exposure.
 	
-So if you receive a piece of digital information and a public key, you can prove that whoever signed this had to have held the private key in order to create the signature.  Okay, cool.  But what if a malicious actor had the private key and gave you the public key? Would you feel so great knowing you verified the signer if they were malicious?  No!  That is where a CA comes in. The idea is that the following process occurs:
+If you receive a piece of digital information that is signed, and the public key that corresponds to the private key used to create the signature, you can prove that whoever signed this had to have held the private key in order to create the signature.  Okay, cool.  But what if a malicious actor had the private key and gave you the public key? Would you feel so great knowing you verified the signer if they were malicious?  No!  That is where a CA comes in. The idea is that the following process occurs:
 
 1. An individual or organization submits a request for a certificate (CSR) with their public key
-2. CA takes the effort to verify that the owner of the public key is a good actor and is who they say they are and that they can be trusted
-3. CA creates the certificate that holds the public key (essentially stating "I am a CA and you can trust me and the holder of this certificate that I just signed is a good person and they are who they say they are, so you can trust this certificate and anything it signs")
+2. The CA takes the effort to verify that the owner of the public key is a good actor and is who they say they are and can be trusted
+3. The CA creates the certificate that holds the public key, essentially stating "I am a CA and you can trust me and the holder of this certificate that I just signed is a good person and they are who they say they are, so you can trust this certificate and anything it signs".
 
 ??? Question "How is that working out for us?"
 
-	See [software supply chain attacks](https://www.google.com/search?q=software+supply+chain+attacks){target="_blank" rel="noopener"}.
+	The X509 Certification Authority protocol is outstanding in theory. In practice its vulnerability lies in the need for the holders of private keys to protect them with diligence.  Losing your private key is akin to losing your wallet or your house key or your drivers license or ... you get the picture.  Attacks such as [software supply chain attacks](https://www.google.com/search?q=software+supply+chain+attacks){target="_blank" rel="noopener"} are often accomplished by malicious actors who have stolen others' private keys.  This is why initiatives like Confidential Computing and technologies like Hardware Security Modules are important.
 
-But this is a lab and you're going to create your own CA.  Hopefully, you trust yourself :fingers_crossed: enough to feel comfortable with this...
+In real world practice, for external, customer-facing applications an enterprise will ask a well-known and trusted third-party CA to issue its certificates. In many cases an enterprise may run its own internal CA for certificates for internal applications.   In this lab you're going to create your own CAs.  Hopefully, you trust yourself :fingers_crossed: enough to feel comfortable with this...
 
 ### Hands on keyboard time
 
@@ -342,9 +348,9 @@ But this is a lab and you're going to create your own CA.  Hopefully, you trust 
 	
 	It accomplishes the following:
 
-	1. Ensure you are in your home directory (which you already are in unless you wandered off on your own)
-	2. Create a fresh directory that you'll work in for this activity
-	3. Switch to this new directory
+	1. Ensures you are in your home directory (which you already are in unless you wandered off on your own)
+	2. Creates a fresh directory that you'll work in for this activity
+	3. Switches to this new directory
 
 3. Create a private key. It will be the private key your self-signed CA will use so call it `ca-key.pem`:
 
@@ -374,9 +380,9 @@ But this is a lab and you're going to create your own CA.  Hopefully, you trust 
 
 	!!! Question "Why are we using .cnf configuration files?"
 		
-		Some `openssl` commands have a tendency to ask a bunch of questions which can be tedious and error-prone when typing the answers, but you can avoid that by creating a configuration file that provides the answers and thus avoids the questions.  You'll see this pattern more than once.
+		Some `openssl` commands have a tendency to ask a bunch of questions which can be tedious and error-prone when typing the answers, but you can avoid that by creating a configuration file that provides the answers and thus avoids the questions.  You'll see this pattern throughout the lab.
 
-5. A CA itself has a certificate that it can send or make available to others (others being people, or computer processes, or whomever). So let's create a CSR:
+5. A CA itself has a certificate that it can send or make available to others (others being people, or computer processes, or whomever). You don't have one yet- all you have is a private key. A certificate signing request (CSR) can be created from a private key- it derives the public key from the private key and creates an object called a Certificate Signing Request (CSR) that contians the public key and other identifying information and can be sent to a CA. Create your CSR:
 
 	``` bash
 	openssl req -config ca.cnf -key ca-key.pem -new -out ca-req.csr
@@ -412,12 +418,12 @@ In real life, a CA will probably issue lots of certificates- it's how they make 
  - a certificate for the rsyslog service which you will create next.
  - a certificate for the client (your future GREP11 Server) of the rsyslog service, which you will create later in the lab.  
 
-The process is similar:
+The process is the same as what you just went through for creating your CA for steps 1-3 below but differs slightly for step 4:
 
 1. Create a private key
 2. Create a configuration file to answer questions ahead of time
 3. Use the key and the config file to create a CSR
-4. This time we'll have the "self-signed" CA you just created sign the certificate it creates.  
+4. This time you'll have your "self-signed" CA create and sign the certificate.  
 
 ### Creation time
 
@@ -427,10 +433,10 @@ The process is similar:
 	openssl genrsa -out server-key.pem 4096
 	```
    
-2. Create the configuration file to preemptively answer the inevitable questions.  See if you can find the two places where I use an amazingly complicated command pipe that somehow puts a whole bunch of information in a blender and comes up with your machine's IP address. (Brought to you by the "Just because you can do something, doesn't mean you should" Department)
+2. Create the configuration file to preemptively answer the inevitable questions.  We've used a command pipe to extract your guest's IP address into a variable and then we use that variable in two places in the configuration file.  If you borrow this technique for your system please ensure that this command pipe works on your system:
 
 	``` bash
-	export ipline="$(ip route get 1.1.1.1 | grep -oP 'src \K[^ ]+')" && \
+	export ip="$(ip route get 1.1.1.1 | grep -oP 'src \K[^ ]+')" && \
 	cat << EOF > server.cnf
 	[ req ]
 	default_bits = 2048
@@ -440,13 +446,13 @@ The process is similar:
 	distinguished_name = dn
 
 	[ server ]
-	subjectAltName = IP:${ipline}
+	subjectAltName = IP:${ip}
 	extendedKeyUsage = serverAuth
 
 	[ dn ]
 	C = US
-	O = Rsyslog Test Server
-	CN = ${ipline}
+	O = Rsyslog Service
+	CN = ${ip}
 	EOF
 	```
 
@@ -475,7 +481,7 @@ The process is similar:
 		subject=C = US, O = Rsyslog Test Server, CN = 172.16.0.42
 		```
 
-	5. This was hard work (and you're not done yet), so take a breather and run this command to display the rsyslog service's certificate in a form that a human can at least attempt to comprehend:
+	5. Run this command to display the rsyslog service's certificate in a form that a human can comprehend:
 
 		``` bash
 		openssl x509 -noout -text -in server.crt 
@@ -600,7 +606,7 @@ The configuration file you created in rsyslog a little while ago (near the top o
 
 ## Restart your rsyslog service
 
-You'll truly know that you configured everything correctly later in the lab when you try to write messages to it from your yet-to-be-created HPVS 2.1.3 GREP11 Server. But for now, we will verify it somewhat by taking a before and after snapshot of which TCP ports on your system are listening.  
+You'll truly know that you configured everything correctly later in the lab when you try to write messages to it from your yet-to-be-created HPVS 2.1.3 GREP11 Server. But for now, you will verify it somewhat by taking a before and after snapshot of which TCP ports on your system are listening.  
 
 Run this command, and then in a moment you'll repeat the command.  What you should notice here is the absence of port 6514 in the output:
 
@@ -675,11 +681,7 @@ Now when you rerun the command to see the listening TCP ports, seeing 6514 in th
       rsyslogd  1439          syslog    7u  IPv6  22402      0t0  TCP *:6514 (LISTEN)
       ```
 
-Log off of your Ubuntu KVM guest:
-
-   ``` bash
-   exit
-   ```
+**Switch to your terminal tab or window for your session with the RHEL host, as you will start the next section of the lab working on the RHEL host.**
 
 Please proceed to the next section of the lab by clicking the _Next_ link on the bottom right of this page.
 
