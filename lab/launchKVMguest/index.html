@@ -468,12 +468,26 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#set-environment-variable-for-your-student-id" class="md-nav__link">
-    Set environment variable for your student ID
+  <a href="#overview-of-this-page" class="md-nav__link">
+    Overview of this page
   </a>
   
-    <nav class="md-nav" aria-label="Set environment variable for your student ID">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-the-student-specific-environment-variables-on-your-jumpbox" class="md-nav__link">
+    Verify the student-specific environment variables on your jumpbox
+  </a>
+  
+    <nav class="md-nav" aria-label="Verify the student-specific environment variables on your jumpbox">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-or-verify-the-environment-variable-on-your-jumpbox-for-your-student-id" class="md-nav__link">
+    Set or verify the environment variable on your jumpbox for your student ID
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#optional-but-highly-recommended-add-your-studentid-environment-variable-to-your-shell-startup-script" class="md-nav__link">
@@ -671,12 +685,26 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#set-environment-variable-for-your-student-id" class="md-nav__link">
-    Set environment variable for your student ID
+  <a href="#overview-of-this-page" class="md-nav__link">
+    Overview of this page
   </a>
   
-    <nav class="md-nav" aria-label="Set environment variable for your student ID">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-the-student-specific-environment-variables-on-your-jumpbox" class="md-nav__link">
+    Verify the student-specific environment variables on your jumpbox
+  </a>
+  
+    <nav class="md-nav" aria-label="Verify the student-specific environment variables on your jumpbox">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-or-verify-the-environment-variable-on-your-jumpbox-for-your-student-id" class="md-nav__link">
+    Set or verify the environment variable on your jumpbox for your student ID
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#optional-but-highly-recommended-add-your-studentid-environment-variable-to-your-shell-startup-script" class="md-nav__link">
@@ -737,16 +765,35 @@
 
 
 <h1 id="start-ubuntu-kvm-guest">Start Ubuntu KVM Guest<a class="headerlink" href="#start-ubuntu-kvm-guest" title="Permanent link">&para;</a></h1>
-<h2 id="set-environment-variable-for-your-student-id">Set environment variable for your student ID<a class="headerlink" href="#set-environment-variable-for-your-student-id" title="Permanent link">&para;</a></h2>
-<p>Each student has a unique userid assigned to them. It may have been set for you already. Check this by entering this echo command:</p>
+<h2 id="overview-of-this-page">Overview of this page<a class="headerlink" href="#overview-of-this-page" title="Permanent link">&para;</a></h2>
+<p>This page will help you verify that your jumpbox is configured properly and then guide you to logging in to the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> Host from which you will start your student-assigned KVM standard Ubuntu guest.</p>
+<h2 id="verify-the-student-specific-environment-variables-on-your-jumpbox">Verify the student-specific environment variables on your jumpbox<a class="headerlink" href="#verify-the-student-specific-environment-variables-on-your-jumpbox" title="Permanent link">&para;</a></h2>
+<p>You will first ensure that two crucial environment variables are set on your jumpbox.  Under most circumstances, the instructors will have already set these variables for you.  These variables will enable you to enter all of the commands in this lab without modification- where student-specific information is required in a command, the command will contain environment variables that will be resolved with the student-specific information. </p>
+<p>Environment variables are set in three places:</p>
+<ol>
+<li>
+<p>On your jumpbox.  In most cases, the instructors will have configured your jumpbox with your student-specific environment variables</p>
+</li>
+<li>
+<p>You will have a userid on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host, and this userid has been configured with student-specific environment variables </p>
+</li>
+<li>
+<p>You will have your own KVM standard guest running Ubuntu, and your guest is also configured with student-specific environment variables</p>
+</li>
+</ol>
+<h3 id="set-or-verify-the-environment-variable-on-your-jumpbox-for-your-student-id">Set or verify the environment variable on your jumpbox for your student ID<a class="headerlink" href="#set-or-verify-the-environment-variable-on-your-jumpbox-for-your-student-id" title="Permanent link">&para;</a></h3>
+<p>On your jumpbox, open a terminal window.  Your terminal window should have a dark background with a green prompt for the font.  You will use this window to perform work on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host, but before logging in you will ensure that an environment variable specifying your unique student ID has been set properly.</p>
+<p>Each student has a unique userid assigned to them. It is likely set for you already. In an instructor-led class, your instructors will let you know if this has been set for you already.</p>
+<p>Check this by entering this echo command:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">StudentID</span><span class="si">}</span>
 </code></pre></div>
 <details class="- example">
-<summary>Example output [click to expand me]</summary>
+<summary>Example output for <em>student02</em> [click to expand me]</summary>
 <div class="highlight"><pre><span></span><code>silliman@nat-147 ~ % echo ${StudentID}
 student02
 </code></pre></div>
 </details>
+<p>If a value starting with <em>student</em> and ending with a two-digit number is returned to you, then your jumpbox has been configured properly and you may scroll down a bit to the section <strong><em>Log in to the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5 host</em></strong>. </p>
 <p>If no output is returned, set this variable to the userid assigned to you by the instructor.  E.g., if the instructor assigned you the userid <code>student00</code>, enter this command:
     <div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">StudentID</span><span class="o">=</span>student00
 </code></pre></div>
@@ -764,6 +811,7 @@ student02
 <p>This way we could provide instructions throughout this lab that are generic enough that every student can just copy and paste most commands "as-is" from the lab guide. (At least that was our goal).</p>
 </div>
 <h3 id="optional-but-highly-recommended-add-your-studentid-environment-variable-to-your-shell-startup-script">Optional but highly recommended- add your StudentID environment variable to your shell startup script<a class="headerlink" href="#optional-but-highly-recommended-add-your-studentid-environment-variable-to-your-shell-startup-script" title="Permanent link">&para;</a></h3>
+<p><strong>Note:</strong> If your <em>StudentID</em> variable was already present then your shell startup script was already updated appropriately and you can scroll down to the section with the title <strong><em>Log in to the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5 host</em></strong></p>
 <p>If we had our way in supplying a system from which you are running the lab, you are probably using <em>bash</em>.</p>
 <p>If you are using your own workstation or laptop, if it is running Linux you are probably either using <em>bash</em> or you are savvy enough to figure out which shell you are running. </p>
 <p>If you are running it on Apple hardware then you are probably running <em>zsh</em> or <em>bash</em> or are savvy enough to figure out which shell you are running.</p>
@@ -778,8 +826,8 @@ student02
 /bin/zsh
 </code></pre></div>
 </details>
-<p>Don't be ashamed of your shell.  Garrett uses <code>bash</code> 5.x on his Mac.  Barry uses <code>zsh</code> - <code>zsh</code> being the default shell on newer versions of MacOS.</p>
-<p>We will show two commands to add the environment variable to your shell startup script, one for <code>bash</code> and one for <code>zsh</code>.  If you are using a different shell, we trust you'll be able to figure out the equivalent command.  </p>
+<p>Garrett uses <code>bash</code> 5.x on his Mac.  Barry uses <code>zsh</code> - <code>zsh</code> being the default shell on newer versions of MacOS.
+Thus, we will show two commands to add the environment variable to your shell startup script, one for <code>bash</code> and one for <code>zsh</code>.  If you are using a different shell, we trust you'll be able to figure out the equivalent command.  </p>
 <div class="admonition warning">
 <p class="admonition-title">The Copy Button is Your Friend!</p>
 <p>Please enter the appropriate command exactly as shown using the copy button whenever possible.  Approximately 0.47% of students think they have to make the variable substitution before entering the command.  That doesn't end well.  This advice applies generally to every command in this lab unless we explicitly state otherwise.</p>
@@ -800,7 +848,7 @@ student02
 <div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-l<span class="w"> </span><span class="si">${</span><span class="nv">StudentID</span><span class="si">}</span><span class="w"> </span><span class="m">192</span>.168.22.64
 </code></pre></div>
 <p>One of two things should happen:  </p>
-<p>a. If you are on an instructor-provided system and the instructors have had the time to load it with an appropriate RSA private key that matches an RSA public key that has been loaded into your assigned userid's account on the Linux LPAR</p>
+<p>a. If you are on an instructor-provided system and the instructors have had the time to load it with an appropriate RSA private key that matches an RSA public key that has been loaded into your assigned userid's account on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host:</p>
 <ul>
 <li>you will be able to sign in without a password!</li>
 </ul>
@@ -841,7 +889,7 @@ Last login: Mon Feb 13 16:50:14 2023 from 192.168.215.147
 </code></pre></div>
 </details>
 <h2 id="start-your-ubuntu-kvm-guest">Start your Ubuntu KVM guest<a class="headerlink" href="#start-your-ubuntu-kvm-guest" title="Permanent link">&para;</a></h2>
-<p>A KVM Guest has been defined for each student by the instructors.  This guest has the Ubuntu 22.04.1 operating system installed on it.  A very straightforward installation path was taken with no additional software packages selected during the installation. You will add additional software packages as necessary during the lab. This guest does not take advantage of the additional protection offered by <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr> and HPVS.  It could have, but you will already be creating another KVM Guest that is protected by <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr> and HPVS.  This also helps to make the point that you can run "standard", i.e., non-<abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-protected guests, and <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-protected guests on the same LPAR.</p>
+<p>A KVM Guest has been defined for each student by the instructors.  This guest has the Ubuntu 22.04.2 operating system installed on it.  A very straightforward installation path was taken with no additional software packages selected during the installation. You will add additional software packages as necessary during the lab. This guest does not take advantage of the additional protection offered by <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr> and HPVS.  It could have, but you will already be creating another KVM Guest that is protected by <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr> and HPVS.  This also helps to make the point that you can run "standard", i.e., non-<abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-protected guests, and <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-protected guests on the same LPAR.</p>
 <p>Display your KVM guest's definition with this command:</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>virsh<span class="w"> </span>dumpxml<span class="w"> </span><span class="k">$(</span>whoami<span class="k">)</span>
 </code></pre></div>
@@ -908,10 +956,10 @@ Last login: Mon Feb 13 16:50:14 2023 from 192.168.215.147
 </details>
 <p>Look for the your userid in the output of the <em>virsh dumpxml</em> command.  You'll see it in two places- at the top where it names your guest, and then within the filepath and filename of the <em>qcow2</em> image that provides your KVM guest.  </p>
 <p>Run this command to start your Ubuntu KVM guest:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>virsh<span class="w"> </span>start<span class="w"> </span><span class="sb">`</span>whoami<span class="sb">`</span>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>virsh<span class="w"> </span>start<span class="w"> </span><span class="k">$(</span>whoami<span class="k">)</span>
 </code></pre></div>
 <details class="- example">
-<summary>Expected output</summary>
+<summary>Expected output (for <em>student02</em>) </summary>
 <div class="highlight"><pre><span></span><code>Domain &#39;student02&#39; started
 </code></pre></div>
 </details>
@@ -920,10 +968,8 @@ Last login: Mon Feb 13 16:50:14 2023 from 192.168.215.147
 <div class="tabbed-block">
 <div class="admonition success">
 <p class="admonition-title">You are off to a smashing start! <img alt="🚀" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f680.svg" title=":rocket:" /></p>
-<p>Log out of the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5 host because in the next section of the lab you are going to log into the KVM guest that you just started.</p>
+<p>You should now open a new window or tab using the terminal profile named <em>KVM Standard Guest</em>. From your current terminal window, click <em>File</em> on the menu bar, and then choose either <em>New Tab</em> or <em>New Window</em> based on your personal preference, but, in either case, choose the profile named <em>KVM Standard Guest</em>.  This will create a terminal tab or window with a light beige background and a gray font.  You'll be directed to use this new tab or window when doing work on your KVM Ubuntu guest and you'll be directed to use your original terminal tab or window when doing work on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host. </p>
 </div>
-<div class="highlight"><pre><span></span><code><span class="nb">exit</span>
-</code></pre></div>
 </div>
 <div class="tabbed-block">
 <div class="admonition failure">
@@ -939,7 +985,7 @@ Last login: Mon Feb 13 16:50:14 2023 from 192.168.215.147
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 26, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 17, 2023</span>
       
         <br>
         Created:

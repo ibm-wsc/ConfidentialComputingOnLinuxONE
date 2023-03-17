@@ -482,6 +482,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#overview-of-this-page" class="md-nav__link">
+    Overview of this page
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#log-in-to-your-ubuntu-kvm-guest" class="md-nav__link">
     Log in to your Ubuntu KVM guest
   </a>
@@ -496,11 +503,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-ca-for-your-rsyslog-service" class="md-nav__link">
-    Create CA for your rsyslog service
+  <a href="#create-a-certification-authority-ca-for-your-rsyslog-service" class="md-nav__link">
+    Create a Certification Authority (CA) for your rsyslog service
   </a>
   
-    <nav class="md-nav" aria-label="Create CA for your rsyslog service">
+    <nav class="md-nav" aria-label="Create a Certification Authority (CA) for your rsyslog service">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -719,6 +726,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#overview-of-this-page" class="md-nav__link">
+    Overview of this page
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#log-in-to-your-ubuntu-kvm-guest" class="md-nav__link">
     Log in to your Ubuntu KVM guest
   </a>
@@ -733,11 +747,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-ca-for-your-rsyslog-service" class="md-nav__link">
-    Create CA for your rsyslog service
+  <a href="#create-a-certification-authority-ca-for-your-rsyslog-service" class="md-nav__link">
+    Create a Certification Authority (CA) for your rsyslog service
   </a>
   
-    <nav class="md-nav" aria-label="Create CA for your rsyslog service">
+    <nav class="md-nav" aria-label="Create a Certification Authority (CA) for your rsyslog service">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -833,15 +847,16 @@
 
 
 <h1 id="configure-rsyslog-service">Configure <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service<a class="headerlink" href="#configure-rsyslog-service" title="Permanent link">&para;</a></h1>
-<p>The HPVS 2.1.3-protected <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server that you will create later in the lab will log its output to an <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service on the Ubuntu KVM guest that you just started in the previous section. Rsyslog is currently not set up for this, so you will configure <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> in this section of the lab.</p>
+<h2 id="overview-of-this-page">Overview of this page<a class="headerlink" href="#overview-of-this-page" title="Permanent link">&para;</a></h2>
+<p>The HPVS 2.1.3-protected <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server that you will create later in the lab will log its output to an <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service on the Ubuntu KVM guest that you just started in the previous section. Rsyslog on your Ubuntu KVM guest is currently not set up for this, so you will configure <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> in this section of the lab.</p>
 <div class="admonition note">
-<p class="admonition-title">Logging to LogDNA</p>
-<p>Did you know that you could also log the output of an HPVS 2.1.3 guest to a LogDNA instance on IBM Cloud?  It's true! That is not covered in this lab but if you are interested in this, you can consult the <a href="https://cloud.ibm.com/catalog/services/logdna" rel="noopener" target="_blank">product documentation</a> or contact the instructors, who have done this and probably wouldn't object to getting you started on this.</p>
+<p class="admonition-title">Logging to IBM Log Analysis on IBM Cloud</p>
+<p>You can also log the output of an HPVS 2.1.3 guest to an <a href="https://cloud.ibm.com/catalog/services/logdna" rel="noopener" target="_blank">IBM Log Analysis instance on IBM Cloud</a>.  That is not covered in this lab but if you are interested in this, it is covered in the <a href="https://www.ibm.com/docs/en/hpvs/2.1.x?topic=servers-logging-hyper-protect-virtual" rel="noopener" target="_blank">product documentation</a>.</p>
 </div>
 <h2 id="log-in-to-your-ubuntu-kvm-guest">Log in to your Ubuntu KVM guest<a class="headerlink" href="#log-in-to-your-ubuntu-kvm-guest" title="Permanent link">&para;</a></h2>
 <div class="admonition question">
 <p class="admonition-title">How tricky can logging in be?</p>
-<p>The Ubuntu KVM guest that you started is in a KVM internal private network that uses NAT (Network Address Translation) in order to communicate with the "outside world".  "Outside world" in this case refers to any server outside of our <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5 host. </p>
+<p>The Ubuntu KVM guest that you started is in a KVM internal private network that uses NAT (Network Address Translation) in order to communicate with the "outside world".  "Outside world" in this context refers to any server outside of our <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5 host. </p>
 <div class="admonition note">
 <p class="admonition-title">Your home network is probably doing the same thing</p>
 <p>Your cable modem or DSL modem or satellite modem provides NAT services for your home network. This modem connects to your network router either:</p>
@@ -850,7 +865,7 @@
 </ul>
 <p><em>OR</em></p>
 <ul>
-<li>a separate modem and router you buy yourself for better performance and to save money in the long run (usually you can pay it off instead of the extra fees in a year or two)</li>
+<li>a separate modem and router you buy yourself for better performance or to save money in the long run by eliminating monthly equipment rental fees from your internet provider</li>
 </ul>
 </div>
 <div class="admonition abstract">
@@ -872,13 +887,14 @@
 <p>If you don't see a port number somewhere between 20023 and 20042- each student will have a unique port- then ask the instructor for your port and set it with this command (changing  22222 from the example to your instructor-assigned port)</p>
 <div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">Student_SSH_Port</span><span class="o">=</span><span class="m">22222</span>
 </code></pre></div>
-<p>For the same reason as explained the last time we asked you to do this, it is optional but recommended to update your shell so that this change will take effect in new terminal windows as well.  Examples are shown for <em>bash</em> and <em>zsh</em>, pick the appropriate command or tailor for your shell:</p>
+<p>There is nothing magical about the port range 20023 to 20042- this just happens to be the range of ports the instructors configured on the host system. The secret formula used by the instructors is <em>20022 + last two digits of your student userid</em>, and the system has been set up to allow twenty students to take the lab at the same time.</p>
+<p>For the same reason as explained the in the beginning of the lab when we had you check that your student userid was set in a variable, if this variable was not already set and you had to set it, it is optional but recommended to update your shell so that this change will take effect in new terminal windows or tabs as well.  Examples are shown for <em>bash</em> and <em>zsh</em>- pick the appropriate command or tailor for your shell:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export Student_SSH_Port=&#39;</span><span class="si">${</span><span class="nv">Student_SSH_Port</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/.bashrc&quot;</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export Student_SSH_Port=&#39;</span><span class="si">${</span><span class="nv">Student_SSH_Port</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/.zshrc&quot;</span>
 </code></pre></div>
 </div>
-<p>You're now ready to log in to your Ubuntu KVM guest:</p>
+<p>Ensure that you are in the terminal tab or window for your KVM Standard Guest since you're now ready to log in to your Ubuntu KVM guest:</p>
 <div class="highlight"><pre><span></span><code>ssh -p ${Student_SSH_Port} -l student 192.168.22.64
 </code></pre></div>
 <details class="- example">
@@ -889,11 +905,12 @@ Last login: Thu Feb  9 19:32:09 2023 from 192.168.215.147
 student@ubuntu2204:~$ 
 </code></pre></div>
 </details>
+<p>Continue to enter commands in your KVM Standard Guest terminal tab or window until directed to switch to your other tab or window.</p>
 <div class="admonition question">
 <p class="admonition-title">Is my <code>userid</code> really student?</p>
-<p>That's right, your userid is <em>student</em> on your Ubuntu KVM guest.  Each student has a unique userid on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5 host, but since each student has their own unique Ubuntu KVM guest, they each have the same userid, <em>student</em>, since they have this guest all to themselves.</p>
+<p>That's right, your userid is <em>student</em> on your Ubuntu KVM guest.  Each student has a unique userid on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5 host, but since each student has their own unique Ubuntu KVM guest, you each have the same userid, <em>student</em>, since you have this guest all to yourself.</p>
 </div>
-<p>You may be able to log in without a password prompt, but if not, your instructor will provide you with the password.</p>
+<p>You should be able to log in without a password prompt, but if not, your instructor will provide you with the password.</p>
 <h2 id="install-rsyslog-gnutls-package">Install <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>-gnutls package<a class="headerlink" href="#install-rsyslog-gnutls-package" title="Permanent link">&para;</a></h2>
 <p>The initial installation of Ubuntu installed an <em><abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr></em> service.  Display it with this command:</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>rsyslog
@@ -984,7 +1001,7 @@ EOF
 <p>We might have had you put the cart before the horse a little bit because there is some work to do to ensure that what you've added to this configuration file actually works! But we did this so that we can point out the sections that are requiring this extra work.</p>
 <div class="admonition tip">
 <p class="admonition-title">Take a look close to the bottom of the file</p>
-<p>There are two sections of interest that are highlighted in the above code block. If these lines could speak to you, they would say, "We are going to receive TCP messages, and we will use TLS to authenticate with the sender of these messages, and here are the certificate and keys needed to enable this to work".</p>
+<p>There are two sections of interest that are highlighted in the above code block. If these lines could speak to you, they would say, "We are going to receive TCP messages, and we will use TLS to authenticate with the sender of these messages and to enable encryption of the messages, and here are the certificate and keys needed to enable this to work".</p>
 </div>
 <p>For this configuration file to work, you'll need to install a software package to allow <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> to receive TLS-authenticated TCP messages and you'll need to create the certificate and keys and put them where the configuration file says you put them.</p>
 </li>
@@ -1083,30 +1100,30 @@ No VM guests are running outdated hypervisor (qemu) binaries on this host.
 </details>
 </li>
 </ol>
-<h2 id="create-ca-for-your-rsyslog-service">Create <abbr title="certification authority">CA</abbr> for your <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service<a class="headerlink" href="#create-ca-for-your-rsyslog-service" title="Permanent link">&para;</a></h2>
+<h2 id="create-a-certification-authority-ca-for-your-rsyslog-service">Create a Certification Authority (<abbr title="certification authority">CA</abbr>) for your <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service<a class="headerlink" href="#create-a-certification-authority-ca-for-your-rsyslog-service" title="Permanent link">&para;</a></h2>
 <h3 id="background-information">Background Information<a class="headerlink" href="#background-information" title="Permanent link">&para;</a></h3>
-<p>The TLS authentication for communication with the rysyslog service requires an X509 certificate and private key.  An X509 certificate contains a public key that goes with the private key.  Think of a public key as a yummy cake baked with yellow dough, it's moist and tastes pretty good- but the X509 certificate wrapped around it is like the chocolate icing and the rainbow sprinkles- it's delicious!  (Break time!!) If you haven't given up on the analogy, think of the private key as the secret recipe to bake the cake that nobody but you knows about. </p>
+<p>The TLS authentication for communication with the rysyslog service requires an X509 certificate and private key.  An X509 certificate contains a public key that goes with the private key.  An X509 certificate also contains metadata including the identification of the holder of the certificate, the purposes the certificate is intended for, and more. Think of a public key as a yummy cake baked with yellow dough, it's moist and tastes pretty good- but the X509 certificate wrapped around it is like the chocolate icing and the rainbow sprinkles- it's delicious!  (Break time!!) If you haven't given up on the analogy, think of the private key as the secret recipe to bake the cake that nobody but you knows about.  For a slightly more technical (but still just scratching the surface), but perhaps not as tasty, description of public key cryptography check out this <a href="https://ibm-wsc.github.io/hyper-protect-virtual-servers-workshop/grep11-lab/lab-exercise3/#public-key-cryptography-in-simple-terms" rel="noopener" target="_blank">description from one of our earlier labs</a>.</p>
 <p>An X509 certificate needs to be created and signed by a certification authority (<abbr title="certification authority">CA</abbr>). </p>
 <div class="admonition info">
 <p class="admonition-title">The authority prefers certification</p>
-<p>Did you know that 99.999% of people call a <abbr title="certification authority">CA</abbr> a "certificate authority" but that the Internet Request for Comment (RFC) that defines the X509 standard uses the term <a href="https://www.rfc-editor.org/rfc/rfc5280#section-3" rel="noopener" target="_blank">"<em>certification</em> authority"</a>?</p>
+<p>Most people call a <abbr title="certification authority">CA</abbr> a "certificate authority" but actually the Internet Request for Comment (RFC) that defines the X509 standard uses the term <a href="https://www.rfc-editor.org/rfc/rfc5280#section-3" rel="noopener" target="_blank">"<em>certification</em> authority"</a>. Imagine that! <img alt="😄" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f604.svg" title=":smile:" /></p>
 </div>
 <p>For the lab you will create your own <abbr title="certification authority">CA</abbr>- what is often called a "self-signed" <abbr title="certification authority">CA</abbr>. A utility called <code>openssl</code> can be used to do this.  A <abbr title="certification authority">CA</abbr> signs certificates that it creates. In order to digitally sign something, you use a private key.  In simple terms, a publicly known algorithm- which can be poked at and prodded at by researchers and academics in an effort to prove its security or to hopefully win a large bounty by proving its insecurity- is run against a private key that nobody else knows, and produces a unique output, or signature.  This signature can be verified algorithmically by anybody who holds the private key's corresponding public key.</p>
 <details class="- question">
 <summary>Who holds the public key?</summary>
-<p>That's right, the public <img alt="😲" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f632.svg" title=":astonished:" />!</p>
+<p>That's right, the public <img alt="😲" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f632.svg" title=":astonished:" />! It is safe to share your public key with others- it is your private key that you must protect from loss, theft or exposure.</p>
 </details>
-<p>So if you receive a piece of digital information and a public key, you can prove that whoever signed this had to have held the private key in order to create the signature.  Okay, cool.  But what if a malicious actor had the private key and gave you the public key? Would you feel so great knowing you verified the signer if they were malicious?  No!  That is where a <abbr title="certification authority">CA</abbr> comes in. The idea is that the following process occurs:</p>
+<p>If you receive a piece of digital information that is signed, and the public key that corresponds to the private key used to create the signature, you can prove that whoever signed this had to have held the private key in order to create the signature.  Okay, cool.  But what if a malicious actor had the private key and gave you the public key? Would you feel so great knowing you verified the signer if they were malicious?  No!  That is where a <abbr title="certification authority">CA</abbr> comes in. The idea is that the following process occurs:</p>
 <ol>
 <li>An individual or organization submits a request for a certificate (<abbr title="certificate signing request">CSR</abbr>) with their public key</li>
-<li><abbr title="certification authority">CA</abbr> takes the effort to verify that the owner of the public key is a good actor and is who they say they are and that they can be trusted</li>
-<li><abbr title="certification authority">CA</abbr> creates the certificate that holds the public key (essentially stating "I am a <abbr title="certification authority">CA</abbr> and you can trust me and the holder of this certificate that I just signed is a good person and they are who they say they are, so you can trust this certificate and anything it signs")</li>
+<li>The <abbr title="certification authority">CA</abbr> takes the effort to verify that the owner of the public key is a good actor and is who they say they are and can be trusted</li>
+<li>The <abbr title="certification authority">CA</abbr> creates the certificate that holds the public key, essentially stating "I am a <abbr title="certification authority">CA</abbr> and you can trust me and the holder of this certificate that I just signed is a good person and they are who they say they are, so you can trust this certificate and anything it signs".</li>
 </ol>
 <details class="question">
 <summary>How is that working out for us?</summary>
-<p>See <a href="https://www.google.com/search?q=software+supply+chain+attacks" rel="noopener" target="_blank">software supply chain attacks</a>.</p>
+<p>The X509 Certification Authority protocol is outstanding in theory. In practice its vulnerability lies in the need for the holders of private keys to protect them with diligence.  Losing your private key is akin to losing your wallet or your house key or your drivers license or ... you get the picture.  Attacks such as <a href="https://www.google.com/search?q=software+supply+chain+attacks" rel="noopener" target="_blank">software supply chain attacks</a> are often accomplished by malicious actors who have stolen others' private keys.  This is why initiatives like <abbr title="Confidential computing is a cloud computing technology that isolates sensitive data in a protected CPU enclave during processing. The contents of the enclave—the data being processed, and the techniques that are used to process it—are accessible only to authorized programming code, and are invisible and unknowable to anything or anyone else, including the cloud provider.">Confidential Computing</abbr> and technologies like Hardware Security Modules are important.</p>
 </details>
-<p>But this is a lab and you're going to create your own <abbr title="certification authority">CA</abbr>.  Hopefully, you trust yourself <img alt="🤞" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f91e.svg" title=":fingers_crossed:" /> enough to feel comfortable with this...</p>
+<p>In real world practice, for external, customer-facing applications an enterprise will ask a well-known and trusted third-party <abbr title="certification authority">CA</abbr> to issue its certificates. In many cases an enterprise may run its own internal <abbr title="certification authority">CA</abbr> for certificates for internal applications.   In this lab you're going to create your own CAs.  Hopefully, you trust yourself <img alt="🤞" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f91e.svg" title=":fingers_crossed:" /> enough to feel comfortable with this...</p>
 <h3 id="hands-on-keyboard-time">Hands on keyboard time<a class="headerlink" href="#hands-on-keyboard-time" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
@@ -1127,9 +1144,9 @@ logout
 </code></pre></div>
 <p>It accomplishes the following:</p>
 <ol>
-<li>Ensure you are in your home directory (which you already are in unless you wandered off on your own)</li>
-<li>Create a fresh directory that you'll work in for this activity</li>
-<li>Switch to this new directory</li>
+<li>Ensures you are in your home directory (which you already are in unless you wandered off on your own)</li>
+<li>Creates a fresh directory that you'll work in for this activity</li>
+<li>Switches to this new directory</li>
 </ol>
 </li>
 <li>
@@ -1156,11 +1173,11 @@ logout
 </code></pre></div>
 <div class="admonition question">
 <p class="admonition-title">Why are we using .cnf configuration files?</p>
-<p>Some <code>openssl</code> commands have a tendency to ask a bunch of questions which can be tedious and error-prone when typing the answers, but you can avoid that by creating a configuration file that provides the answers and thus avoids the questions.  You'll see this pattern more than once.</p>
+<p>Some <code>openssl</code> commands have a tendency to ask a bunch of questions which can be tedious and error-prone when typing the answers, but you can avoid that by creating a configuration file that provides the answers and thus avoids the questions.  You'll see this pattern throughout the lab.</p>
 </div>
 </li>
 <li>
-<p>A <abbr title="certification authority">CA</abbr> itself has a certificate that it can send or make available to others (others being people, or computer processes, or whomever). So let's create a <abbr title="certificate signing request">CSR</abbr>:</p>
+<p>A <abbr title="certification authority">CA</abbr> itself has a certificate that it can send or make available to others (others being people, or computer processes, or whomever). You don't have one yet- all you have is a private key. A certificate signing request (<abbr title="certificate signing request">CSR</abbr>) can be created from a private key- it derives the public key from the private key and creates an object called a Certificate Signing Request (<abbr title="certificate signing request">CSR</abbr>) that contians the public key and other identifying information and can be sent to a <abbr title="certification authority">CA</abbr>. Create your <abbr title="certificate signing request">CSR</abbr>:</p>
 <div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>req<span class="w"> </span>-config<span class="w"> </span>ca.cnf<span class="w"> </span>-key<span class="w"> </span>ca-key.pem<span class="w"> </span>-new<span class="w"> </span>-out<span class="w"> </span>ca-req.csr
 </code></pre></div>
 <div class="admonition info">
@@ -1189,12 +1206,12 @@ subject=C = US, O = IBM WSC zSystems and LinuxONE, CN = CA for rsyslog for SE-en
 <li>a certificate for the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service which you will create next.</li>
 <li>a certificate for the client (your future <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server) of the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service, which you will create later in the lab.  </li>
 </ul>
-<p>The process is similar:</p>
+<p>The process is the same as what you just went through for creating your <abbr title="certification authority">CA</abbr> for steps 1-3 below but differs slightly for step 4:</p>
 <ol>
 <li>Create a private key</li>
 <li>Create a configuration file to answer questions ahead of time</li>
 <li>Use the key and the config file to create a <abbr title="certificate signing request">CSR</abbr></li>
-<li>This time we'll have the "self-signed" <abbr title="certification authority">CA</abbr> you just created sign the certificate it creates.  </li>
+<li>This time you'll have your "self-signed" <abbr title="certification authority">CA</abbr> create and sign the certificate.  </li>
 </ol>
 <h3 id="creation-time">Creation time<a class="headerlink" href="#creation-time" title="Permanent link">&para;</a></h3>
 <ol>
@@ -1204,8 +1221,8 @@ subject=C = US, O = IBM WSC zSystems and LinuxONE, CN = CA for rsyslog for SE-en
 </code></pre></div>
 </li>
 <li>
-<p>Create the configuration file to preemptively answer the inevitable questions.  See if you can find the two places where I use an amazingly complicated command pipe that somehow puts a whole bunch of information in a blender and comes up with your machine's IP address. (Brought to you by the "Just because you can do something, doesn't mean you should" Department)</p>
-<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">ipline</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>ip<span class="w"> </span>route<span class="w"> </span>get<span class="w"> </span><span class="m">1</span>.1.1.1<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-oP<span class="w"> </span><span class="s1">&#39;src \K[^ ]+&#39;</span><span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<p>Create the configuration file to preemptively answer the inevitable questions.  We've used a command pipe to extract your guest's IP address into a variable and then we use that variable in two places in the configuration file.  If you borrow this technique for your system please ensure that this command pipe works on your system:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">ip</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>ip<span class="w"> </span>route<span class="w"> </span>get<span class="w"> </span><span class="m">1</span>.1.1.1<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-oP<span class="w"> </span><span class="s1">&#39;src \K[^ ]+&#39;</span><span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
 cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; server.cnf</span>
 <span class="s">[ req ]</span>
 <span class="s">default_bits = 2048</span>
@@ -1215,13 +1232,13 @@ cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; server.cnf</span>
 <span class="s">distinguished_name = dn</span>
 
 <span class="s">[ server ]</span>
-<span class="s">subjectAltName = IP:${ipline}</span>
+<span class="s">subjectAltName = IP:${ip}</span>
 <span class="s">extendedKeyUsage = serverAuth</span>
 
 <span class="s">[ dn ]</span>
 <span class="s">C = US</span>
-<span class="s">O = Rsyslog Test Server</span>
-<span class="s">CN = ${ipline}</span>
+<span class="s">O = Rsyslog Service</span>
+<span class="s">CN = ${ip}</span>
 <span class="s">EOF</span>
 </code></pre></div>
 <p><em>Optional</em>: You know you can't resist looking at the output file to see if that IP magic worked, so just do it:</p>
@@ -1245,7 +1262,7 @@ subject=C = US, O = Rsyslog Test Server, CN = 172.16.0.42
 </details>
 <ol>
 <li>
-<p>This was hard work (and you're not done yet), so take a breather and run this command to display the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service's certificate in a form that a human can at least attempt to comprehend:</p>
+<p>Run this command to display the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service's certificate in a form that a human can comprehend:</p>
 <div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-noout<span class="w"> </span>-text<span class="w"> </span>-in<span class="w"> </span>server.crt<span class="w"> </span>
 </code></pre></div>
 <details class="- example">
@@ -1364,7 +1381,7 @@ subject=C = US, O = Rsyslog Test Server, CN = 172.16.0.42
 </code></pre></div>
 </details>
 <h2 id="restart-your-rsyslog-service">Restart your <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service<a class="headerlink" href="#restart-your-rsyslog-service" title="Permanent link">&para;</a></h2>
-<p>You'll truly know that you configured everything correctly later in the lab when you try to write messages to it from your yet-to-be-created HPVS 2.1.3 <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server. But for now, we will verify it somewhat by taking a before and after snapshot of which TCP ports on your system are listening.  </p>
+<p>You'll truly know that you configured everything correctly later in the lab when you try to write messages to it from your yet-to-be-created HPVS 2.1.3 <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server. But for now, you will verify it somewhat by taking a before and after snapshot of which TCP ports on your system are listening.  </p>
 <p>Run this command, and then in a moment you'll repeat the command.  What you should notice here is the absence of port 6514 in the output:</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>lsof<span class="w"> </span>-nP<span class="w"> </span>-iTCP<span class="w"> </span>-sTCP:LISTEN
 </code></pre></div>
@@ -1421,9 +1438,7 @@ rsyslogd  1439          syslog    6u  IPv4  22401      0t0  TCP *:6514 (LISTEN)
 rsyslogd  1439          syslog    7u  IPv6  22402      0t0  TCP *:6514 (LISTEN)
 </code></pre></div>
 </details>
-<p>Log off of your Ubuntu KVM guest:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">exit</span>
-</code></pre></div>
+<p><strong>Switch to your terminal tab or window for your session with the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host, as you will start the next section of the lab working on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host.</strong></p>
 <p>Please proceed to the next section of the lab by clicking the <em>Next</em> link on the bottom right of this page.</p>
 
   <hr>
@@ -1431,7 +1446,7 @@ rsyslogd  1439          syslog    7u  IPv6  22402      0t0  TCP *:6514 (LISTEN)
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 21, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 17, 2023</span>
       
         <br>
         Created:

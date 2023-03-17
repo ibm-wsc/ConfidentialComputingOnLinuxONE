@@ -545,8 +545,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#log-in-to-your-ubuntu-kvm-guest" class="md-nav__link">
-    Log in to your Ubuntu KVM guest
+  <a href="#start-this-section-in-your-ubuntu-kvm-guest-session" class="md-nav__link">
+    Start this section in your Ubuntu KVM guest session
   </a>
   
 </li>
@@ -693,8 +693,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#log-in-to-your-ubuntu-kvm-guest" class="md-nav__link">
-    Log in to your Ubuntu KVM guest
+  <a href="#start-this-section-in-your-ubuntu-kvm-guest-session" class="md-nav__link">
+    Start this section in your Ubuntu KVM guest session
   </a>
   
 </li>
@@ -796,10 +796,9 @@ It doesn't get any better than this!</p>
 <p>Run the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> client code</p>
 </li>
 </ol>
-<h2 id="log-in-to-your-ubuntu-kvm-guest">Log in to your Ubuntu KVM guest<a class="headerlink" href="#log-in-to-your-ubuntu-kvm-guest" title="Permanent link">&para;</a></h2>
-<p>All of the work in this section is performed on your Ubuntu KVM guest, and you are already logged in to it if you have followed this lab without interruption. 
-If you are not logged in, click on the <em>Previous</em> link at the bottom left of the page, go to the bottom of that page and scroll up just a little bit and you'll 
-see the <em>ssh</em> command to log in.  Then come back here.</p>
+<h2 id="start-this-section-in-your-ubuntu-kvm-guest-session">Start this section in your Ubuntu KVM guest session<a class="headerlink" href="#start-this-section-in-your-ubuntu-kvm-guest-session" title="Permanent link">&para;</a></h2>
+<p>This section starts out in your Ubuntu KVM guest, which is where you should be if you have been doing the lab in order in one sitting. 
+If you are not logged in, the command to log in is <code>ssh -p ${Student_SSH_Port} -l student 192.168.22.64</code></p>
 <h2 id="install-go">Install Go<a class="headerlink" href="#install-go" title="Permanent link">&para;</a></h2>
 <p>The <em>Go</em> language compiler is not installed on your system.  Prove that with this command:</p>
 <div class="highlight"><pre><span></span><code>go<span class="w"> </span>version
@@ -813,7 +812,7 @@ sudo apt  install gccgo-go   # version 2:1.18~0ubuntu2
 See &#39;snap info go&#39; for additional versions.
 </code></pre></div>
 </details>
-<p>Please pick the second option as that is the one the instructors used for creating the lab, and they are just as exhausted as you are.</p>
+<p>Please pick the second option to avoid breaking this lab's warranty <img alt="😄" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f604.svg" title=":smile:" /> as that is the option the instructors used when creating the lab.</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>golang-go
 </code></pre></div>
 <p>Type <em>Y</em> when prompted to continue.  The output from the installation will look like this:</p>
@@ -1109,7 +1108,7 @@ you started the lab, breaking this section, frustrating you, humiliating the ins
 his own fork he can ensure he has complete control of the code, and you probably think he's being paranoid 
 and that this sort of thing would never have happened to him during a live demo (on a different product) in
 front of an audience of hundreds of people.  Nope, that would never happen.  Fortunately it was only an IBM 
-internal audience.</p>
+internal audience. The instructor has since recovered.</p>
 <p>Having said that, clone the instructor's GitHub repo:</p>
 <div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/silliman/hpcs-grep11-go<span class="w"> </span>
 </code></pre></div>
@@ -1229,17 +1228,12 @@ Resolving deltas: 100% (22/22), done.
         5d:24:b0:9b
 </code></pre></div>
 </details>
-<p>Your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> <abbr title="certification authority">CA</abbr> is on your account on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5 KVM host. Send your <abbr title="certificate signing request">CSR</abbr> to it:</p>
+<p>Your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> <abbr title="certification authority">CA</abbr> is on your account on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host. Send your <abbr title="certificate signing request">CSR</abbr> to it:</p>
 <div class="highlight"><pre><span></span><code>scp<span class="w"> </span>client.csr<span class="w"> </span><span class="si">${</span><span class="nv">StudentID</span><span class="si">}</span>@192.168.22.64:GREP11CAwork/.<span class="w"> </span>
 </code></pre></div>
-<p>Log out of your Ubuntu kvm guest because you will be putting your <abbr title="certification authority">CA</abbr> hat on for one last time up on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5 host:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">exit</span>
-</code></pre></div>
-<p>Log in to the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5 host:</p>
-<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-l<span class="w"> </span><span class="si">${</span><span class="nv">StudentID</span><span class="si">}</span><span class="w"> </span><span class="m">192</span>.168.22.64
-</code></pre></div>
+<p><strong>Switch to your terminal tab or window for your <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host session.</strong></p>
 <p>Change to your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> <abbr title="certification authority">CA</abbr> working directory:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>GREP11CAwork
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/GREP11CAwork
 </code></pre></div>
 <p>Display the <abbr title="certificate signing request">CSR</abbr> that the client sent you:</p>
 <div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>req<span class="w"> </span>-noout<span class="w"> </span>-text<span class="w"> </span>-in<span class="w"> </span>client.csr
@@ -1315,14 +1309,10 @@ Getting CA Private Key
 <p>Send the certificate back to the client that requested it:</p>
 <div class="highlight"><pre><span></span><code>scp<span class="w"> </span>client.pem<span class="w"> </span>student@<span class="si">${</span><span class="nv">StudentGuestIP</span><span class="si">}</span>:./hpcs-grep11-go/certs/.<span class="w">   </span>
 </code></pre></div>
-<p>Your work as a <abbr title="certification authority">CA</abbr> registrar is done for the remainder of the lab!  Log out of your session on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5 host:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">exit</span>
-</code></pre></div>
-<p>Log in again to your Ubuntu KVM guest:</p>
-<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">Student_SSH_Port</span><span class="si">}</span><span class="w"> </span>-l<span class="w"> </span>student<span class="w"> </span><span class="m">192</span>.168.22.64
-</code></pre></div>
+<p>Your work as a <abbr title="certification authority">CA</abbr> registrar is done for the remainder of the lab!<br />
+<strong>Switch to your terminal tab or window for your Ubuntu KVM guest session</strong></p>
 <p>Change to the directory that has your certificates and key:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>hpcs-grep11-go/certs
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/hpcs-grep11-go/certs
 </code></pre></div>
 <p>Display the client certificate that your <abbr title="certification authority">CA</abbr> registrar sent you:</p>
 <div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-noout<span class="w"> </span>-text<span class="w"> </span>-in<span class="w"> </span>client.pem
@@ -1369,7 +1359,15 @@ const ca = &quot;../certs/grep11-ca.pem&quot;
 <p>Your output should look like this. If it does, you have reached a successful conclusion to the lab!!!</p>
 <details class="- example">
 <summary>Expected output from testing the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> client code</summary>
-<div class="highlight"><pre><span></span><code>=== RUN   Test_signAndVerifyUsingDilithiumKeyPair
+<div class="highlight"><pre><span></span><code>go: downloading google.golang.org/grpc v1.34.0
+go: downloading github.com/gogo/protobuf v1.3.2
+go: downloading github.com/golang/protobuf v1.4.3
+go: downloading golang.org/x/net v0.0.0-20201021035429-f5854403a974
+go: downloading google.golang.org/genproto v0.0.0-20201001141541-efaab9d3c4f7
+go: downloading google.golang.org/protobuf v1.25.0
+go: downloading golang.org/x/sys v0.0.0-20200930185726-fdedc70b468f
+go: downloading golang.org/x/text v0.3.3
+=== RUN   Test_signAndVerifyUsingDilithiumKeyPair
 Generated Dilithium key pair
 Data signed
 Verified
@@ -1425,7 +1423,7 @@ ok    github.com/IBM-Cloud/hpcs-grep11-go/examples    2.373s
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 21, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 17, 2023</span>
       
         <br>
         Created:

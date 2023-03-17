@@ -566,8 +566,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#log-in-to-the-rhel-85-host" class="md-nav__link">
-    Log in to the RHEL 8.5 host:
+  <a href="#switch-to-your-rhel-host-terminal-session" class="md-nav__link">
+    Switch to your RHEL host terminal session
   </a>
   
 </li>
@@ -686,8 +686,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#log-in-to-the-rhel-85-host" class="md-nav__link">
-    Log in to the RHEL 8.5 host:
+  <a href="#switch-to-your-rhel-host-terminal-session" class="md-nav__link">
+    Switch to your RHEL host terminal session
   </a>
   
 </li>
@@ -742,12 +742,11 @@
 <h2 id="overview-of-this-section">Overview of this section<a class="headerlink" href="#overview-of-this-section" title="Permanent link">&para;</a></h2>
 <p>In this section you will demonstrate the protection offered by the <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-enabled HPVS 2.1.3 guest in contrast to the ease in which a malicious insider can eavesdrop on a <abbr title="this is a term we use to refer to a KVM guest that is not protected with Secure Execution for Linux">standard KVM guest</abbr>.</p>
 <h2 id="log-out-of-your-ubuntu-kvm-guest">Log out of your Ubuntu KVM guest<a class="headerlink" href="#log-out-of-your-ubuntu-kvm-guest" title="Permanent link">&para;</a></h2>
-<p>All of the work in this section is performed on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5 host, so log out of your Ubuntu KVM guest:</p>
+<p>All of the work in this section is performed on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5 host, so log out of your Ubuntu KVM guest. You have finished your work in the Ubuntu KVM guest for this lab:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">exit</span>
 </code></pre></div>
-<h2 id="log-in-to-the-rhel-85-host">Log in to the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5 host:<a class="headerlink" href="#log-in-to-the-rhel-85-host" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-l<span class="w"> </span><span class="si">${</span><span class="nv">StudentID</span><span class="si">}</span><span class="w"> </span><span class="m">192</span>.168.22.64
-</code></pre></div>
+<h2 id="switch-to-your-rhel-host-terminal-session">Switch to your <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host terminal session<a class="headerlink" href="#switch-to-your-rhel-host-terminal-session" title="Permanent link">&para;</a></h2>
+<p>Switch to your terminal tab or window for your <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host session.  You should be logged in still if you have been following the lab in order in one sitting, but if you need to log in again the command is <code>ssh -l ${StudentID} 192.168.22.64</code></p>
 <h2 id="snoop-into-your-standard-kvm-guest-with-ease">Snoop into your <abbr title="this is a term we use to refer to a KVM guest that is not protected with Secure Execution for Linux">standard KVM guest</abbr> with ease<a class="headerlink" href="#snoop-into-your-standard-kvm-guest-with-ease" title="Permanent link">&para;</a></h2>
 <p>A systems administrator at the host level does not have a difficult time getting into a <abbr title="this is a term we use to refer to a KVM guest that is not protected with Secure Execution for Linux">standard KVM guest</abbr>'s business.  Try this command to dump the entire address space of your Ubuntu KVM guest:</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>virsh<span class="w"> </span>dump<span class="w"> </span><span class="k">$(</span>whoami<span class="k">)</span><span class="w"> </span><span class="k">$(</span>whoami<span class="k">)</span>.dump
@@ -774,7 +773,7 @@
 error: internal error: unable to execute QEMU command &#39;migrate&#39;: protected VMs are currently not migrateable.
 </code></pre></div>
 </details>
-<p>The verdict is in:  protection of data in use is <strong>good</strong>.  Unprotected data in use is <strong>not so good</strong>.</p>
+<p>If your name or address or credit card number or social security number or bank card PIN code or cryptocurrency wallet was in memory, would you have preferred it to be in memory in a <abbr title="this is a term we use to refer to a KVM guest that is not protected with Secure Execution for Linux">standard KVM guest</abbr> or in a <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-enabled Hyper Protect Virtual Servers guest?  If you answered  <em><abbr title="this is a term we use to refer to a KVM guest that is not protected with Secure Execution for Linux">standard KVM guest</abbr></em>, then please return to the beginning of the lab and start over.  If you chose <em>SE-enabled HPVS guest</em>, then congratulations, you have successfully completed the lab!! (Except for cleanup).</p>
 <p>Please proceed to the next section of the lab for lab cleanup.</p>
 
   <hr>
@@ -782,7 +781,7 @@ error: internal error: unable to execute QEMU command &#39;migrate&#39;: protect
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 26, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 17, 2023</span>
       
         <br>
         Created:
