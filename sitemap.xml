@@ -6,6 +6,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://ibm-wsc.github.io/ConfidentialComputingOnLinuxONE/access/</loc>
+         <lastmod>2023-04-03</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://ibm-wsc.github.io/ConfidentialComputingOnLinuxONE/localdocbuild/</loc>
          <lastmod>2023-04-03</lastmod>
          <changefreq>daily</changefreq>
