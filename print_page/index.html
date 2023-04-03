@@ -1737,7 +1737,7 @@ rsyslogd  1439          syslog    7u  IPv6  22402      0t0  TCP *:6514 (LISTEN)
 </div>
 <h2 id="lab-configurersyslogforgrep11-if-necessary-log-in-to-the-rhel-host">If necessary, log in to the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host<a class="headerlink" href="#lab-configurersyslogforgrep11-if-necessary-log-in-to-the-rhel-host" title="Permanent link">&para;</a></h2>
 <p>If you are following the lab in order in one sitting, you are already logged in and have switched to the correct terminal tab and window, the one that looks like this:</p>
-<p><img src="../images/RHELhost.png" width="351" height="216" /></p>
+<p><img src="../images/RHELHost.png" width="351" height="216" /></p>
 <p>But if you need to log in for any reason, the command is <code>ssh -l ${StudentID} 192.168.22.64</code></p>
 <h2 id="lab-configurersyslogforgrep11-create-certificate-for-client-access-to-rsyslog">Create certificate for client access to <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr><a class="headerlink" href="#lab-configurersyslogforgrep11-create-certificate-for-client-access-to-rsyslog" title="Permanent link">&para;</a></h2>
 <p>Steps 1 through 5 will be performed on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host.</p>
@@ -2032,7 +2032,7 @@ client.crt                                                              100% 190
 </li>
 <li>
 <p>Now switch back to your terminal tab or window for your session on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host.  A gentle reminder of what that tab or window looks like:</p>
-<p><img src="../images/RHELhost.png" width="351" height="216" /></p>
+<p><img src="../images/RHELHost.png" width="351" height="216" /></p>
 </li>
 <li>
 <p>If you are doing the lab in one sitting, in order, then you are still logged in on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host.  If you need to login for any reason the command is <code>ssh -l ${StudentID} 192.168.22.64</code>.  Steps 15 and 16 will be performed on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5 host.</p>
@@ -2176,7 +2176,7 @@ subject=C = US, O = IBM WSC zSystems and LinuxONE, CN = SE-enabled HPVS 2.1.3 Gr
 <p>Now our lab does not include all of the above features (yet)- for example, the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server is stateless (this is a feature, not a bug) so we do not need persistent disk storage.  And for this lab, you have and will continue to wear many hats, including both the <em>application owner</em> workload deployer and the <em>system administrator</em> environment deployer.  We are not going to cover <em>attestation</em> in this lab either, but hope to do so in a future lab.</p>
 <h2 id="lab-creategrep11contract-creation-of-directory-structure-for-contract">Creation of directory structure for contract<a class="headerlink" href="#lab-creategrep11contract-creation-of-directory-structure-for-contract" title="Permanent link">&para;</a></h2>
 <p>This section starts where the last section left off- on your session with the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host:</p>
-<p><img src="../images/RHELhost.png" width="351" height="216" /></p>
+<p><img src="../images/RHELHost.png" width="351" height="216" /></p>
 <p>This command will create the directory structure expected by the lab instructions:</p>
 <div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/contract/grep11Server/<span class="o">{</span>workload,environment<span class="o">}</span>
 </code></pre></div>
@@ -3486,7 +3486,7 @@ Max brk space used 0
 <h2 id="lab-launchgrep11guest-launch-the-hpvs-213-grep11-server">launch the HPVS 2.1.3 <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> server<a class="headerlink" href="#lab-launchgrep11guest-launch-the-hpvs-213-grep11-server" title="Permanent link">&para;</a></h2>
 <p>You will start this section from your login session on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host, and will soon be instructed to switch to your Ubuntu KVM guest session.
 But until then, start from this familiar window or tab:</p>
-<p><img src="../images/RHELhost.png" width="351" height="216" ></p>
+<p><img src="../images/RHELHost.png" width="351" height="216" ></p>
 <p>This fancy command figures out the last two characters of your assigned userid and is used in other commands in this section, so that the lab instructions will work for everybody:</p>
 <div class="highlight"><pre><span></span><code><span class="nv">suffix</span><span class="o">=</span><span class="k">$(</span><span class="nv">temp</span><span class="o">=</span><span class="k">$(</span>whoami<span class="k">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">temp</span><span class="p">: -2</span><span class="si">}</span><span class="k">)</span>
 </code></pre></div>
@@ -5125,7 +5125,7 @@ ok    github.com/IBM-Cloud/hpcs-grep11-go/examples    2.373s
 </code></pre></div>
 <h2 id="lab-hackmeifyoucan-switch-to-your-rhel-host-terminal-session">Switch to your <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host terminal session<a class="headerlink" href="#lab-hackmeifyoucan-switch-to-your-rhel-host-terminal-session" title="Permanent link">&para;</a></h2>
 <p>Switch to your terminal tab or window for your <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host session:</p>
-<p><img src="../images/RHELhost.png" width="351" height="217" /></p>
+<p><img src="../images/RHELHost.png" width="351" height="217" /></p>
 <p>You should be logged in still if you have been following the lab in order in one sitting, but if you need to log in again the command is <code>ssh -l ${StudentID} 192.168.22.64</code></p>
 <h2 id="lab-hackmeifyoucan-snoop-into-your-standard-kvm-guest-with-ease">Snoop into your <abbr title="this is a term we use to refer to a KVM guest that is not protected with Secure Execution for Linux">standard KVM guest</abbr> with ease<a class="headerlink" href="#lab-hackmeifyoucan-snoop-into-your-standard-kvm-guest-with-ease" title="Permanent link">&para;</a></h2>
 <p>A systems administrator at the host level does not have a difficult time getting into a <abbr title="this is a term we use to refer to a KVM guest that is not protected with Secure Execution for Linux">standard KVM guest</abbr>'s business.  Try this command to dump the entire address space of your Ubuntu KVM guest:</p>
