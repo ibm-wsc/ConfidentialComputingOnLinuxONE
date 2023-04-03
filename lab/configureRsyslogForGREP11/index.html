@@ -732,8 +732,9 @@
 <p>We'll do our part by telling you when to switch.  Please do your part by reading the instructions carefully!</p>
 </div>
 <h2 id="if-necessary-log-in-to-the-rhel-host">If necessary, log in to the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host<a class="headerlink" href="#if-necessary-log-in-to-the-rhel-host" title="Permanent link">&para;</a></h2>
-<p>If you are following the lab in order in one sitting, you are already logged in and have switched to the correct terminal tab and window.
-But if you need to log in for any reason, the command is <code>ssh -l ${StudentID} 192.168.22.64</code></p>
+<p>If you are following the lab in order in one sitting, you are already logged in and have switched to the correct terminal tab and window, the one that looks like this:</p>
+<p><img src="../../images/RHELhost.png" width="351" height="216" /></p>
+<p>But if you need to log in for any reason, the command is <code>ssh -l ${StudentID} 192.168.22.64</code></p>
 <h2 id="create-certificate-for-client-access-to-rsyslog">Create certificate for client access to <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr><a class="headerlink" href="#create-certificate-for-client-access-to-rsyslog" title="Permanent link">&para;</a></h2>
 <p>Steps 1 through 5 will be performed on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host.</p>
 <ol>
@@ -797,7 +798,8 @@ client-req.csr                                                          100% 169
 </details>
 </li>
 <li>
-<p>Switch to your terminal tab or window for your KVM Ubuntu guest.</p>
+<p>Switch to your terminal tab or window for your KVM Ubuntu guest.  Yes, this one:</p>
+<p><img src="../../images/KVMGuest.png" width="351" height="217" /></p>
 </li>
 <li>
 <p>If you are doing the lab in one sitting, in order, then you are already logged in.  If you need to login for any reason the command is <code>ssh -p ${Student_SSH_Port} -l student 192.168.22.64</code>.  Steps 8 through 12 will be performed on your Ubuntu KVM guest.</p>
@@ -1025,7 +1027,8 @@ client.crt                                                              100% 190
 </details>
 </li>
 <li>
-<p>Now switch back to your terminal tab or window for your session on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host.</p>
+<p>Now switch back to your terminal tab or window for your session on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host.  A gentle reminder of what that tab or window looks like:</p>
+<p><img src="../../images/RHELhost.png" width="351" height="216" /></p>
 </li>
 <li>
 <p>If you are doing the lab in one sitting, in order, then you are still logged in on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host.  If you need to login for any reason the command is <code>ssh -l ${StudentID} 192.168.22.64</code>.  Steps 15 and 16 will be performed on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5 host.</p>

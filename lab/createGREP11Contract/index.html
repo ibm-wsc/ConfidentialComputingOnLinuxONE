@@ -865,6 +865,8 @@
 </div>
 <p>Now our lab does not include all of the above features (yet)- for example, the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server is stateless (this is a feature, not a bug) so we do not need persistent disk storage.  And for this lab, you have and will continue to wear many hats, including both the <em>application owner</em> workload deployer and the <em>system administrator</em> environment deployer.  We are not going to cover <em>attestation</em> in this lab either, but hope to do so in a future lab.</p>
 <h2 id="creation-of-directory-structure-for-contract">Creation of directory structure for contract<a class="headerlink" href="#creation-of-directory-structure-for-contract" title="Permanent link">&para;</a></h2>
+<p>This section starts where the last section left off- on your session with the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host:</p>
+<p><img src="../../images/RHELhost.png" width="351" height="216" /></p>
 <p>This command will create the directory structure expected by the lab instructions:</p>
 <div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/contract/grep11Server/<span class="o">{</span>workload,environment<span class="o">}</span>
 </code></pre></div>

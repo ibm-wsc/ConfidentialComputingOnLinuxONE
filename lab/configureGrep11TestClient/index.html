@@ -797,8 +797,9 @@ It doesn't get any better than this!</p>
 </li>
 </ol>
 <h2 id="start-this-section-in-your-ubuntu-kvm-guest-session">Start this section in your Ubuntu KVM guest session<a class="headerlink" href="#start-this-section-in-your-ubuntu-kvm-guest-session" title="Permanent link">&para;</a></h2>
-<p>This section starts out in your Ubuntu KVM guest, which is where you should be if you have been doing the lab in order in one sitting. 
-If you are not logged in, the command to log in is <code>ssh -p ${Student_SSH_Port} -l student 192.168.22.64</code></p>
+<p>This section starts out in your Ubuntu KVM guest, which is where you should be if you have been doing the lab in order in one sitting. </p>
+<p><img src="../../images/KVMGuest.png" width="351" height="217" /></p>
+<p>If you are not logged in, the command to log in is <code>ssh -p ${Student_SSH_Port} -l student 192.168.22.64</code></p>
 <h2 id="install-go">Install Go<a class="headerlink" href="#install-go" title="Permanent link">&para;</a></h2>
 <p>The <em>Go</em> language compiler is not installed on your system.  Prove that with this command:</p>
 <div class="highlight"><pre><span></span><code>go<span class="w"> </span>version
@@ -1231,7 +1232,8 @@ Resolving deltas: 100% (22/22), done.
 <p>Your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> <abbr title="certification authority">CA</abbr> is on your account on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host. Send your <abbr title="certificate signing request">CSR</abbr> to it:</p>
 <div class="highlight"><pre><span></span><code>scp<span class="w"> </span>client.csr<span class="w"> </span><span class="si">${</span><span class="nv">StudentID</span><span class="si">}</span>@192.168.22.64:GREP11CAwork/.<span class="w"> </span>
 </code></pre></div>
-<p><strong>Switch to your terminal tab or window for your <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host session.</strong></p>
+<p><strong>Switch to your terminal tab or window for your <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host session.:</strong></p>
+<p><img src="../../images/RHELHost.png" width="351" height="216" /></p>
 <p>Change to your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> <abbr title="certification authority">CA</abbr> working directory:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/GREP11CAwork
 </code></pre></div>
@@ -1309,8 +1311,9 @@ Getting CA Private Key
 <p>Send the certificate back to the client that requested it:</p>
 <div class="highlight"><pre><span></span><code>scp<span class="w"> </span>client.pem<span class="w"> </span>student@<span class="si">${</span><span class="nv">StudentGuestIP</span><span class="si">}</span>:./hpcs-grep11-go/certs/.<span class="w">   </span>
 </code></pre></div>
-<p>Your work as a <abbr title="certification authority">CA</abbr> registrar is done for the remainder of the lab!<br />
-<strong>Switch to your terminal tab or window for your Ubuntu KVM guest session</strong></p>
+<p>Your work as a <abbr title="certification authority">CA</abbr> registrar is done for the remainder of the lab!  </p>
+<p><strong>Switch to your terminal tab or window for your Ubuntu KVM guest session:</strong></p>
+<p><img src="../../images/KVMGuest.png" width="351" height="217" /></p>
 <p>Change to the directory that has your certificates and key:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/hpcs-grep11-go/certs
 </code></pre></div>

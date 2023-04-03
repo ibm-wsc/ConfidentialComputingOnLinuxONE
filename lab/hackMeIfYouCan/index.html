@@ -746,7 +746,9 @@
 <div class="highlight"><pre><span></span><code><span class="nb">exit</span>
 </code></pre></div>
 <h2 id="switch-to-your-rhel-host-terminal-session">Switch to your <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host terminal session<a class="headerlink" href="#switch-to-your-rhel-host-terminal-session" title="Permanent link">&para;</a></h2>
-<p>Switch to your terminal tab or window for your <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host session.  You should be logged in still if you have been following the lab in order in one sitting, but if you need to log in again the command is <code>ssh -l ${StudentID} 192.168.22.64</code></p>
+<p>Switch to your terminal tab or window for your <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host session:</p>
+<p><img src="../../images/RHELhost.png" width="351" height="217" /></p>
+<p>You should be logged in still if you have been following the lab in order in one sitting, but if you need to log in again the command is <code>ssh -l ${StudentID} 192.168.22.64</code></p>
 <h2 id="snoop-into-your-standard-kvm-guest-with-ease">Snoop into your <abbr title="this is a term we use to refer to a KVM guest that is not protected with Secure Execution for Linux">standard KVM guest</abbr> with ease<a class="headerlink" href="#snoop-into-your-standard-kvm-guest-with-ease" title="Permanent link">&para;</a></h2>
 <p>A systems administrator at the host level does not have a difficult time getting into a <abbr title="this is a term we use to refer to a KVM guest that is not protected with Secure Execution for Linux">standard KVM guest</abbr>'s business.  Try this command to dump the entire address space of your Ubuntu KVM guest:</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>virsh<span class="w"> </span>dump<span class="w"> </span><span class="k">$(</span>whoami<span class="k">)</span><span class="w"> </span><span class="k">$(</span>whoami<span class="k">)</span>.dump

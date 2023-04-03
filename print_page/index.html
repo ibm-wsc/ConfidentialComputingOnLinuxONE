@@ -889,7 +889,13 @@ The <abbr title="This is an API that provides a set of EP11 calls over the gRPC 
 <p>You will not log in directly to your HPVS 2.1.3 <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server, nor to the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> <abbr title="Secure Service Container- a type of LPAR introduced by IBM with the z14 hardware generation.  Hyper Protect Virtual Servers v1.x was built on SSC technology, and the Crypto Express Network API for Secure Execution Enclaves component of HPVS v2.x is also built on SSC technology.">SSC</abbr> LPAR, but you will make use of them via your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Client code.</p>
 <h2 id="lab-lab-logistics">Lab logistics<a class="headerlink" href="#lab-lab-logistics" title="Permanent link">&para;</a></h2>
 <p>Except for the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> Jumpbox, the systems used in the lab are in the IBM Washington Systems Center (WSC) in the WSC's private network. Access to the WSC private network is through a virtual private network (VPN) client running on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> Jumpbox.  The instructors access each student's <abbr title="Red Hat Enterprise Linux">RHEL</abbr> Jumpbox in order to log in via the VPN client.  Students access their jumpbox from a web browser- other than a modern web browser, no additional software is required on the student's laptop or workstation.</p>
-<p>During the lab, students will be directed to open two terminal windows on their jumpbox- one will be designated for working on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host and the other will be designated for working on their KVM standard Ubuntu guest. Two separate terminal profiles have been created on the jumpbox- one for the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host and one for the KVM standard Ubuntu guest- which have different background and text colors which will help the student more easily differentiate between the two windows.  The student may wish to use a single terminal window with two tabs- one with each terminal profile- instead of two different windows.  It is fine to do so.</p></section><section class="print-page" id="lab-launchkvmguest"><h1 id="lab-launchkvmguest-start-ubuntu-kvm-guest">Start Ubuntu KVM Guest<a class="headerlink" href="#lab-launchkvmguest-start-ubuntu-kvm-guest" title="Permanent link">&para;</a></h1>
+<p>During the lab, students will be directed to open two terminal windows on their jumpbox- one will be designated for working on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host and the other will be designated for working on their KVM standard Ubuntu guest. Two separate terminal profiles have been created on the jumpbox- one for the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host and one for the KVM standard Ubuntu guest- which have different background and text colors which will help the student more easily differentiate between the two windows.  The student may wish to use a single terminal window with two tabs- one with each terminal profile- instead of two different windows.  It is fine to do so.</p>
+<h3 id="lab-terminal-profiles-we-have-defined-in-your-jumpbox">Terminal profiles we have defined in your jumpbox<a class="headerlink" href="#lab-terminal-profiles-we-have-defined-in-your-jumpbox" title="Permanent link">&para;</a></h3>
+<p>The terminal profile we have set up for you to run commands in the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host looks like this:</p>
+<p><img src="../images/RHELHost.png" /></p>
+<p>The terminal profile we have set up for you to run commands in your Ubuntu KVM Guest looks like this:</p>
+<p><img src="../images/KVMGuest.png"/></p>
+<p>You are free to change the look and feel of the terminal profiles to what suits you, but the lab is written with the assumption that you are using the profiles we have set up for you.  This matters only in that we may show images in the lab in an effort to help ensure you are working on the correct system when you are entering commands.</p></section><section class="print-page" id="lab-launchkvmguest"><h1 id="lab-launchkvmguest-start-ubuntu-kvm-guest">Start Ubuntu KVM Guest<a class="headerlink" href="#lab-launchkvmguest-start-ubuntu-kvm-guest" title="Permanent link">&para;</a></h1>
 <h2 id="lab-launchkvmguest-overview-of-this-page">Overview of this page<a class="headerlink" href="#lab-launchkvmguest-overview-of-this-page" title="Permanent link">&para;</a></h2>
 <p>This page will help you verify that your jumpbox is configured properly and then guide you to logging in to the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> Host from which you will start your student-assigned KVM standard Ubuntu guest.</p>
 <h2 id="lab-launchkvmguest-verify-the-student-specific-environment-variables-on-your-jumpbox">Verify the student-specific environment variables on your jumpbox<a class="headerlink" href="#lab-launchkvmguest-verify-the-student-specific-environment-variables-on-your-jumpbox" title="Permanent link">&para;</a></h2>
@@ -907,7 +913,12 @@ The <abbr title="This is an API that provides a set of EP11 calls over the gRPC 
 </li>
 </ol>
 <h3 id="lab-launchkvmguest-set-or-verify-the-environment-variable-on-your-jumpbox-for-your-student-id">Set or verify the environment variable on your jumpbox for your student ID<a class="headerlink" href="#lab-launchkvmguest-set-or-verify-the-environment-variable-on-your-jumpbox-for-your-student-id" title="Permanent link">&para;</a></h3>
-<p>On your jumpbox, open a terminal window.  Your terminal window should have a dark background with a green prompt for the font.  You will use this window to perform work on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host, but before logging in you will ensure that an environment variable specifying your unique student ID has been set properly.</p>
+<p>The instructors should have guided you through the process of obtaining a <abbr title="Red Hat Enterprise Linux">RHEL</abbr> Jumpbox where you will perform the lab.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The jumpbox is running the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> operating system, but the OS on the jumpbox is largely irrelevant, and in order to avoid confusion with the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host (the Linux LPAR on the IBM z15 server in the Washington Systems Center data center in Herndon, Virgina, USA) that you will use during the lab, we will drop the '<abbr title="Red Hat Enterprise Linux">RHEL</abbr>' and refer to the <em><abbr title="Red Hat Enterprise Linux">RHEL</abbr> jumpbox</em> as just <em>jumpbox</em> from now on.</p>
+</div>
+<p>On your jumpbox, open a terminal window.  You can do this by clicking on <em>Activities</em> in the upper left corner of your jumpbox and then clicking the icon that looks like a terminal window.  This will bring up a window using the <em><abbr title="Red Hat Enterprise Linux">RHEL</abbr> Host</em> terminal profile, so your terminal window should have a dark background with a green prompt for the font, similar to the image shown in the previous section of the lab.  You will use this window to perform work on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host, but before logging in you will ensure that an environment variable specifying your unique student ID has been set properly.</p>
 <p>Each student has a unique userid assigned to them. It is likely set for you already. In an instructor-led class, your instructors will let you know if this has been set for you already.</p>
 <p>Check this by entering this echo command:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">StudentID</span><span class="si">}</span>
@@ -969,6 +980,8 @@ Thus, we will show two commands to add the environment variable to your shell st
 </div>
 <h2 id="lab-launchkvmguest-log-in-to-the-rhel-85-host">Log in to the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5 host<a class="headerlink" href="#lab-launchkvmguest-log-in-to-the-rhel-85-host" title="Permanent link">&para;</a></h2>
 <p>You will now sign into our z15 LPAR running Red Hat Enterprise Linux 8.5.  This is a system that has been enabled for <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr> and so can run workloads provisioned with IBM Hyper Protect Virtual Servers 2.1.3.  </p>
+<p>Use your terminal tab or window set aside for doing work on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host- the one that (by default) looks like this:</p>
+<p><img src="../images/RHELhost.png"/ width="351 height="216" /></p>
 <p>Run this command:</p>
 <div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-l<span class="w"> </span><span class="si">${</span><span class="nv">StudentID</span><span class="si">}</span><span class="w"> </span><span class="m">192</span>.168.22.64
 </code></pre></div>
@@ -1151,7 +1164,12 @@ Last login: Mon Feb 13 16:50:14 2023 from 192.168.215.147
 <div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export Student_SSH_Port=&#39;</span><span class="si">${</span><span class="nv">Student_SSH_Port</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/.zshrc&quot;</span>
 </code></pre></div>
 </div>
-<p>Ensure that you are in the terminal tab or window for your KVM Standard Guest since you're now ready to log in to your Ubuntu KVM guest:</p>
+<h3 id="lab-configurersyslog-open-a-new-terminal-window-or-tab-with-the-kvm-standard-guest-profile">Open a new terminal window or tab with the <em>KVM Standard Guest</em> profile<a class="headerlink" href="#lab-configurersyslog-open-a-new-terminal-window-or-tab-with-the-kvm-standard-guest-profile" title="Permanent link">&para;</a></h3>
+<p>From your terminal window with the <em><abbr title="Red Hat Enterprise Linux">RHEL</abbr> Host</em> profile, click on <em>File</em> in the menu bar and then, according to your preferences, select either <em>New Tab</em> or <em>New Window</em>, and, from either choice, select <em>1. KVM Standard Guest</em></p>
+<p>Choosing a new tab offers compactness but you won't be able to both the <em><abbr title="Red Hat Enterprise Linux">RHEL</abbr> Host</em> tab and the <em>KVM Standard Guest</em> tab at the same time- you have to switch back and forth by clicking the appropriate tab header at the top.  Choosing a new window allows you to drag your windows or otherwise rearrange them so that you can see both windows on your screen.  The choice is yours.  Advanced students may wish to open more windows and tabs but the lab is written with the assumption that you have just one window or tab with the <em><abbr title="Red Hat Enterprise Linux">RHEL</abbr> Host</em> profile and just one window or tab with the <em>KVM Standard Guest</em> profile.</p>
+<p>Your window or tab should like like this (unless you customized the profile we provided you):</p>
+<p><img src="../images/KVMGuest.png" width="351" height="217" /></p>
+<p>You're now ready to log in to your Ubuntu KVM guest:</p>
 <div class="highlight"><pre><span></span><code>ssh -p ${Student_SSH_Port} -l student 192.168.22.64
 </code></pre></div>
 <details class="- example">
@@ -1718,8 +1736,9 @@ rsyslogd  1439          syslog    7u  IPv6  22402      0t0  TCP *:6514 (LISTEN)
 <p>We'll do our part by telling you when to switch.  Please do your part by reading the instructions carefully!</p>
 </div>
 <h2 id="lab-configurersyslogforgrep11-if-necessary-log-in-to-the-rhel-host">If necessary, log in to the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host<a class="headerlink" href="#lab-configurersyslogforgrep11-if-necessary-log-in-to-the-rhel-host" title="Permanent link">&para;</a></h2>
-<p>If you are following the lab in order in one sitting, you are already logged in and have switched to the correct terminal tab and window.
-But if you need to log in for any reason, the command is <code>ssh -l ${StudentID} 192.168.22.64</code></p>
+<p>If you are following the lab in order in one sitting, you are already logged in and have switched to the correct terminal tab and window, the one that looks like this:</p>
+<p><img src="../images/RHELhost.png" width="351" height="216" /></p>
+<p>But if you need to log in for any reason, the command is <code>ssh -l ${StudentID} 192.168.22.64</code></p>
 <h2 id="lab-configurersyslogforgrep11-create-certificate-for-client-access-to-rsyslog">Create certificate for client access to <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr><a class="headerlink" href="#lab-configurersyslogforgrep11-create-certificate-for-client-access-to-rsyslog" title="Permanent link">&para;</a></h2>
 <p>Steps 1 through 5 will be performed on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host.</p>
 <ol>
@@ -1783,7 +1802,8 @@ client-req.csr                                                          100% 169
 </details>
 </li>
 <li>
-<p>Switch to your terminal tab or window for your KVM Ubuntu guest.</p>
+<p>Switch to your terminal tab or window for your KVM Ubuntu guest.  Yes, this one:</p>
+<p><img src="../images/KVMGuest.png" width="351" height="217" /></p>
 </li>
 <li>
 <p>If you are doing the lab in one sitting, in order, then you are already logged in.  If you need to login for any reason the command is <code>ssh -p ${Student_SSH_Port} -l student 192.168.22.64</code>.  Steps 8 through 12 will be performed on your Ubuntu KVM guest.</p>
@@ -2011,7 +2031,8 @@ client.crt                                                              100% 190
 </details>
 </li>
 <li>
-<p>Now switch back to your terminal tab or window for your session on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host.</p>
+<p>Now switch back to your terminal tab or window for your session on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host.  A gentle reminder of what that tab or window looks like:</p>
+<p><img src="../images/RHELhost.png" width="351" height="216" /></p>
 </li>
 <li>
 <p>If you are doing the lab in one sitting, in order, then you are still logged in on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host.  If you need to login for any reason the command is <code>ssh -l ${StudentID} 192.168.22.64</code>.  Steps 15 and 16 will be performed on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5 host.</p>
@@ -2154,6 +2175,8 @@ subject=C = US, O = IBM WSC zSystems and LinuxONE, CN = SE-enabled HPVS 2.1.3 Gr
 </div>
 <p>Now our lab does not include all of the above features (yet)- for example, the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server is stateless (this is a feature, not a bug) so we do not need persistent disk storage.  And for this lab, you have and will continue to wear many hats, including both the <em>application owner</em> workload deployer and the <em>system administrator</em> environment deployer.  We are not going to cover <em>attestation</em> in this lab either, but hope to do so in a future lab.</p>
 <h2 id="lab-creategrep11contract-creation-of-directory-structure-for-contract">Creation of directory structure for contract<a class="headerlink" href="#lab-creategrep11contract-creation-of-directory-structure-for-contract" title="Permanent link">&para;</a></h2>
+<p>This section starts where the last section left off- on your session with the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host:</p>
+<p><img src="../images/RHELhost.png" width="351" height="216" /></p>
 <p>This command will create the directory structure expected by the lab instructions:</p>
 <div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/contract/grep11Server/<span class="o">{</span>workload,environment<span class="o">}</span>
 </code></pre></div>
@@ -3461,7 +3484,9 @@ Max brk space used 0
 </ol>
 <p>Please click the <em>Next</em> link at the bottom of the page to continue with the lab.</p></section><section class="print-page" id="lab-launchgrep11guest"><h1 id="lab-launchgrep11guest-start-the-grep11-server-as-a-secure-execution-enabled-hpvs-213-guest">Start the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server as a <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-enabled, HPVS 2.1.3 guest<a class="headerlink" href="#lab-launchgrep11guest-start-the-grep11-server-as-a-secure-execution-enabled-hpvs-213-guest" title="Permanent link">&para;</a></h1>
 <h2 id="lab-launchgrep11guest-launch-the-hpvs-213-grep11-server">launch the HPVS 2.1.3 <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> server<a class="headerlink" href="#lab-launchgrep11guest-launch-the-hpvs-213-grep11-server" title="Permanent link">&para;</a></h2>
-<p>You will start this section from your login session on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host, and will soon be instructed to switch to your Ubuntu KVM guest session.</p>
+<p>You will start this section from your login session on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host, and will soon be instructed to switch to your Ubuntu KVM guest session.
+But until then, start from this familiar window or tab:</p>
+<p><img src="../images/RHELhost.png" width="351" height="216" ></p>
 <p>This fancy command figures out the last two characters of your assigned userid and is used in other commands in this section, so that the lab instructions will work for everybody:</p>
 <div class="highlight"><pre><span></span><code><span class="nv">suffix</span><span class="o">=</span><span class="k">$(</span><span class="nv">temp</span><span class="o">=</span><span class="k">$(</span>whoami<span class="k">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">temp</span><span class="p">: -2</span><span class="si">}</span><span class="k">)</span>
 </code></pre></div>
@@ -3560,6 +3585,8 @@ hpcr-catch-success[1391]: VSI has started successfully.
 <p>You will have to enter the <code>Ctrl + ]</code> key-combination to break out of the console.</p>
 <h2 id="lab-launchgrep11guest-verify-that-grep11-server-log-messages-are-received-by-rsyslog">verify that <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> server log messages are received by <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr><a class="headerlink" href="#lab-launchgrep11guest-verify-that-grep11-server-log-messages-are-received-by-rsyslog" title="Permanent link">&para;</a></h2>
 <p><strong>The logging of the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> server is going to the <em><abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr></em> service that you configured on your Ubuntu guest, so switch to the terminal tab or window for your KVM standard guest.</strong></p>
+<p>You should still be comfortably logged in on this tab or window:</p>
+<p><img src="../images/KVMguest.png" width="351" height="217" /></p>
 <p>The arguments to the <em>journalctl</em> command here aren't the most elegant in the world, but, unless midnight passed since you started your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server, you will be able to see messages in <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> from when you just started up your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server:</p>
 <div class="highlight"><pre><span></span><code>journalctl<span class="w"> </span>--since<span class="w"> </span>today<span class="w"> </span>--no-pager
 </code></pre></div>
@@ -4467,8 +4494,9 @@ It doesn't get any better than this!</p>
 </li>
 </ol>
 <h2 id="lab-configuregrep11testclient-start-this-section-in-your-ubuntu-kvm-guest-session">Start this section in your Ubuntu KVM guest session<a class="headerlink" href="#lab-configuregrep11testclient-start-this-section-in-your-ubuntu-kvm-guest-session" title="Permanent link">&para;</a></h2>
-<p>This section starts out in your Ubuntu KVM guest, which is where you should be if you have been doing the lab in order in one sitting. 
-If you are not logged in, the command to log in is <code>ssh -p ${Student_SSH_Port} -l student 192.168.22.64</code></p>
+<p>This section starts out in your Ubuntu KVM guest, which is where you should be if you have been doing the lab in order in one sitting. </p>
+<p><img src="../images/KVMGuest.png" width="351" height="217" /></p>
+<p>If you are not logged in, the command to log in is <code>ssh -p ${Student_SSH_Port} -l student 192.168.22.64</code></p>
 <h2 id="lab-configuregrep11testclient-install-go">Install Go<a class="headerlink" href="#lab-configuregrep11testclient-install-go" title="Permanent link">&para;</a></h2>
 <p>The <em>Go</em> language compiler is not installed on your system.  Prove that with this command:</p>
 <div class="highlight"><pre><span></span><code>go<span class="w"> </span>version
@@ -4901,7 +4929,8 @@ Resolving deltas: 100% (22/22), done.
 <p>Your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> <abbr title="certification authority">CA</abbr> is on your account on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host. Send your <abbr title="certificate signing request">CSR</abbr> to it:</p>
 <div class="highlight"><pre><span></span><code>scp<span class="w"> </span>client.csr<span class="w"> </span><span class="si">${</span><span class="nv">StudentID</span><span class="si">}</span>@192.168.22.64:GREP11CAwork/.<span class="w"> </span>
 </code></pre></div>
-<p><strong>Switch to your terminal tab or window for your <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host session.</strong></p>
+<p><strong>Switch to your terminal tab or window for your <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host session.:</strong></p>
+<p><img src="../images/RHELHost.png" width="351" height="216" /></p>
 <p>Change to your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> <abbr title="certification authority">CA</abbr> working directory:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/GREP11CAwork
 </code></pre></div>
@@ -4979,8 +5008,9 @@ Getting CA Private Key
 <p>Send the certificate back to the client that requested it:</p>
 <div class="highlight"><pre><span></span><code>scp<span class="w"> </span>client.pem<span class="w"> </span>student@<span class="si">${</span><span class="nv">StudentGuestIP</span><span class="si">}</span>:./hpcs-grep11-go/certs/.<span class="w">   </span>
 </code></pre></div>
-<p>Your work as a <abbr title="certification authority">CA</abbr> registrar is done for the remainder of the lab!<br />
-<strong>Switch to your terminal tab or window for your Ubuntu KVM guest session</strong></p>
+<p>Your work as a <abbr title="certification authority">CA</abbr> registrar is done for the remainder of the lab!  </p>
+<p><strong>Switch to your terminal tab or window for your Ubuntu KVM guest session:</strong></p>
+<p><img src="../images/KVMGuest.png" width="351" height="217" /></p>
 <p>Change to the directory that has your certificates and key:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/hpcs-grep11-go/certs
 </code></pre></div>
@@ -5094,7 +5124,9 @@ ok    github.com/IBM-Cloud/hpcs-grep11-go/examples    2.373s
 <div class="highlight"><pre><span></span><code><span class="nb">exit</span>
 </code></pre></div>
 <h2 id="lab-hackmeifyoucan-switch-to-your-rhel-host-terminal-session">Switch to your <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host terminal session<a class="headerlink" href="#lab-hackmeifyoucan-switch-to-your-rhel-host-terminal-session" title="Permanent link">&para;</a></h2>
-<p>Switch to your terminal tab or window for your <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host session.  You should be logged in still if you have been following the lab in order in one sitting, but if you need to log in again the command is <code>ssh -l ${StudentID} 192.168.22.64</code></p>
+<p>Switch to your terminal tab or window for your <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host session:</p>
+<p><img src="../images/RHELhost.png" width="351" height="217" /></p>
+<p>You should be logged in still if you have been following the lab in order in one sitting, but if you need to log in again the command is <code>ssh -l ${StudentID} 192.168.22.64</code></p>
 <h2 id="lab-hackmeifyoucan-snoop-into-your-standard-kvm-guest-with-ease">Snoop into your <abbr title="this is a term we use to refer to a KVM guest that is not protected with Secure Execution for Linux">standard KVM guest</abbr> with ease<a class="headerlink" href="#lab-hackmeifyoucan-snoop-into-your-standard-kvm-guest-with-ease" title="Permanent link">&para;</a></h2>
 <p>A systems administrator at the host level does not have a difficult time getting into a <abbr title="this is a term we use to refer to a KVM guest that is not protected with Secure Execution for Linux">standard KVM guest</abbr>'s business.  Try this command to dump the entire address space of your Ubuntu KVM guest:</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>virsh<span class="w"> </span>dump<span class="w"> </span><span class="k">$(</span>whoami<span class="k">)</span><span class="w"> </span><span class="k">$(</span>whoami<span class="k">)</span>.dump
@@ -5123,7 +5155,9 @@ error: internal error: unable to execute QEMU command &#39;migrate&#39;: protect
 </details>
 <p>If your name or address or credit card number or social security number or bank card PIN code or cryptocurrency wallet was in memory, would you have preferred it to be in memory in a <abbr title="this is a term we use to refer to a KVM guest that is not protected with Secure Execution for Linux">standard KVM guest</abbr> or in a <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-enabled Hyper Protect Virtual Servers guest?  If you answered  <em><abbr title="this is a term we use to refer to a KVM guest that is not protected with Secure Execution for Linux">standard KVM guest</abbr></em>, then please return to the beginning of the lab and start over.  If you chose <em>SE-enabled HPVS guest</em>, then congratulations, you have successfully completed the lab!! (Except for cleanup).</p>
 <p>Please proceed to the next section of the lab for lab cleanup.</p></section><section class="print-page" id="lab-labcleanup"><h1 id="lab-labcleanup-clean-up-the-resources-you-created-during-the-lab">Clean up the resources you created during the lab<a class="headerlink" href="#lab-labcleanup-clean-up-the-resources-you-created-during-the-lab" title="Permanent link">&para;</a></h1>
-<p>All of the work in this section is performed on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5 host.  You should already be logged in to it if you have been following this lab in order.</p>
+<p>All of the work in this section is performed on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5 host:</p>
+<p><img src="../images/RHELHost.png" width="351" height="216" /></p>
+<p>You should already be logged in to it if you have been following this lab in order.</p>
 <h2 id="lab-labcleanup-shut-down-your-standard-ubuntu-kvm-guest">Shut down your standard Ubuntu KVM guest<a class="headerlink" href="#lab-labcleanup-shut-down-your-standard-ubuntu-kvm-guest" title="Permanent link">&para;</a></h2>
 <p>Enter this command to shut down your standard Ubuntu KVM guest:</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>virsh<span class="w"> </span>shutdown<span class="w"> </span><span class="k">$(</span>whoami<span class="k">)</span>

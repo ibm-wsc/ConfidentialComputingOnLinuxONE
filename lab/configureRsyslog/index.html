@@ -493,6 +493,19 @@
     Log in to your Ubuntu KVM guest
   </a>
   
+    <nav class="md-nav" aria-label="Log in to your Ubuntu KVM guest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#open-a-new-terminal-window-or-tab-with-the-kvm-standard-guest-profile" class="md-nav__link">
+    Open a new terminal window or tab with the KVM Standard Guest profile
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -737,6 +750,19 @@
     Log in to your Ubuntu KVM guest
   </a>
   
+    <nav class="md-nav" aria-label="Log in to your Ubuntu KVM guest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#open-a-new-terminal-window-or-tab-with-the-kvm-standard-guest-profile" class="md-nav__link">
+    Open a new terminal window or tab with the KVM Standard Guest profile
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -894,7 +920,12 @@
 <div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export Student_SSH_Port=&#39;</span><span class="si">${</span><span class="nv">Student_SSH_Port</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/.zshrc&quot;</span>
 </code></pre></div>
 </div>
-<p>Ensure that you are in the terminal tab or window for your KVM Standard Guest since you're now ready to log in to your Ubuntu KVM guest:</p>
+<h3 id="open-a-new-terminal-window-or-tab-with-the-kvm-standard-guest-profile">Open a new terminal window or tab with the <em>KVM Standard Guest</em> profile<a class="headerlink" href="#open-a-new-terminal-window-or-tab-with-the-kvm-standard-guest-profile" title="Permanent link">&para;</a></h3>
+<p>From your terminal window with the <em><abbr title="Red Hat Enterprise Linux">RHEL</abbr> Host</em> profile, click on <em>File</em> in the menu bar and then, according to your preferences, select either <em>New Tab</em> or <em>New Window</em>, and, from either choice, select <em>1. KVM Standard Guest</em></p>
+<p>Choosing a new tab offers compactness but you won't be able to both the <em><abbr title="Red Hat Enterprise Linux">RHEL</abbr> Host</em> tab and the <em>KVM Standard Guest</em> tab at the same time- you have to switch back and forth by clicking the appropriate tab header at the top.  Choosing a new window allows you to drag your windows or otherwise rearrange them so that you can see both windows on your screen.  The choice is yours.  Advanced students may wish to open more windows and tabs but the lab is written with the assumption that you have just one window or tab with the <em><abbr title="Red Hat Enterprise Linux">RHEL</abbr> Host</em> profile and just one window or tab with the <em>KVM Standard Guest</em> profile.</p>
+<p>Your window or tab should like like this (unless you customized the profile we provided you):</p>
+<p><img src="../../images/KVMGuest.png" width="351" height="217" /></p>
+<p>You're now ready to log in to your Ubuntu KVM guest:</p>
 <div class="highlight"><pre><span></span><code>ssh -p ${Student_SSH_Port} -l student 192.168.22.64
 </code></pre></div>
 <details class="- example">
