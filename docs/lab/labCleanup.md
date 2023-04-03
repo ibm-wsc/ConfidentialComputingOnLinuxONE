@@ -1,6 +1,10 @@
 # Clean up the resources you created during the lab
 
-All of the work in this section is performed on the RHEL 8.5 host.  You should already be logged in to it if you have been following this lab in order.
+All of the work in this section is performed on the RHEL 8.5 host:
+
+<img src="../../images/RHELHost.png" width="351" height="216" />
+
+ You should already be logged in to it if you have been following this lab in order.
 
 ## Shut down your standard Ubuntu KVM guest
 

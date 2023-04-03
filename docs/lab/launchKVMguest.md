@@ -18,7 +18,12 @@ Environment variables are set in three places:
 
 ### Set or verify the environment variable on your jumpbox for your student ID
 
-On your jumpbox, open a terminal window.  Your terminal window should have a dark background with a green prompt for the font.  You will use this window to perform work on the RHEL host, but before logging in you will ensure that an environment variable specifying your unique student ID has been set properly.
+The instructors should have guided you through the process of obtaining a RHEL Jumpbox where you will perform the lab.
+
+!!! Note
+    The jumpbox is running the RHEL operating system, but the OS on the jumpbox is largely irrelevant, and in order to avoid confusion with the RHEL host (the Linux LPAR on the IBM z15 server in the Washington Systems Center data center in Herndon, Virgina, USA) that you will use during the lab, we will drop the 'RHEL' and refer to the _RHEL jumpbox_ as just _jumpbox_ from now on.
+
+On your jumpbox, open a terminal window.  You can do this by clicking on _Activities_ in the upper left corner of your jumpbox and then clicking the icon that looks like a terminal window.  This will bring up a window using the _RHEL Host_ terminal profile, so your terminal window should have a dark background with a green prompt for the font, similar to the image shown in the previous section of the lab.  You will use this window to perform work on the RHEL host, but before logging in you will ensure that an environment variable specifying your unique student ID has been set properly.
 
 Each student has a unique userid assigned to them. It is likely set for you already. In an instructor-led class, your instructors will let you know if this has been set for you already.
 
@@ -113,6 +118,10 @@ For users of `zsh`:
 ## Log in to the RHEL 8.5 host
 
 You will now sign into our z15 LPAR running Red Hat Enterprise Linux 8.5.  This is a system that has been enabled for Secure Execution and so can run workloads provisioned with IBM Hyper Protect Virtual Servers 2.1.3.  
+
+Use your terminal tab or window set aside for doing work on the RHEL host- the one that (by default) looks like this:
+
+<img src="../../images/RHELHost.png"/ width="351 height="216" />
 
 Run this command:
 

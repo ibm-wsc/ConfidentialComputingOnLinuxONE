@@ -3,6 +3,9 @@
 ## launch the HPVS 2.1.3 GREP11 server
 
 You will start this section from your login session on the RHEL host, and will soon be instructed to switch to your Ubuntu KVM guest session.
+But until then, start from this familiar window or tab:
+
+<img src="../../images/RHELHost.png" width="351" height="216" >
 
 This fancy command figures out the last two characters of your assigned userid and is used in other commands in this section, so that the lab instructions will work for everybody:
 
@@ -116,6 +119,10 @@ You will have to enter the `Ctrl + ]` key-combination to break out of the consol
 ## verify that GREP11 server log messages are received by rsyslog
 
 **The logging of the GREP11 server is going to the _rsyslog_ service that you configured on your Ubuntu guest, so switch to the terminal tab or window for your KVM standard guest.**
+
+You should still be comfortably logged in on this tab or window:
+
+<img src="../../images/KVMGuest.png" width="351" height="217" />
 
 The arguments to the _journalctl_ command here aren't the most elegant in the world, but, unless midnight passed since you started your GREP11 Server, you will be able to see messages in rsyslog from when you just started up your GREP11 Server:
 

@@ -4,7 +4,7 @@ site_url: https://ibm-wsc.github.io/ConfidentialComputingOnLinuxONE/
 edit_uri: edit/main/docs
 nav:
   - Home: index.md
-  - Lab Assignment: assignments.md
+  - Lab Access: access.md
   - Lab: 
     - lab/index.md
     - Launch Ubuntu KVM guest: lab/launchKVMguest.md

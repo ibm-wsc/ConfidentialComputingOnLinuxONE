@@ -40,3 +40,15 @@ You will not log in directly to your HPVS 2.1.3 GREP11 Server, nor to the CENA4S
 Except for the RHEL Jumpbox, the systems used in the lab are in the IBM Washington Systems Center (WSC) in the WSC's private network. Access to the WSC private network is through a virtual private network (VPN) client running on the RHEL Jumpbox.  The instructors access each student's RHEL Jumpbox in order to log in via the VPN client.  Students access their jumpbox from a web browser- other than a modern web browser, no additional software is required on the student's laptop or workstation.
 
 During the lab, students will be directed to open two terminal windows on their jumpbox- one will be designated for working on the RHEL host and the other will be designated for working on their KVM standard Ubuntu guest. Two separate terminal profiles have been created on the jumpbox- one for the RHEL host and one for the KVM standard Ubuntu guest- which have different background and text colors which will help the student more easily differentiate between the two windows.  The student may wish to use a single terminal window with two tabs- one with each terminal profile- instead of two different windows.  It is fine to do so.
+
+### Terminal profiles we have defined in your jumpbox
+
+The terminal profile we have set up for you to run commands in the RHEL host looks like this:
+
+<img src="../images/RHELHost.png" />
+
+The terminal profile we have set up for you to run commands in your Ubuntu KVM Guest looks like this:
+ 
+<img src="../images/KVMGuest.png"/>
+
+You are free to change the look and feel of the terminal profiles to what suits you, but the lab is written with the assumption that you are using the profiles we have set up for you.  This matters only in that we may show images in the lab in an effort to help ensure you are working on the correct system when you are entering commands.

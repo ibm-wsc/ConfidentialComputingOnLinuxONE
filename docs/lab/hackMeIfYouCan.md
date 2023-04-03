@@ -14,7 +14,11 @@ All of the work in this section is performed on the RHEL 8.5 host, so log out of
 
 ## Switch to your RHEL host terminal session 
 
-Switch to your terminal tab or window for your RHEL host session.  You should be logged in still if you have been following the lab in order in one sitting, but if you need to log in again the command is `ssh -l ${StudentID} 192.168.22.64`
+Switch to your terminal tab or window for your RHEL host session:
+
+<img src="../../images/RHELHost.png" width="351" height="217" />
+
+You should be logged in still if you have been following the lab in order in one sitting, but if you need to log in again the command is `ssh -l ${StudentID} 192.168.22.64`
 
 ## Snoop into your standard KVM guest with ease
 

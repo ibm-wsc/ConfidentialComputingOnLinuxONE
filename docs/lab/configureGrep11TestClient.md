@@ -36,6 +36,9 @@ In this section you will:
 ## Start this section in your Ubuntu KVM guest session
 
 This section starts out in your Ubuntu KVM guest, which is where you should be if you have been doing the lab in order in one sitting. 
+
+<img src="../../images/KVMGuest.png" width="351" height="217" />
+
 If you are not logged in, the command to log in is `ssh -p ${Student_SSH_Port} -l student 192.168.22.64`
 
 ## Install Go 
@@ -528,7 +531,9 @@ Your GREP11 CA is on your account on the RHEL host. Send your CSR to it:
    scp client.csr ${StudentID}@192.168.22.64:GREP11CAwork/. 
    ```
 
-**Switch to your terminal tab or window for your RHEL host session.**
+**Switch to your terminal tab or window for your RHEL host session.:**
+
+<img src="../../images/RHELHost.png" width="351" height="216" />
 
 Change to your GREP11 CA working directory:
 
@@ -626,7 +631,10 @@ Send the certificate back to the client that requested it:
    ```
 
 Your work as a CA registrar is done for the remainder of the lab!  
-**Switch to your terminal tab or window for your Ubuntu KVM guest session**
+
+**Switch to your terminal tab or window for your Ubuntu KVM guest session:**
+
+<img src="../../images/KVMGuest.png" width="351" height="217" />
 
 Change to the directory that has your certificates and key:
 

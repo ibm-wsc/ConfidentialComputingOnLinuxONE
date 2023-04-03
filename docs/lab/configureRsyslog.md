@@ -61,7 +61,17 @@ The HPVS 2.1.3-protected GREP11 Server that you will create later in the lab wil
 	echo "export Student_SSH_Port='${Student_SSH_Port}'" >> "${HOME}/.zshrc"
 	```
 
-Ensure that you are in the terminal tab or window for your KVM Standard Guest since you're now ready to log in to your Ubuntu KVM guest:
+### Open a new terminal window or tab with the _KVM Standard Guest_ profile
+
+From your terminal window with the _RHEL Host_ profile, click on _File_ in the menu bar and then, according to your preferences, select either _New Tab_ or _New Window_, and, from either choice, select _1. KVM Standard Guest_
+
+Choosing a new tab offers compactness but you won't be able to both the _RHEL Host_ tab and the _KVM Standard Guest_ tab at the same time- you have to switch back and forth by clicking the appropriate tab header at the top.  Choosing a new window allows you to drag your windows or otherwise rearrange them so that you can see both windows on your screen.  The choice is yours.  Advanced students may wish to open more windows and tabs but the lab is written with the assumption that you have just one window or tab with the _RHEL Host_ profile and just one window or tab with the _KVM Standard Guest_ profile.
+
+Your window or tab should like like this (unless you customized the profile we provided you):
+
+<img src="../../images/KVMGuest.png" width="351" height="217" />
+
+You're now ready to log in to your Ubuntu KVM guest:
 
    ```
    ssh -p ${Student_SSH_Port} -l student 192.168.22.64

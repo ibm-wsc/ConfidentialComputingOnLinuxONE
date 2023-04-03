@@ -35,6 +35,10 @@ Now our lab does not include all of the above features (yet)- for example, the G
 
 ## Creation of directory structure for contract 
 
+This section starts where the last section left off- on your session with the RHEL host:
+
+<img src="../../images/RHELHost.png" width="351" height="216" />
+
 This command will create the directory structure expected by the lab instructions:
 
 ``` bash
