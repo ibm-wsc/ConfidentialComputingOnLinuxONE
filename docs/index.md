@@ -6,7 +6,7 @@ Welcome to our Confidential Computing LinuxONE workshop. Organizations can lever
 
 ### Introductory Presentations
 
-* Introduction to Hyper Protect Virtual Servers 2.1.x
+* [Introduction to Hyper Protect Virtual Servers 2.1.x](files/ConfidentialComputingonZwithHyperProtectGen2.pdf)
 
 ### Lab: Build and Deploy a GREP11 Server Using Hyper Protect Virtual Servers 2.1.x
 
