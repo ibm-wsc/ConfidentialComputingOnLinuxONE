@@ -2,62 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://ibm-wsc.github.io/ConfidentialComputingOnLinuxONE/</loc>
-         <lastmod>2023-04-05</lastmod>
+         <lastmod>2023-04-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ibm-wsc.github.io/ConfidentialComputingOnLinuxONE/access/</loc>
-         <lastmod>2023-04-05</lastmod>
+         <lastmod>2023-04-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ibm-wsc.github.io/ConfidentialComputingOnLinuxONE/localdocbuild/</loc>
-         <lastmod>2023-04-05</lastmod>
+         <lastmod>2023-04-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ibm-wsc.github.io/ConfidentialComputingOnLinuxONE/lab/</loc>
-         <lastmod>2023-04-05</lastmod>
+         <lastmod>2023-04-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ibm-wsc.github.io/ConfidentialComputingOnLinuxONE/lab/configureGrep11TestClient/</loc>
-         <lastmod>2023-04-05</lastmod>
+         <lastmod>2023-04-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ibm-wsc.github.io/ConfidentialComputingOnLinuxONE/lab/configureRsyslog/</loc>
-         <lastmod>2023-04-05</lastmod>
+         <lastmod>2023-04-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ibm-wsc.github.io/ConfidentialComputingOnLinuxONE/lab/configureRsyslogForGREP11/</loc>
-         <lastmod>2023-04-05</lastmod>
+         <lastmod>2023-04-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ibm-wsc.github.io/ConfidentialComputingOnLinuxONE/lab/createGREP11Contract/</loc>
-         <lastmod>2023-04-05</lastmod>
+         <lastmod>2023-04-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ibm-wsc.github.io/ConfidentialComputingOnLinuxONE/lab/hackMeIfYouCan/</loc>
-         <lastmod>2023-04-05</lastmod>
+         <lastmod>2023-04-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ibm-wsc.github.io/ConfidentialComputingOnLinuxONE/lab/labCleanup/</loc>
-         <lastmod>2023-04-05</lastmod>
+         <lastmod>2023-04-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ibm-wsc.github.io/ConfidentialComputingOnLinuxONE/lab/launchGREP11guest/</loc>
-         <lastmod>2023-04-05</lastmod>
+         <lastmod>2023-04-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ibm-wsc.github.io/ConfidentialComputingOnLinuxONE/lab/launchKVMguest/</loc>
-         <lastmod>2023-04-05</lastmod>
+         <lastmod>2023-04-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

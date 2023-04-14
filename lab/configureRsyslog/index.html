@@ -874,10 +874,10 @@
 
 <h1 id="configure-rsyslog-service">Configure <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service<a class="headerlink" href="#configure-rsyslog-service" title="Permanent link">&para;</a></h1>
 <h2 id="overview-of-this-page">Overview of this page<a class="headerlink" href="#overview-of-this-page" title="Permanent link">&para;</a></h2>
-<p>The HPVS 2.1.3-protected <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server that you will create later in the lab will log its output to an <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service on the Ubuntu KVM guest that you just started in the previous section. Rsyslog on your Ubuntu KVM guest is currently not set up for this, so you will configure <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> in this section of the lab.</p>
+<p>The HPVS 2.1.4-protected <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server that you will create later in the lab will log its output to an <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service on the Ubuntu KVM guest that you just started in the previous section. Rsyslog on your Ubuntu KVM guest is currently not set up for this, so you will configure <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> in this section of the lab.</p>
 <div class="admonition note">
 <p class="admonition-title">Logging to IBM Log Analysis on IBM Cloud</p>
-<p>You can also log the output of an HPVS 2.1.3 guest to an <a href="https://cloud.ibm.com/catalog/services/logdna" rel="noopener" target="_blank">IBM Log Analysis instance on IBM Cloud</a>.  That is not covered in this lab but if you are interested in this, it is covered in the <a href="https://www.ibm.com/docs/en/hpvs/2.1.x?topic=servers-logging-hyper-protect-virtual" rel="noopener" target="_blank">product documentation</a>.</p>
+<p>You can also log the output of an HPVS 2.1.4 guest to an <a href="https://cloud.ibm.com/catalog/services/logdna" rel="noopener" target="_blank">IBM Log Analysis instance on IBM Cloud</a>.  That is not covered in this lab but if you are interested in this, it is covered in the <a href="https://www.ibm.com/docs/en/hpvs/2.1.x?topic=servers-logging-hyper-protect-virtual" rel="noopener" target="_blank">product documentation</a>.</p>
 </div>
 <h2 id="log-in-to-your-ubuntu-kvm-guest">Log in to your Ubuntu KVM guest<a class="headerlink" href="#log-in-to-your-ubuntu-kvm-guest" title="Permanent link">&para;</a></h2>
 <div class="admonition question">
@@ -1412,7 +1412,7 @@ subject=C = US, O = Rsyslog Test Server, CN = 172.16.0.42
 </code></pre></div>
 </details>
 <h2 id="restart-your-rsyslog-service">Restart your <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service<a class="headerlink" href="#restart-your-rsyslog-service" title="Permanent link">&para;</a></h2>
-<p>You'll truly know that you configured everything correctly later in the lab when you try to write messages to it from your yet-to-be-created HPVS 2.1.3 <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server. But for now, you will verify it somewhat by taking a before and after snapshot of which TCP ports on your system are listening.  </p>
+<p>You'll truly know that you configured everything correctly later in the lab when you try to write messages to it from your yet-to-be-created HPVS 2.1.4 <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server. But for now, you will verify it somewhat by taking a before and after snapshot of which TCP ports on your system are listening.  </p>
 <p>Run this command, and then in a moment you'll repeat the command.  What you should notice here is the absence of port 6514 in the output:</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>lsof<span class="w"> </span>-nP<span class="w"> </span>-iTCP<span class="w"> </span>-sTCP:LISTEN
 </code></pre></div>
@@ -1477,7 +1477,7 @@ rsyslogd  1439          syslog    7u  IPv6  22402      0t0  TCP *:6514 (LISTEN)
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 3, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 14, 2023</span>
       
         <br>
         Created:
