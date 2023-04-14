@@ -14,7 +14,7 @@ Enter this command to shut down your standard Ubuntu KVM guest:
    sudo virsh shutdown $(whoami)
    ```
 
-## Shut down your HPVS 2.1.3 guest (your GREP11 server):
+## Shut down your HPVS 2.1.4 guest (your GREP11 server):
 
    ``` bash
    suffix=$(temp=$(whoami) && echo ${temp: -2}) ; sudo virsh shutdown grep11se${suffix} 
