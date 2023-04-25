@@ -27,7 +27,7 @@ Your GREP11 Server will be a client to the rsyslog service. (It serves clients w
 
 If you are following the lab in order in one sitting, you are already logged in and have switched to the correct terminal tab and window, the one that looks like this:
 
-<img src="../../images/RHELHost.png" width="351" height="216" />
+<img src="../../../images/RHELHost.png" width="351" height="216" />
 
 But if you need to log in for any reason, the command is `ssh -l ${StudentID} 192.168.22.64`
 
@@ -106,7 +106,7 @@ Steps 1 through 5 will be performed on the RHEL host.
 
 6. Switch to your terminal tab or window for your KVM Ubuntu guest.  Yes, this one:
 
-    <img src="../../images/KVMGuest.png" width="351" height="217" />
+    <img src="../../../images/KVMGuest.png" width="351" height="217" />
 
 
 7. If you are doing the lab in one sitting, in order, then you are already logged in.  If you need to login for any reason the command is `ssh -p ${Student_SSH_Port} -l student 192.168.22.64`.  Steps 8 through 12 will be performed on your Ubuntu KVM guest.
@@ -346,7 +346,7 @@ Steps 1 through 5 will be performed on the RHEL host.
 
 13. Now switch back to your terminal tab or window for your session on the RHEL host.  A gentle reminder of what that tab or window looks like:
 
-    <img src="../../images/RHELHost.png" width="351" height="216" />
+    <img src="../../../images/RHELHost.png" width="351" height="216" />
 
 14. If you are doing the lab in one sitting, in order, then you are still logged in on the RHEL host.  If you need to login for any reason the command is `ssh -l ${StudentID} 192.168.22.64`.  Steps 15 and 16 will be performed on the RHEL 8.5 host.
 

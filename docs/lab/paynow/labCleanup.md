@@ -2,9 +2,16 @@
 
 All of the work in this section is performed on the RHEL 8.5 host:
 
-<img src="../../images/RHELHost.png" width="351" height="216" />
+<img src="../../../images/RHELHost.png" width="351" height="216" />
 
  You should already be logged in to it if you have been following this lab in order.
+
+## Shut down your HPVS 2.1.4 guest that was running PayNow demo
+
+   ``` bash
+   suffix=$(temp=$(whoami) && echo ${temp: -2}) ;\
+   sudo virsh shutdown paynowse${suffix} 
+   ```
 
 ## Shut down your standard Ubuntu KVM guest
 
@@ -14,16 +21,10 @@ Enter this command to shut down your standard Ubuntu KVM guest:
    sudo virsh shutdown $(whoami)
    ```
 
-## Shut down your HPVS 2.1.4 guest (your GREP11 server):
-
-   ``` bash
-   suffix=$(temp=$(whoami) && echo ${temp: -2}) ; sudo virsh shutdown grep11se${suffix} 
-   ```
-
 ## Clean up the home directory of your userid on the RHEL 8.5 host:
 
    ``` bash 
-   cd ${HOME} && rm -rf rsyslogClientWork GREP11CAwork contract $(whoami).dump
+   cd ${HOME} && rm -rf rsyslogClientWork contract core.*
    ```
 
 ## Log out of the RHEL host:

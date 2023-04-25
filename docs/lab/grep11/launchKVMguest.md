@@ -121,7 +121,7 @@ You will now sign into our z15 LPAR running Red Hat Enterprise Linux 8.5.  This 
 
 Use your terminal tab or window set aside for doing work on the RHEL host- the one that (by default) looks like this:
 
-<img src="../../images/RHELHost.png"/ width="351 height="216" />
+<img src="../../../images/RHELHost.png"/ width="351 height="216" />
 
 Run this command:
 

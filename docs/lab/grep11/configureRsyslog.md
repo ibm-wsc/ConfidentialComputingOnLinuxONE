@@ -69,7 +69,7 @@ Choosing a new tab offers compactness but you won't be able to both the _RHEL Ho
 
 Your window or tab should like like this (unless you customized the profile we provided you):
 
-<img src="../../images/KVMGuest.png" width="351" height="217" />
+<img src="../../../images/KVMGuest.png" width="351" height="217" />
 
 You're now ready to log in to your Ubuntu KVM guest:
 

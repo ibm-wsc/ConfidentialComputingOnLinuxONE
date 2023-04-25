@@ -1,6 +1,6 @@
 # Lab Access
 
-You will be performing the lab from what we refer to as a *RHEL Jumpbox*.
+You will be performing your lab from what we refer to as a *RHEL Jumpbox*.
 
 You can *access* the lab guide from anywhere on the public Internet. Actually *performing* the lab from anywhere other than the *RHEL Jumpbox* is another matter altogether-  it can't be done for the following reasons.
 

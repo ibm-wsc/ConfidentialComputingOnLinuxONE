@@ -37,7 +37,7 @@ In this section you will:
 
 This section starts out in your Ubuntu KVM guest, which is where you should be if you have been doing the lab in order in one sitting. 
 
-<img src="../../images/KVMGuest.png" width="351" height="217" />
+<img src="../../../images/KVMGuest.png" width="351" height="217" />
 
 If you are not logged in, the command to log in is `ssh -p ${Student_SSH_Port} -l student 192.168.22.64`
 
@@ -533,7 +533,7 @@ Your GREP11 CA is on your account on the RHEL host. Send your CSR to it:
 
 **Switch to your terminal tab or window for your RHEL host session.:**
 
-<img src="../../images/RHELHost.png" width="351" height="216" />
+<img src="../../../images/RHELHost.png" width="351" height="216" />
 
 Change to your GREP11 CA working directory:
 
@@ -634,7 +634,7 @@ Your work as a CA registrar is done for the remainder of the lab!
 
 **Switch to your terminal tab or window for your Ubuntu KVM guest session:**
 
-<img src="../../images/KVMGuest.png" width="351" height="217" />
+<img src="../../../images/KVMGuest.png" width="351" height="217" />
 
 Change to the directory that has your certificates and key:
 

@@ -16,19 +16,19 @@ All of the work in this section is performed on the RHEL 8.5 host, so log out of
 
 Switch to your terminal tab or window for your RHEL host session:
 
-<img src="../../images/RHELHost.png" width="351" height="217" />
+<img src="../../../images/RHELHost.png" width="351" height="217" />
 
 You should be logged in still if you have been following the lab in order in one sitting, but if you need to log in again the command is `ssh -l ${StudentID} 192.168.22.64`
 
 ## Snoop into your standard KVM guest with ease
 
-A systems administrator at the host level does not have a difficult time getting into a standard KVM guest's business.  Try this command to dump the entire address space of your Ubuntu KVM guest:
+A systems administrator at the host level does not have a difficult time getting into a standard KVM guest's business.  Try this command to dump the entire address space of your Ubuntu KVM guest in the home directory of your lab userid:
 
    ``` bash
-   sudo virsh dump $(whoami) $(whoami).dump
+   cd ${HOME} && sudo virsh dump $(whoami) $(whoami).dump
    ```
 
-This will take a few seconds but you have just dumped the entire memory of your KVM guest.
+This will take a little while but you have just dumped the entire memory of your KVM guest.
 
 Look at the file size:
 

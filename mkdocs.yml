@@ -5,16 +5,32 @@ edit_uri: edit/main/docs
 nav:
   - Home: index.md
   - Lab Access: access.md
-  - Lab: 
-    - lab/index.md
-    - Launch Ubuntu KVM guest: lab/launchKVMguest.md
-    - Configure rsyslog on your KVM guest: lab/configureRsyslog.md
-    - Configure rsyslog client certs on the RHEL host: lab/configureRsyslogForGREP11.md
-    - Create Contract for GREP11 Server: lab/createGREP11Contract.md
-    - Launch GREP11 Server: lab/launchGREP11guest.md
-    - Run GREP11 Client code: lab/configureGrep11TestClient.md
-    - Standard guest vs. SE-enabled HPVS 2.1.x guest: lab/hackMeIfYouCan.md
-    - Lab Cleanup:  lab/labCleanup.md
+  - PayNow Lab:
+    - lab/paynow/index.md
+    - Launch Ubuntu KVM guest: lab/paynow/launchKVMguest.md
+    - Download PayNow GitHub repo: lab/paynow/downloadPayNowRepo.md
+    - Create OCI image: lab/paynow/createOCIimage.md
+    - Run OCI image: lab/paynow/runOCIimage.md
+    - Use the PayNow demo app: lab/paynow/useWebApp.md
+    - Find sensitive data in core dump: lab/paynow/findSensitiveData.md
+    - Configure rsyslog on your KVM guest: lab/paynow/configureRsyslog.md
+    - Configure rsyslog client certs on the RHEL host: lab/paynow/configureRsyslogForHPVS.md
+    - Create contract for HPVS guest: lab/paynow/createContract.md
+    - Launch HPVS guest for PayNow: lab/paynow/launchHPVSguest.md
+    - Use the HPVS-based PayNow demo app: lab/paynow/useHPVSWebApp.md
+    - Try to find sensitive data in core dump: lab/paynow/tryToFindSensitiveData.md
+    - Lab Cleanup:  lab/paynow/labCleanup.md
+  - GREP11 with CENA4SEE Lab: 
+    - lab/grep11/index.md
+    - Launch Ubuntu KVM guest: lab/grep11/launchKVMguest.md
+    - Configure rsyslog on your KVM guest: lab/grep11/configureRsyslog.md
+    - Configure rsyslog client certs on the RHEL host: lab/grep11/configureRsyslogForGREP11.md
+    - Create Contract for GREP11 Server: lab/grep11/createGREP11Contract.md
+    - Launch GREP11 Server: lab/grep11/launchGREP11guest.md
+    - Run GREP11 Client code: lab/grep11/configureGrep11TestClient.md
+    - Standard guest vs. SE-enabled HPVS 2.1.x guest: lab/grep11/hackMeIfYouCan.md
+    - Lab Cleanup:  lab/grep11/labCleanup.md
+    
   - Locally Building docs: localdocbuild.md
 
 theme:

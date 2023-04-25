@@ -3,7 +3,7 @@
 ## Lab environment topology
 
 <figure markdown>
-  ![Overview Picture](../images/LinuxONEConfidentialComputing.svg)
+  ![Overview Picture](../../images/LinuxONEConfidentialComputing.svg)
   <figcaption>Confidential Computing Lab Architecture</figcaption>
 </figure>
 
@@ -45,10 +45,10 @@ During the lab, students will be directed to open two terminal windows on their 
 
 The terminal profile we have set up for you to run commands in the RHEL host looks like this:
 
-<img src="../images/RHELHost.png" />
+<img src="../../images/RHELHost.png" />
 
 The terminal profile we have set up for you to run commands in your Ubuntu KVM Guest looks like this:
  
-<img src="../images/KVMGuest.png"/>
+<img src="../../images/KVMGuest.png"/>
 
 You are free to change the look and feel of the terminal profiles to what suits you, but the lab is written with the assumption that you are using the profiles we have set up for you.  This matters only in that we may show images in the lab in an effort to help ensure you are working on the correct system when you are entering commands.
