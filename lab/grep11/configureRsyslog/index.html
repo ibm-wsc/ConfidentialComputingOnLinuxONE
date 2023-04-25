@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://ibm-wsc.github.io/ConfidentialComputingOnLinuxONE/lab/configureRsyslog/">
+        <link rel="canonical" href="https://ibm-wsc.github.io/ConfidentialComputingOnLinuxONE/lab/grep11/configureRsyslog/">
       
       
         <link rel="prev" href="../launchKVMguest/">
@@ -16,7 +16,7 @@
       
         <link rel="next" href="../configureRsyslogForGREP11/">
       
-      <link rel="icon" href="../../images/HPVS2.1.xGraphic.png">
+      <link rel="icon" href="../../../images/HPVS2.1.xGraphic.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
     
     
@@ -25,10 +25,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.0d440cfe.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0d440cfe.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.2505c338.min.css">
       
       
 
@@ -44,23 +44,23 @@
       
     
     
-      <link rel="stylesheet" href="../../css/print-site-enum-headings1.css">
+      <link rel="stylesheet" href="../../../css/print-site-enum-headings1.css">
     
-      <link rel="stylesheet" href="../../css/print-site-enum-headings2.css">
+      <link rel="stylesheet" href="../../../css/print-site-enum-headings2.css">
     
-      <link rel="stylesheet" href="../../css/print-site-enum-headings3.css">
+      <link rel="stylesheet" href="../../../css/print-site-enum-headings3.css">
     
-      <link rel="stylesheet" href="../../css/print-site-enum-headings4.css">
+      <link rel="stylesheet" href="../../../css/print-site-enum-headings4.css">
     
-      <link rel="stylesheet" href="../../css/print-site-enum-headings5.css">
+      <link rel="stylesheet" href="../../../css/print-site-enum-headings5.css">
     
-      <link rel="stylesheet" href="../../css/print-site-enum-headings6.css">
+      <link rel="stylesheet" href="../../../css/print-site-enum-headings6.css">
     
-      <link rel="stylesheet" href="../../css/print-site.css">
+      <link rel="stylesheet" href="../../../css/print-site.css">
     
-      <link rel="stylesheet" href="../../css/print-site-material.css">
+      <link rel="stylesheet" href="../../../css/print-site-material.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -117,9 +117,9 @@
 
 <header class="md-header md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Confidential Computing LinuxONE Workshop" class="md-header__button md-logo" aria-label="Confidential Computing LinuxONE Workshop" data-md-component="logo">
+    <a href="../../.." title="Confidential Computing LinuxONE Workshop" class="md-header__button md-logo" aria-label="Confidential Computing LinuxONE Workshop" data-md-component="logo">
       
-  <img src="../../images/HPVS2.1.xGraphic.png" alt="logo">
+  <img src="../../../images/HPVS2.1.xGraphic.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -228,7 +228,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="../.." class="md-tabs__link">
+    <a href="../../.." class="md-tabs__link">
       Home
     </a>
   </li>
@@ -240,10 +240,26 @@
 
 
   <li class="md-tabs__item">
-    <a href="../../access/" class="md-tabs__link">
+    <a href="../../../access/" class="md-tabs__link">
       Lab Access
     </a>
   </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../paynow/" class="md-tabs__link">
+        PayNow Lab
+      </a>
+    </li>
+  
 
       
         
@@ -258,7 +274,7 @@
   
     <li class="md-tabs__item">
       <a href="../" class="md-tabs__link md-tabs__link--active">
-        Lab
+        GREP11 with CENA4SEE Lab
       </a>
     </li>
   
@@ -270,7 +286,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="../../localdocbuild/" class="md-tabs__link">
+    <a href="../../../localdocbuild/" class="md-tabs__link">
       Locally Building docs
     </a>
   </li>
@@ -282,7 +298,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="../../print_page/" class="md-tabs__link">
+    <a href="../../../print_page/" class="md-tabs__link">
       Print Site
     </a>
   </li>
@@ -315,9 +331,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Confidential Computing LinuxONE Workshop" class="md-nav__button md-logo" aria-label="Confidential Computing LinuxONE Workshop" data-md-component="logo">
+    <a href="../../.." title="Confidential Computing LinuxONE Workshop" class="md-nav__button md-logo" aria-label="Confidential Computing LinuxONE Workshop" data-md-component="logo">
       
-  <img src="../../images/HPVS2.1.xGraphic.png" alt="logo">
+  <img src="../../../images/HPVS2.1.xGraphic.png" alt="logo">
 
     </a>
     Confidential Computing LinuxONE Workshop
@@ -345,7 +361,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         Home
       </a>
     </li>
@@ -360,9 +376,268 @@
   
   
     <li class="md-nav__item">
-      <a href="../../access/" class="md-nav__link">
+      <a href="../../../access/" class="md-nav__link">
         Lab Access
       </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../paynow/">PayNow Lab</a>
+          
+            <label for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          PayNow Lab
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paynow/launchKVMguest/" class="md-nav__link">
+        Launch Ubuntu KVM guest
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paynow/downloadPayNowRepo/" class="md-nav__link">
+        Download PayNow GitHub repo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paynow/createOCIimage/" class="md-nav__link">
+        Create OCI image
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paynow/runOCIimage/" class="md-nav__link">
+        Run OCI image
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paynow/useWebApp/" class="md-nav__link">
+        Use the PayNow demo app
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paynow/findSensitiveData/" class="md-nav__link">
+        Find sensitive data in core dump
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paynow/configureRsyslog/" class="md-nav__link">
+        Configure rsyslog on your KVM guest
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paynow/configureRsyslogForHPVS/" class="md-nav__link">
+        Configure rsyslog client certs on the RHEL host
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paynow/createContract/" class="md-nav__link">
+        Create contract for HPVS guest
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paynow/launchHPVSguest/" class="md-nav__link">
+        Launch HPVS guest for PayNow
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paynow/useHPVSWebApp/" class="md-nav__link">
+        Use the HPVS-based PayNow demo app
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paynow/tryToFindSensitiveData/" class="md-nav__link">
+        Try to find sensitive data in core dump
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paynow/labCleanup/" class="md-nav__link">
+        Lab Cleanup
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -382,7 +657,7 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
       
       
         
@@ -411,18 +686,18 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../">Lab</a>
+          <a href="../">GREP11 with CENA4SEE Lab</a>
           
-            <label for="__nav_3">
+            <label for="__nav_4">
               <span class="md-nav__icon md-icon"></span>
             </label>
           
         </div>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
-        <label class="md-nav__title" for="__nav_3">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
-          Lab
+          GREP11 with CENA4SEE Lab
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -690,7 +965,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../localdocbuild/" class="md-nav__link">
+      <a href="../../../localdocbuild/" class="md-nav__link">
         Locally Building docs
       </a>
     </li>
@@ -705,7 +980,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../print_page/" class="md-nav__link">
+      <a href="../../../print_page/" class="md-nav__link">
         Print Site
       </a>
     </li>
@@ -855,7 +1130,7 @@
                   
 
   
-    <a href="https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE/edit/main/docs/lab/configureRsyslog.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE/edit/main/docs/lab/grep11/configureRsyslog.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
     </a>
@@ -864,7 +1139,7 @@
     
       
     
-    <a href="https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE/raw/main/docs/lab/configureRsyslog.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE/raw/main/docs/lab/grep11/configureRsyslog.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
     </a>
@@ -924,7 +1199,7 @@
 <p>From your terminal window with the <em><abbr title="Red Hat Enterprise Linux">RHEL</abbr> Host</em> profile, click on <em>File</em> in the menu bar and then, according to your preferences, select either <em>New Tab</em> or <em>New Window</em>, and, from either choice, select <em>1. KVM Standard Guest</em></p>
 <p>Choosing a new tab offers compactness but you won't be able to both the <em><abbr title="Red Hat Enterprise Linux">RHEL</abbr> Host</em> tab and the <em>KVM Standard Guest</em> tab at the same time- you have to switch back and forth by clicking the appropriate tab header at the top.  Choosing a new window allows you to drag your windows or otherwise rearrange them so that you can see both windows on your screen.  The choice is yours.  Advanced students may wish to open more windows and tabs but the lab is written with the assumption that you have just one window or tab with the <em><abbr title="Red Hat Enterprise Linux">RHEL</abbr> Host</em> profile and just one window or tab with the <em>KVM Standard Guest</em> profile.</p>
 <p>Your window or tab should like like this (unless you customized the profile we provided you):</p>
-<p><img src="../../images/KVMGuest.png" width="351" height="217" /></p>
+<p><img src="../../../images/KVMGuest.png" width="351" height="217" /></p>
 <p>You're now ready to log in to your Ubuntu KVM guest:</p>
 <div class="highlight"><pre><span></span><code>ssh -p ${Student_SSH_Port} -l student 192.168.22.64
 </code></pre></div>
@@ -1477,7 +1752,7 @@ rsyslogd  1439          syslog    7u  IPv6  22402      0t0  TCP *:6514 (LISTEN)
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 14, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 25, 2023</span>
       
         <br>
         Created:
@@ -1524,7 +1799,7 @@ rsyslogd  1439          syslog    7u  IPv6  22402      0t0  TCP *:6514 (LISTEN)
               
                 
               
-              Thanks for your feedback! Help us improve this page by using our <a href="https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE/issues/new/?title=[Feedback]+Configure%20rsyslog%20on%20your%20KVM%20guest+-+/lab/configureRsyslog/" target="_blank" rel="noopener">feedback form</a>.
+              Thanks for your feedback! Help us improve this page by using our <a href="https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE/issues/new/?title=[Feedback]+Configure%20rsyslog%20on%20your%20KVM%20guest+-+/lab/grep11/configureRsyslog/" target="_blank" rel="noopener">feedback form</a>.
             </div>
           
         </div>
@@ -1715,12 +1990,12 @@ rsyslogd  1439          syslog    7u  IPv6  22402      0t0  TCP *:6514 (LISTEN)
       </div>
       <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.footer", "search.share", "navigation.indexes", "announce.dismiss", "content.tabs.link", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["header.autohide", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.footer", "search.share", "navigation.indexes", "announce.dismiss", "content.tabs.link", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.6df46069.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.6df46069.min.js"></script>
       
-        <script src="../../js/print-site.js"></script>
+        <script src="../../../js/print-site.js"></script>
       
     
   </body>

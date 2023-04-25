@@ -1,0 +1,1902 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ibm-wsc.github.io/ConfidentialComputingOnLinuxONE/lab/paynow/configureRsyslog/">
+      
+      
+        <link rel="prev" href="../findSensitiveData/">
+      
+      
+        <link rel="next" href="../configureRsyslogForHPVS/">
+      
+      <link rel="icon" href="../../../images/HPVS2.1.xGraphic.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
+    
+    
+      
+        <title>Configure rsyslog on your KVM guest - Confidential Computing LinuxONE Workshop</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0d440cfe.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/print-site-enum-headings1.css">
+    
+      <link rel="stylesheet" href="../../../css/print-site-enum-headings2.css">
+    
+      <link rel="stylesheet" href="../../../css/print-site-enum-headings3.css">
+    
+      <link rel="stylesheet" href="../../../css/print-site-enum-headings4.css">
+    
+      <link rel="stylesheet" href="../../../css/print-site-enum-headings5.css">
+    
+      <link rel="stylesheet" href="../../../css/print-site-enum-headings6.css">
+    
+      <link rel="stylesheet" href="../../../css/print-site.css">
+    
+      <link rel="stylesheet" href="../../../css/print-site-material.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-GYNTJ48K9Y"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-GYNTJ48K9Y",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-GYNTJ48K9Y",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>var consent;"undefined"==typeof __md_analytics||(consent=__md_get("__consent"))&&consent.analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="yellow">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#configure-rsyslog-service" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Confidential Computing LinuxONE Workshop" class="md-header__button md-logo" aria-label="Confidential Computing LinuxONE Workshop" data-md-component="logo">
+      
+  <img src="../../../images/HPVS2.1.xGraphic.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Confidential Computing LinuxONE Workshop
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Configure rsyslog on your KVM guest
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="yellow"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="yellow"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../access/" class="md-tabs__link">
+      Lab Access
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../" class="md-tabs__link md-tabs__link--active">
+        PayNow Lab
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../grep11/" class="md-tabs__link">
+        GREP11 with CENA4SEE Lab
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../localdocbuild/" class="md-tabs__link">
+      Locally Building docs
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../print_page/" class="md-tabs__link">
+      Print Site
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Confidential Computing LinuxONE Workshop" class="md-nav__button md-logo" aria-label="Confidential Computing LinuxONE Workshop" data-md-component="logo">
+      
+  <img src="../../../images/HPVS2.1.xGraphic.png" alt="logo">
+
+    </a>
+    Confidential Computing LinuxONE Workshop
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../access/" class="md-nav__link">
+        Lab Access
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../">PayNow Lab</a>
+          
+            <label for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          PayNow Lab
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../launchKVMguest/" class="md-nav__link">
+        Launch Ubuntu KVM guest
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../downloadPayNowRepo/" class="md-nav__link">
+        Download PayNow GitHub repo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../createOCIimage/" class="md-nav__link">
+        Create OCI image
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runOCIimage/" class="md-nav__link">
+        Run OCI image
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../useWebApp/" class="md-nav__link">
+        Use the PayNow demo app
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../findSensitiveData/" class="md-nav__link">
+        Find sensitive data in core dump
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Configure rsyslog on your KVM guest
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Configure rsyslog on your KVM guest
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview-of-this-page" class="md-nav__link">
+    Overview of this page
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-rsyslog-gnutls-package" class="md-nav__link">
+    Install rsyslog-gnutls package
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-certification-authority-ca-for-your-rsyslog-service" class="md-nav__link">
+    Create a Certification Authority (CA) for your rsyslog service
+  </a>
+  
+    <nav class="md-nav" aria-label="Create a Certification Authority (CA) for your rsyslog service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#background-information" class="md-nav__link">
+    Background Information
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hands-on-keyboard-time" class="md-nav__link">
+    Hands on keyboard time
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-certificate-and-key-for-your-rsyslog-service" class="md-nav__link">
+    Create certificate and key for your rsyslog service
+  </a>
+  
+    <nav class="md-nav" aria-label="Create certificate and key for your rsyslog service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#process-overview" class="md-nav__link">
+    Process Overview
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creation-time" class="md-nav__link">
+    Creation time
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copy-certificates-and-private-key-to-the-location-specified-in-the-etcrsyslogdserverconf-file" class="md-nav__link">
+    Copy certificates and private key to the location specified in the /etc/rsyslog.d/server.conf file
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restart-your-rsyslog-service" class="md-nav__link">
+    Restart your rsyslog service
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configureRsyslogForHPVS/" class="md-nav__link">
+        Configure rsyslog client certs on the RHEL host
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../createContract/" class="md-nav__link">
+        Create contract for HPVS guest
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../launchHPVSguest/" class="md-nav__link">
+        Launch HPVS guest for PayNow
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../useHPVSWebApp/" class="md-nav__link">
+        Use the HPVS-based PayNow demo app
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tryToFindSensitiveData/" class="md-nav__link">
+        Try to find sensitive data in core dump
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../labCleanup/" class="md-nav__link">
+        Lab Cleanup
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../grep11/">GREP11 with CENA4SEE Lab</a>
+          
+            <label for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          GREP11 with CENA4SEE Lab
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grep11/launchKVMguest/" class="md-nav__link">
+        Launch Ubuntu KVM guest
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grep11/configureRsyslog/" class="md-nav__link">
+        Configure rsyslog on your KVM guest
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grep11/configureRsyslogForGREP11/" class="md-nav__link">
+        Configure rsyslog client certs on the RHEL host
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grep11/createGREP11Contract/" class="md-nav__link">
+        Create Contract for GREP11 Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grep11/launchGREP11guest/" class="md-nav__link">
+        Launch GREP11 Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grep11/configureGrep11TestClient/" class="md-nav__link">
+        Run GREP11 Client code
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grep11/hackMeIfYouCan/" class="md-nav__link">
+        Standard guest vs. SE-enabled HPVS 2.1.x guest
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grep11/labCleanup/" class="md-nav__link">
+        Lab Cleanup
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../localdocbuild/" class="md-nav__link">
+        Locally Building docs
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../print_page/" class="md-nav__link">
+        Print Site
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview-of-this-page" class="md-nav__link">
+    Overview of this page
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-rsyslog-gnutls-package" class="md-nav__link">
+    Install rsyslog-gnutls package
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-certification-authority-ca-for-your-rsyslog-service" class="md-nav__link">
+    Create a Certification Authority (CA) for your rsyslog service
+  </a>
+  
+    <nav class="md-nav" aria-label="Create a Certification Authority (CA) for your rsyslog service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#background-information" class="md-nav__link">
+    Background Information
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hands-on-keyboard-time" class="md-nav__link">
+    Hands on keyboard time
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-certificate-and-key-for-your-rsyslog-service" class="md-nav__link">
+    Create certificate and key for your rsyslog service
+  </a>
+  
+    <nav class="md-nav" aria-label="Create certificate and key for your rsyslog service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#process-overview" class="md-nav__link">
+    Process Overview
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creation-time" class="md-nav__link">
+    Creation time
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copy-certificates-and-private-key-to-the-location-specified-in-the-etcrsyslogdserverconf-file" class="md-nav__link">
+    Copy certificates and private key to the location specified in the /etc/rsyslog.d/server.conf file
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restart-your-rsyslog-service" class="md-nav__link">
+    Restart your rsyslog service
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE/edit/main/docs/lab/paynow/configureRsyslog.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE/raw/main/docs/lab/paynow/configureRsyslog.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+
+<h1 id="configure-rsyslog-service">Configure <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service<a class="headerlink" href="#configure-rsyslog-service" title="Permanent link">&para;</a></h1>
+<p>You will be performing this section from your Ubuntu KVM guest, so switch back to your terminal session for your Ubuntu KVM guest. </p>
+<p>Your window or tab should like like this (unless you customized the profile we provided you):</p>
+<p><img src="../../../images/KVMGuest.png" width="351" height="217" /></p>
+<h2 id="overview-of-this-page">Overview of this page<a class="headerlink" href="#overview-of-this-page" title="Permanent link">&para;</a></h2>
+<p>The HPVS 2.1.4-protected KVM Guest for the PayNow Demo that you will create later in the lab will log its output to an <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service on the Ubuntu KVM guest that you just started at the beginning of the lab. Rsyslog on your Ubuntu KVM guest is currently not set up for this, so you will configure <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> in this section of the lab.</p>
+<div class="admonition note">
+<p class="admonition-title">Logging to IBM Log Analysis on IBM Cloud</p>
+<p>You can also log the output of an HPVS 2.1.4 guest to an <a href="https://cloud.ibm.com/catalog/services/logdna" rel="noopener" target="_blank">IBM Log Analysis instance on IBM Cloud</a>.  That is not covered in this lab but if you are interested in this, it is covered in the <a href="https://www.ibm.com/docs/en/hpvs/2.1.x?topic=servers-logging-hyper-protect-virtual" rel="noopener" target="_blank">product documentation</a>.</p>
+</div>
+<h2 id="install-rsyslog-gnutls-package">Install <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>-gnutls package<a class="headerlink" href="#install-rsyslog-gnutls-package" title="Permanent link">&para;</a></h2>
+<p>The initial installation of Ubuntu installed an <em><abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr></em> service.  Display it with this command:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>rsyslog
+</code></pre></div>
+<details class="- example">
+<summary>Example output</summary>
+<div class="highlight"><pre><span></span><code>● rsyslog.service - System Logging Service
+     Loaded: loaded (/lib/systemd/system/rsyslog.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2023-02-14 00:24:49 UTC; 12min ago
+TriggeredBy: ● syslog.socket
+       Docs: man:rsyslogd(8)
+             man:rsyslog.conf(5)
+             https://www.rsyslog.com/doc/
+   Main PID: 654 (rsyslogd)
+      Tasks: 4 (limit: 2350)
+     Memory: 2.2M
+        CPU: 8ms
+     CGroup: /system.slice/rsyslog.service
+             └─654 /usr/sbin/rsyslogd -n -iNONE
+
+Feb 14 00:24:49 ubuntu2204 systemd[1]: Starting System Logging Service...
+Feb 14 00:24:49 ubuntu2204 systemd[1]: Started System Logging Service.
+Feb 14 00:24:49 ubuntu2204 rsyslogd[654]: imuxsock: Acquired UNIX socket &#39;/run/systemd/journal/syslog&#39; (f&gt;
+Feb 14 00:24:49 ubuntu2204 rsyslogd[654]: rsyslogd&#39;s groupid changed to 115
+Feb 14 00:24:49 ubuntu2204 rsyslogd[654]: rsyslogd&#39;s userid changed to 107
+Feb 14 00:24:49 ubuntu2204 rsyslogd[654]: [origin software=&quot;rsyslogd&quot; swVersion=&quot;8.2112.0&quot; x-pid=&quot;654&quot; x-&gt;
+Feb 14 00:24:49 ubuntu2204 systemd[1]: rsyslog.service: Sent signal SIGHUP to main process 654 (rsyslogd)&gt;
+Feb 14 00:34:49 ubuntu2204 rsyslogd[654]: [origin software=&quot;rsyslogd&quot; swVersion=&quot;8.2112.0&quot; x-pid=&quot;654&quot; x-&gt;
+lines 1-22/22 (END)
+</code></pre></div>
+</details>
+<p>If you're having trouble getting back to a command prompt, press <em>q</em> (for <em>quit</em>). </p>
+<p>The default installation of <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> needs to be modified to allow it to receive messages sent across the network using the TCP protocol and with mutual TLS authentication.</p>
+<p>You'll modify the configuration to allow this.  </p>
+<ol>
+<li>
+<p>Become the root user:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>su<span class="w"> </span>-
+</code></pre></div>
+<details class="- example">
+<summary>Example output when becoming root</summary>
+<div class="highlight"><pre><span></span><code>student@ubuntu2204:~$ sudo su -
+root@ubuntu2204:~# 
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Create the proper configuration file in the <em>/etc/<abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>.d/</em> directory:</p>
+<div class="highlight"><pre><span></span><code>cat &lt;&lt; EOF &gt; /etc/rsyslog.d/server.conf
+# output to journal
+module(load=&quot;omjournal&quot;)
+template(name=&quot;journal&quot; type=&quot;list&quot;) {
+# can add other metadata here
+property(outname=&quot;PRIORITY&quot; name=&quot;pri&quot;)
+property(outname=&quot;SYSLOG_FACILITY&quot; name=&quot;syslogfacility&quot;)
+property(outname=&quot;SYSLOG_IDENTIFIER&quot; name=&quot;app-name&quot;)
+property(outname=&quot;HOSTNAME&quot; name=&quot;hostname&quot;)
+property(outname=&quot;MESSAGE&quot;  name=&quot;msg&quot;)
+}
+
+ruleset(name=&quot;journal-output&quot;) {
+action(type=&quot;omjournal&quot; template=&quot;journal&quot;)
+}
+
+<span class="hll"># make gtls driver the default and set certificate files
+</span><span class="hll">\$DefaultNetstreamDriver &quot;gtls&quot;
+</span><span class="hll">\$DefaultNetstreamDriverCAFile /var/lib/rsyslog/x509/ca.crt
+</span><span class="hll">\$DefaultNetstreamDriverCertFile /var/lib/rsyslog/x509/server.crt
+</span><span class="hll">\$DefaultNetstreamDriverKeyFile /var/lib/rsyslog/x509/server-key.pem
+</span>
+<span class="hll"># load TCP listener
+</span><span class="hll">module(
+</span><span class="hll">load=&quot;imtcp&quot;
+</span><span class="hll">StreamDriver.Name=&quot;gtls&quot;
+</span><span class="hll">StreamDriver.Mode=&quot;1&quot;
+</span><span class="hll">StreamDriver.Authmode=&quot;x509/certvalid&quot;
+</span><span class="hll">)
+</span>
+# start up listener at port 6514
+input(
+type=&quot;imtcp&quot;
+port=&quot;6514&quot;
+ruleset=&quot;journal-output&quot;
+)
+
+EOF
+</code></pre></div>
+<p>We might have had you put the cart before the horse a little bit because there is some work to do to ensure that what you've added to this configuration file actually works! But we did this so that we can point out the sections that are requiring this extra work.</p>
+<div class="admonition tip">
+<p class="admonition-title">Take a look close to the bottom of the file</p>
+<p>There are two sections of interest that are highlighted in the above code block. If these lines could speak to you, they would say, "We are going to receive TCP messages, and we will use TLS to authenticate with the sender of these messages and to enable encryption of the messages, and here are the certificate and keys needed to enable this to work".</p>
+</div>
+<p>For this configuration file to work, you'll need to install a software package to allow <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> to receive TLS-authenticated TCP messages and you'll need to create the certificate and keys and put them where the configuration file says you put them.</p>
+</li>
+<li>
+<p>Prove to yourself that the <em><abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr></em> package has already been installed (by the "bare-bones" default Ubuntu setup):</p>
+<div class="highlight"><pre><span></span><code>apt-cache<span class="w"> </span>policy<span class="w"> </span>rsyslog
+</code></pre></div>
+<details class="- example">
+<summary>Output showing <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> is already installed</summary>
+<div class="highlight"><pre><span></span><code>rsyslog:
+<span class="w">    </span>Installed:<span class="w"> </span><span class="m">8</span>.2112.0-2ubuntu2.2
+<span class="w">    </span>Candidate:<span class="w"> </span><span class="m">8</span>.2112.0-2ubuntu2.2
+<span class="w">    </span>Version<span class="w"> </span>table:
+***<span class="w"> </span><span class="m">8</span>.2112.0-2ubuntu2.2<span class="w"> </span><span class="m">500</span>
+<span class="w">        </span><span class="m">500</span><span class="w"> </span>http://ports.ubuntu.com/ubuntu-ports<span class="w"> </span>jammy-updates/main<span class="w"> </span>s390x<span class="w"> </span>Packages
+<span class="w">        </span><span class="m">500</span><span class="w"> </span>http://ports.ubuntu.com/ubuntu-ports<span class="w"> </span>jammy-security/main<span class="w"> </span>s390x<span class="w"> </span>Packages
+<span class="w">        </span><span class="m">100</span><span class="w"> </span>/var/lib/dpkg/status
+<span class="w">    </span><span class="m">8</span>.2112.0-2ubuntu2<span class="w"> </span><span class="m">500</span>
+<span class="w">        </span><span class="m">500</span><span class="w"> </span>http://ports.ubuntu.com/ubuntu-ports<span class="w"> </span>jammy/main<span class="w"> </span>s390x<span class="w"> </span>Packages
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Prove to yourself that the <em><abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>-gnutls</em> package has not been installed yet:</p>
+<div class="highlight"><pre><span></span><code>apt-cache<span class="w"> </span>policy<span class="w"> </span>rsyslog-gnutls
+</code></pre></div>
+<details class="- example">
+<summary>Output showing <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>-gnutls is not installed</summary>
+<div class="highlight"><pre><span></span><code>rsyslog-gnutls:
+    Installed: (none)
+    Candidate: 8.2112.0-2ubuntu2.2
+    Version table:
+    8.2112.0-2ubuntu2.2 500
+        500 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main s390x Packages
+        500 http://ports.ubuntu.com/ubuntu-ports jammy-security/main s390x Packages
+    8.2112.0-2ubuntu2 500
+        500 http://ports.ubuntu.com/ubuntu-ports jammy/main s390x Packages
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Remedy the situation (not having <em><abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>-gnutls</em> package installed):</p>
+<div class="highlight"><pre><span></span><code>apt-get<span class="w"> </span>install<span class="w"> </span>rsyslog-gnutls
+</code></pre></div>
+<details class="- example">
+<summary>Output from installing <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>-gnutls</summary>
+<div class="highlight"><pre><span></span><code>Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Suggested packages:
+    gnutls-bin
+The following NEW packages will be installed:
+    rsyslog-gnutls
+0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
+Need to get 17.8 kB of archives.
+After this operation, 90.1 kB of additional disk space will be used.
+Get:1 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main s390x rsyslog-gnutls s390x 8.2112.0-2ubuntu2.2 [17.8 kB]
+Fetched 17.8 kB in 0s (71.9 kB/s)         
+Selecting previously unselected package rsyslog-gnutls.
+(Reading database ... 56568 files and directories currently installed.)
+Preparing to unpack .../rsyslog-gnutls_8.2112.0-2ubuntu2.2_s390x.deb ...
+Unpacking rsyslog-gnutls (8.2112.0-2ubuntu2.2) ...
+Setting up rsyslog-gnutls (8.2112.0-2ubuntu2.2) ...
+Scanning processes...                                                                                     
+Scanning linux images...                                                                                  
+
+Running kernel seems to be up-to-date (ABI upgrades are not detected).
+
+No services need to be restarted.
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+</code></pre></div>
+</details>
+</li>
+<li>
+<p><em>Optional</em>: Repeat <code>apt-cache policy rsyslog-gnutls</code> to see that the package is now installed:</p>
+<div class="highlight"><pre><span></span><code>apt-cache<span class="w"> </span>policy<span class="w"> </span>rsyslog-gnutls
+</code></pre></div>
+<details class="- example">
+<summary>Output showing that <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>-gnutls is installed</summary>
+<div class="highlight"><pre><span></span><code>rsyslog-gnutls:
+    Installed: 8.2112.0-2ubuntu2.2
+    Candidate: 8.2112.0-2ubuntu2.2
+    Version table:
+*** 8.2112.0-2ubuntu2.2 500
+        500 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main s390x Packages
+        500 http://ports.ubuntu.com/ubuntu-ports jammy-security/main s390x Packages
+        100 /var/lib/dpkg/status
+    8.2112.0-2ubuntu2 500
+        500 http://ports.ubuntu.com/ubuntu-ports jammy/main s390x Packages
+</code></pre></div>
+</details>
+</li>
+</ol>
+<h2 id="create-a-certification-authority-ca-for-your-rsyslog-service">Create a Certification Authority (<abbr title="certification authority">CA</abbr>) for your <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service<a class="headerlink" href="#create-a-certification-authority-ca-for-your-rsyslog-service" title="Permanent link">&para;</a></h2>
+<h3 id="background-information">Background Information<a class="headerlink" href="#background-information" title="Permanent link">&para;</a></h3>
+<p>The TLS authentication for communication with the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service requires an X509 certificate and private key.  An X509 certificate contains a public key that goes with the private key.  An X509 certificate also contains metadata including the identification of the holder of the certificate, the purposes the certificate is intended for, and more. Think of a public key as a yummy cake baked with yellow dough, it's moist and tastes pretty good- but the X509 certificate wrapped around it is like the chocolate icing and the rainbow sprinkles- it's delicious!  (Break time!!) If you haven't given up on the analogy, think of the private key as the secret recipe to bake the cake that nobody but you knows about.  For a slightly more technical (but still just scratching the surface), but perhaps not as tasty, description of public key cryptography check out this <a href="https://ibm-wsc.github.io/hyper-protect-virtual-servers-workshop/grep11-lab/lab-exercise3/#public-key-cryptography-in-simple-terms" rel="noopener" target="_blank">description from one of our earlier labs</a>.</p>
+<p>An X509 certificate needs to be created and signed by a certification authority (<abbr title="certification authority">CA</abbr>). </p>
+<div class="admonition info">
+<p class="admonition-title">The authority prefers certification</p>
+<p>Most people call a <abbr title="certification authority">CA</abbr> a "certificate authority" but actually the Internet Request for Comment (RFC) that defines the X509 standard uses the term <a href="https://www.rfc-editor.org/rfc/rfc5280#section-3" rel="noopener" target="_blank">"<em>certification</em> authority"</a>. Imagine that! <img alt="😄" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f604.svg" title=":smile:" /></p>
+</div>
+<p>For the lab you will create your own <abbr title="certification authority">CA</abbr>- what is often called a "self-signed" <abbr title="certification authority">CA</abbr>. A utility called <code>openssl</code> can be used to do this.  A <abbr title="certification authority">CA</abbr> signs certificates that it creates. In order to digitally sign something, you use a private key.  In simple terms, a publicly known algorithm- which can be poked at and prodded at by researchers and academics in an effort to prove its security or to hopefully win a large bounty by proving its insecurity- is run against a private key that nobody else knows, and produces a unique output, or signature.  This signature can be verified algorithmically by anybody who holds the private key's corresponding public key.</p>
+<details class="- question">
+<summary>Who holds the public key?</summary>
+<p>That's right, the public <img alt="😲" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f632.svg" title=":astonished:" />! It is safe to share your public key with others- it is your private key that you must protect from loss, theft or exposure.</p>
+</details>
+<p>If you receive a piece of digital information that is signed, and the public key that corresponds to the private key used to create the signature, you can prove that whoever signed this had to have held the private key in order to create the signature.  Okay, cool.  But what if a malicious actor had the private key and gave you the public key? Would you feel so great knowing you verified the signer if they were malicious?  No!  That is where a <abbr title="certification authority">CA</abbr> comes in. The idea is that the following process occurs:</p>
+<ol>
+<li>An individual or organization submits a request for a certificate (<abbr title="certificate signing request">CSR</abbr>) with their public key.</li>
+<li>The <abbr title="certification authority">CA</abbr> takes the effort to verify that the owner of the public key is a good actor and is who they say they are and can be trusted.</li>
+<li>The <abbr title="certification authority">CA</abbr> creates the certificate that holds the public key, essentially stating "I am a <abbr title="certification authority">CA</abbr> and you can trust me when I say that the holder of this certificate that I just signed is a good person and they are who they say they are, so you can trust this certificate and anything it signs".</li>
+</ol>
+<details class="question">
+<summary>How is that working out for us?</summary>
+<p>The X509 Certification Authority protocol is outstanding in theory. In practice its vulnerability lies in the need for the holders of private keys to protect them with diligence.  Losing your private key is akin to losing your wallet or your house key or your drivers license or ... you get the picture.  Attacks such as <a href="https://www.google.com/search?q=software+supply+chain+attacks" rel="noopener" target="_blank">software supply chain attacks</a> are often accomplished by malicious actors who have stolen others' private keys.  This is why initiatives like <abbr title="Confidential computing is a cloud computing technology that isolates sensitive data in a protected CPU enclave during processing. The contents of the enclave—the data being processed, and the techniques that are used to process it—are accessible only to authorized programming code, and are invisible and unknowable to anything or anyone else, including the cloud provider.">Confidential Computing</abbr> and technologies like Hardware Security Modules are important.</p>
+</details>
+<p>In real world practice, for external, customer-facing applications an enterprise will ask a well-known and trusted third-party <abbr title="certification authority">CA</abbr> to issue its certificates. In many cases an enterprise may run its own internal <abbr title="certification authority">CA</abbr> for certificates for internal applications.   In this lab you're going to create your own CAs.  Hopefully, you trust yourself <img alt="🤞" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f91e.svg" title=":fingers_crossed:" /> enough to feel comfortable with this...</p>
+<h3 id="hands-on-keyboard-time">Hands on keyboard time<a class="headerlink" href="#hands-on-keyboard-time" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Get out of root for the moment, as you'll be doing this certificate work with your regular authority:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">exit</span>
+</code></pre></div>
+<details class="- example">
+<summary>Output when getting out of root</summary>
+<div class="highlight"><pre><span></span><code>root@ubuntu2204:~# exit
+logout
+</code></pre></div>
+</details>
+<p>Your prompt should now end with a dollar sign ($) indicating you are operating with your regular authority as userid <em>student</em>, as opposed to the hash sign (#) prompt that you had when you were operating with <em>root</em> authority.  </p>
+</li>
+<li>
+<p>Run this command sequence:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>rsyslogWork<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>rsyslogWork
+</code></pre></div>
+<p>It accomplishes the following:</p>
+<ol>
+<li>Ensures you are in your home directory (which you already are in unless you wandered off on your own)</li>
+<li>Creates a fresh directory that you'll work in for this activity</li>
+<li>Switches to this new directory</li>
+</ol>
+</li>
+<li>
+<p>Create a private key. It will be the private key your self-signed <abbr title="certification authority">CA</abbr> will use so call it <code>ca-key.pem</code>:</p>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>genrsa<span class="w"> </span>-out<span class="w"> </span>ca-key.pem<span class="w"> </span><span class="m">4096</span>
+</code></pre></div>
+</li>
+<li>
+<p>Run the following command to create a configuration file for your <abbr title="certification authority">CA</abbr></p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; ca.cnf</span>
+<span class="s">[ req ]</span>
+<span class="s">default_bits = 2048</span>
+<span class="s">default_md = sha256</span>
+<span class="s">prompt = no</span>
+<span class="s">encrypt_key = no</span>
+<span class="s">distinguished_name = dn</span>
+
+<span class="s">[ dn ]</span>
+<span class="s">C = US</span>
+<span class="s">O = IBM WSC zSystems and LinuxONE</span>
+<span class="s">CN = CA for rsyslog for SE-enabled KVM guests</span>
+
+<span class="s">EOF</span>
+</code></pre></div>
+<div class="admonition question">
+<p class="admonition-title">Why are we using .cnf configuration files?</p>
+<p>Some <code>openssl</code> commands have a tendency to ask a bunch of questions which can be tedious and error-prone when typing the answers, but you can avoid that by creating a configuration file that provides the answers and thus avoids the questions.  You'll see this pattern throughout the lab.</p>
+</div>
+</li>
+<li>
+<p>A <abbr title="certification authority">CA</abbr> itself has a certificate that it can send or make available to others (others being people, or computer processes, or whomever). You don't have one yet- all you have is a private key. A certificate signing request (<abbr title="certificate signing request">CSR</abbr>) can be created from a private key- it derives the public key from the private key and creates an object called a Certificate Signing Request (<abbr title="certificate signing request">CSR</abbr>) that contians the public key and other identifying information and can be sent to a <abbr title="certification authority">CA</abbr>. Create your <abbr title="certificate signing request">CSR</abbr>:</p>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>req<span class="w"> </span>-config<span class="w"> </span>ca.cnf<span class="w"> </span>-key<span class="w"> </span>ca-key.pem<span class="w"> </span>-new<span class="w"> </span>-out<span class="w"> </span>ca-req.csr
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Certificate Signing Request (<abbr title="certificate signing request">CSR</abbr>)</p>
+<p>The RSA algorithm is a magical mystery tour to most mortals, but the algorithm is such that the public key can be extracted from a private key. You will use the private key as input to a command that will create what is known as a <abbr title="certificate signing request">CSR</abbr>. A <abbr title="certificate signing request">CSR</abbr> is a file that contains the public key (the yellow dough) and other information (the icing and the sprinkles) that you then send to the <abbr title="certification authority">CA</abbr> and say "please, please, I'm a good person and you can trust me and please create a real certificate for me".  A <abbr title="certificate signing request">CSR</abbr> is like a caterpillar <img alt="🐛" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f41b.svg" title=":bug:" /> and the resulting certificate is like a beautiful butterfly <img alt="🦋" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f98b.svg" title=":butterfly:" />.</p>
+</div>
+<p>Now you have a certificate signing request. </p>
+<p>So you normally send a <abbr title="certificate signing request">CSR</abbr> to a <abbr title="certification authority">CA</abbr> to sign.  There's a "chicken or the egg" problem here.  If a <abbr title="certification authority">CA</abbr> needs a Certificate,  and a Certificate has to be created by another <abbr title="certification authority">CA</abbr>, then how did that <abbr title="certification authority">CA</abbr> get created?  By another <abbr title="certification authority">CA</abbr>?  Yes, possibly.  But, does the chain go on forever?  No-  at some point in the chain the <abbr title="certification authority">CA</abbr>'s certificate was signed by its own private key, and not a higher <abbr title="certification authority">CA</abbr>.  This is the root of the chain, and it is self-signed. In real life, a chain could be many layers deep, but it eventually has to stop.  Think of it like a management chain in an organization's org chart-  there are first-line managers, second-line managers, and so forth up to the CEO.  The Root certificate is like the CEO.  </p>
+</li>
+<li>
+<p>Since you're the boss of your lab, and the worker, you don't need a big long chain of <abbr title="certification authority">CA</abbr>'s.  Just one will do fine.  So you'll build a single root, or self-signed, <abbr title="certification authority">CA</abbr>, and you'll like it!  <img alt="😉" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f609.svg" title=":wink:" />:</p>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-signkey<span class="w"> </span>ca-key.pem<span class="w"> </span>-in<span class="w"> </span>ca-req.csr<span class="w"> </span>-req<span class="w"> </span>-days<span class="w"> </span><span class="m">365</span><span class="w"> </span>-out<span class="w"> </span>ca.crt
+</code></pre></div>
+<details class="- example">
+<summary>Output from creating self-signed <abbr title="certification authority">CA</abbr> certificate</summary>
+<div class="highlight"><pre><span></span><code>Certificate request self-signature ok
+subject=C = US, O = IBM WSC zSystems and LinuxONE, CN = CA for rsyslog for SE-enabled KVM guests
+</code></pre></div>
+</details>
+</li>
+</ol>
+<h2 id="create-certificate-and-key-for-your-rsyslog-service">Create certificate and key for your <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service<a class="headerlink" href="#create-certificate-and-key-for-your-rsyslog-service" title="Permanent link">&para;</a></h2>
+<h3 id="process-overview">Process Overview<a class="headerlink" href="#process-overview" title="Permanent link">&para;</a></h3>
+<p>In real life, a <abbr title="certification authority">CA</abbr> will probably issue lots of certificates- it's how they make money.  Your <abbr title="certification authority">CA</abbr> is only going to create a couple:</p>
+<ul>
+<li>a certificate for the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service which you will create next.</li>
+<li>a certificate for the client (your future HPVS KVM guest for the PayNow demo) of the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service, which you will create later in the lab.  </li>
+</ul>
+<p>The process is the same as what you just went through for creating your <abbr title="certification authority">CA</abbr> for steps 1-3 below but differs slightly for step 4:</p>
+<ol>
+<li>Create a private key</li>
+<li>Create a configuration file to answer questions ahead of time</li>
+<li>Use the key and the config file to create a <abbr title="certificate signing request">CSR</abbr></li>
+<li>This time you'll have your "self-signed" <abbr title="certification authority">CA</abbr> create and sign the certificate.  </li>
+</ol>
+<h3 id="creation-time">Creation time<a class="headerlink" href="#creation-time" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Create the private key:</p>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>genrsa<span class="w"> </span>-out<span class="w"> </span>server-key.pem<span class="w"> </span><span class="m">4096</span>
+</code></pre></div>
+</li>
+<li>
+<p>Create the configuration file to preemptively answer the inevitable questions.  We've used a command pipe to extract your guest's IP address into a variable and then we use that variable in two places in the configuration file.  If you borrow this technique for your system please ensure that this command pipe works on your system:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">ip</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>ip<span class="w"> </span>route<span class="w"> </span>get<span class="w"> </span><span class="m">1</span>.1.1.1<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-oP<span class="w"> </span><span class="s1">&#39;src \K[^ ]+&#39;</span><span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; server.cnf</span>
+<span class="s">[ req ]</span>
+<span class="s">default_bits = 2048</span>
+<span class="s">default_md = sha256</span>
+<span class="s">prompt = no</span>
+<span class="s">encrypt_key = no</span>
+<span class="s">distinguished_name = dn</span>
+
+<span class="s">[ server ]</span>
+<span class="s">subjectAltName = IP:${ip}</span>
+<span class="s">extendedKeyUsage = serverAuth</span>
+
+<span class="s">[ dn ]</span>
+<span class="s">C = US</span>
+<span class="s">O = Rsyslog Service</span>
+<span class="s">CN = ${ip}</span>
+<span class="s">EOF</span>
+</code></pre></div>
+<p><em>Optional</em>: You know you can't resist looking at the output file to see if that IP magic worked, so just do it:</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>server.cnf
+</code></pre></div>
+</li>
+<li>
+<p>Create the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service's <abbr title="certificate signing request">CSR</abbr>:</p>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>req<span class="w"> </span>-config<span class="w"> </span>server.cnf<span class="w"> </span>-key<span class="w"> </span>server-key.pem<span class="w"> </span>-new<span class="w"> </span>-out<span class="w"> </span>server-req.csr
+</code></pre></div>
+</li>
+<li>
+<p>"Send" the request to your "self-signed" <abbr title="certification authority">CA</abbr> in order to create the certificate:</p>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-req<span class="w"> </span>-in<span class="w"> </span>server-req.csr<span class="w"> </span>-days<span class="w"> </span><span class="m">365</span><span class="w"> </span>-CA<span class="w"> </span>ca.crt<span class="w"> </span>-CAkey<span class="w"> </span>ca-key.pem<span class="w"> </span>-CAcreateserial<span class="w"> </span>-extfile<span class="w"> </span>server.cnf<span class="w"> </span>-extensions<span class="w"> </span>server<span class="w"> </span>-out<span class="w"> </span>server.crt
+</code></pre></div>
+<details class="- example">
+<summary>Example output from certificate creation</summary>
+<div class="highlight"><pre><span></span><code>Certificate request self-signature ok
+subject=C = US, O = Rsyslog Test Server, CN = 172.16.0.42
+</code></pre></div>
+</details>
+<ol>
+<li>
+<p>Run this command to display the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service's certificate in a form that a human can comprehend:</p>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-noout<span class="w"> </span>-text<span class="w"> </span>-in<span class="w"> </span>server.crt<span class="w"> </span>
+</code></pre></div>
+<details class="- example">
+<summary>Example human-readable display of certificate</summary>
+<div class="highlight"><pre><span></span><code>Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            72:1b:54:77:9d:c9:28:b0:7c:f0:b8:d6:dc:24:e1:b1:60:fa:59:f7
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C = US, O = IBM WSC zSystems and LinuxONE, CN = CA for rsyslog for SE-enabled KVM guests
+        Validity
+            Not Before: Feb 14 01:18:18 2023 GMT
+            Not After : Feb 14 01:18:18 2024 GMT
+        Subject: C = US, O = Rsyslog Test Server, CN = 172.16.0.42
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (4096 bit)
+                Modulus:
+                    00:aa:ed:d0:83:3c:65:8c:6c:4d:f5:bc:bc:56:e9:
+                    3c:57:ab:b8:3c:29:14:2a:73:d6:ca:a0:7e:0c:00:
+                    fc:4f:cc:28:88:1c:01:e9:26:9e:5e:0b:60:5e:ee:
+                    69:f3:c7:c8:f9:26:19:71:a7:1a:c1:54:3a:3d:6b:
+                    01:4a:e2:20:ab:89:a5:31:a7:f4:a2:39:71:30:21:
+                    29:17:4f:04:15:73:1d:b7:b6:c2:81:c2:f1:d9:a8:
+                    29:d8:ca:c9:d6:97:f3:37:8e:17:9d:a7:b1:30:c8:
+                    5c:1c:be:e2:75:5e:9f:88:08:76:54:5a:ee:40:d4:
+                    90:26:2b:74:35:71:a2:d1:4d:86:db:46:bf:18:38:
+                    0a:fb:e4:1a:ab:ef:f6:49:1e:7b:bc:76:71:3a:b7:
+                    5e:e8:c0:c7:3d:db:74:2d:87:20:5b:e6:5e:27:67:
+                    1a:e9:e1:ea:20:b8:d2:fc:5e:2d:79:c0:e5:46:22:
+                    cf:6e:26:54:c6:00:d1:d0:05:46:0b:9d:97:8c:cb:
+                    68:e7:a4:b2:9a:47:21:67:e5:56:32:cb:ba:c3:0e:
+                    c8:f3:f4:17:02:ca:ee:ac:37:0e:f3:40:cf:a4:56:
+                    98:9d:b3:e3:e2:c2:43:d7:3b:a5:c1:09:92:2b:e9:
+                    fb:5b:a6:73:d0:83:97:c9:70:7f:f8:84:59:b3:b6:
+                    4f:e8:40:98:92:74:5c:8c:9f:db:27:7f:94:4b:00:
+                    a6:cf:06:9b:0f:a9:f4:35:17:01:e6:d6:6d:c2:78:
+                    f8:41:59:f6:f6:f2:11:d1:52:28:b5:06:78:ba:db:
+                    12:f2:3f:c6:ef:14:64:cd:85:49:ce:8e:fc:91:b8:
+                    2a:c3:25:6a:cc:3c:46:9d:e8:10:aa:30:fd:3b:55:
+                    3a:26:97:00:8b:62:c4:d6:89:f0:36:68:13:63:19:
+                    ba:18:f4:0c:4f:bc:5d:34:c8:24:d9:8e:2f:4b:e5:
+                    d9:dd:9f:39:8d:00:54:fe:d9:00:d7:f1:71:6b:8b:
+                    9c:ed:66:de:6a:26:3f:48:cb:3a:4a:fc:9c:50:12:
+                    f5:da:dc:e7:e5:08:6c:0a:6d:60:73:cf:e6:b2:3e:
+                    06:59:98:00:2c:97:25:38:01:50:2e:c2:c6:35:fa:
+                    e4:d5:20:01:fb:9d:ca:4c:78:3f:7a:ad:c7:5d:db:
+                    5e:04:c7:0f:e2:9f:a1:e9:27:f8:f2:a9:9f:00:07:
+                    58:68:c9:3f:d6:41:5b:46:90:f5:26:6a:04:2c:cf:
+                    44:c9:f8:1e:5d:38:95:95:71:e2:30:57:d5:83:41:
+                    73:a4:00:88:6b:99:84:71:d3:60:ce:32:9c:bb:3b:
+                    39:46:a7:77:fd:7e:ed:1c:81:02:e3:da:83:85:2c:
+                    c9:60:c7
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Subject Alternative Name: 
+                IP Address:172.16.0.42
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication
+            X509v3 Subject Key Identifier: 
+                CC:01:AD:BA:8C:5F:31:B9:58:A9:2D:4E:05:C7:B1:B7:82:10:90:05
+            X509v3 Authority Key Identifier: 
+                DirName:/C=US/O=IBM WSC zSystems and LinuxONE/CN=CA for rsyslog for SE-enabled KVM guests
+                serial:0B:4A:84:C6:84:00:F8:7F:B7:0A:F0:82:FD:4E:C1:F2:99:C2:63:BC
+    Signature Algorithm: sha256WithRSAEncryption
+    Signature Value:
+        4c:a3:7a:76:21:0d:8f:db:e9:3a:a6:3f:6b:3a:9a:5d:bb:ac:
+        7e:75:5c:ed:69:3c:b9:2b:6e:84:1c:fc:1f:56:47:ff:b3:38:
+        92:fe:0f:5b:2c:87:32:0e:8f:60:c3:33:ff:d5:89:26:61:9a:
+        7f:ce:ae:f3:6b:cc:77:1b:4d:d0:59:5f:d9:09:e1:fa:21:5c:
+        6a:6f:b3:71:45:10:98:4f:6e:fe:08:7f:31:42:e6:dd:83:9a:
+        11:de:2d:eb:b5:b9:40:4d:80:86:7f:f8:88:cc:87:60:38:d4:
+        e2:9a:89:9d:ec:43:61:ad:34:96:38:93:ca:4a:63:8d:cc:b7:
+        33:98:33:e2:63:c1:7b:04:98:80:b3:e1:54:df:f6:24:57:82:
+        98:c4:e8:64:8a:3b:d2:af:65:56:d7:97:c0:c3:dc:45:06:c9:
+        4f:ce:5b:d3:49:7f:2b:28:83:27:57:b9:bf:1a:46:81:68:4c:
+        6b:85:d7:db:f0:d4:25:7b:3d:92:63:d0:91:b5:ec:df:cb:e4:
+        6b:6c:b0:c4:47:3c:c6:91:64:33:f6:11:6b:5b:f7:70:bd:e1:
+        71:ef:a6:28:57:b2:a0:e0:2e:ef:ab:34:7a:c4:b8:24:18:88:
+        5f:92:0b:92:ca:14:a2:b6:62:ab:2c:e6:c2:bb:27:91:54:de:
+        84:56:1e:ed:f3:7d:b7:e8:34:b4:78:76:2c:1f:af:d9:61:b7:
+        6e:59:fa:e8:33:38:b4:5e:30:69:71:06:4d:df:fe:cb:46:03:
+        ba:69:7c:85:3c:f0:73:f7:d8:4e:b0:39:aa:79:72:1f:52:2e:
+        05:cb:81:9f:e3:62:6b:66:55:7c:92:13:21:62:dc:fd:9d:8f:
+        f8:77:dd:d2:b6:61:c4:8f:fa:fa:a0:74:95:fa:9d:f2:5d:d2:
+        7d:d4:41:95:d8:41:50:99:7d:80:3d:36:28:75:28:62:67:05:
+        11:a3:95:c7:85:8f:20:37:d6:b8:b5:8a:f6:8a:e3:d0:85:6e:
+        cd:2a:41:f9:e7:48:bb:b0:b7:54:dc:6b:df:c9:a2:5e:f7:61:
+        c2:3a:4c:82:7e:6b:e9:82:cf:c6:3a:7f:a2:ae:39:00:d9:ac:
+        bf:8a:84:72:e6:ae:c1:75:e0:92:60:5e:cd:4b:64:1f:5a:44:
+        3a:09:15:2c:95:b8:c3:ca:44:ec:79:1e:d5:96:bc:20:9a:7a:
+        cf:6b:e4:cf:e0:91:f2:c2:e6:fd:f1:8a:66:c4:ae:eb:90:90:
+        f4:ec:64:66:9a:9a:11:8d:11:ab:ef:05:d2:42:fb:e5:2c:78:
+        8a:db:16:b7:96:ae:06:b8:42:b4:c7:23:26:b2:9a:c2:85:d8:
+        6b:6d:d8:4e:84:0e:ab:a1
+</code></pre></div>
+</details>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="copy-certificates-and-private-key-to-the-location-specified-in-the-etcrsyslogdserverconf-file">Copy certificates and private key to the location specified in the /etc/<abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>.d/server.conf file<a class="headerlink" href="#copy-certificates-and-private-key-to-the-location-specified-in-the-etcrsyslogdserverconf-file" title="Permanent link">&para;</a></h2>
+<p>The configuration file you created in <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> a little while ago (near the top of this page) specified <code>/var/lib/rsyslog/x509</code> as the directory to hold some files. You just created these files in your <em>rsyslogWork</em> directory, so now create the <em>/var/lib/<abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>/x509</em> directory and copy the files in there:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/var/lib/rsyslog/x509<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="k">for</span><span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span>ca.crt<span class="w"> </span>server.crt<span class="w"> </span>server-key.pem<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>sudo<span class="w"> </span>cp<span class="w"> </span>-ipv<span class="w"> </span><span class="si">${</span><span class="nv">file</span><span class="si">}</span><span class="w"> </span>/var/lib/rsyslog/x509/.<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="se">\</span>
+<span class="k">done</span><span class="w"> </span><span class="se">\</span>
+<span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span>syslog:syslog<span class="w"> </span>/var/lib/rsyslog
+</code></pre></div>
+<details class="- example">
+<summary>Output from copying files</summary>
+<div class="highlight"><pre><span></span><code>&#39;ca.crt&#39; -&gt; &#39;/var/lib/rsyslog/x509/./ca.crt&#39;
+&#39;server.crt&#39; -&gt; &#39;/var/lib/rsyslog/x509/./server.crt&#39;
+&#39;server-key.pem&#39; -&gt; &#39;/var/lib/rsyslog/x509/./server-key.pem&#39;
+</code></pre></div>
+</details>
+<h2 id="restart-your-rsyslog-service">Restart your <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service<a class="headerlink" href="#restart-your-rsyslog-service" title="Permanent link">&para;</a></h2>
+<p>You'll truly know that you configured everything correctly later in the lab when you try to write messages to it from your yet-to-be-created HPVS KVM guest for the PayNow demo. But for now, you will verify it somewhat by taking a before and after snapshot of which TCP ports on your system are listening.  </p>
+<p>Run this command, and then in a moment you'll repeat the command.  What you should notice here is the absence of port 6514 in the output:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>lsof<span class="w"> </span>-nP<span class="w"> </span>-iTCP<span class="w"> </span>-sTCP:LISTEN
+</code></pre></div>
+<details class="- example">
+<summary>Output showing listening TCP ports</summary>
+<div class="highlight"><pre><span></span><code>COMMAND   PID            USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+systemd-r 602 systemd-resolve   14u  IPv4  15472      0t0  TCP 127.0.0.53:53 (LISTEN)
+sshd      709            root    3u  IPv4  16871      0t0  TCP *:22 (LISTEN)
+sshd      709            root    4u  IPv6  16882      0t0  TCP *:22 (LISTEN)
+</code></pre></div>
+</details>
+<p>You are now ready to restart the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service on your machine:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>rsyslog
+</code></pre></div>
+<p>No news is good news on the above command- it's pretty quiet when it works.</p>
+<p>Display the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service's status and notice it hasn't been active very long, since it was just restarted:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>rsyslog
+</code></pre></div>
+<p><em>Reminder</em>:  <em>q</em> gets you back to a command prompt.</p>
+<details class="- example">
+<summary>Output showing <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> status after restart</summary>
+<div class="highlight"><pre><span></span><code>● rsyslog.service - System Logging Service
+     Loaded: loaded (/lib/systemd/system/rsyslog.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2023-02-14 01:30:47 UTC; 13s ago
+TriggeredBy: ● syslog.socket
+       Docs: man:rsyslogd(8)
+             man:rsyslog.conf(5)
+             https://www.rsyslog.com/doc/
+   Main PID: 1439 (rsyslogd)
+      Tasks: 9 (limit: 2350)
+     Memory: 1.8M
+        CPU: 1.008s
+     CGroup: /system.slice/rsyslog.service
+             └─1439 /usr/sbin/rsyslogd -n -iNONE
+
+Feb 14 01:30:46 ubuntu2204 systemd[1]: Starting System Logging Service...
+Feb 14 01:30:47 ubuntu2204 rsyslogd[1439]: imuxsock: Acquired UNIX socket &#39;/run/systemd/journal/syslog&#39; (&gt;
+Feb 14 01:30:47 ubuntu2204 rsyslogd[1439]: rsyslogd&#39;s groupid changed to 115
+Feb 14 01:30:47 ubuntu2204 rsyslogd[1439]: rsyslogd&#39;s userid changed to 107
+Feb 14 01:30:47 ubuntu2204 rsyslogd[1439]: [origin software=&quot;rsyslogd&quot; swVersion=&quot;8.2112.0&quot; x-pid=&quot;1439&quot; &gt;
+Feb 14 01:30:47 ubuntu2204 systemd[1]: Started System Logging Service.
+</code></pre></div>
+</details>
+<p>Now when you rerun the command to see the listening TCP ports, seeing 6514 in the output is an indication of success.  If you don't see 6514 in the output, it's time to make those instructors earn their keep:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>lsof<span class="w"> </span>-nP<span class="w"> </span>-iTCP<span class="w"> </span>-sTCP:LISTEN
+</code></pre></div>
+<details class="- example">
+<summary>Expected output showing port 6514 is listening</summary>
+<div class="highlight"><pre><span></span><code>COMMAND    PID            USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+systemd-r  602 systemd-resolve   14u  IPv4  15472      0t0  TCP 127.0.0.53:53 (LISTEN)
+sshd       709            root    3u  IPv4  16871      0t0  TCP *:22 (LISTEN)
+sshd       709            root    4u  IPv6  16882      0t0  TCP *:22 (LISTEN)
+rsyslogd  1439          syslog    6u  IPv4  22401      0t0  TCP *:6514 (LISTEN)
+rsyslogd  1439          syslog    7u  IPv6  22402      0t0  TCP *:6514 (LISTEN)
+</code></pre></div>
+</details>
+<p><strong>Switch to your terminal tab or window for your session with the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host, as you will start the next section of the lab working on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host.</strong></p>
+<p>Please proceed to the next section of the lab by clicking the <em>Next</em> link on the bottom right of this page.</p>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 25, 2023</span>
+      
+        <br>
+        Created:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 14, 2023</span>
+      
+    
+  </small>
+</div>
+
+
+  
+
+
+
+  <form class="md-feedback" name="feedback" hidden>
+    <fieldset>
+      <legend class="md-feedback__title">
+        Was this page helpful?
+      </legend>
+      <div class="md-feedback__inner">
+        <div class="md-feedback__list">
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page was helpful" data-md-value="1">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 21.35-1.45-1.32C5.4 15.36 2 12.27 2 8.5 2 5.41 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.08C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53L12 21.35Z"/></svg>
+            </button>
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page could be improved" data-md-value="0">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 21.35-1.45-1.32C5.4 15.36 2 12.27 2 8.5 2 5.41 4.42 3 7.5 3c.67 0 1.32.12 1.94.33L13 9.35l-4 5 3 7M16.5 3C19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53L12 21.35l-1-7 4.5-5-2.65-5.08C13.87 3.47 15.17 3 16.5 3Z"/></svg>
+            </button>
+          
+        </div>
+        <div class="md-feedback__note">
+          
+            <div data-md-value="1" hidden>
+              
+              
+                
+              
+              Thanks for your feedback!
+            </div>
+          
+            <div data-md-value="0" hidden>
+              
+              
+                
+              
+              Thanks for your feedback! Help us improve this page by using our <a href="https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE/issues/new/?title=[Feedback]+Configure%20rsyslog%20on%20your%20KVM%20guest+-+/lab/paynow/configureRsyslog/" target="_blank" rel="noopener">feedback form</a>.
+            </div>
+          
+        </div>
+      </div>
+    </fieldset>
+  </form>
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../findSensitiveData/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Find sensitive data in core dump" rel="prev">
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <div class="md-ellipsis">
+                <span class="md-footer__direction">
+                  Previous
+                </span>
+                Find sensitive data in core dump
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../configureRsyslogForHPVS/" class="md-footer__link md-footer__link--next" aria-label="Next: Configure rsyslog client certs on the RHEL host" rel="next">
+            <div class="md-footer__title">
+              <div class="md-ellipsis">
+                <span class="md-footer__direction">
+                  Next
+                </span>
+                Configure rsyslog client certs on the RHEL host
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 IBM – <a href="#__consent">Change cookie settings</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/ibm-wsc" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://hub.docker.com/u/s390x" target="_blank" rel="noopener" title="hub.docker.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+  
+    
+  
+
+
+  
+    
+  
+
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make the documentation as good as possible.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="analytics" checked>
+          <span class="task-list-indicator"></span>
+          Google Analytics
+        </label>
+      </li>
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="github" checked>
+          <span class="task-list-indicator"></span>
+          GitHub
+        </label>
+      </li>
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["header.autohide", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.footer", "search.share", "navigation.indexes", "announce.dismiss", "content.tabs.link", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.6df46069.min.js"></script>
+      
+        <script src="../../../js/print-site.js"></script>
+      
+    
+  </body>
+</html>

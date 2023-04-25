@@ -1,0 +1,2330 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ibm-wsc.github.io/ConfidentialComputingOnLinuxONE/lab/paynow/launchHPVSguest/">
+      
+      
+        <link rel="prev" href="../createContract/">
+      
+      
+        <link rel="next" href="../useHPVSWebApp/">
+      
+      <link rel="icon" href="../../../images/HPVS2.1.xGraphic.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
+    
+    
+      
+        <title>Launch HPVS guest for PayNow - Confidential Computing LinuxONE Workshop</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0d440cfe.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/print-site-enum-headings1.css">
+    
+      <link rel="stylesheet" href="../../../css/print-site-enum-headings2.css">
+    
+      <link rel="stylesheet" href="../../../css/print-site-enum-headings3.css">
+    
+      <link rel="stylesheet" href="../../../css/print-site-enum-headings4.css">
+    
+      <link rel="stylesheet" href="../../../css/print-site-enum-headings5.css">
+    
+      <link rel="stylesheet" href="../../../css/print-site-enum-headings6.css">
+    
+      <link rel="stylesheet" href="../../../css/print-site.css">
+    
+      <link rel="stylesheet" href="../../../css/print-site-material.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-GYNTJ48K9Y"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-GYNTJ48K9Y",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-GYNTJ48K9Y",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>var consent;"undefined"==typeof __md_analytics||(consent=__md_get("__consent"))&&consent.analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="yellow">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#launch-hpvs-guest-for-paynow" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Confidential Computing LinuxONE Workshop" class="md-header__button md-logo" aria-label="Confidential Computing LinuxONE Workshop" data-md-component="logo">
+      
+  <img src="../../../images/HPVS2.1.xGraphic.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Confidential Computing LinuxONE Workshop
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Launch HPVS guest for PayNow
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="yellow"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="yellow"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../access/" class="md-tabs__link">
+      Lab Access
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../" class="md-tabs__link md-tabs__link--active">
+        PayNow Lab
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../grep11/" class="md-tabs__link">
+        GREP11 with CENA4SEE Lab
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../localdocbuild/" class="md-tabs__link">
+      Locally Building docs
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../print_page/" class="md-tabs__link">
+      Print Site
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Confidential Computing LinuxONE Workshop" class="md-nav__button md-logo" aria-label="Confidential Computing LinuxONE Workshop" data-md-component="logo">
+      
+  <img src="../../../images/HPVS2.1.xGraphic.png" alt="logo">
+
+    </a>
+    Confidential Computing LinuxONE Workshop
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../access/" class="md-nav__link">
+        Lab Access
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../">PayNow Lab</a>
+          
+            <label for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          PayNow Lab
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../launchKVMguest/" class="md-nav__link">
+        Launch Ubuntu KVM guest
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../downloadPayNowRepo/" class="md-nav__link">
+        Download PayNow GitHub repo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../createOCIimage/" class="md-nav__link">
+        Create OCI image
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runOCIimage/" class="md-nav__link">
+        Run OCI image
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../useWebApp/" class="md-nav__link">
+        Use the PayNow demo app
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../findSensitiveData/" class="md-nav__link">
+        Find sensitive data in core dump
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configureRsyslog/" class="md-nav__link">
+        Configure rsyslog on your KVM guest
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configureRsyslogForHPVS/" class="md-nav__link">
+        Configure rsyslog client certs on the RHEL host
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../createContract/" class="md-nav__link">
+        Create contract for HPVS guest
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Launch HPVS guest for PayNow
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Launch HPVS guest for PayNow
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#launch-the-hpvs-214-kvm-guest" class="md-nav__link">
+    launch the HPVS 2.1.4 KVM guest
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-that-messages-from-your-hpvs-kvm-guest-are-received-by-rsyslog" class="md-nav__link">
+    verify that messages from your HPVS KVM guest are received by rsyslog
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../useHPVSWebApp/" class="md-nav__link">
+        Use the HPVS-based PayNow demo app
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tryToFindSensitiveData/" class="md-nav__link">
+        Try to find sensitive data in core dump
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../labCleanup/" class="md-nav__link">
+        Lab Cleanup
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../grep11/">GREP11 with CENA4SEE Lab</a>
+          
+            <label for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          GREP11 with CENA4SEE Lab
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grep11/launchKVMguest/" class="md-nav__link">
+        Launch Ubuntu KVM guest
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grep11/configureRsyslog/" class="md-nav__link">
+        Configure rsyslog on your KVM guest
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grep11/configureRsyslogForGREP11/" class="md-nav__link">
+        Configure rsyslog client certs on the RHEL host
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grep11/createGREP11Contract/" class="md-nav__link">
+        Create Contract for GREP11 Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grep11/launchGREP11guest/" class="md-nav__link">
+        Launch GREP11 Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grep11/configureGrep11TestClient/" class="md-nav__link">
+        Run GREP11 Client code
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grep11/hackMeIfYouCan/" class="md-nav__link">
+        Standard guest vs. SE-enabled HPVS 2.1.x guest
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grep11/labCleanup/" class="md-nav__link">
+        Lab Cleanup
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../localdocbuild/" class="md-nav__link">
+        Locally Building docs
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../print_page/" class="md-nav__link">
+        Print Site
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#launch-the-hpvs-214-kvm-guest" class="md-nav__link">
+    launch the HPVS 2.1.4 KVM guest
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-that-messages-from-your-hpvs-kvm-guest-are-received-by-rsyslog" class="md-nav__link">
+    verify that messages from your HPVS KVM guest are received by rsyslog
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE/edit/main/docs/lab/paynow/launchHPVSguest.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE/raw/main/docs/lab/paynow/launchHPVSguest.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+
+<h1 id="launch-hpvs-guest-for-paynow">Launch HPVS guest for PayNow<a class="headerlink" href="#launch-hpvs-guest-for-paynow" title="Permanent link">&para;</a></h1>
+<p>You will start this section from your login session on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host. Start from this familiar window or tab:</p>
+<p><img src="../../../images/RHELHost.png" width="351" height="216" ></p>
+<h2 id="launch-the-hpvs-214-kvm-guest">launch the HPVS 2.1.4 KVM guest<a class="headerlink" href="#launch-the-hpvs-214-kvm-guest" title="Permanent link">&para;</a></h2>
+<p>This fancy command figures out (and displays) the last two characters of your assigned userid and is used in other commands in this section, so that the lab instructions will work for everybody:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">suffix</span><span class="o">=</span><span class="k">$(</span><span class="nv">temp</span><span class="o">=</span><span class="k">$(</span>whoami<span class="k">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">temp</span><span class="p">: -2</span><span class="si">}</span><span class="k">)</span><span class="w"> </span><span class="se">\</span>
+<span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span>Your<span class="w"> </span>student<span class="w"> </span>suffix<span class="w"> </span>is<span class="w"> </span><span class="si">${</span><span class="nv">suffix</span><span class="si">}</span>
+</code></pre></div>
+<p>You aren't going to change anything here since it's already been defined for you by the instructors, but you can display the definition of your HPVS 2.1.4 KVM guest for the PayNow demo:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>virsh<span class="w"> </span>dumpxml<span class="w"> </span>paynowse<span class="si">${</span><span class="nv">suffix</span><span class="si">}</span>
+</code></pre></div>
+<details class="- example">
+<summary>Definition of HPVS KVM guest for PayNow Demo</summary>
+<div class="highlight"><pre><span></span><code>&lt;domain type=&#39;kvm&#39;&gt;
+  &lt;name&gt;paynowse04&lt;/name&gt;
+  &lt;uuid&gt;2315f8ea-a340-4506-abbf-ae04cf7ea868&lt;/uuid&gt;
+  &lt;metadata&gt;
+    &lt;libosinfo:libosinfo xmlns:libosinfo=&quot;http://libosinfo.org/xmlns/libvirt/domain/1.0&quot;&gt;
+      &lt;libosinfo:os id=&quot;http://ubuntu.com/ubuntu/20.04&quot;/&gt;
+    &lt;/libosinfo:libosinfo&gt;
+  &lt;/metadata&gt;
+  &lt;memory unit=&#39;KiB&#39;&gt;3903488&lt;/memory&gt;
+  &lt;currentMemory unit=&#39;KiB&#39;&gt;3903488&lt;/currentMemory&gt;
+  &lt;vcpu placement=&#39;static&#39;&gt;2&lt;/vcpu&gt;
+  &lt;os&gt;
+    &lt;type arch=&#39;s390x&#39; machine=&#39;s390-ccw-virtio-rhel8.2.0&#39;&gt;hvm&lt;/type&gt;
+    &lt;boot dev=&#39;hd&#39;/&gt;
+  &lt;/os&gt;
+  &lt;cpu mode=&#39;host-model&#39; check=&#39;partial&#39;/&gt;
+  &lt;clock offset=&#39;utc&#39;/&gt;
+  &lt;on_poweroff&gt;destroy&lt;/on_poweroff&gt;
+  &lt;on_reboot&gt;restart&lt;/on_reboot&gt;
+  &lt;on_crash&gt;destroy&lt;/on_crash&gt;
+  &lt;devices&gt;
+    &lt;emulator&gt;/usr/libexec/qemu-kvm&lt;/emulator&gt;
+    &lt;disk type=&#39;file&#39; device=&#39;disk&#39;&gt;
+      &lt;driver name=&#39;qemu&#39; type=&#39;qcow2&#39; iommu=&#39;on&#39;/&gt;
+      &lt;source file=&#39;/var/lib/libvirt/images/labs/paynow/student04/ibm-hyper-protect-container-runtime-23.3.0.qcow2&#39;/&gt;
+      &lt;backingStore/&gt;
+      &lt;target dev=&#39;vda&#39; bus=&#39;virtio&#39;/&gt;
+      &lt;address type=&#39;ccw&#39; cssid=&#39;0xfe&#39; ssid=&#39;0x0&#39; devno=&#39;0x0000&#39;/&gt;
+    &lt;/disk&gt;
+    &lt;disk type=&#39;file&#39; device=&#39;disk&#39;&gt;
+      &lt;driver name=&#39;qemu&#39; type=&#39;raw&#39; cache=&#39;none&#39; io=&#39;native&#39; iommu=&#39;on&#39;/&gt;
+      &lt;source file=&#39;/var/lib/libvirt/images/labs/paynow/student04/ciiso.iso&#39;/&gt;
+      &lt;target dev=&#39;vdc&#39; bus=&#39;virtio&#39;/&gt;
+      &lt;readonly/&gt;
+      &lt;address type=&#39;ccw&#39; cssid=&#39;0xfe&#39; ssid=&#39;0x0&#39; devno=&#39;0x0002&#39;/&gt;
+    &lt;/disk&gt;
+    &lt;controller type=&#39;pci&#39; index=&#39;0&#39; model=&#39;pci-root&#39;/&gt;
+    &lt;interface type=&#39;network&#39;&gt;
+      &lt;mac address=&#39;52:54:00:fc:6c:a8&#39;/&gt;
+      &lt;source network=&#39;default&#39;/&gt;
+      &lt;model type=&#39;virtio&#39;/&gt;
+      &lt;driver name=&#39;vhost&#39; iommu=&#39;on&#39;/&gt;
+      &lt;address type=&#39;ccw&#39; cssid=&#39;0xfe&#39; ssid=&#39;0x0&#39; devno=&#39;0x0001&#39;/&gt;
+    &lt;/interface&gt;
+    &lt;console type=&#39;pty&#39;&gt;
+      &lt;target type=&#39;sclp&#39; port=&#39;0&#39;/&gt;
+    &lt;/console&gt;
+    &lt;audio id=&#39;1&#39; type=&#39;none&#39;/&gt;
+    &lt;memballoon model=&#39;none&#39;/&gt;
+    &lt;panic model=&#39;s390&#39;/&gt;
+  &lt;/devices&gt;
+&lt;/domain&gt;
+</code></pre></div>
+</details>
+<p>Start your HPVS Guest for the PayNow Demo and attach to its console.  Watch the messages carefully.  You should not see any failures:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>virsh<span class="w"> </span>start<span class="w"> </span>paynowse<span class="si">${</span><span class="nv">suffix</span><span class="si">}</span><span class="w"> </span>--console
+</code></pre></div>
+<details class="- example">
+<summary>This is what success looks like</summary>
+<div class="highlight"><pre><span></span><code>Domain &#39;paynowse04&#39; started
+Connected to domain &#39;paynowse04&#39;
+Escape character is ^] (Ctrl + ])
+# HPL11 build:23.3.0 enabler:22.11.6
+# Wed Apr 19 17:19:41 UTC 2023
+# delete old root partition...
+# create new root partition...
+# encrypt root partition...
+# create root filesystem...
+# write OS to root disk...
+# decrypt user-data...
+2 token decrypted, 0 encrypted token ignored
+# run attestation...
+# set hostname...
+# finish root disk setup...
+# Wed Apr 19 17:20:06 UTC 2023
+# HPL11 build:23.3.0 enabler:22.11.6
+# HPL11099I: bootloader end
+hpcr-dnslookup[908]: HPL14000I: Network connectivity check completed successfully.
+hpcr-logging[1093]: Configuring logging ...
+hpcr-logging[1094]: Version [1.1.91]
+hpcr-logging[1094]: Configuring logging, input [/var/hyperprotect/user-data.decrypted] ...
+hpcr-logging[1094]: HPL01010I: Logging has been setup successfully.
+hpcr-logging[1093]: Logging has been configured
+hpcr-catch-success[1440]: VSI has started successfully.
+hpcr-catch-success[1440]: HPL10001I: Services succeeded -&gt; systemd triggered hpl-catch-success service
+</code></pre></div>
+</details>
+<p>You will have to enter the <code>Ctrl + ]</code> key-combination to break out of the console.</p>
+<h2 id="verify-that-messages-from-your-hpvs-kvm-guest-are-received-by-rsyslog">verify that messages from your HPVS KVM guest are received by <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr><a class="headerlink" href="#verify-that-messages-from-your-hpvs-kvm-guest-are-received-by-rsyslog" title="Permanent link">&para;</a></h2>
+<p><strong>The logging of the HPVS KVM guest is going to the <em><abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr></em> service that you configured on your Ubuntu guest, so switch to the terminal tab or window for your KVM standard guest.</strong></p>
+<p>You should still be comfortably logged in on this tab or window:</p>
+<p><img src="../../../images/KVMGuest.png" width="351" height="217" /></p>
+<p>The arguments to the <em>journalctl</em> command here aren't the most elegant in the world, but, unless midnight passed since you started your HPVS KVM guest for PayNow, you will be able to see messages in <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> from when you just started up your HPVS KVM guest:</p>
+<div class="highlight"><pre><span></span><code>journalctl<span class="w"> </span>--since<span class="w"> </span>today<span class="w"> </span>--no-pager
+</code></pre></div>
+<p>There are a lot of messages logged, a veritable trove of treasure for the curious.  Here is an example of what you should be able to see:</p>
+<details class="- example">
+<summary>Log messages in <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> from starting your HPVS KVM guest for the PayNow demo</summary>
+<div class="highlight"><pre><span></span><code>Apr 19 17:20:08 ubuntu2204 vpcnode[2719]: authentication probe
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Linux version 5.4.0-144-generic (buildd@bos01-s390x-011) (gcc version 9.4.0 (Ubuntu 9.4.0-1ubuntu1~20.04.1)) #161-Ubuntu SMP Fri Feb 3 14:49:12 UTC 2023 (Ubuntu 5.4.0-144.161-generic 5.4.229)
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  setup.289988: Linux is running under KVM in 64-bit mode
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  setup.b050d0: The maximum memory size is 3812MB
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  numa.196305: NUMA mode: plain
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  cpu.33a262: 2 configured CPUs, 0 standby CPUs
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Write protected kernel read-only data: 14936k
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Zone ranges:
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:    DMA      [mem 0x0000000000000000-0x000000007fffffff]
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:    Normal   [mem 0x0000000080000000-0x00000000ee3fffff]
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Movable zone start for each node
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Early memory node ranges
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:    node   0: [mem 0x0000000000000000-0x00000000ee3fffff]
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Zeroed struct page in unavailable ranges: 7168 pages
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Initmem setup node 0 [mem 0x0000000000000000-0x00000000ee3fffff]
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  On node 0 totalpages: 975872
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:    DMA zone: 8192 pages used for memmap
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:    DMA zone: 0 pages reserved
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:    DMA zone: 524288 pages, LIFO batch:63
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:    Normal zone: 7056 pages used for memmap
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:    Normal zone: 451584 pages, LIFO batch:63
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  percpu: Embedded 34 pages/cpu s98816 r8192 d32256 u139264
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  pcpu-alloc: s98816 r8192 d32256 u139264 alloc=34*4096
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  pcpu-alloc: [0] 0 [0] 1 
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Built 1 zonelists, mobility grouping on.  Total pages: 960624
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Policy zone: Normal
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Kernel command line: panic=0 blacklist=virtio_rng swiotlb=262144 cloud-init=disabled console=ttyS0 quiet loglevel=0 systemd.show_status=0 printk.time=0 systemd.getty_auto=0 systemd.firstboot=0 module.sig_enforce=1
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Dentry cache hash table entries: 524288 (order: 10, 4194304 bytes, linear)
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Inode-cache hash table entries: 262144 (order: 9, 2097152 bytes, linear)
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  mem auto-init: stack:off, heap alloc:on, heap free:off
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  software IO TLB: mapped [mem 0x5fffc000-0x7fffc000] (512MB)
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Memory: 3277592K/3903488K available (9224K kernel code, 1708K rwdata, 5708K rodata, 3448K init, 948K bss, 625896K reserved, 0K cma-reserved)
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  SLUB: HWalign=256, Order=0-3, MinObjects=0, CPUs=2, Nodes=1
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  ftrace: allocating 29722 entries in 117 pages
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  rcu: Hierarchical RCU implementation.
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  rcu: #011RCU restricting CPUs from NR_CPUS=512 to nr_cpu_ids=2.
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  #011Tasks RCU enabled.
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  rcu: RCU calculated value of scheduler-enlistment delay is 10 jiffies.
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=2
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  NR_IRQS: 3, nr_irqs: 3, preallocated irqs: 3
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  clocksource: tod: mask: 0xffffffffffffffff max_cycles: 0x3b0a9be803b0a9, max_idle_ns: 1805497147909793 ns
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  random: crng init done
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Console: colour dummy device 80x25
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  printk: console [ttyS0] enabled
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  printk: console [ttysclp0] enabled
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Calibrating delay loop (skipped)... 24038.00 BogoMIPS preset
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  pid_max: default: 32768 minimum: 301
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  LSM: Security Framework initializing
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Yama: becoming mindful.
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  AppArmor: AppArmor initialized
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Mount-cache hash table entries: 8192 (order: 4, 65536 bytes, linear)
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Mountpoint-cache hash table entries: 8192 (order: 4, 65536 bytes, linear)
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  *** VALIDATE tmpfs ***
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  *** VALIDATE proc ***
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  *** VALIDATE cgroup1 ***
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  *** VALIDATE cgroup2 ***
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  rcu: Hierarchical SRCU implementation.
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  smp: Bringing up secondary CPUs ...
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  smp: Brought up 1 node, 2 CPUs
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  devtmpfs: initialized
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  futex hash table entries: 512 (order: 5, 131072 bytes, linear)
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  NET: Registered protocol family 16
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  audit: initializing netlink subsys (disabled)
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  audit: type=2000 audit(1681924781.332:1): state=initialized audit_enabled=0 res=1
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Spectre V2 mitigation: etokens
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  HugeTLB registered 1.00 MiB page size, pre-allocated 0 pages
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  iommu: Default domain type: Translated 
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  SCSI subsystem initialized
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  NetLabel: Initializing
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  NetLabel:  domain hash size = 128
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  NetLabel:  protocols = UNLABELED CIPSOv4 CALIPSO
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  NetLabel:  unlabeled traffic allowed by default
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  *** VALIDATE bpf ***
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  VFS: Disk quotas dquot_6.6.0
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  VFS: Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  *** VALIDATE ramfs ***
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  *** VALIDATE hugetlbfs ***
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  AppArmor: AppArmor Filesystem Enabled
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  NET: Registered protocol family 2
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  IP idents hash table entries: 65536 (order: 7, 524288 bytes, linear)
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  tcp_listen_portaddr_hash hash table entries: 2048 (order: 3, 32768 bytes, linear)
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  TCP established hash table entries: 32768 (order: 6, 262144 bytes, linear)
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  TCP bind hash table entries: 32768 (order: 7, 524288 bytes, linear)
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  TCP: Hash tables configured (established 32768 bind 32768)
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  UDP hash table entries: 2048 (order: 4, 65536 bytes, linear)
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  UDP-Lite hash table entries: 2048 (order: 4, 65536 bytes, linear)
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  NET: Registered protocol family 1
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  NET: Registered protocol family 44
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Trying to unpack rootfs image as initramfs...
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Freeing initrd memory: 8812K
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  kvm-s390.a3074b: SIE is not available
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  hypfs.7f5705: The hardware system does not support hypfs
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Initialise system trusted keyrings
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Key type blacklist registered
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  workingset: timestamp_bits=42 max_order=20 bucket_order=0
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  zbud: loaded
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  squashfs: version 4.0 (2009/01/31) Phillip Lougher
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  fuse: init (API version 7.31)
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  *** VALIDATE fuse ***
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  *** VALIDATE fuse ***
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Platform Keyring initialized
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Key type asymmetric registered
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Asymmetric key parser &#39;x509&#39; registered
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Block layer SCSI generic (bsg) driver version 0.4 loaded (major 250)
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  io scheduler mq-deadline registered
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  hvc_iucv.691dff: The z/VM IUCV HVC device driver cannot be used without z/VM
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  loop: module loaded
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  tun: Universal TUN/TAP device driver, 1.6
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  device-mapper: uevent: version 1.0.3
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  device-mapper: ioctl: 4.41.0-ioctl (2019-09-16) initialised: dm-devel@redhat.com
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  cio.b5d5f6: Channel measurement facility initialized using format extended (mode autodetected)
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  sclp_sd.ef2911: Store Data request failed (eq=2, di=3, response=0x40f0, flags=0x00, status=0, rc=-5)
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  ap.3677f7: The hardware system does not support AP instructions
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  drop_monitor: Initializing network drop monitor service
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  NET: Registered protocol family 10
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Segment Routing with IPv6
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  NET: Registered protocol family 17
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Key type dns_resolver registered
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  registered taskstats version 1
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Loading compiled-in X.509 certificates
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Loaded X.509 cert &#39;Build time autogenerated kernel key: 5f0cb9c1f10704616ad12479fd9849261a80ea8c&#39;
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Loaded X.509 cert &#39;Canonical Ltd. Live Patch Signing: 14df34d1a87cf37625abec039ef2bf521249b969&#39;
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Loaded X.509 cert &#39;Canonical Ltd. Kernel Module Signing: 88f752e560a1e0737e31163a466ad7b70a850c19&#39;
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  blacklist: Loading compiled-in revocation X.509 certificates
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Loaded X.509 cert &#39;Canonical Ltd. Secure Boot Signing: 61482aa2830d0ab2ad5af10b7250da9033ddcef0&#39;
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Loaded X.509 cert &#39;Canonical Ltd. Secure Boot Signing (2017): 242ade75ac4a15e50d50c84b0d45ff3eae707a03&#39;
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Loaded X.509 cert &#39;Canonical Ltd. Secure Boot Signing (ESM 2018): 365188c1d374d6b07c3c8f240f8ef722433d6a8b&#39;
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Loaded X.509 cert &#39;Canonical Ltd. Secure Boot Signing (2019): c0746fd6c5da3ae827864651ad66ae47fe24b3e8&#39;
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Loaded X.509 cert &#39;Canonical Ltd. Secure Boot Signing (2021 v1): a8d54bbb3825cfb94fa13c9f8a594a195c107b8d&#39;
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Loaded X.509 cert &#39;Canonical Ltd. Secure Boot Signing (2021 v2): 4cf046892d6fd3c9a5b03f98d845f90851dc6a8c&#39;
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Loaded X.509 cert &#39;Canonical Ltd. Secure Boot Signing (2021 v3): 100437bb6de6e469b581e61cd66bce3ef4ed53af&#39;
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Loaded X.509 cert &#39;Canonical Ltd. Secure Boot Signing (Ubuntu Core 2019): c1d57b8f6b743f23ee41f4f7ee292f06eecadfb9&#39;
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  zswap: loaded using pool lzo/zbud
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Key type ._fscrypt registered
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Key type .fscrypt registered
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Key type big_key registered
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Key type encrypted registered
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  AppArmor: AppArmor sha1 policy hashing enabled
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  ima: No TPM chip found, activating TPM-bypass!
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  ima: Allocated hash algorithm: sha1
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  ima: No architecture policies found
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  evm: Initialising EVM extended attributes:
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  evm: security.selinux
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  evm: security.SMACK64
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  evm: security.SMACK64EXEC
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  evm: security.SMACK64TRANSMUTE
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  evm: security.SMACK64MMAP
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  evm: security.apparmor
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  evm: security.ima
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  evm: security.capability
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  evm: HMAC attrs: 0x1
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Freeing unused kernel memory: 3448K
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Write protected read-only-after-init data: 88k
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Run /init as init process
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  virtio_blk virtio0: [vda] 209715200 512-byte logical blocks (107 GB/100 GiB)
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:   vda: vda1 vda2
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  virtio_blk virtio1: [vdb] 760 512-byte logical blocks (389 kB/380 KiB)
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  EXT4-fs (dm-0): mounted filesystem with ordered data mode. Opts: (null)
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  EXT4-fs (vda1): mounted filesystem with ordered data mode. Opts: (null)
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  ISO 9660 Extensions: Microsoft Joliet Level 3
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  ISO 9660 Extensions: RRIP_1991A
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  EXT4-fs (dm-0): re-mounted. Opts: (null)
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  systemd 245.4-4ubuntu3.19 running in system mode. (+PAM +AUDIT +SELINUX +IMA +APPARMOR +SMACK +SYSVINIT +UTMP +LIBCRYPTSETUP +GCRYPT +GNUTLS +ACL +XZ +LZ4 +SECCOMP +BLKID +ELFUTILS +KMOD +IDN2 -IDN +PCRE2 default-hierarchy=hybrid)
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Detected virtualization kvm.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Detected architecture s390x.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Set hostname to &lt;student04-paynowdemo&gt;.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Initializing machine ID from D-Bus machine ID.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Installed transient /etc/machine-id file.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  /usr/lib/systemd/system-generators/s390-cpi-vars failed with exit status 1.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Created slice system-modprobe.slice.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Created slice system-systemd\x2dfsck.slice.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Created slice User and Session Slice.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started Forward Password Requests to Wall Directory Watch.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Set up automount Arbitrary Executable File Formats File System Automount Point.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Reached target Slices.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Reached target Swap.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Listening on Device-mapper event daemon FIFOs.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Listening on LVM2 poll daemon socket.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Listening on multipathd control socket.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Listening on Syslog Socket.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Listening on fsck to fsckd communication Socket.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Listening on initctl Compatibility Named Pipe.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Listening on Journal Audit Socket.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Listening on Journal Socket (/dev/log).
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Listening on Journal Socket.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Listening on Network Service Netlink Socket.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Listening on udev Control Socket.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Listening on udev Kernel Socket.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Mounting Huge Pages File System...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Mounting POSIX Message Queue File System...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Mounting Kernel Debug File System...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Mounting Kernel Trace File System...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Journal Service...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Set the console keyboard layout...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Create list of static device nodes for the current kernel...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Monitoring of LVM2 mirrors, snapshots etc. using dmeventd or progress polling...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Load Kernel Module chromeos_pstore...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Load Kernel Module drm...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Load Kernel Module efi_pstore...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Load Kernel Module pstore_blk...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Load Kernel Module pstore_zone...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Load Kernel Module ramoops...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Condition check resulted in OpenVSwitch configuration for cleanup being skipped.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Condition check resulted in Set Up Additional Binary Formats being skipped.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting File System Check on Root Device...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Load Kernel Modules...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting udev Coldplug all Devices...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Mounted Huge Pages File System.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Mounted POSIX Message Queue File System.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Mounted Kernel Debug File System.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Mounted Kernel Trace File System.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Create list of static device nodes for the current kernel.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Load Kernel Modules.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Mounting FUSE Control File System...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Mounting Kernel Configuration File System...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Apply Kernel Variables...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Mounted Kernel Configuration File System.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  modprobe@pstore_blk.service: Succeeded.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Load Kernel Module pstore_blk.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  modprobe@pstore_zone.service: Succeeded.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Load Kernel Module pstore_zone.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  modprobe@ramoops.service: Succeeded.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Load Kernel Module ramoops.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started File System Check Daemon to report status.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Mounted FUSE Control File System.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished File System Check on Root Device.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Remount Root and Kernel File Systems...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  modprobe@drm.service: Succeeded.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Load Kernel Module drm.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Apply Kernel Variables.
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  EXT4-fs (dm-0): re-mounted. Opts: errors=remount-ro
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Remount Root and Kernel File Systems.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Condition check resulted in Rebuild Hardware Database being skipped.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Load/Save Random Seed...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Create System Users...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  modprobe@chromeos_pstore.service: Succeeded.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Load Kernel Module chromeos_pstore.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Create System Users.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  modprobe@efi_pstore.service: Succeeded.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Load Kernel Module efi_pstore.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Condition check resulted in Platform Persistent Storage Archival being skipped.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Create Static Device Nodes in /dev...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Load/Save Random Seed.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Create Static Device Nodes in /dev.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting udev Kernel Device Manager...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished udev Coldplug all Devices.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting udev Wait for Complete Device Initialization...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started udev Kernel Device Manager.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Network Service...
+Apr 19 17:20:08 ubuntu2204 systemd-journald[2719]:  Journal started
+Apr 19 17:20:08 ubuntu2204 systemd-journald[2719]:  Runtime Journal (/run/log/journal/35e9ca59782642a5b263307adaa2d26e) is 4.0M, max 32.1M, 28.1M free.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started Journal Service.
+Apr 19 17:20:08 ubuntu2204 systemd-modules-load[2719]:  Failed to find module &#39;ipmi-devintf&#39;
+Apr 19 17:20:08 ubuntu2204 systemd-journald[2719]:  Time spent on flushing to /var/log/journal/35e9ca59782642a5b263307adaa2d26e is 1.683ms for 253 entries.
+Apr 19 17:20:08 ubuntu2204 systemd-journald[2719]:  System Journal (/var/log/journal/35e9ca59782642a5b263307adaa2d26e) is 8.0M, max 4.0G, 3.9G free.
+Apr 19 17:20:08 ubuntu2204 systemd-sysctl[2719]:  Not setting net/ipv4/conf/all/promote_secondaries (explicit setting exists).
+Apr 19 17:20:08 ubuntu2204 systemd-sysctl[2719]:  Not setting net/ipv4/conf/default/promote_secondaries (explicit setting exists).
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Flush Journal to Persistent Storage...
+Apr 19 17:20:08 ubuntu2204 systemd-networkd[2719]:  Enumeration completed
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started Network Service.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Wait for Network to be Configured...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Flush Journal to Persistent Storage.
+Apr 19 17:20:08 ubuntu2204 systemd-fsck[2719]:  /dev/mapper/luks-6c4b93a2-1091-445e-a6fe-34c252d5d301: clean, 27573/6291456 files, 784851/25161728 blocks
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Wait for Network to be Configured.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Set the console keyboard layout.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Condition check resulted in Show Plymouth Boot Screen being skipped.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started Dispatch Password Requests to Console Directory Watch.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Condition check resulted in Forward Password Requests to Plymouth Directory Watch being skipped.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Reached target Local Encrypted Volumes.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Reached target Paths.
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  VFIO - User Level meta-driver version: 0.3
+Apr 19 17:20:08 ubuntu2204 systemd-udevd[2719]:  ethtool: autonegotiation is unset or enabled, the speed and duplex are not writable.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Found device /dev/disk/by-uuid/5cd13001-0812-4947-ac7e-bf5bb9f93e6d.
+Apr 19 17:20:08 ubuntu2204 systemd-udevd[2719]:  Using default interface naming scheme &#39;v245&#39;.
+Apr 19 17:20:08 ubuntu2204 systemd-udevd[2719]:  ethtool: autonegotiation is unset or enabled, the speed and duplex are not writable.
+Apr 19 17:20:08 ubuntu2204 udevadm[2719]:  systemd-udev-settle.service is deprecated.
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  virtio_net virtio2 enc1: renamed from eth0
+Apr 19 17:20:08 ubuntu2204 systemd-networkd[2719]:  eth0: Interface name change detected, eth0 has been renamed to enc1.
+Apr 19 17:20:08 ubuntu2204 systemd-udevd[2719]:  Using default interface naming scheme &#39;v245&#39;.
+Apr 19 17:20:08 ubuntu2204 systemd-udevd[2719]:  ethtool: autonegotiation is unset or enabled, the speed and duplex are not writable.
+Apr 19 17:20:08 ubuntu2204 systemd-networkd[2719]:  enc1: IPv6 successfully enabled
+Apr 19 17:20:08 ubuntu2204 systemd-networkd[2719]:  enc1: Link UP
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished udev Wait for Complete Device Initialization.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Device-Mapper Multipath Device Controller...
+Apr 19 17:20:08 ubuntu2204 multipathd[2719]:  --------start up--------
+Apr 19 17:20:08 ubuntu2204 multipathd[2719]:  read /etc/multipath.conf
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  alua: device handler registered
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  emc: device handler registered
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  rdac: device handler registered
+Apr 19 17:20:08 ubuntu2204 multipathd[2719]:  path checkers start up
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started Device-Mapper Multipath Device Controller.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Monitoring of LVM2 mirrors, snapshots etc. using dmeventd or progress polling.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Reached target Local File Systems (Pre).
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting File System Check on /dev/disk/by-uuid/5cd13001-0812-4947-ac7e-bf5bb9f93e6d...
+Apr 19 17:20:08 ubuntu2204 systemd-fsck[2719]:  /dev/vda1: clean, 13/262144 files, 118810/1048064 blocks
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished File System Check on /dev/disk/by-uuid/5cd13001-0812-4947-ac7e-bf5bb9f93e6d.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Mounting /boot...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Mounted /boot.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Reached target Local File Systems.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Set console font and keymap...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Apply Control Program Identification (CPI)...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Create final runtime dir for shutdown pivot root...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Condition check resulted in LXD - agent - 9p mount being skipped.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Condition check resulted in LXD - agent being skipped.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Tell Plymouth To Write Out Runtime Data...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Condition check resulted in Store a System Token in an EFI Variable being skipped.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Commit a transient machine-id on disk...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Create Volatile Files and Directories...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Create final runtime dir for shutdown pivot root.
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  EXT4-fs (vda1): mounted filesystem with ordered data mode. Opts: (null)
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Set console font and keymap.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  etc-machine\x2did.mount: Succeeded.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Commit a transient machine-id on disk.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  plymouth-read-write.service: Succeeded.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Tell Plymouth To Write Out Runtime Data.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Create Volatile Files and Directories.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Network Name Resolution...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Network Time Synchronization...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Update UTMP about System Boot/Shutdown...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Update UTMP about System Boot/Shutdown.
+Apr 19 17:20:08 ubuntu2204 cpictl[2719]:  /lib/s390-tools/cpictl: line 112: echo: write error: Operation not supported
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  cpi.service: Succeeded.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Apply Control Program Identification (CPI).
+Apr 19 17:20:08 ubuntu2204 systemd-resolved[2719]:  Positive Trust Anchors:
+Apr 19 17:20:08 ubuntu2204 systemd-resolved[2719]:  . IN DS 20326 8 2 e06d44b80b8f1d39a95c0b0d7c65d08458e880409bbc683457104237c7f8ec8d
+Apr 19 17:20:08 ubuntu2204 systemd-resolved[2719]:  Negative trust anchors: 10.in-addr.arpa 16.172.in-addr.arpa 17.172.in-addr.arpa 18.172.in-addr.arpa 19.172.in-addr.arpa 20.172.in-addr.arpa 21.172.in-addr.arpa 22.172.in-addr.arpa 23.172.in-addr.arpa 24.172.in-addr.arpa 25.172.in-addr.arpa 26.172.in-addr.arpa 27.172.in-addr.arpa 28.172.in-addr.arpa 29.172.in-addr.arpa 30.172.in-addr.arpa 31.172.in-addr.arpa 168.192.in-addr.arpa d.f.ip6.arpa corp home internal intranet lan local private test
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started Network Time Synchronization.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Reached target System Initialization.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started Daily Cleanup of Temporary Directories.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Reached target System Time Set.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Reached target System Time Synchronized.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started Daily apt download activities.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started Daily apt upgrade and clean activities.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started Periodic ext4 Online Metadata Check for All Filesystems.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started Discard unused blocks once a week.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started Refresh fwupd metadata regularly.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started Daily rotation of log files.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started Daily man-db regeneration.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started Message of the Day.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started Timer for calling verify disk encryption invoker service.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Reached target Timers.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Listening on D-Bus System Message Bus Socket.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Docker Socket for the API.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Listening on Open-iSCSI iscsid Socket.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Listening on UUID daemon activation socket.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Listening on Docker Socket for the API.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Reached target Sockets.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Reached target Basic System.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Condition check resulted in CPACF statistics collection daemon process for Linux on System z being skipped.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started D-Bus System Message Bus.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started Save initial kernel messages after boot.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Remove Stale Online ext4 Metadata Check Snapshots...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Discard unused blocks on filesystems from /etc/fstab...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Condition check resulted in getty on tty2-tty6 if dbus and logind are not available being skipped.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Reached target Login Prompts.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started irqbalance daemon.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Condition check resulted in Set the CPU Frequency Scaling governor being skipped.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Authorization Manager...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Login Service...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Disk Manager...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Rotate log files...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Daily man-db regeneration...
+Apr 19 17:20:08 ubuntu2204 dbus-daemon[2719]:  [system] AppArmor D-Bus mediation is enabled
+Apr 19 17:20:08 ubuntu2204 journal[2719]:  udisks daemon version 2.8.4 starting
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  e2scrub_reap.service: Succeeded.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Remove Stale Online ext4 Metadata Check Snapshots.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  logrotate.service: Succeeded.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Rotate log files.
+Apr 19 17:20:08 ubuntu2204 journal[2719]:  failed to load module mdraid: libbd_mdraid.so.2: cannot open shared object file: No such file or directory
+Apr 19 17:20:08 ubuntu2204 journal[2719]:  Failed to load the &#39;mdraid&#39; libblockdev plugin
+Apr 19 17:20:08 ubuntu2204 polkitd[2719]:  started daemon version 0.105 using authority implementation `local&#39; version `0.105&#39;
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started Authorization Manager.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Modem Manager...
+Apr 19 17:20:08 ubuntu2204 systemd-resolved[2719]:  Using system hostname &#39;student04-paynowdemo&#39;.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started Network Name Resolution.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Reached target Network.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Reached target Network is Online.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Reached target Host and Network Name Lookups.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting containerd container runtime...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Configure dump on panic for System z...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Condition check resulted in Login to default iSCSI targets being skipped.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Reached target Remote File Systems (Pre).
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Reached target Remote File Systems.
+Apr 19 17:20:08 ubuntu2204 cron[2719]:  (CRON) INFO (pidfile fd = 3)
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Deferred execution scheduler...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Availability of block devices...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started Regular background program processing daemon.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Condition check resulted in Pollinate to seed the pseudo random number generator being skipped.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Condition check resulted in fast remote file copy program daemon being skipped.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Logging Configuration...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Permit User Sessions...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Availability of block devices.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started Deferred execution scheduler.
+Apr 19 17:20:08 ubuntu2204 cron[2719]:  (CRON) INFO (Running @reboot jobs)
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Permit User Sessions.
+Apr 19 17:20:08 ubuntu2204 ModemManager[2719]:  &lt;info&gt;  ModemManager (version 1.18.6) starting in system bus...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Hold until boot process finishes up...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Terminate Plymouth Boot Screen...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  plymouth-quit-wait.service: Succeeded.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Hold until boot process finishes up.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Set console scheme...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Set console scheme.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  plymouth-quit.service: Succeeded.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Terminate Plymouth Boot Screen.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  man-db.service: Succeeded.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Daily man-db regeneration.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started Modem Manager.
+Apr 19 17:20:08 ubuntu2204 dumpconf[2719]:  stop on panic configured.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Configure dump on panic for System z.
+Apr 19 17:20:08 ubuntu2204 systemd-logind[2719]:  New seat seat0.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started Login Service.
+Apr 19 17:20:08 ubuntu2204 fstrim[2719]:  /boot: 3.6 GiB (3806224384 bytes) trimmed on /dev/vda1
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  fstrim.service: Succeeded.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Discard unused blocks on filesystems from /etc/fstab.
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.003666219Z&quot; level=info msg=&quot;starting containerd&quot; revision= version=&quot;1.5.9-0ubuntu1~20.04.6&quot;
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started Disk Manager.
+Apr 19 17:20:08 ubuntu2204 journal[2719]:  Acquired the name org.freedesktop.UDisks2 on the system message bus
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.044267624Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.content.v1.content\&quot;...&quot; type=io.containerd.content.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.045335345Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.snapshotter.v1.aufs\&quot;...&quot; type=io.containerd.snapshotter.v1
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  aufs 5.4.3-20200302
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.049857040Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.snapshotter.v1.btrfs\&quot;...&quot; type=io.containerd.snapshotter.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.049956915Z&quot; level=info msg=&quot;skip loading plugin \&quot;io.containerd.snapshotter.v1.btrfs\&quot;...&quot; error=&quot;path /var/lib/containerd/io.containerd.snapshotter.v1.btrfs (ext4) must be a btrfs filesystem to be used with the btrfs snapshotter: skip plugin&quot; type=io.containerd.snapshotter.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.049970220Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.snapshotter.v1.devmapper\&quot;...&quot; type=io.containerd.snapshotter.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.049984272Z&quot; level=warning msg=&quot;failed to load plugin io.containerd.snapshotter.v1.devmapper&quot; error=&quot;devmapper not configured&quot;
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.049991794Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.snapshotter.v1.native\&quot;...&quot; type=io.containerd.snapshotter.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.050059912Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.snapshotter.v1.overlayfs\&quot;...&quot; type=io.containerd.snapshotter.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.050176012Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.snapshotter.v1.zfs\&quot;...&quot; type=io.containerd.snapshotter.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.050258179Z&quot; level=info msg=&quot;skip loading plugin \&quot;io.containerd.snapshotter.v1.zfs\&quot;...&quot; error=&quot;path /var/lib/containerd/io.containerd.snapshotter.v1.zfs must be a zfs filesystem to be used with the zfs snapshotter: skip plugin&quot; type=io.containerd.snapshotter.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.050268324Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.metadata.v1.bolt\&quot;...&quot; type=io.containerd.metadata.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.050279468Z&quot; level=warning msg=&quot;could not use snapshotter devmapper in metadata plugin&quot; error=&quot;devmapper not configured&quot;
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.050286330Z&quot; level=info msg=&quot;metadata content store policy set&quot; policy=shared
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.050389077Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.differ.v1.walking\&quot;...&quot; type=io.containerd.differ.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.050401469Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.gc.v1.scheduler\&quot;...&quot; type=io.containerd.gc.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.050435160Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.service.v1.introspection-service\&quot;...&quot; type=io.containerd.service.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.050457058Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.service.v1.containers-service\&quot;...&quot; type=io.containerd.service.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.050466822Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.service.v1.content-service\&quot;...&quot; type=io.containerd.service.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.050475688Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.service.v1.diff-service\&quot;...&quot; type=io.containerd.service.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.050486647Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.service.v1.images-service\&quot;...&quot; type=io.containerd.service.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.050495884Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.service.v1.leases-service\&quot;...&quot; type=io.containerd.service.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.050504324Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.service.v1.namespaces-service\&quot;...&quot; type=io.containerd.service.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.050512707Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.service.v1.snapshots-service\&quot;...&quot; type=io.containerd.service.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.050521368Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.runtime.v1.linux\&quot;...&quot; type=io.containerd.runtime.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.050546178Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.runtime.v2.task\&quot;...&quot; type=io.containerd.runtime.v2
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.050573233Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.monitor.v1.cgroups\&quot;...&quot; type=io.containerd.monitor.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.050800626Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.service.v1.tasks-service\&quot;...&quot; type=io.containerd.service.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.050816116Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.internal.v1.restart\&quot;...&quot; type=io.containerd.internal.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.050843062Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.grpc.v1.containers\&quot;...&quot; type=io.containerd.grpc.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.050852704Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.grpc.v1.content\&quot;...&quot; type=io.containerd.grpc.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.050863322Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.grpc.v1.diff\&quot;...&quot; type=io.containerd.grpc.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.050872217Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.grpc.v1.events\&quot;...&quot; type=io.containerd.grpc.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.050882516Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.grpc.v1.healthcheck\&quot;...&quot; type=io.containerd.grpc.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.050890868Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.grpc.v1.images\&quot;...&quot; type=io.containerd.grpc.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.050898629Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.grpc.v1.leases\&quot;...&quot; type=io.containerd.grpc.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.050906347Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.grpc.v1.namespaces\&quot;...&quot; type=io.containerd.grpc.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.050915141Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.internal.v1.opt\&quot;...&quot; type=io.containerd.internal.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.051003327Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.grpc.v1.snapshots\&quot;...&quot; type=io.containerd.grpc.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.051015193Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.grpc.v1.tasks\&quot;...&quot; type=io.containerd.grpc.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.051023890Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.grpc.v1.version\&quot;...&quot; type=io.containerd.grpc.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.051031448Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.grpc.v1.cri\&quot;...&quot; type=io.containerd.grpc.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.051104335Z&quot; level=info msg=&quot;Start cri plugin with config {PluginConfig:{ContainerdConfig:{Snapshotter:overlayfs DefaultRuntimeName:runc DefaultRuntime:{Type: Engine: PodAnnotations:[] ContainerAnnotations:[] Root: Options:map[] PrivilegedWithoutHostDevices:false BaseRuntimeSpec:} UntrustedWorkloadRuntime:{Type: Engine: PodAnnotations:[] ContainerAnnotations:[] Root: Options:map[] PrivilegedWithoutHostDevices:false BaseRuntimeSpec:} Runtimes:map[runc:{Type:io.containerd.runc.v2 Engine: PodAnnotations:[] ContainerAnnotations:[] Root: Options:map[BinaryName: CriuImagePath: CriuPath: CriuWorkPath: IoGid:0 IoUid:0 NoNewKeyring:false NoPivotRoot:false Root: ShimCgroup: SystemdCgroup:false] PrivilegedWithoutHostDevices:false BaseRuntimeSpec:}] NoPivot:false DisableSnapshotAnnotations:true DiscardUnpackedLayers:false} CniConfig:{NetworkPluginBinDir:/opt/cni/bin NetworkPluginConfDir:/etc/cni/net.d NetworkPluginMaxConfNum:1 NetworkPluginConfTemplate:} Registry:{ConfigPath: Mirrors:map[] Configs:map[] Auths:map[] Headers:map[]} ImageDecryption:{KeyModel:node} DisableTCPService:true StreamServerAddress:127.0.0.1 StreamServerPort:0 StreamIdleTimeout:4h0m0s EnableSelinux:false SelinuxCategoryRange:1024 SandboxImage:k8s.gcr.io/pause:3.5 StatsCollectPeriod:10 SystemdCgroup:false EnableTLSStreaming:false X509KeyPairStreaming:{TLSCertFile: TLSKeyFile:} MaxContainerLogLineSize:16384 DisableCgroup:false DisableApparmor:false RestrictOOMScoreAdj:false MaxConcurrentDownloads:3 DisableProcMount:false UnsetSeccompProfile: TolerateMissingHugetlbController:true DisableHugetlbController:true IgnoreImageDefinedVolumes:false NetNSMountsUnderStateDir:false} ContainerdRootDir:/var/lib/containerd ContainerdEndpoint:/run/containerd/containerd.sock RootDir:/var/lib/containerd/io.containerd.grpc.v1.cri StateDir:/run/containerd/io.containerd.grpc.v1.cri}&quot;
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.051142535Z&quot; level=info msg=&quot;Connect containerd service&quot;
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.051169027Z&quot; level=info msg=&quot;Get image filesystem path \&quot;/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs\&quot;&quot;
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.052590179Z&quot; level=error msg=&quot;failed to load cni during init, please check CRI plugin status before setting up network for pods&quot; error=&quot;cni config load failed: no network config found in /etc/cni/net.d: cni plugin not initialized: failed to load cni config&quot;
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.052610509Z&quot; level=info msg=&quot;loading plugin \&quot;io.containerd.grpc.v1.introspection\&quot;...&quot; type=io.containerd.grpc.v1
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.053103732Z&quot; level=info msg=serving... address=/run/containerd/containerd.sock.ttrpc
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.053124118Z&quot; level=info msg=serving... address=/run/containerd/containerd.sock
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started containerd container runtime.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Docker Application Container Engine...
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.053810151Z&quot; level=info msg=&quot;containerd successfully booted in 0.050464s&quot;
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.062714621Z&quot; level=info msg=&quot;Start subscribing containerd event&quot;
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.062760078Z&quot; level=info msg=&quot;Start recovering state&quot;
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.062816226Z&quot; level=info msg=&quot;Start event monitor&quot;
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.062828150Z&quot; level=info msg=&quot;Start snapshots syncer&quot;
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.062833905Z&quot; level=info msg=&quot;Start cni network conf syncer&quot;
+Apr 19 17:20:08 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:07.062838531Z&quot; level=info msg=&quot;Start streaming server&quot;
+Apr 19 17:20:08 ubuntu2204 dockerd[2719]:  time=&quot;2023-04-19T17:20:07.123904687Z&quot; level=info msg=&quot;Starting up&quot;
+Apr 19 17:20:08 ubuntu2204 dockerd[2719]:  time=&quot;2023-04-19T17:20:07.124238875Z&quot; level=info msg=&quot;detected 127.0.0.53 nameserver, assuming systemd-resolved, so using resolv.conf: /run/systemd/resolve/resolv.conf&quot;
+Apr 19 17:20:08 ubuntu2204 dockerd[2719]:  time=&quot;2023-04-19T17:20:07.124878936Z&quot; level=info msg=&quot;parsed scheme: \&quot;unix\&quot;&quot; module=grpc
+Apr 19 17:20:08 ubuntu2204 dockerd[2719]:  time=&quot;2023-04-19T17:20:07.124887274Z&quot; level=info msg=&quot;scheme \&quot;unix\&quot; not registered, fallback to default scheme&quot; module=grpc
+Apr 19 17:20:08 ubuntu2204 dockerd[2719]:  time=&quot;2023-04-19T17:20:07.124953532Z&quot; level=info msg=&quot;ccResolverWrapper: sending update to cc: {[{unix:///run/containerd/containerd.sock  &lt;nil&gt; 0 &lt;nil&gt;}] &lt;nil&gt; &lt;nil&gt;}&quot; module=grpc
+Apr 19 17:20:08 ubuntu2204 dockerd[2719]:  time=&quot;2023-04-19T17:20:07.124964144Z&quot; level=info msg=&quot;ClientConn switching balancer to \&quot;pick_first\&quot;&quot; module=grpc
+Apr 19 17:20:08 ubuntu2204 dockerd[2719]:  time=&quot;2023-04-19T17:20:07.137567803Z&quot; level=info msg=&quot;parsed scheme: \&quot;unix\&quot;&quot; module=grpc
+Apr 19 17:20:08 ubuntu2204 dockerd[2719]:  time=&quot;2023-04-19T17:20:07.137575718Z&quot; level=info msg=&quot;scheme \&quot;unix\&quot; not registered, fallback to default scheme&quot; module=grpc
+Apr 19 17:20:08 ubuntu2204 dockerd[2719]:  time=&quot;2023-04-19T17:20:07.137584348Z&quot; level=info msg=&quot;ccResolverWrapper: sending update to cc: {[{unix:///run/containerd/containerd.sock  &lt;nil&gt; 0 &lt;nil&gt;}] &lt;nil&gt; &lt;nil&gt;}&quot; module=grpc
+Apr 19 17:20:08 ubuntu2204 dockerd[2719]:  time=&quot;2023-04-19T17:20:07.137589959Z&quot; level=info msg=&quot;ClientConn switching balancer to \&quot;pick_first\&quot;&quot; module=grpc
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  var-lib-docker-overlay2-check\x2doverlayfs\x2dsupport822713888-merged.mount: Succeeded.
+Apr 19 17:20:08 ubuntu2204 dockerd[2719]:  time=&quot;2023-04-19T17:20:07.198702211Z&quot; level=info msg=&quot;[graphdriver] using prior storage driver: overlay2&quot;
+Apr 19 17:20:08 ubuntu2204 dockerd[2719]:  time=&quot;2023-04-19T17:20:07.209731006Z&quot; level=warning msg=&quot;Your kernel does not support swap memory limit&quot;
+Apr 19 17:20:08 ubuntu2204 dockerd[2719]:  time=&quot;2023-04-19T17:20:07.209741351Z&quot; level=warning msg=&quot;Your kernel does not support CPU realtime scheduler&quot;
+Apr 19 17:20:08 ubuntu2204 dockerd[2719]:  time=&quot;2023-04-19T17:20:07.209745497Z&quot; level=warning msg=&quot;Your kernel does not support cgroup blkio weight&quot;
+Apr 19 17:20:08 ubuntu2204 dockerd[2719]:  time=&quot;2023-04-19T17:20:07.209749193Z&quot; level=warning msg=&quot;Your kernel does not support cgroup blkio weight_device&quot;
+Apr 19 17:20:08 ubuntu2204 dockerd[2719]:  time=&quot;2023-04-19T17:20:07.209841680Z&quot; level=info msg=&quot;Loading containers: start.&quot;
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  bridge: filtering via arp/ip/ip6tables is no longer available by default. Update your scripts to load br_netfilter if you need this.
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Bridge firewalling registered
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  bpfilter: Loaded bpfilter_umh pid 959
+Apr 19 17:20:08 ubuntu2204 journal[2719]:  Started bpfilter
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  Initializing XFRM netlink socket
+Apr 19 17:20:08 ubuntu2204 systemd-networkd[2719]:  rtnl: received neighbor for link &#39;3&#39; we don&#39;t know about, ignoring.
+Apr 19 17:20:08 ubuntu2204 systemd-networkd[2719]:   message repeated 3 times: [rtnl: received neighbor for link &#39;3&#39; we don&#39;t know about, ignoring.]
+Apr 19 17:20:08 ubuntu2204 systemd-udevd[2719]:  ethtool: autonegotiation is unset or enabled, the speed and duplex are not writable.
+Apr 19 17:20:08 ubuntu2204 systemd-networkd[2719]:  docker0: Link UP
+Apr 19 17:20:08 ubuntu2204 dockerd[2719]:  time=&quot;2023-04-19T17:20:07.279805934Z&quot; level=info msg=&quot;Default bridge (docker0) is assigned with an IP address 172.17.0.0/16. Daemon option --bip can be used to set a preferred IP address&quot;
+Apr 19 17:20:08 ubuntu2204 dockerd[2719]:  time=&quot;2023-04-19T17:20:07.294528077Z&quot; level=info msg=&quot;Loading containers: done.&quot;
+Apr 19 17:20:08 ubuntu2204 dockerd[2719]:  time=&quot;2023-04-19T17:20:07.308097098Z&quot; level=info msg=&quot;Docker daemon&quot; commit=&quot;20.10.12-0ubuntu2~20.04.1&quot; graphdriver(s)=overlay2 version=20.10.12
+Apr 19 17:20:08 ubuntu2204 dockerd[2719]:  time=&quot;2023-04-19T17:20:07.308293917Z&quot; level=info msg=&quot;Daemon has completed initialization&quot;
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started Docker Application Container Engine.
+Apr 19 17:20:08 ubuntu2204 dockerd[2719]:  time=&quot;2023-04-19T17:20:07.322472664Z&quot; level=info msg=&quot;API listen on /run/docker.sock&quot;
+Apr 19 17:20:08 ubuntu2204 systemd-networkd[2719]:  enc1: Gained carrier
+Apr 19 17:20:08 ubuntu2204 systemd-timesyncd[2719]:  Network configuration changed, trying to establish connection.
+Apr 19 17:20:08 ubuntu2204 systemd-networkd[2719]:  enc1: DHCPv4 address 172.16.0.84/24 via 172.16.0.1
+Apr 19 17:20:08 ubuntu2204 dbus-daemon[2719]:  [system] Activating via systemd: service name=&#39;org.freedesktop.hostname1&#39; unit=&#39;dbus-org.freedesktop.hostname1.service&#39; requested by &#39;:1.1&#39; (uid=100 pid=754 comm=&quot;/lib/systemd/systemd-networkd &quot; label=&quot;unconfined&quot;)
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Hostname Service...
+Apr 19 17:20:08 ubuntu2204 kernel[2719]:  IPv6: ADDRCONF(NETDEV_CHANGE): enc1: link becomes ready
+Apr 19 17:20:08 ubuntu2204 systemd-timesyncd[2719]:  Network configuration changed, trying to establish connection.
+Apr 19 17:20:08 ubuntu2204 dbus-daemon[2719]:  [system] Successfully activated service &#39;org.freedesktop.hostname1&#39;
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started Hostname Service.
+Apr 19 17:20:08 ubuntu2204 systemd-hostnamed[2719]:  Changed host name to &#39;paynowse04&#39;
+Apr 19 17:20:08 ubuntu2204 hpcr-dnslookup[2719]:  HPL14000I: Network connectivity check completed successfully.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Logging Configuration.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Reached target Early Initialization.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Reached target Logging to remote monitoring server is initiated..
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Logging Configuration...
+Apr 19 17:20:08 ubuntu2204 hpcr-logging[2719]:  Configuring logging ...
+Apr 19 17:20:08 ubuntu2204 hpcr-logging[2719]:  Version [1.1.91]
+Apr 19 17:20:08 ubuntu2204 hpcr-logging[2719]:  Configuring logging, input [/var/hyperprotect/user-data.decrypted] ...
+Apr 19 17:20:08 ubuntu2204 hpcr-logging[2719]:  ValidateContractE ...
+Apr 19 17:20:08 ubuntu2204 hpcr-logging[2719]:  config written: /etc/rsyslog.d/22-logging.conf
+Apr 19 17:20:08 ubuntu2204 hpcr-logging[2719]:  HPL01010I: Logging has been setup successfully.
+Apr 19 17:20:08 ubuntu2204 hpcr-logging[2719]:  Logging has been configured
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Logging Configuration.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting System Logging Service...
+Apr 19 17:20:08 ubuntu2204 rsyslogd[2719]:  rsyslogd&#39;s groupid changed to 110
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started System Logging Service.
+Apr 19 17:20:08 ubuntu2204 rsyslogd[2719]:  rsyslogd&#39;s userid changed to 104
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Reached target Synchronizes the Logging Target.
+Apr 19 17:20:08 ubuntu2204 rsyslogd[2719]:  [origin software=&quot;rsyslogd&quot; swVersion=&quot;8.2001.0&quot; x-pid=&quot;1098&quot; x-info=&quot;https://www.rsyslog.com&quot;] start
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Reached target Logging to remote log server is initiated..
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Service that does validation of contract...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting HPCR Registry Authentication...
+Apr 19 17:20:08 ubuntu2204 rsyslogd[2719]:  imjournal: No statefile exists, /var/spool/rsyslog/journal_state will be created (ignore if this is first run): No such file or directory [v8.2001.0 try https://www.rsyslog.com/e/2040 ]
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished HPCR Registry Authentication.
+Apr 19 17:20:08 ubuntu2204 hpcr-registry-auth[2719]:  Starting Registry Authentication ...
+Apr 19 17:20:08 ubuntu2204 hpcr-registry-auth[2719]:  Version [1.0.45]
+Apr 19 17:20:08 ubuntu2204 hpcr-registry-auth[2719]:  Writing auth config: /root/.docker/config.json
+Apr 19 17:20:08 ubuntu2204 hpcr-registry-auth[2719]:  Registry Authentication started
+Apr 19 17:20:08 ubuntu2204 hpcr-contract[2719]:  Welcome to SE Contract Validator
+Apr 19 17:20:08 ubuntu2204 rsyslogd[2719]:  imjournal: journal files changed, reloading...  [v8.2001.0 try https://www.rsyslog.com/e/0 ]
+Apr 19 17:20:08 ubuntu2204 hpcr-contract[2719]:  Contract file passed is:  /var/hyperprotect/user-data.decrypted
+Apr 19 17:20:08 ubuntu2204 hpcr-contract[2719]:  Contract file is valid.
+Apr 19 17:20:08 ubuntu2204 hpcr-contract[2719]:  Extracting workload from /var/hyperprotect/user-data.decrypted to /var/hyperprotect/workload-data.decrypted
+Apr 19 17:20:08 ubuntu2204 hpcr-contract[2719]:  Extraction completed
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Service that does validation of contract.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Service that does signature validation of Env Workload of contract...
+Apr 19 17:20:08 ubuntu2204 hpcr-signature[2719]:  Welcome to SE ENV Workload Signature Validator
+Apr 19 17:20:08 ubuntu2204 hpcr-signature[2719]:  Decrypted Contract file passed is:  /var/hyperprotect/workload-data.decrypted
+Apr 19 17:20:08 ubuntu2204 hpcr-signature[2719]:  Encrypted Contract file passed is:  /var/hyperprotect/cidata/user-data
+Apr 19 17:20:08 ubuntu2204 hpcr-signature[2719]:  Check Dependency params Public key and EnvWorkload signature
+Apr 19 17:20:08 ubuntu2204 hpcr-signature[2719]:  Access Public key and EnvWorkload signature
+Apr 19 17:20:08 ubuntu2204 hpcr-signature[2719]:  Create combined EnvWorkload contract content
+Apr 19 17:20:08 ubuntu2204 hpcr-signature[2719]:  Verify signing key, signature and combined EnvWorkload contract
+Apr 19 17:20:08 ubuntu2204 hpcr-signature[2719]:  Verified OK
+Apr 19 17:20:08 ubuntu2204 hpcr-signature[2719]:  Successfully verified contract with signature and signing key
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Service that does signature validation of Env Workload of contract.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Reached target Contract is unpacked and ready for consumption..
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Service that waits until the user devices are ready...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Set docker image policy...
+Apr 19 17:20:08 ubuntu2204 hpcr-image[2719]:  Starting image service...
+Apr 19 17:20:08 ubuntu2204 hpcr-image[2719]:  Contract yaml file: /var/hyperprotect/workload-data.decrypted
+Apr 19 17:20:08 ubuntu2204 hpcr-image[2719]:  Extracting image contract
+Apr 19 17:20:08 ubuntu2204 hpcr-image[2719]:  Successfully extracted Image contract
+Apr 19 17:20:08 ubuntu2204 hpcr-image[2719]:  Extracting container contract
+Apr 19 17:20:08 ubuntu2204 hpcr-image[2719]:  Checking for image with digest
+Apr 19 17:20:08 ubuntu2204 hpcr-image[2719]:  No image for DCT verification
+Apr 19 17:20:08 ubuntu2204 hpcr-image[2719]:  Image service completed successfully
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Set docker image policy.
+Apr 19 17:20:08 ubuntu2204 hpcr-disk-standby[2719]:  Waiting for devices ...
+Apr 19 17:20:08 ubuntu2204 hpcr-disk-standby[2719]:  Version [1.0.32]
+Apr 19 17:20:08 ubuntu2204 hpcr-disk-standby[2719]:  WaitForDevices input=[/var/hyperprotect/user-data.decrypted], timeout=[2023-04-19 17:35:08.18397618 +0000 UTC m=+900.003390443]
+Apr 19 17:20:08 ubuntu2204 hpcr-disk-standby[2719]:  ParseContract ...
+Apr 19 17:20:08 ubuntu2204 hpcr-disk-standby[2719]:  ValidateContract ...
+Apr 19 17:20:08 ubuntu2204 hpcr-disk-standby[2719]:  MergeVolumes ...
+Apr 19 17:20:08 ubuntu2204 hpcr-disk-standby[2719]:  Waiting for devices done done
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Service that waits until the user devices are ready.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Service that mounts the data volumes after they are ready...
+Apr 19 17:20:08 ubuntu2204 hpcr-disk-mount[2719]:  Mounting volumes ...
+Apr 19 17:20:08 ubuntu2204 hpcr-disk-mount[2719]:  Version [1.0.32]
+Apr 19 17:20:08 ubuntu2204 hpcr-disk-mount[2719]:  MountVolumes input=[/var/hyperprotect/user-data.decrypted]
+Apr 19 17:20:08 ubuntu2204 hpcr-disk-mount[2719]:  ParseContract ...
+Apr 19 17:20:08 ubuntu2204 hpcr-disk-mount[2719]:  ValidateContract ...
+Apr 19 17:20:08 ubuntu2204 hpcr-disk-mount[2719]:  MergeVolumes ...
+Apr 19 17:20:08 ubuntu2204 hpcr-disk-mount[2719]:  Mounting volumes ...
+Apr 19 17:20:08 ubuntu2204 hpcr-disk-mount[2719]:  Mounting volumes done
+Apr 19 17:20:08 ubuntu2204 hpcr-disk-mount[2719]:  HPL07003I: Mounting volumes done
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Finished Service that mounts the data volumes after they are ready.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Reached target Data volumes are mounted ready to be used..
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Starting Service that creates a set of containers...
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started Service that verifies all disks are encrypted and logs output to systemd journal.
+Apr 19 17:20:08 ubuntu2204 systemd[2719]:  Started Service that periodically logs entry to trigger verify disk encryption service.
+Apr 19 17:20:08 ubuntu2204 verify-disk-encryption[2719]:  Verify disk encryption started...
+Apr 19 17:20:08 ubuntu2204 hpcr-container[2719]:  Starting container service...
+Apr 19 17:20:08 ubuntu2204 hpcr-container[2719]:  Validating contract...
+Apr 19 17:20:08 ubuntu2204 hpcr-container[2719]:  Compose folder /data1/compose created
+Apr 19 17:20:08 ubuntu2204 hpcr-container[2719]:  Contract yaml file: /var/hyperprotect/workload-data.decrypted
+Apr 19 17:20:08 ubuntu2204 hpcr-container[2719]:  Compose folder: /data1/compose
+Apr 19 17:20:08 ubuntu2204 hpcr-container[2719]:  Validation completed
+Apr 19 17:20:08 ubuntu2204 hpcr-container[2719]:  Parsing contract...
+Apr 19 17:20:08 ubuntu2204 hpcr-container[2719]:  Parsing of the Contract File completed successfully
+Apr 19 17:20:08 ubuntu2204 hpcr-container[2719]:  Extracting compose...
+Apr 19 17:20:08 ubuntu2204 hpcr-container[2719]:  Extracting done...
+Apr 19 17:20:08 ubuntu2204 hpcr-container[2719]:  Extracting the ENV Contents...
+Apr 19 17:20:08 ubuntu2204 hpcr-container[2719]:  Writing new env file /data1/compose/.env ...
+Apr 19 17:20:08 ubuntu2204 hpcr-container[2719]:  Reading existing env file /data1/compose/.env ...
+Apr 19 17:20:08 ubuntu2204 hpcr-container[2719]:  Extracting of environment contents done
+Apr 19 17:20:08 ubuntu2204 hpcr-container[2719]:  Check if docker is ready
+Apr 19 17:20:08 ubuntu2204 hpcr-container[2719]:  docker-compose.yml file is present in the directory
+Apr 19 17:20:08 ubuntu2204 hpcr-container[2719]:  Starting workload containers...
+Apr 19 17:20:08 ubuntu2204 dockerd[2719]:  time=&quot;2023-04-19T17:20:08.481295711Z&quot; level=warning msg=&quot;reference for unknown type: &quot; digest=&quot;sha256:b0921f4009b33b926aeae931fef2b0536514e7a62ae013cee6c345b1ac7f11bb&quot; remote=&quot;quay.io/bsilliman/paynow@sha256:b0921f4009b33b926aeae931fef2b0536514e7a62ae013cee6c345b1ac7f11bb&quot;
+Apr 19 17:20:09 ubuntu2204 systemd-networkd[2719]:  enc1: Gained IPv6LL
+Apr 19 17:20:09 ubuntu2204 systemd-timesyncd[2719]:  Network configuration changed, trying to establish connection.
+Apr 19 17:20:12 ubuntu2204 systemd[2719]:  dmesg.service: Succeeded.
+Apr 19 17:20:13 ubuntu2204 verify-disk-encryption[2719]:  HPL13000I: Verify LUKS Encryption
+Apr 19 17:20:13 ubuntu2204 systemd[2719]:  verify-disk-encryption-invoker.service: Succeeded.
+Apr 19 17:20:14 ubuntu2204 verify-disk-encryption[2719]:  Return value for disk-encrypt: 0
+Apr 19 17:20:14 ubuntu2204 verify-disk-encryption[2719]:  Executed cmd: (&#39;lsblk&#39;, &#39;-b&#39;, &#39;-n&#39;, &#39;-o&#39;, &#39;NAME,SIZE&#39;)
+Apr 19 17:20:14 ubuntu2204 verify-disk-encryption[2719]:  Return value: 0
+Apr 19 17:20:14 ubuntu2204 verify-disk-encryption[2719]:  Stdout: vda                                           107374182400
+Apr 19 17:20:14 ubuntu2204 verify-disk-encryption[2719]:  ├─vda1                                          4292870144
+Apr 19 17:20:14 ubuntu2204 verify-disk-encryption[2719]:  └─vda2                                        103079215104
+Apr 19 17:20:14 ubuntu2204 verify-disk-encryption[2719]:    └─luks-6c4b93a2-1091-445e-a6fe-34c252d5d301 103062437888
+Apr 19 17:20:14 ubuntu2204 verify-disk-encryption[2719]:  vdb                                                 389120
+Apr 19 17:20:14 ubuntu2204 verify-disk-encryption[2719]:  List of volumes greater than or equal to 10GB are: [&#39;/dev/vda&#39;]
+Apr 19 17:20:14 ubuntu2204 verify-disk-encryption[2719]:  Updated Volumes list: [&#39;/dev/vda2&#39;]
+Apr 19 17:20:14 ubuntu2204 verify-disk-encryption[2719]:  Executed cmd: (&#39;lsblk&#39;, &#39;/dev/vda2&#39;, &#39;-b&#39;, &#39;-n&#39;, &#39;-o&#39;, &#39;NAME,MOUNTPOINT&#39;)
+Apr 19 17:20:14 ubuntu2204 verify-disk-encryption[2719]:  Return value: 0
+Apr 19 17:20:14 ubuntu2204 verify-disk-encryption[2719]:  Stdout: vda2
+Apr 19 17:20:14 ubuntu2204 verify-disk-encryption[2719]:  └─luks-6c4b93a2-1091-445e-a6fe-34c252d5d301 /
+Apr 19 17:20:14 ubuntu2204 verify-disk-encryption[2719]:  Boot volume is /dev/vda2
+Apr 19 17:20:14 ubuntu2204 verify-disk-encryption[2719]:  Volume /dev/vda2 has mount point /
+Apr 19 17:20:14 ubuntu2204 verify-disk-encryption[2719]:  List of mounted volumes are: [&#39;/dev/vda2&#39;]
+Apr 19 17:20:14 ubuntu2204 verify-disk-encryption[2719]:  Verifying the boot disk /dev/vda2 is encrypted or not
+Apr 19 17:20:14 ubuntu2204 verify-disk-encryption[2719]:  Executed cmd: (&#39;lsblk&#39;, &#39;/dev/vda2&#39;, &#39;-b&#39;, &#39;-n&#39;, &#39;-o&#39;, &#39;NAME,TYPE&#39;)
+Apr 19 17:20:14 ubuntu2204 verify-disk-encryption[2719]:  Return value: 0
+Apr 19 17:20:14 ubuntu2204 verify-disk-encryption[2719]:  Stdout: vda2                                        part
+Apr 19 17:20:14 ubuntu2204 verify-disk-encryption[2719]:  └─luks-6c4b93a2-1091-445e-a6fe-34c252d5d301 crypt
+Apr 19 17:20:14 ubuntu2204 verify-disk-encryption[2719]:  Executed cmd: (&#39;cryptsetup&#39;, &#39;isLuks&#39;, &#39;/dev/vda2&#39;)
+Apr 19 17:20:14 ubuntu2204 verify-disk-encryption[2719]:  Return value: 0
+Apr 19 17:20:14 ubuntu2204 verify-disk-encryption[2719]:  Executed cmd: (&#39;cryptsetup&#39;, &#39;luksDump&#39;, &#39;/dev/vda2&#39;)
+Apr 19 17:20:14 ubuntu2204 verify-disk-encryption[2719]:  Return value: 0
+Apr 19 17:20:14 ubuntu2204 verify-disk-encryption[2719]:  Checked for mount point /, LUKS encryption with 1 key slot found
+Apr 19 17:20:14 ubuntu2204 verify-disk-encryption[2719]:  HPL13001I: Boot volume and all the mounted data volumes are encrypted
+Apr 19 17:20:28 ubuntu2204 systemd-networkd[2719]:  rtnl: received neighbor for link &#39;4&#39; we don&#39;t know about, ignoring.
+Apr 19 17:20:28 ubuntu2204 systemd-networkd[2719]:   message repeated 3 times: [rtnl: received neighbor for link &#39;4&#39; we don&#39;t know about, ignoring.]
+Apr 19 17:20:28 ubuntu2204 systemd-udevd[2719]:  Using default interface naming scheme &#39;v245&#39;.
+Apr 19 17:20:28 ubuntu2204 systemd-udevd[2719]:  ethtool: autonegotiation is unset or enabled, the speed and duplex are not writable.
+Apr 19 17:20:28 ubuntu2204 systemd-timesyncd[2719]:  Network configuration changed, trying to establish connection.
+Apr 19 17:20:28 ubuntu2204 systemd-networkd[2719]:  br-91d9797bb816: Link UP
+Apr 19 17:20:28 ubuntu2204 systemd[2719]:  var-lib-docker-overlay2-3b36cc48796d069091e1ad61b9599968d889b5a7d5eb4118b26ab8669cb553d8\x2dinit-merged.mount: Succeeded.
+Apr 19 17:20:29 ubuntu2204 systemd[2719]:  var-lib-docker-overlay2-3b36cc48796d069091e1ad61b9599968d889b5a7d5eb4118b26ab8669cb553d8-merged.mount: Succeeded.
+Apr 19 17:20:29 ubuntu2204 systemd-udevd[2719]:  ethtool: autonegotiation is unset or enabled, the speed and duplex are not writable.
+Apr 19 17:20:29 ubuntu2204 systemd-udevd[2719]:  veth4346ca8: Could not generate persistent MAC: No data available
+Apr 19 17:20:29 ubuntu2204 systemd-networkd[2719]:  veth550b64c: Link UP
+Apr 19 17:20:29 ubuntu2204 kernel[2719]:  br-91d9797bb816: port 1(veth550b64c) entered blocking state
+Apr 19 17:20:29 ubuntu2204 kernel[2719]:  br-91d9797bb816: port 1(veth550b64c) entered disabled state
+Apr 19 17:20:29 ubuntu2204 kernel[2719]:  device veth550b64c entered promiscuous mode
+Apr 19 17:20:29 ubuntu2204 systemd-udevd[2719]:  ethtool: autonegotiation is unset or enabled, the speed and duplex are not writable.
+Apr 19 17:20:29 ubuntu2204 systemd-udevd[2719]:  Using default interface naming scheme &#39;v245&#39;.
+Apr 19 17:20:29 ubuntu2204 systemd-udevd[2719]:  veth550b64c: Could not generate persistent MAC: No data available
+Apr 19 17:20:29 ubuntu2204 dockerd[2719]:  time=&quot;2023-04-19T17:20:29.580714681Z&quot; level=info msg=&quot;No non-localhost DNS nameservers are left in resolv.conf. Using default external servers: [nameserver 8.8.8.8 nameserver 8.8.4.4]&quot;
+Apr 19 17:20:29 ubuntu2204 dockerd[2719]:  time=&quot;2023-04-19T17:20:29.580746134Z&quot; level=info msg=&quot;IPv6 enabled; Adding default IPv6 external servers: [nameserver 2001:4860:4860::8888 nameserver 2001:4860:4860::8844]&quot;
+Apr 19 17:20:29 ubuntu2204 containerd[2719]:  time=&quot;2023-04-19T17:20:29.620743367Z&quot; level=info msg=&quot;starting signal loop&quot; namespace=moby path=/run/containerd/io.containerd.runtime.v2.task/moby/b06aa4ff40fc77f0679be38046b3ac52a3a07854fe9cc013faca313f94d35350 pid=1341
+Apr 19 17:20:29 ubuntu2204 systemd[2719]:  run-docker-runtime\x2drunc-moby-b06aa4ff40fc77f0679be38046b3ac52a3a07854fe9cc013faca313f94d35350-runc.4Sk6D9.mount: Succeeded.
+Apr 19 17:20:29 ubuntu2204 kernel[2719]:  cgroup: cgroup: disabling cgroup2 socket matching due to net_prio or net_cls activation
+Apr 19 17:20:30 ubuntu2204 kernel[2719]:  eth0: renamed from veth4346ca8
+Apr 19 17:20:30 ubuntu2204 systemd-networkd[2719]:  veth550b64c: Gained carrier
+Apr 19 17:20:30 ubuntu2204 systemd-networkd[2719]:  br-91d9797bb816: Gained carrier
+Apr 19 17:20:30 ubuntu2204 kernel[2719]:  IPv6: ADDRCONF(NETDEV_CHANGE): veth550b64c: link becomes ready
+Apr 19 17:20:30 ubuntu2204 kernel[2719]:  br-91d9797bb816: port 1(veth550b64c) entered blocking state
+Apr 19 17:20:30 ubuntu2204 kernel[2719]:  br-91d9797bb816: port 1(veth550b64c) entered forwarding state
+Apr 19 17:20:30 ubuntu2204 kernel[2719]:  IPv6: ADDRCONF(NETDEV_CHANGE): br-91d9797bb816: link becomes ready
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  Docker Compose Logs:
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:   paynow Pulling
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  51f6de0debe6 Pulling fs layer
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  6404e912b557 Pulling fs layer
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  0561ee66ff6a Pulling fs layer
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Pulling fs layer
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Pulling fs layer
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  65a3fb6c13d7 Pulling fs layer
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  c9fe958b3ae4 Pulling fs layer
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  5c31cf8345fa Pulling fs layer
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7b32651b0169 Pulling fs layer
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  0d117aef64cc Pulling fs layer
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  197acf2cade1 Pulling fs layer
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  d78e4d77283b Pulling fs layer
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  8b3975218acc Pulling fs layer
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7b32651b0169 Waiting
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  0d117aef64cc Waiting
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  197acf2cade1 Waiting
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  d78e4d77283b Waiting
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  8b3975218acc Waiting
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Waiting
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Waiting
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  65a3fb6c13d7 Waiting
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  c9fe958b3ae4 Waiting
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  6404e912b557 Downloading [&gt;                                                  ]  51.93kB/5.149MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  6404e912b557 Verifying Checksum
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  6404e912b557 Download complete
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  51f6de0debe6 Downloading [&gt;                                                  ]  538.4kB/53.28MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  0561ee66ff6a Downloading [&gt;                                                  ]  110.1kB/10.77MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  51f6de0debe6 Downloading [=======&gt;                                           ]  8.083MB/53.28MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  0561ee66ff6a Downloading [========&gt;                                          ]  1.726MB/10.77MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  51f6de0debe6 Downloading [===========&gt;                                       ]  11.81MB/53.28MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  0561ee66ff6a Downloading [================&gt;                                  ]  3.561MB/10.77MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  0561ee66ff6a Downloading [=============================&gt;                     ]  6.322MB/10.77MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Downloading [&gt;                                                  ]  538.4kB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  51f6de0debe6 Downloading [=================&gt;                                 ]  18.22MB/53.28MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  0561ee66ff6a Downloading [=========================================&gt;         ]  8.841MB/10.77MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Downloading [====&gt;                                              ]  4.819MB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  51f6de0debe6 Downloading [======================&gt;                            ]  24.13MB/53.28MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  0561ee66ff6a Verifying Checksum
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  0561ee66ff6a Download complete
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  51f6de0debe6 Downloading [============================&gt;                      ]  30.56MB/53.28MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Downloading [=======&gt;                                           ]   8.05MB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  51f6de0debe6 Downloading [====================================&gt;              ]  38.62MB/53.28MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Downloading [===========&gt;                                       ]  12.35MB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  51f6de0debe6 Downloading [===========================================&gt;       ]  46.64MB/53.28MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Downloading [&gt;                                                  ]  540.7kB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  51f6de0debe6 Verifying Checksum
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  51f6de0debe6 Download complete
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Downloading [=============&gt;                                     ]  14.48MB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Downloading [=&gt;                                                 ]  5.359MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Downloading [==================&gt;                                ]  19.87MB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  51f6de0debe6 Extracting [&gt;                                                  ]  557.1kB/53.28MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Downloading [===&gt;                                               ]  12.36MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Downloading [======================&gt;                            ]  24.16MB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  51f6de0debe6 Extracting [==&gt;                                                ]  2.785MB/53.28MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  65a3fb6c13d7 Downloading [=======&gt;                                           ]     600B/4.203kB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  65a3fb6c13d7 Downloading [==================================================&gt;]  4.203kB/4.203kB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  65a3fb6c13d7 Verifying Checksum
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  65a3fb6c13d7 Download complete
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Downloading [======&gt;                                            ]  20.94MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Downloading [==========================&gt;                        ]  28.46MB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  51f6de0debe6 Extracting [=====&gt;                                             ]  5.571MB/53.28MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Downloading [========&gt;                                          ]  28.96MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Downloading [===============================&gt;                   ]  33.85MB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  51f6de0debe6 Extracting [=======&gt;                                           ]  8.356MB/53.28MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Downloading [==========&gt;                                        ]  36.47MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Downloading [===================================&gt;               ]  38.15MB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  51f6de0debe6 Extracting [==========&gt;                                        ]  11.14MB/53.28MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Downloading [============&gt;                                      ]  44.53MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Downloading [=======================================&gt;           ]  43.01MB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  51f6de0debe6 Extracting [=============&gt;                                     ]  13.93MB/53.28MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Downloading [===============&gt;                                   ]  52.56MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Downloading [===========================================&gt;       ]  47.29MB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Downloading [=================&gt;                                 ]  60.63MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  51f6de0debe6 Extracting [===============&gt;                                   ]  16.15MB/53.28MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  c9fe958b3ae4 Downloading [&gt;                                                  ]  468.7kB/46.04MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Downloading [================================================&gt;  ]  52.13MB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  c9fe958b3ae4 Downloading [===&gt;                                               ]  2.828MB/46.04MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Downloading [===================&gt;                               ]  66.52MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  51f6de0debe6 Extracting [=================&gt;                                 ]  18.94MB/53.28MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Verifying Checksum
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Download complete
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Downloading [=====================&gt;                             ]  74.55MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  c9fe958b3ae4 Downloading [=======&gt;                                           ]  6.568MB/46.04MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  51f6de0debe6 Extracting [====================&gt;                              ]  21.73MB/53.28MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Downloading [=======================&gt;                           ]  79.95MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  c9fe958b3ae4 Downloading [=============&gt;                                     ]   12.2MB/46.04MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  51f6de0debe6 Extracting [=======================&gt;                           ]  24.51MB/53.28MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Downloading [========================&gt;                          ]  85.86MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  c9fe958b3ae4 Downloading [=====================&gt;                             ]   19.7MB/46.04MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  c9fe958b3ae4 Downloading [========================&gt;                          ]  22.51MB/46.04MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Downloading [==========================&gt;                        ]  90.15MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  5c31cf8345fa Downloading [&gt;                                                  ]  23.82kB/2.277MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Downloading [===========================&gt;                       ]  95.52MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  c9fe958b3ae4 Downloading [==============================&gt;                    ]  27.69MB/46.04MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  5c31cf8345fa Downloading [=========&gt;                                         ]  423.7kB/2.277MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Downloading [==============================&gt;                    ]  105.2MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  c9fe958b3ae4 Downloading [=======================================&gt;           ]  36.19MB/46.04MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  51f6de0debe6 Extracting [=========================&gt;                         ]  26.74MB/53.28MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  5c31cf8345fa Downloading [===============================================&gt;   ]   2.16MB/2.277MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  5c31cf8345fa Verifying Checksum
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  5c31cf8345fa Download complete
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  c9fe958b3ae4 Downloading [=============================================&gt;     ]  41.85MB/46.04MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Downloading [================================&gt;                  ]    111MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  51f6de0debe6 Extracting [==========================&gt;                        ]  27.85MB/53.28MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  c9fe958b3ae4 Verifying Checksum
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  c9fe958b3ae4 Download complete
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Downloading [==================================&gt;                ]  118.6MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  51f6de0debe6 Extracting [================================&gt;                  ]  34.54MB/53.28MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Downloading [=====================================&gt;             ]  128.2MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  51f6de0debe6 Extracting [====================================&gt;              ]  38.99MB/53.28MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7b32651b0169 Downloading [==================================================&gt;]     452B/452B
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7b32651b0169 Verifying Checksum
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7b32651b0169 Download complete
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  0d117aef64cc Downloading [==================================================&gt;]     126B/126B
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  0d117aef64cc Verifying Checksum
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  0d117aef64cc Download complete
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Downloading [========================================&gt;          ]    139MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  51f6de0debe6 Extracting [======================================&gt;            ]  41.22MB/53.28MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Downloading [===========================================&gt;       ]  151.8MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  197acf2cade1 Downloading [====&gt;                                              ]     580B/6.827kB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  197acf2cade1 Downloading [==================================================&gt;]  6.827kB/6.827kB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  197acf2cade1 Verifying Checksum
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  197acf2cade1 Download complete
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  51f6de0debe6 Extracting [========================================&gt;          ]  43.45MB/53.28MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Downloading [===============================================&gt;   ]  163.1MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  d78e4d77283b Downloading [&gt;                                                  ]   21.9kB/2.143MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  51f6de0debe6 Extracting [==========================================&gt;        ]  45.12MB/53.28MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Verifying Checksum
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Download complete
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  8b3975218acc Downloading [&gt;                                                  ]  9.583kB/902.5kB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  d78e4d77283b Downloading [==================================================&gt;]  2.143MB/2.143MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  8b3975218acc Verifying Checksum
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  8b3975218acc Download complete
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  d78e4d77283b Verifying Checksum
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  d78e4d77283b Download complete
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  51f6de0debe6 Extracting [============================================&gt;      ]  47.91MB/53.28MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  51f6de0debe6 Extracting [===============================================&gt;   ]  50.69MB/53.28MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  51f6de0debe6 Extracting [=================================================&gt; ]  52.36MB/53.28MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  51f6de0debe6 Extracting [==================================================&gt;]  53.28MB/53.28MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  51f6de0debe6 Pull complete
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  6404e912b557 Extracting [&gt;                                                  ]  65.54kB/5.149MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  6404e912b557 Extracting [=============================&gt;                     ]  3.015MB/5.149MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  6404e912b557 Extracting [==================================================&gt;]  5.149MB/5.149MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  6404e912b557 Pull complete
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  0561ee66ff6a Extracting [&gt;                                                  ]  131.1kB/10.77MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  0561ee66ff6a Extracting [===============&gt;                                   ]  3.277MB/10.77MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  0561ee66ff6a Extracting [===============================================&gt;   ]  10.22MB/10.77MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  0561ee66ff6a Extracting [==================================================&gt;]  10.77MB/10.77MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  0561ee66ff6a Pull complete
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Extracting [&gt;                                                  ]  557.1kB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Extracting [===&gt;                                               ]  3.899MB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Extracting [=======&gt;                                           ]  7.799MB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Extracting [==========&gt;                                        ]   11.7MB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Extracting [=============&gt;                                     ]  15.04MB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Extracting [================&gt;                                  ]  17.83MB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Extracting [==================&gt;                                ]   19.5MB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Extracting [==================&gt;                                ]  20.05MB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Extracting [=====================&gt;                             ]  22.84MB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Extracting [=======================&gt;                           ]  25.07MB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Extracting [========================&gt;                          ]  26.74MB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Extracting [==========================&gt;                        ]  28.97MB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Extracting [=============================&gt;                     ]  32.31MB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Extracting [================================&gt;                  ]  35.09MB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Extracting [===================================&gt;               ]  38.44MB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Extracting [=====================================&gt;             ]  40.67MB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Extracting [=========================================&gt;         ]  44.56MB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Extracting [============================================&gt;      ]  47.91MB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Extracting [==============================================&gt;    ]  50.14MB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Extracting [===============================================&gt;   ]  51.81MB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Extracting [=================================================&gt; ]  53.48MB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Extracting [==================================================&gt;]  54.06MB/54.06MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7a6c7ccf7cb5 Pull complete
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [&gt;                                                  ]  557.1kB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [&gt;                                                  ]  3.342MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [=&gt;                                                 ]  6.685MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [==&gt;                                                ]  10.03MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [====&gt;                                              ]  13.93MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [====&gt;                                              ]   15.6MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [====&gt;                                              ]  17.27MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [=====&gt;                                             ]  18.94MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [=====&gt;                                             ]  20.05MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [======&gt;                                            ]  22.28MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [=======&gt;                                           ]  26.18MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [========&gt;                                          ]  29.52MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [=========&gt;                                         ]  33.42MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [==========&gt;                                        ]  37.32MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [===========&gt;                                       ]  40.67MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [============&gt;                                      ]  44.01MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [=============&gt;                                     ]  47.91MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [==============&gt;                                    ]  51.25MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [===============&gt;                                   ]  53.48MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [================&gt;                                  ]  55.71MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [================&gt;                                  ]  57.38MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [=================&gt;                                 ]  61.28MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [==================&gt;                                ]  64.62MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [===================&gt;                               ]  67.96MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [====================&gt;                              ]   71.3MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [=====================&gt;                             ]  74.65MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [======================&gt;                            ]  77.99MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [=======================&gt;                           ]  81.33MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [========================&gt;                          ]  85.23MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [=========================&gt;                         ]  89.69MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [==========================&gt;                        ]  93.03MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [============================&gt;                      ]  96.93MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [=============================&gt;                     ]  100.8MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [==============================&gt;                    ]  104.2MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [===============================&gt;                   ]  107.5MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [================================&gt;                  ]  110.9MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [=================================&gt;                 ]  114.2MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [==================================&gt;                ]  117.5MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [==================================&gt;                ]  120.9MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [===================================&gt;               ]  122.6MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [====================================&gt;              ]  125.3MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [=====================================&gt;             ]  128.7MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [=====================================&gt;             ]  130.4MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [========================================&gt;          ]  138.7MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [==========================================&gt;        ]  148.2MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [============================================&gt;      ]  154.9MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [=============================================&gt;     ]  158.2MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [==============================================&gt;    ]    161MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [===============================================&gt;   ]  163.8MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [================================================&gt;  ]  166.6MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [================================================&gt;  ]  168.8MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [================================================&gt;  ]  169.3MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [=================================================&gt; ]    171MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [=================================================&gt; ]  172.7MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Extracting [==================================================&gt;]  172.8MB/172.8MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  2854c5c8fd87 Pull complete
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  65a3fb6c13d7 Extracting [==================================================&gt;]  4.203kB/4.203kB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  65a3fb6c13d7 Extracting [==================================================&gt;]  4.203kB/4.203kB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  65a3fb6c13d7 Pull complete
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  c9fe958b3ae4 Extracting [&gt;                                                  ]  491.5kB/46.04MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  c9fe958b3ae4 Extracting [====&gt;                                              ]  3.932MB/46.04MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  c9fe958b3ae4 Extracting [========&gt;                                          ]  7.373MB/46.04MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  c9fe958b3ae4 Extracting [===========&gt;                                       ]  10.81MB/46.04MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  c9fe958b3ae4 Extracting [===============&gt;                                   ]  14.25MB/46.04MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  c9fe958b3ae4 Extracting [===================&gt;                               ]  18.19MB/46.04MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  c9fe958b3ae4 Extracting [========================&gt;                          ]  22.12MB/46.04MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  c9fe958b3ae4 Extracting [============================&gt;                      ]  26.54MB/46.04MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  c9fe958b3ae4 Extracting [================================&gt;                  ]  29.98MB/46.04MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  c9fe958b3ae4 Extracting [====================================&gt;              ]  33.42MB/46.04MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  c9fe958b3ae4 Extracting [======================================&gt;            ]  35.88MB/46.04MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  c9fe958b3ae4 Extracting [=========================================&gt;         ]  37.85MB/46.04MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  c9fe958b3ae4 Extracting [===========================================&gt;       ]  39.81MB/46.04MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  c9fe958b3ae4 Extracting [=============================================&gt;     ]  41.78MB/46.04MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  c9fe958b3ae4 Extracting [===============================================&gt;   ]  43.75MB/46.04MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  c9fe958b3ae4 Extracting [=================================================&gt; ]  45.22MB/46.04MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  c9fe958b3ae4 Extracting [==================================================&gt;]  46.04MB/46.04MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  c9fe958b3ae4 Pull complete
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  5c31cf8345fa Extracting [&gt;                                                  ]  32.77kB/2.277MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  5c31cf8345fa Extracting [============================&gt;                      ]  1.311MB/2.277MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  5c31cf8345fa Extracting [==================================================&gt;]  2.277MB/2.277MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  5c31cf8345fa Pull complete
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7b32651b0169 Extracting [==================================================&gt;]     452B/452B
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7b32651b0169 Extracting [==================================================&gt;]     452B/452B
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  7b32651b0169 Pull complete
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  0d117aef64cc Extracting [==================================================&gt;]     126B/126B
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  0d117aef64cc Extracting [==================================================&gt;]     126B/126B
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  0d117aef64cc Pull complete
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  197acf2cade1 Extracting [==================================================&gt;]  6.827kB/6.827kB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  197acf2cade1 Extracting [==================================================&gt;]  6.827kB/6.827kB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  197acf2cade1 Pull complete
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  d78e4d77283b Extracting [&gt;                                                  ]  32.77kB/2.143MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  d78e4d77283b Extracting [==============&gt;                                    ]  622.6kB/2.143MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  d78e4d77283b Extracting [==================================================&gt;]  2.143MB/2.143MB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  d78e4d77283b Pull complete
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  8b3975218acc Extracting [=&gt;                                                 ]  32.77kB/902.5kB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  8b3975218acc Extracting [==================================================&gt;]  902.5kB/902.5kB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  8b3975218acc Extracting [==================================================&gt;]  902.5kB/902.5kB
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  8b3975218acc Pull complete
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  paynow Pulled
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  Network compose_default  Creating
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  Network compose_default  Created
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  Container compose-paynow-1  Creating
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  Container compose-paynow-1  Created
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  Container compose-paynow-1  Starting
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  Container compose-paynow-1  Started
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  Docker compose result:
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:   CONTAINER ID   IMAGE                      COMMAND                  CREATED         STATUS                  PORTS                                       NAMES
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  b06aa4ff40fc   quay.io/bsilliman/paynow   &quot;docker-entrypoint.s…&quot;   2 seconds ago   Up Less than a second   0.0.0.0:8443-&gt;8443/tcp, :::8443-&gt;8443/tcp   compose-paynow-1
+Apr 19 17:20:30 ubuntu2204 hpcr-container[2719]:  Container service completed successfully
+Apr 19 17:20:30 ubuntu2204 systemd[2719]:  Finished Service that creates a set of containers.
+Apr 19 17:20:30 ubuntu2204 systemd[2719]:  Reached target Workload is up and running..
+Apr 19 17:20:30 ubuntu2204 systemd[2719]:  Starting Phase2 Catch Service...
+Apr 19 17:20:30 ubuntu2204 systemd[2719]:  Finished Phase2 Catch Service.
+Apr 19 17:20:30 ubuntu2204 systemd[2719]:  Reached target Multi-User System.
+Apr 19 17:20:30 ubuntu2204 hpcr-catch-success[2719]:  VSI has started successfully.
+Apr 19 17:20:30 ubuntu2204 hpcr-catch-success[2719]:  HPL10001I: Services succeeded -&gt; systemd triggered hpl-catch-success service
+Apr 19 17:20:30 ubuntu2204 systemd[2719]:  Reached target Graphical Interface.
+Apr 19 17:20:30 ubuntu2204 systemd[2719]:  Starting Update UTMP about System Runlevel Changes...
+Apr 19 17:20:30 ubuntu2204 systemd[2719]:  systemd-update-utmp-runlevel.service: Succeeded.
+Apr 19 17:20:30 ubuntu2204 systemd[2719]:  Finished Update UTMP about System Runlevel Changes.
+Apr 19 17:20:30 ubuntu2204 systemd[2719]:  Startup finished in 26.015s (kernel) + 23.805s (userspace) = 49.820s.
+Apr 19 17:20:30 ubuntu2204 compose-paynow-1[2719]:  
+Apr 19 17:20:30 ubuntu2204 compose-paynow-1[2719]:  &gt; hyper-protect-pay-now@1.0.0 start
+Apr 19 17:20:30 ubuntu2204 compose-paynow-1[2719]:  &gt; node app.js
+Apr 19 17:20:30 ubuntu2204 compose-paynow-1[2719]:  
+Apr 19 17:20:31 ubuntu2204 systemd-networkd[2719]:  br-91d9797bb816: Gained IPv6LL
+Apr 19 17:20:31 ubuntu2204 systemd-networkd[2719]:  veth550b64c: Gained IPv6LL
+Apr 19 17:20:37 ubuntu2204 systemd[2719]:  systemd-fsckd.service: Succeeded.
+Apr 19 17:20:38 ubuntu2204 systemd[2719]:  systemd-hostnamed.service: Succeeded.
+Apr 19 17:20:38 ubuntu2204 systemd-timesyncd[2719]:  Timed out waiting for reply from 91.189.94.4:123 (ntp.ubuntu.com).
+Apr 19 17:20:48 ubuntu2204 systemd-timesyncd[2719]:  Timed out waiting for reply from 185.125.190.56:123 (ntp.ubuntu.com).
+Apr 19 17:20:48 ubuntu2204 systemd[2719]:  Starting Online ext4 Metadata Check for All Filesystems...
+Apr 19 17:20:48 ubuntu2204 systemd[2719]:  e2scrub_all.service: Succeeded.
+Apr 19 17:20:48 ubuntu2204 systemd[2719]:  Finished Online ext4 Metadata Check for All Filesystems.
+Apr 19 17:20:48 ubuntu2204 systemd-timesyncd[2719]:  Initial synchronization to time server 91.189.91.157:123 (ntp.ubuntu.com).
+</code></pre></div>
+</details>
+<p>Please click the <em>Next</em> link at the bottom right of the page to continue with the lab.</p>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 25, 2023</span>
+      
+        <br>
+        Created:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 25, 2023</span>
+      
+    
+  </small>
+</div>
+
+
+  
+
+
+
+  <form class="md-feedback" name="feedback" hidden>
+    <fieldset>
+      <legend class="md-feedback__title">
+        Was this page helpful?
+      </legend>
+      <div class="md-feedback__inner">
+        <div class="md-feedback__list">
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page was helpful" data-md-value="1">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 21.35-1.45-1.32C5.4 15.36 2 12.27 2 8.5 2 5.41 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.08C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53L12 21.35Z"/></svg>
+            </button>
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page could be improved" data-md-value="0">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 21.35-1.45-1.32C5.4 15.36 2 12.27 2 8.5 2 5.41 4.42 3 7.5 3c.67 0 1.32.12 1.94.33L13 9.35l-4 5 3 7M16.5 3C19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53L12 21.35l-1-7 4.5-5-2.65-5.08C13.87 3.47 15.17 3 16.5 3Z"/></svg>
+            </button>
+          
+        </div>
+        <div class="md-feedback__note">
+          
+            <div data-md-value="1" hidden>
+              
+              
+                
+              
+              Thanks for your feedback!
+            </div>
+          
+            <div data-md-value="0" hidden>
+              
+              
+                
+              
+              Thanks for your feedback! Help us improve this page by using our <a href="https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE/issues/new/?title=[Feedback]+Launch%20HPVS%20guest%20for%20PayNow+-+/lab/paynow/launchHPVSguest/" target="_blank" rel="noopener">feedback form</a>.
+            </div>
+          
+        </div>
+      </div>
+    </fieldset>
+  </form>
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../createContract/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Create contract for HPVS guest" rel="prev">
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <div class="md-ellipsis">
+                <span class="md-footer__direction">
+                  Previous
+                </span>
+                Create contract for HPVS guest
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../useHPVSWebApp/" class="md-footer__link md-footer__link--next" aria-label="Next: Use the HPVS-based PayNow demo app" rel="next">
+            <div class="md-footer__title">
+              <div class="md-ellipsis">
+                <span class="md-footer__direction">
+                  Next
+                </span>
+                Use the HPVS-based PayNow demo app
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 IBM – <a href="#__consent">Change cookie settings</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/ibm-wsc" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://hub.docker.com/u/s390x" target="_blank" rel="noopener" title="hub.docker.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+  
+    
+  
+
+
+  
+    
+  
+
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make the documentation as good as possible.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="analytics" checked>
+          <span class="task-list-indicator"></span>
+          Google Analytics
+        </label>
+      </li>
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="github" checked>
+          <span class="task-list-indicator"></span>
+          GitHub
+        </label>
+      </li>
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["header.autohide", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.footer", "search.share", "navigation.indexes", "announce.dismiss", "content.tabs.link", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.6df46069.min.js"></script>
+      
+        <script src="../../../js/print-site.js"></script>
+      
+    
+  </body>
+</html>
