@@ -14,7 +14,7 @@
         <link rel="prev" href="../helperserver/">
       
       
-        <link rel="next" href="../../lab1/">
+        <link rel="next" href="../setup2/">
       
       <link rel="icon" href="../../../../images/HPVS2.1.xGraphic.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.11">
@@ -933,6 +933,8 @@
         
           
         
+          
+        
       
       
         
@@ -1030,6 +1032,20 @@
         Set environment variables for lab portability
       </a>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup2/" class="md-nav__link">
+        Set environment variables for contract preparation
+      </a>
     </li>
   
 
@@ -1482,6 +1498,10 @@
 <p>On most Linux distributions you will have <em>tar</em> and it will be fine.</p>
 <p>On most MacOS systems the default <em>tar</em> command is less desirable than a version of tar provided by the GNU project, called <em>gtar</em>. <em>gtar</em> is preferred for the labs.</p>
 <p>Follow these instructions on your prep system.  The environment variables set by these instructions are in effect only for the terminal session in which you enter the commands. If you finish the labs in one sitting within the same terminal session, you will only have to repeat these instructions once.  Otherwise, you can repeat these instructions as necessary.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These variables are set for the duration of your terminal session.  If you do not finish the labs in one terminal session, then you will need to revisit this section to set these variables again when you resume.</p>
+</div>
 <p>The following set of commands will set an environment variable that will be used throughout the labs. It will point to either <em>tar</em> or <em>gtar</em> or it will print an error message if it cannot find either one.</p>
 <div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">LAB_TAR</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
 <span class="w">  </span><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..6<span class="o">}</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;******************&#39;</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
@@ -1521,7 +1541,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;wrap argument </span><span class="si">${</span><span class="nv">LAB_WRAP</span><span class="si">}</span><span class="s2"> to base64 will be used in the labs&quot;</span>
 <span class="k">fi</span>
 </code></pre></div>
-<p>Click the <strong>Next</strong> link in the lower right to begin the first lab.</p>
+<p>Click the <strong>Next</strong> link in the lower right to see directions to set a few more environment variables.</p>
 
   <hr>
 <div class="md-source-file">
@@ -1623,13 +1643,13 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
         
         
           
-          <a href="../../lab1/" class="md-footer__link md-footer__link--next" aria-label="Next: Lab 1 overview" rel="next">
+          <a href="../setup2/" class="md-footer__link md-footer__link--next" aria-label="Next: Set environment variables for contract preparation" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Lab 1 overview
+                Set environment variables for contract preparation
               </div>
             </div>
             <div class="md-footer__button md-icon">

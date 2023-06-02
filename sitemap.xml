@@ -111,6 +111,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://ibm-wsc.github.io/ConfidentialComputingOnLinuxONE/lab/cloud/prereqs/setup2/</loc>
+         <lastmod>2023-06-02</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://ibm-wsc.github.io/ConfidentialComputingOnLinuxONE/lab/cloud/prereqs/vpc/</loc>
          <lastmod>2023-06-02</lastmod>
          <changefreq>daily</changefreq>

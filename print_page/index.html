@@ -933,6 +933,8 @@
         
           
         
+          
+        
       
       
         
@@ -1019,6 +1021,20 @@
     <li class="md-nav__item">
       <a href="../lab/cloud/prereqs/setup/" class="md-nav__link">
         Set environment variables for lab portability
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab/cloud/prereqs/setup2/" class="md-nav__link">
+        Set environment variables for contract preparation
       </a>
     </li>
   
@@ -9631,6 +9647,10 @@ error: internal error: unable to execute QEMU command &#39;migrate&#39;: protect
 <p>On most Linux distributions you will have <em>tar</em> and it will be fine.</p>
 <p>On most MacOS systems the default <em>tar</em> command is less desirable than a version of tar provided by the GNU project, called <em>gtar</em>. <em>gtar</em> is preferred for the labs.</p>
 <p>Follow these instructions on your prep system.  The environment variables set by these instructions are in effect only for the terminal session in which you enter the commands. If you finish the labs in one sitting within the same terminal session, you will only have to repeat these instructions once.  Otherwise, you can repeat these instructions as necessary.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These variables are set for the duration of your terminal session.  If you do not finish the labs in one terminal session, then you will need to revisit this section to set these variables again when you resume.</p>
+</div>
 <p>The following set of commands will set an environment variable that will be used throughout the labs. It will point to either <em>tar</em> or <em>gtar</em> or it will print an error message if it cannot find either one.</p>
 <div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">LAB_TAR</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
 <span class="w">  </span><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..6<span class="o">}</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;******************&#39;</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
@@ -9670,6 +9690,78 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;wrap argument </span><span class="si">${</span><span class="nv">LAB_WRAP</span><span class="si">}</span><span class="s2"> to base64 will be used in the labs&quot;</span>
 <span class="k">fi</span>
 </code></pre></div>
+<p>Click the <strong>Next</strong> link in the lower right to see directions to set a few more environment variables.</p></section><section class="print-page" id="lab-cloud-prereqs-setup2"><h1 id="lab-cloud-prereqs-setup2-set-up-environment-variables-used-throughout-the-four-ibm-cloud-based-labs">Set up environment variables used throughout the four IBM Cloud-based labs<a class="headerlink" href="#lab-cloud-prereqs-setup2-set-up-environment-variables-used-throughout-the-four-ibm-cloud-based-labs" title="Permanent link">&para;</a></h1>
+<p>On your prep system, there are three more environment variables that will be used in the four labs.</p>
+<table>
+<thead>
+<tr>
+<th>Variable name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LAB_WORKDIR</td>
+<td>working directory for contract preparation</td>
+</tr>
+<tr>
+<td>LOG_INGESTION_KEY</td>
+<td>The ingestion key for your IBM Log Analysis instance</td>
+</tr>
+<tr>
+<td>LOG_HOSTNAME</td>
+<td>The hostname on IBM Cloud that hosts your IBM Log Analysis instance</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These variables are set for the duration of your terminal session.  If you do not finish the labs in one terminal session, then you will need to revisit this section to set these variables again when you resume.</p>
+</div>
+<h2 id="lab-cloud-prereqs-setup2-set-lab_workdir">Set LAB_WORKDIR<a class="headerlink" href="#lab-cloud-prereqs-setup2-set-lab_workdir" title="Permanent link">&para;</a></h2>
+<p>In order to avoid interference with other work, we want you to create a brand new directory for these labs- each of the four labs will use a subdirectory underneath the new directory.</p>
+<ol>
+<li>
+<p>This next instruction sets the environment variable to ${HOME}/cloudlabs.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">LAB_WORKDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/cloudlabs
+</code></pre></div>
+</li>
+<li>
+<p>This next set of commands will either successfully create this new directory and then change to it, or it will warn you to try again.  (If you are warned, retry step 1 above with a different name and then try these commands again.)</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>-e<span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">   </span><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span><span class="w"> </span>already<span class="w"> </span>exists
+<span class="w">   </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  This may be appropriate if you are&quot;</span>
+<span class="w">   </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  resuming these labs in a new terminal session&quot;</span>
+<span class="w">   </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  and have already created this directory structure&quot;</span>
+<span class="w">   </span><span class="nb">echo</span>
+<span class="w">   </span><span class="nb">echo</span><span class="w"> </span>Otherwise,<span class="w"> </span>choose<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>value<span class="w"> </span><span class="k">for</span><span class="w"> </span>LAB_WORKDIR
+<span class="w">   </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  or rename </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">   </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  and try again&quot;</span>
+<span class="k">else</span>
+<span class="w">    </span>mkdir<span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>Fresh<span class="w"> </span>lab<span class="w"> </span>working<span class="w"> </span>directory<span class="w"> </span>created<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>Changed<span class="w"> </span>to<span class="w"> </span>working<span class="w"> </span>directory<span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>
+<span class="k">fi</span>
+</code></pre></div>
+</li>
+</ol>
+<h2 id="lab-cloud-prereqs-setup2-set-log_ingestion_key">Set LOG_INGESTION_KEY<a class="headerlink" href="#lab-cloud-prereqs-setup2-set-log_ingestion_key" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Set an environment variable for your IBM Log Analysis ingestion key. You saved this somewhere safe earlier in the lab.  If you lost track of it, revisit the section <a href="#lab-cloud-prereqs-ibmlog" rel="noopener" target="_blank">Create an IBM Log Analysis instance</a> for the steps to retrieve it.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">LOG_INGESTION_KEY</span><span class="o">=</span><span class="s2">&quot;paste your ingestion key here&quot;</span>
+</code></pre></div>
+</li>
+</ol>
+<h2 id="lab-cloud-prereqs-setup2-set-log_hostname">Set LOG_HOSTNAME<a class="headerlink" href="#lab-cloud-prereqs-setup2-set-log_hostname" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Set an environment variable for the hostname of your IBM Log Analysis instance. You saved this somewhere safe earlier in the lab. If you lost track of it, revisit the section <a href="#lab-cloud-prereqs-ibmlog" rel="noopener" target="_blank">Create an IBM Log Analysis instance</a> for the steps to retrieve it.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">LOG_HOSTNAME</span><span class="o">=</span><span class="s2">&quot;paste your IBM Log Analysis hostname here&quot;</span>
+</code></pre></div>
+</li>
+</ol>
 <p>Click the <strong>Next</strong> link in the lower right to begin the first lab.</p></section><h1 class='nav-section-title-end'>Ended: Overview and Prerequisites</h1>
                         <h2 class='nav-section-title' id='section-lab-1-simple-plaintext-contract'>
                             Lab 1 - simple plaintext contract <a class='headerlink' href='#section-lab-1-simple-plaintext-contract' title='Permanent link'>↵</a>
@@ -9678,12 +9770,34 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <p>In the first lab, you will provide a simple, plaintext contract in order to get a clear view of what a Hyper Protect Virtual Servers contract looks like. This is for learning purposes-  most production use cases will require an encrypted, and possibly signed, contract. </p>
 <p>The lab will also introduce you to persistent disk volumes.</p>
 <p>Your first step will be to prepare the contract on your prep system.  Click the <strong>Next</strong> link at the lower right to continue.</p></section><section class="print-page" id="lab-cloud-lab1-prepcontract"><h1 id="lab-cloud-lab1-prepcontract-prepare-the-contract">Prepare the contract<a class="headerlink" href="#lab-cloud-lab1-prepcontract-prepare-the-contract" title="Permanent link">&para;</a></h1>
+<h2 id="lab-cloud-lab1-prepcontract-make-a-new-directory-structure-for-the-labs">Make a new directory structure for the labs<a class="headerlink" href="#lab-cloud-lab1-prepcontract-make-a-new-directory-structure-for-the-labs" title="Permanent link">&para;</a></h2>
+<p>These labs assume that ${HOME}/cloudlabs does not exist on your prep system. </p>
 <ol>
+<li>
+<p>This command will warn you if this directory already exists:</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/cloudlabs<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;${HOME}/cloudlabs exists. Please use a new directory.&#39;</span>
+</code></pre></div>
+</li>
+<li>
+<p>This command will warn you if this directory already exists:</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>-e<span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">   </span><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span><span class="w"> </span>already<span class="w"> </span>exists
+<span class="w">   </span><span class="nb">echo</span><span class="w"> </span>Please<span class="w"> </span>choose<span class="w"> </span>new<span class="w"> </span>value<span class="w"> </span><span class="k">for</span><span class="w"> </span>LAB_WORKDIR
+<span class="w">   </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;  or rename ${LAB_WORKDIR}</span>
+<span class="s1">   echo &#39;</span><span class="w">  </span>and<span class="w"> </span>try<span class="w"> </span>again<span class="s1">&#39;</span>
+<span class="s1">else </span>
+<span class="s1">    mkdir ${LAB_WORKDIR} &amp;&amp; \</span>
+<span class="s1">    echo &#39;</span>Fresh<span class="w"> </span>lab<span class="w"> </span>working<span class="w"> </span>directory<span class="w"> </span>created<span class="s1">&#39; \</span>
+<span class="s1">    &amp;&amp; cd ${LAB_WORKDIR} &amp;&amp; \</span>
+<span class="s1">    echo &#39;</span><span class="w"> </span>Changed<span class="w"> </span>to<span class="w"> </span>working<span class="w"> </span>directory<span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>
+<span class="k">fi</span>
+</code></pre></div>
+</li>
 <li>
 <p>Go to a command prompt on your prep system</p>
 </li>
 <li>
-<p>Make a fresh directory and change in to it:</p>
+<p>Make a fresh directory structure and change in to it:</p>
 <div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/cloudlabs/lab1<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/cloudlabs/lab1
 </code></pre></div>
 </li>

@@ -933,6 +933,8 @@
         
           
         
+          
+        
       
       
         
@@ -1025,6 +1027,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prereqs/setup2/" class="md-nav__link">
+        Set environment variables for contract preparation
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1096,9 +1112,40 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Prepare the contract
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Prepare the contract
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#make-a-new-directory-structure-for-the-labs" class="md-nav__link">
+    Make a new directory structure for the labs
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1448,6 +1495,21 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#make-a-new-directory-structure-for-the-labs" class="md-nav__link">
+    Make a new directory structure for the labs
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1478,12 +1540,34 @@
 
 
 <h1 id="prepare-the-contract">Prepare the contract<a class="headerlink" href="#prepare-the-contract" title="Permanent link">&para;</a></h1>
+<h2 id="make-a-new-directory-structure-for-the-labs">Make a new directory structure for the labs<a class="headerlink" href="#make-a-new-directory-structure-for-the-labs" title="Permanent link">&para;</a></h2>
+<p>These labs assume that ${HOME}/cloudlabs does not exist on your prep system. </p>
 <ol>
+<li>
+<p>This command will warn you if this directory already exists:</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/cloudlabs<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;${HOME}/cloudlabs exists. Please use a new directory.&#39;</span>
+</code></pre></div>
+</li>
+<li>
+<p>This command will warn you if this directory already exists:</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>-e<span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">   </span><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span><span class="w"> </span>already<span class="w"> </span>exists
+<span class="w">   </span><span class="nb">echo</span><span class="w"> </span>Please<span class="w"> </span>choose<span class="w"> </span>new<span class="w"> </span>value<span class="w"> </span><span class="k">for</span><span class="w"> </span>LAB_WORKDIR
+<span class="w">   </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;  or rename ${LAB_WORKDIR}</span>
+<span class="s1">   echo &#39;</span><span class="w">  </span>and<span class="w"> </span>try<span class="w"> </span>again<span class="s1">&#39;</span>
+<span class="s1">else </span>
+<span class="s1">    mkdir ${LAB_WORKDIR} &amp;&amp; \</span>
+<span class="s1">    echo &#39;</span>Fresh<span class="w"> </span>lab<span class="w"> </span>working<span class="w"> </span>directory<span class="w"> </span>created<span class="s1">&#39; \</span>
+<span class="s1">    &amp;&amp; cd ${LAB_WORKDIR} &amp;&amp; \</span>
+<span class="s1">    echo &#39;</span><span class="w"> </span>Changed<span class="w"> </span>to<span class="w"> </span>working<span class="w"> </span>directory<span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>
+<span class="k">fi</span>
+</code></pre></div>
+</li>
 <li>
 <p>Go to a command prompt on your prep system</p>
 </li>
 <li>
-<p>Make a fresh directory and change in to it:</p>
+<p>Make a fresh directory structure and change in to it:</p>
 <div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/cloudlabs/lab1<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/cloudlabs/lab1
 </code></pre></div>
 </li>
