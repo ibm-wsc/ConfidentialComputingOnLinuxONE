@@ -1,8 +1,34 @@
 # Prepare the contract 
 
+## Make a new directory structure for the labs
+
+These labs assume that ${HOME}/cloudlabs does not exist on your prep system. 
+
+1. This command will warn you if this directory already exists:
+
+    ``` bash
+    mkdir ${HOME}/cloudlabs || echo '${HOME}/cloudlabs exists. Please use a new directory.'
+    ```
+
+2. This command will warn you if this directory already exists:
+
+    ``` bash
+    if [[ -e ${LAB_WORKDIR} ]]; then
+       echo ${LAB_WORKDIR} already exists
+       echo Please choose new value for LAB_WORKDIR
+       echo '  or rename ${LAB_WORKDIR}
+       echo '  and try again'
+    else 
+        mkdir ${LAB_WORKDIR} && \
+        echo 'Fresh lab working directory created' \
+        && cd ${LAB_WORKDIR} && \
+        echo ' Changed to working directory ${LAB_WORKDIR}
+    fi
+    ```
+
 1. Go to a command prompt on your prep system
 
-1. Make a fresh directory and change in to it:
+1. Make a fresh directory structure and change in to it:
 
     ``` bash
     mkdir -p ${HOME}/cloudlabs/lab1 && cd ${HOME}/cloudlabs/lab1

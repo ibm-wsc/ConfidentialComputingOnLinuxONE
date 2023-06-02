@@ -8,6 +8,11 @@ On most MacOS systems the default *tar* command is less desirable than a version
 
 Follow these instructions on your prep system.  The environment variables set by these instructions are in effect only for the terminal session in which you enter the commands. If you finish the labs in one sitting within the same terminal session, you will only have to repeat these instructions once.  Otherwise, you can repeat these instructions as necessary.
 
+!!! Note
+
+    These variables are set for the duration of your terminal session.  If you do not finish the labs in one terminal session, then you will need to revisit this section to set these variables again when you resume.
+
+
 The following set of commands will set an environment variable that will be used throughout the labs. It will point to either *tar* or *gtar* or it will print an error message if it cannot find either one.
 
 ``` bash
@@ -53,5 +58,5 @@ else
 fi
 ```
 
-Click the **Next** link in the lower right to begin the first lab.
+Click the **Next** link in the lower right to see directions to set a few more environment variables.
 
