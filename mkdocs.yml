@@ -30,6 +30,32 @@ nav:
     - Run GREP11 Client code: lab/grep11/configureGrep11TestClient.md
     - Standard guest vs. SE-enabled HPVS 2.1.x guest: lab/grep11/hackMeIfYouCan.md
     - Lab Cleanup:  lab/grep11/labCleanup.md
+  - IBM Cloud-based labs:
+    - lab/cloud/index.md
+    - Overview and Prerequisites: 
+      - Labs overview: lab/cloud/prereqs/index.md
+      - Create a Virtual Private Cloud: lab/cloud/prereqs/vpc.md
+      - Create a Public Gateway: lab/cloud/prereqs/gateway.md
+      - Create an IBM Log Analysis instance: lab/cloud/prereqs/ibmlog.md
+      - (Optional) Create a server to use to create contracts: lab/cloud/prereqs/helperserver.md
+      - Set environment variables for lab portability: lab/cloud/prereqs/setup.md
+    - Lab 1 - simple plaintext contract: 
+      - Lab 1 overview: lab/cloud/lab1/index.md
+      - Prepare the contract: lab/cloud/lab1/prepcontract.md
+      - Create your Hyper Protect Virtual Servers for IBM Cloud VPC instance: lab/cloud/lab1/createinstance.md
+    - Lab 2 - partially encrypted contract: 
+      - Lab 2 overview: lab/cloud/lab2/index.md
+      - Prepare the contract: lab/cloud/lab2/prepcontract.md
+      - Create your Hyper Protect Virtual Servers for IBM Cloud VPC instance: lab/cloud/lab2/createinstance.md
+    - Lab 3 - encrypted contract:
+      - Lab 3 overview: lab/cloud/lab3/index.md
+      - Prepare the contract: lab/cloud/lab3/prepcontract.md
+      - Create your Hyper Protect Virtual Servers for IBM Cloud VPC instance: lab/cloud/lab3/createinstance.md
+    - Lab 4 - encrypted and signed contract:
+      - Lab 4 overview: lab/cloud/lab4/index.md
+      - Prepare the contract: lab/cloud/lab4/prepcontract.md
+      - Create your Hyper Protect Virtual Servers for IBM Cloud VPC instance: lab/cloud/lab4/createinstance.md
+    - IBM Cloud-based labs cleanup: lab/cloud/cleanup/cleanup.md
     
   - Locally Building docs: localdocbuild.md
 
