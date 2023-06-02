@@ -10,19 +10,19 @@ If you do not have a suitable system already or would like to, you can create a 
 
 To create this instance: 
 
-1. click on the **Catalog** link at the top of the page.
+1. Click on the **Catalog** link at the top of the page.
 
-1. start typing _Hyper Protect Virtual Servers_ in the search box until **Hyper Protect Virtual Servers for Classic** appears in the search results and then select it.
+2. Start typing _Hyper Protect Virtual Servers_ in the search box until **Hyper Protect Virtual Servers for Classic** appears in the search results and then select it.
 
-1. Choose the **Lite** plan- select the *region* and *zone* you prefer, we prefer to use the same *zone* that we used for our virtual private cloud.  (This instance will not be running inside a VPC)
+3. Choose the **Lite** plan- select the *region* and *zone* you prefer, we prefer to use the same *zone* that we used for our virtual private cloud.  (This instance will not be running inside a VPC)
 
-1. Provide your SSH public key.
+4. Provide your SSH public key.
 
 If you have created a *Hyper Protect Virtual Server for Classic* instance to use as your prep system, you need to install two packages:
 
 1. Log in to your instance via ssh.
 
-1. Enter the following command:
+2. Enter the following command:
 
     ``` bash
     apt install -y curl vim

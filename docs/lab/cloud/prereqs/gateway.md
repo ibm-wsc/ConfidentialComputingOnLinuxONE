@@ -1,6 +1,8 @@
 # Create a public gateway
 
-Click the **Public gateways** link on the left and you should see that you currently have no public gateways defined.  Click the blue **Create** button in the upper right:
+1. Click the **Public gateways** link on the left and you should see that you currently have no public gateways defined.
+ 
+2. Click the blue **Create** button in the upper right:
 
 <img src="../gw010.png" width="2457" height="992" />
 

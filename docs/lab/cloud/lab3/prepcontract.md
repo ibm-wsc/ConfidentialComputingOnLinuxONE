@@ -64,7 +64,7 @@
 1. Skip this instruction if it is already set; otherwise, set an environment variable for your IBM Log Analysis ingestion key
 
     ``` bash
-    LOG_INGESTION_KEY="paste your ingestion key here"
+    read -sp "Log Ingestion Key: " LOG_INGESTION_KEY && echo
     ```
 
 1. Check to see if the environment variable for the hostname of your IBM Log Analysis instance is still set from the prior lab:
@@ -76,7 +76,7 @@
 1. Skip this instruction if it is already set; otherwise, set an environment variable for the hostname of your IBM Log Analysis instance
 
     ``` bash
-    LOG_HOSTNAME="paste your IBM Log Analysis hostname here">
+    read -p "Log Hostname: " LOG_HOSTNAME
     ```
 
 1. Create this convenience script to encrypt the workload portion of the contract:

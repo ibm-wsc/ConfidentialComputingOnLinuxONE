@@ -2,7 +2,9 @@
 
 **Note:** You may use an existing IBM Log Analysis instance if you already have one.  It can be in any IBM Cloud region and availability zone.  If you are creating a new IBM Log Analysis instance for the lab, we suggest you create it in the same region and availability zone in which you created your virtual private cloud in the previous sections.
 
-Click the **Catalog** link at the top of your IBM Cloud web UI,  then in the search box, start typing **IBM Log Analysis** until it appears in the list of search results, and then click on it in that list.  This screen snippet shows this:
+1. Click the **Catalog** link at the top of your IBM Cloud web UI
+2. In the search box, start typing **IBM Log Analysis** until it appears in the list of search results
+3. Click on it in that list
 
 <img src="../log010.png" width="1156" height="374" />
 
@@ -24,7 +26,8 @@ In the window that opens up, click the icon highlighted below in order to copy y
 
 <img src="../log050.png" width="936" height="186" />
 
-Then, scroll down on this same window and choose **rsyslog**, then, use copy and paste to save the information that corresponds to the information highlighted in the screen snippet below.  (This information will not be highlighted on your screen until you select it as we did prior to taking this screenshot). You will be using this information later in the labs.  This information does not have to be kept secret.
+1. Scroll down on this same window and choose **rsyslog**
+2. Use copy and paste to save the information that corresponds to the information highlighted in the screen snippet below.  (This information will not be highlighted on your screen until you select it as we did prior to taking this screenshot). You will be using this information later in the labs.  This information does not have to be kept secret.
 
 <img src="../log060.png" width="802" height="671" />
 
