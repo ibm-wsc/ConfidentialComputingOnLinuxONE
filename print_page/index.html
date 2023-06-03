@@ -9531,7 +9531,7 @@ error: internal error: unable to execute QEMU command &#39;migrate&#39;: protect
 <h2 id="lab-cloud-prereqs-overview">Overview<a class="headerlink" href="#lab-cloud-prereqs-overview" title="Permanent link">&para;</a></h2>
 <p>These labs provide a gentle introduction to the art of creating a <em>contract</em> for a Hyper Protect Virtual Servers instance. The contract you specify to a Hyper Protect Virtual Servers instance specifies the application workload you wish to run and the environmental characteristics such as where to send log messages from your instance.</p>
 <p>The best practice is to specify a contract that is encrypted and signed.  These labs start simple-  with an unsigned, plain text contract.  Such a contract would be hard to justify in a production environment, but is a great starting point for learning what is involved with creating a contract.</p>
-<p>Then each subsequent lab increases the complexity of the contract such that our final lab guides you to the best practice of creating and encrypted and signed contract.</p>
+<p>Then each subsequent lab increases the complexity of the contract such that our final lab guides you to the best practice of creating an encrypted and signed contract.</p>
 <div class="admonition warning">
 <p class="admonition-title">Caution- you may incur charges from IBM Cloud for activities performed in these labs </p>
 <p>You may incur charges for the artifacts created during the lab.  These charges are your responsibility.  Each lab ends with instructions to delete these lab artifacts in order to minimize any costs you might incur.</p>
@@ -9548,7 +9548,7 @@ error: internal error: unable to execute QEMU command &#39;migrate&#39;: protect
 <p>Create a Hyper Protect Virtual Server instance where the workload provider encrypts their portion of the contract but the environment provider provides their portion in plain text.</p>
 </li>
 <li>
-<p>Create a Hyper Protect Virtual Server instance where both the workload provider encrypts their portion of the contract and the environment prvider encrypts their porition of the contract.</p>
+<p>Create a Hyper Protect Virtual Server instance where both the workload provider encrypts their portion of the contract and the environment provider encrypts their portion of the contract.</p>
 </li>
 <li>
 <p>Create a Hyper Protect Virtual Server instance where both portions of the contract are encrypted and then signed by the environment provider.</p>
@@ -9585,7 +9585,14 @@ error: internal error: unable to execute QEMU command &#39;migrate&#39;: protect
 <p>After clicking the button, your new VPC will be created and you'll be taken to a screen like this.  Notice that a <em>Default Access Control List (ACL)</em> and a <em>Default Security Group</em> will be created for you, both of which will have meaningless randomly-generated names.  You can accept them as-is for the labs.</p>
 <p><img src="../lab/cloud/prereqs/vpc070.png" width="1229" height="502" /></p>
 <p>Click the <strong>Next</strong> link at the lower right to create a public gateway within your new VPC.</p></section><section class="print-page" id="lab-cloud-prereqs-gateway"><h1 id="lab-cloud-prereqs-gateway-create-a-public-gateway">Create a public gateway<a class="headerlink" href="#lab-cloud-prereqs-gateway-create-a-public-gateway" title="Permanent link">&para;</a></h1>
-<p>Click the <strong>Public gateways</strong> link on the left and you should see that you currently have no public gateways defined.  Click the blue <strong>Create</strong> button in the upper right:</p>
+<ol>
+<li>
+<p>Click the <strong>Public gateways</strong> link on the left and you should see that you currently have no public gateways defined.</p>
+</li>
+<li>
+<p>Click the blue <strong>Create</strong> button in the upper right:</p>
+</li>
+</ol>
 <p><img src="../lab/cloud/prereqs/gw010.png" width="2457" height="992" /></p>
 <p>Choose the correct geography (not shown in the screen snippet below), region, and zone.  Give your public gateway a name, we've chosen <em>lab-was-pubgw</em>. Ensure that your virtual private cloud is selected, and then click the blue <strong>Create</strong> button.</p>
 <p><img src="../lab/cloud/prereqs/gw020.png" width="452" height="885" /></p>
@@ -9598,7 +9605,11 @@ error: internal error: unable to execute QEMU command &#39;migrate&#39;: protect
 <p>This will enable the Hyper Protect Virtual Servers for IBM Cloud VPC instances that you will create in the labs to be able to connect to your IBM Log Analysis instance which is running outside of your VPC.</p>
 <p>Click the <strong>Next</strong> link at the lower right to go to your next task, which is to create an <em>IBM Log Analysis</em> instance.</p></section><section class="print-page" id="lab-cloud-prereqs-ibmlog"><h1 id="lab-cloud-prereqs-ibmlog-create-an-ibm-log-analysis-instance">Create an IBM Log Analysis instance<a class="headerlink" href="#lab-cloud-prereqs-ibmlog-create-an-ibm-log-analysis-instance" title="Permanent link">&para;</a></h1>
 <p><strong>Note:</strong> You may use an existing IBM Log Analysis instance if you already have one.  It can be in any IBM Cloud region and availability zone.  If you are creating a new IBM Log Analysis instance for the lab, we suggest you create it in the same region and availability zone in which you created your virtual private cloud in the previous sections.</p>
-<p>Click the <strong>Catalog</strong> link at the top of your IBM Cloud web UI,  then in the search box, start typing <strong>IBM Log Analysis</strong> until it appears in the list of search results, and then click on it in that list.  This screen snippet shows this:</p>
+<ol>
+<li>Click the <strong>Catalog</strong> link at the top of your IBM Cloud web UI</li>
+<li>In the search box, start typing <strong>IBM Log Analysis</strong> until it appears in the list of search results</li>
+<li>Click on it in that list</li>
+</ol>
 <p><img src="../lab/cloud/prereqs/log010.png" width="1156" height="374" /></p>
 <p>Choose your location for the logging instance, the plan you prefer- the free <em>Lite</em> plan is sufficient for the labs- and accept the terms and conditions and then click the blue <strong>Create</strong> button:</p>
 <p><img src="../lab/cloud/prereqs/log020.png" width="1420" height="848" /></p>
@@ -9609,7 +9620,10 @@ error: internal error: unable to execute QEMU command &#39;migrate&#39;: protect
 <p><img src="../lab/cloud/prereqs/log040.png" width="470" height="952" /></p>
 <p>In the window that opens up, click the icon highlighted below in order to copy your IBM Log Analysis instance's ingestion key into your clipboard.  Paste it into a safe place for use later in the lab.  <strong>Treat this ingestion key with care like you would a password, <em>especially if you are using an already existing IBM Log Analysis instance</em></strong>. (You do have the ability to return to this screen to retrieve it later if you lose track of where you paste it).  See the below screen snippet:</p>
 <p><img src="../lab/cloud/prereqs/log050.png" width="936" height="186" /></p>
-<p>Then, scroll down on this same window and choose <strong><abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr></strong>, then, use copy and paste to save the information that corresponds to the information highlighted in the screen snippet below.  (This information will not be highlighted on your screen until you select it as we did prior to taking this screenshot). You will be using this information later in the labs.  This information does not have to be kept secret.</p>
+<ol>
+<li>Scroll down on this same window and choose <strong><abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr></strong></li>
+<li>Use copy and paste to save the information that corresponds to the information highlighted in the screen snippet below.  (This information will not be highlighted on your screen until you select it as we did prior to taking this screenshot). You will be using this information later in the labs.  This information does not have to be kept secret.</li>
+</ol>
 <p><img src="../lab/cloud/prereqs/log060.png" width="802" height="671" /></p>
 <p>You do not have to follow the instructions that the popup window is giving you, you only needed to copy the information as directed here in the lab. You can click the <strong>X</strong> in the upper right corner of the popup window or just click outside of the popup window so that it goes away.</p>
 <p>Click the <strong>Next</strong> link in the lower right to continue.</p></section><section class="print-page" id="lab-cloud-prereqs-helperserver"><h1 id="lab-cloud-prereqs-helperserver-optional-create-a-server-to-use-to-create-contracts">(Optional) Create a server to use to create contracts<a class="headerlink" href="#lab-cloud-prereqs-helperserver-optional-create-a-server-to-use-to-create-contracts" title="Permanent link">&para;</a></h1>
@@ -9620,10 +9634,10 @@ error: internal error: unable to execute QEMU command &#39;migrate&#39;: protect
 <p>To create this instance: </p>
 <ol>
 <li>
-<p>click on the <strong>Catalog</strong> link at the top of the page.</p>
+<p>Click on the <strong>Catalog</strong> link at the top of the page.</p>
 </li>
 <li>
-<p>start typing <em>Hyper Protect Virtual Servers</em> in the search box until <strong>Hyper Protect Virtual Servers for Classic</strong> appears in the search results and then select it.</p>
+<p>Start typing <em>Hyper Protect Virtual Servers</em> in the search box until <strong>Hyper Protect Virtual Servers for Classic</strong> appears in the search results and then select it.</p>
 </li>
 <li>
 <p>Choose the <strong>Lite</strong> plan- select the <em>region</em> and <em>zone</em> you prefer, we prefer to use the same <em>zone</em> that we used for our virtual private cloud.  (This instance will not be running inside a VPC)</p>
@@ -9649,28 +9663,27 @@ error: internal error: unable to execute QEMU command &#39;migrate&#39;: protect
 <p>Follow these instructions on your prep system.  The environment variables set by these instructions are in effect only for the terminal session in which you enter the commands. If you finish the labs in one sitting within the same terminal session, you will only have to repeat these instructions once.  Otherwise, you can repeat these instructions as necessary.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>These variables are set for the duration of your terminal session.  If you do not finish the labs in one terminal session, then you will need to revisit this section to set these variables again when you resume.</p>
-</div>
 <p>The following set of commands will set an environment variable that will be used throughout the labs. It will point to either <em>tar</em> or <em>gtar</em> or it will print an error message if it cannot find either one.</p>
 <div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">LAB_TAR</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">  </span><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..6<span class="o">}</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;******************&#39;</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
-<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;&#39;</span>
-<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;CAUTION: Prior value of LAB_TAR was </span><span class="si">${</span><span class="nv">LAB_TAR</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;   Take note of this value in the unlikely event it was&quot;</span>
-<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;   already set by another application on your system&quot;</span>
-<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;   in which case you may need to restore this value later&quot;</span>
-<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;&#39;</span>
-<span class="w">  </span><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..6<span class="o">}</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;******************&#39;</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
+<span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..6<span class="o">}</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;******************&#39;</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;&#39;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;CAUTION: Prior value of LAB_TAR was </span><span class="si">${</span><span class="nv">LAB_TAR</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;   Take note of this value in the unlikely event it was&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;   already set by another application on your system&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;   in which case you may need to restore this value later&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;&#39;</span>
+<span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..6<span class="o">}</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;******************&#39;</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
 <span class="k">fi</span>
 <span class="nb">unset</span><span class="w"> </span>LAB_TAR<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>which<span class="w"> </span>tar<span class="w"> </span><span class="m">1</span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nv">LAB_TAR</span><span class="o">=</span>tar
 which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nv">LAB_TAR</span><span class="o">=</span>gtar
 <span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;&#39;</span>
 <span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">LAB_TAR</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span>
-<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;ERROR:  neither tar nor gtar was found&quot;</span><span class="w"> </span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;ERROR:  neither tar nor gtar was found&quot;</span><span class="w"> </span>
 <span class="k">else</span>
-<span class="w">  </span><span class="nb">echo</span><span class="w"> </span>You<span class="w"> </span>will<span class="w"> </span>use<span class="w"> </span><span class="si">${</span><span class="nv">LAB_TAR</span><span class="si">}</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>labs
+<span class="nb">echo</span><span class="w"> </span>You<span class="w"> </span>will<span class="w"> </span>use<span class="w"> </span><span class="si">${</span><span class="nv">LAB_TAR</span><span class="si">}</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>labs
 <span class="k">fi</span>
 </code></pre></div>
+</div>
 <p>The following set of commands will set an environment variable that will be used throughout the labs if the <em>base64</em> command supports the <em>wrap</em> option. (Typically, the wrap option will be supported on Linux systems but not on MacOS.)</p>
 <div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">LAB_WRAP</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
 <span class="w">  </span><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..6<span class="o">}</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;******************&#39;</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
@@ -9750,7 +9763,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <ol>
 <li>
 <p>Set an environment variable for your IBM Log Analysis ingestion key. You saved this somewhere safe earlier in the lab.  If you lost track of it, revisit the section <a href="#lab-cloud-prereqs-ibmlog" rel="noopener" target="_blank">Create an IBM Log Analysis instance</a> for the steps to retrieve it.</p>
-<div class="highlight"><pre><span></span><code><span class="nv">LOG_INGESTION_KEY</span><span class="o">=</span><span class="s2">&quot;paste your ingestion key here&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nb">read</span><span class="w"> </span>-sp<span class="w"> </span><span class="s2">&quot;Log Ingestion Key: &quot;</span><span class="w"> </span>LOG_INGESTION_KEY<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span>
 </code></pre></div>
 </li>
 </ol>
@@ -9758,7 +9771,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <ol>
 <li>
 <p>Set an environment variable for the hostname of your IBM Log Analysis instance. You saved this somewhere safe earlier in the lab. If you lost track of it, revisit the section <a href="#lab-cloud-prereqs-ibmlog" rel="noopener" target="_blank">Create an IBM Log Analysis instance</a> for the steps to retrieve it.</p>
-<div class="highlight"><pre><span></span><code><span class="nv">LOG_HOSTNAME</span><span class="o">=</span><span class="s2">&quot;paste your IBM Log Analysis hostname here&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Log Hostname: &quot;</span><span class="w"> </span>LOG_HOSTNAME
 </code></pre></div>
 </li>
 </ol>
@@ -9836,12 +9849,12 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 </li>
 <li>
 <p>Set an environment variable for your IBM Log Analysis ingestion key. You saved this somewhere safe earlier in the lab.  If you lost track of it, revisit the section *Create an IBM Log Analysis instance" for the steps to retrieve it.</p>
-<div class="highlight"><pre><span></span><code><span class="nv">LOG_INGESTION_KEY</span><span class="o">=</span><span class="s2">&quot;paste your ingestion key here&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nb">read</span><span class="w"> </span>-sp<span class="w"> </span><span class="s2">&quot;Log Ingestion Key: &quot;</span><span class="w"> </span>LOG_INGESTION_KEY<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span>
 </code></pre></div>
 </li>
 <li>
 <p>Set an environment variable for the hostname of your IBM Log Analysis instance. You saved this somewhere safe earlier in the lab. If you lost track of it, revisit the section *Create an IBM Log Analysis instance" for the steps to retrieve it.</p>
-<div class="highlight"><pre><span></span><code><span class="nv">LOG_HOSTNAME</span><span class="o">=</span><span class="s2">&quot;paste your IBM Log Analysis hostname here&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Log Hostname: &quot;</span><span class="w"> </span>LOG_HOSTNAME
 </code></pre></div>
 </li>
 <li>
@@ -10005,7 +10018,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 </li>
 <li>
 <p>Skip this instruction if it is already set; otherwise, set an environment variable for your IBM Log Analysis ingestion key</p>
-<div class="highlight"><pre><span></span><code><span class="nv">LOG_INGESTION_KEY</span><span class="o">=</span><span class="s2">&quot;paste your ingestion key here&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nb">read</span><span class="w"> </span>-sp<span class="w"> </span><span class="s2">&quot;Log Ingestion Key: &quot;</span><span class="w"> </span>LOG_INGESTION_KEY<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span>
 </code></pre></div>
 </li>
 <li>
@@ -10015,7 +10028,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 </li>
 <li>
 <p>Skip this instruction if it is already set; otherwise, set an environment variable for the hostname of your IBM Log Analysis instance</p>
-<div class="highlight"><pre><span></span><code><span class="nv">LOG_HOSTNAME</span><span class="o">=</span><span class="s2">&quot;paste your IBM Log Analysis hostname here&quot;</span>&gt;
+<div class="highlight"><pre><span></span><code><span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Log Hostname: &quot;</span><span class="w"> </span>LOG_HOSTNAME
 </code></pre></div>
 </li>
 <li>
@@ -10238,7 +10251,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 </li>
 <li>
 <p>Skip this instruction if it is already set; otherwise, set an environment variable for your IBM Log Analysis ingestion key</p>
-<div class="highlight"><pre><span></span><code><span class="nv">LOG_INGESTION_KEY</span><span class="o">=</span><span class="s2">&quot;paste your ingestion key here&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nb">read</span><span class="w"> </span>-sp<span class="w"> </span><span class="s2">&quot;Log Ingestion Key: &quot;</span><span class="w"> </span>LOG_INGESTION_KEY<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span>
 </code></pre></div>
 </li>
 <li>
@@ -10248,7 +10261,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 </li>
 <li>
 <p>Skip this instruction if it is already set; otherwise, set an environment variable for the hostname of your IBM Log Analysis instance</p>
-<div class="highlight"><pre><span></span><code><span class="nv">LOG_HOSTNAME</span><span class="o">=</span><span class="s2">&quot;paste your IBM Log Analysis hostname here&quot;</span>&gt;
+<div class="highlight"><pre><span></span><code><span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Log Hostname: &quot;</span><span class="w"> </span>LOG_HOSTNAME
 </code></pre></div>
 </li>
 <li>
@@ -10542,7 +10555,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="s">cat workload.yaml env.yaml | tr -d &#39;\n&#39; &gt; contract.yaml</span>
 
 <span class="s"># Sign the combination from workload and env being approved</span>
-<span class="s">echo \$( cat contract.yaml | openssl dgst -sha256 -sign private.pem | openssl enc -base64) | tr -d &#39; &#39; &gt; signature.yaml</span>
+<span class="s">echo \$( cat contract.yaml | openssl dgst -sha256 -sign private.pem -passin pass:test1234 | openssl enc -base64) | tr -d &#39; &#39; &gt; signature.yaml</span>
 
 <span class="s"># Create user data and add signature:</span>
 <span class="s">echo &quot;workload: \$(cat workload.yaml)</span>
@@ -10607,7 +10620,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 </li>
 <li>
 <p>Skip this instruction if it is already set; otherwise, set an environment variable for your IBM Log Analysis ingestion key</p>
-<div class="highlight"><pre><span></span><code><span class="nv">LOG_INGESTION_KEY</span><span class="o">=</span><span class="s2">&quot;paste your ingestion key here&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nb">read</span><span class="w"> </span>-sp<span class="w"> </span><span class="s2">&quot;Log Ingestion Key: &quot;</span><span class="w"> </span>LOG_INGESTION_KEY<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span>
 </code></pre></div>
 </li>
 <li>
@@ -10617,7 +10630,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 </li>
 <li>
 <p>Skip this instruction if it is already set; otherwise, set an environment variable for the hostname of your IBM Log Analysis instance</p>
-<div class="highlight"><pre><span></span><code><span class="nv">LOG_HOSTNAME</span><span class="o">=</span><span class="s2">&quot;paste your IBM Log Analysis hostname here&quot;</span>&gt;
+<div class="highlight"><pre><span></span><code><span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Log Hostname: &quot;</span><span class="w"> </span>LOG_HOSTNAME
 </code></pre></div>
 </li>
 <li>
@@ -10685,7 +10698,6 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <p>Create the contract:</p>
 <div class="highlight"><pre><span></span><code>.<span class="w"> </span>./makeContract
 </code></pre></div>
-<p>Enter the passphrase <code>test1234</code> when prompted.</p>
 </li>
 <li>
 <p>Display your contract data:</p>

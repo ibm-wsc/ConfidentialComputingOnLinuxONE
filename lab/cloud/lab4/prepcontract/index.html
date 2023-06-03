@@ -1569,7 +1569,7 @@
 <span class="s">cat workload.yaml env.yaml | tr -d &#39;\n&#39; &gt; contract.yaml</span>
 
 <span class="s"># Sign the combination from workload and env being approved</span>
-<span class="s">echo \$( cat contract.yaml | openssl dgst -sha256 -sign private.pem | openssl enc -base64) | tr -d &#39; &#39; &gt; signature.yaml</span>
+<span class="s">echo \$( cat contract.yaml | openssl dgst -sha256 -sign private.pem -passin pass:test1234 | openssl enc -base64) | tr -d &#39; &#39; &gt; signature.yaml</span>
 
 <span class="s"># Create user data and add signature:</span>
 <span class="s">echo &quot;workload: \$(cat workload.yaml)</span>
@@ -1634,7 +1634,7 @@
 </li>
 <li>
 <p>Skip this instruction if it is already set; otherwise, set an environment variable for your IBM Log Analysis ingestion key</p>
-<div class="highlight"><pre><span></span><code><span class="nv">LOG_INGESTION_KEY</span><span class="o">=</span><span class="s2">&quot;paste your ingestion key here&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nb">read</span><span class="w"> </span>-sp<span class="w"> </span><span class="s2">&quot;Log Ingestion Key: &quot;</span><span class="w"> </span>LOG_INGESTION_KEY<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span>
 </code></pre></div>
 </li>
 <li>
@@ -1644,7 +1644,7 @@
 </li>
 <li>
 <p>Skip this instruction if it is already set; otherwise, set an environment variable for the hostname of your IBM Log Analysis instance</p>
-<div class="highlight"><pre><span></span><code><span class="nv">LOG_HOSTNAME</span><span class="o">=</span><span class="s2">&quot;paste your IBM Log Analysis hostname here&quot;</span>&gt;
+<div class="highlight"><pre><span></span><code><span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Log Hostname: &quot;</span><span class="w"> </span>LOG_HOSTNAME
 </code></pre></div>
 </li>
 <li>
@@ -1712,7 +1712,6 @@
 <p>Create the contract:</p>
 <div class="highlight"><pre><span></span><code>.<span class="w"> </span>./makeContract
 </code></pre></div>
-<p>Enter the passphrase <code>test1234</code> when prompted.</p>
 </li>
 <li>
 <p>Display your contract data:</p>

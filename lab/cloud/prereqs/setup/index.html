@@ -1500,28 +1500,27 @@
 <p>Follow these instructions on your prep system.  The environment variables set by these instructions are in effect only for the terminal session in which you enter the commands. If you finish the labs in one sitting within the same terminal session, you will only have to repeat these instructions once.  Otherwise, you can repeat these instructions as necessary.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>These variables are set for the duration of your terminal session.  If you do not finish the labs in one terminal session, then you will need to revisit this section to set these variables again when you resume.</p>
-</div>
 <p>The following set of commands will set an environment variable that will be used throughout the labs. It will point to either <em>tar</em> or <em>gtar</em> or it will print an error message if it cannot find either one.</p>
 <div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">LAB_TAR</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">  </span><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..6<span class="o">}</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;******************&#39;</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
-<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;&#39;</span>
-<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;CAUTION: Prior value of LAB_TAR was </span><span class="si">${</span><span class="nv">LAB_TAR</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;   Take note of this value in the unlikely event it was&quot;</span>
-<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;   already set by another application on your system&quot;</span>
-<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;   in which case you may need to restore this value later&quot;</span>
-<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;&#39;</span>
-<span class="w">  </span><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..6<span class="o">}</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;******************&#39;</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
+<span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..6<span class="o">}</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;******************&#39;</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;&#39;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;CAUTION: Prior value of LAB_TAR was </span><span class="si">${</span><span class="nv">LAB_TAR</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;   Take note of this value in the unlikely event it was&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;   already set by another application on your system&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;   in which case you may need to restore this value later&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;&#39;</span>
+<span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..6<span class="o">}</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;******************&#39;</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
 <span class="k">fi</span>
 <span class="nb">unset</span><span class="w"> </span>LAB_TAR<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>which<span class="w"> </span>tar<span class="w"> </span><span class="m">1</span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nv">LAB_TAR</span><span class="o">=</span>tar
 which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nv">LAB_TAR</span><span class="o">=</span>gtar
 <span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;&#39;</span>
 <span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">LAB_TAR</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span>
-<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;ERROR:  neither tar nor gtar was found&quot;</span><span class="w"> </span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;ERROR:  neither tar nor gtar was found&quot;</span><span class="w"> </span>
 <span class="k">else</span>
-<span class="w">  </span><span class="nb">echo</span><span class="w"> </span>You<span class="w"> </span>will<span class="w"> </span>use<span class="w"> </span><span class="si">${</span><span class="nv">LAB_TAR</span><span class="si">}</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>labs
+<span class="nb">echo</span><span class="w"> </span>You<span class="w"> </span>will<span class="w"> </span>use<span class="w"> </span><span class="si">${</span><span class="nv">LAB_TAR</span><span class="si">}</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>labs
 <span class="k">fi</span>
 </code></pre></div>
+</div>
 <p>The following set of commands will set an environment variable that will be used throughout the labs if the <em>base64</em> command supports the <em>wrap</em> option. (Typically, the wrap option will be supported on Linux systems but not on MacOS.)</p>
 <div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">LAB_WRAP</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
 <span class="w">  </span><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..6<span class="o">}</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;******************&#39;</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
@@ -1548,7 +1547,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 2, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 3, 2023</span>
       
         <br>
         Created:
