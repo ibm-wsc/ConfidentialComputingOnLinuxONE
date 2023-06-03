@@ -10,31 +10,28 @@ Follow these instructions on your prep system.  The environment variables set by
 
 !!! Note
 
-    These variables are set for the duration of your terminal session.  If you do not finish the labs in one terminal session, then you will need to revisit this section to set these variables again when you resume.
+	The following set of commands will set an environment variable that will be used throughout the labs. It will point to either *tar* or *gtar* or it will print an error message if it cannot find either one.
 
-
-The following set of commands will set an environment variable that will be used throughout the labs. It will point to either *tar* or *gtar* or it will print an error message if it cannot find either one.
-
-``` bash
-if [[ -n "${LAB_TAR}" ]]; then
-  for i in {1..6} ; do echo '******************' ; done
-  echo ''
-  echo "CAUTION: Prior value of LAB_TAR was ${LAB_TAR}"
-  echo "   Take note of this value in the unlikely event it was"
-  echo "   already set by another application on your system"
-  echo "   in which case you may need to restore this value later"
-  echo ''
-  for i in {1..6} ; do echo '******************' ; done
-fi
-unset LAB_TAR && which tar 1>/dev/null 2>&1 && LAB_TAR=tar
-which gtar 1>/dev/null 2>&1 && LAB_TAR=gtar
-echo ''
-if [[ -z "${LAB_TAR}" ]]; then 
-  echo "ERROR:  neither tar nor gtar was found" 
-else
-  echo You will use ${LAB_TAR} for the labs
-fi
-```
+	``` bash
+	if [[ -n "${LAB_TAR}" ]]; then
+	for i in {1..6} ; do echo '******************' ; done
+	echo ''
+	echo "CAUTION: Prior value of LAB_TAR was ${LAB_TAR}"
+	echo "   Take note of this value in the unlikely event it was"
+	echo "   already set by another application on your system"
+	echo "   in which case you may need to restore this value later"
+	echo ''
+	for i in {1..6} ; do echo '******************' ; done
+	fi
+	unset LAB_TAR && which tar 1>/dev/null 2>&1 && LAB_TAR=tar
+	which gtar 1>/dev/null 2>&1 && LAB_TAR=gtar
+	echo ''
+	if [[ -z "${LAB_TAR}" ]]; then 
+	echo "ERROR:  neither tar nor gtar was found" 
+	else
+	echo You will use ${LAB_TAR} for the labs
+	fi
+	```
 
 The following set of commands will set an environment variable that will be used throughout the labs if the *base64* command supports the *wrap* option. (Typically, the wrap option will be supported on Linux systems but not on MacOS.)
 

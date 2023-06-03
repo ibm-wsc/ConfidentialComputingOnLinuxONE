@@ -84,7 +84,7 @@
     cat workload.yaml env.yaml | tr -d '\n' > contract.yaml
 
     # Sign the combination from workload and env being approved
-    echo \$( cat contract.yaml | openssl dgst -sha256 -sign private.pem | openssl enc -base64) | tr -d ' ' > signature.yaml
+    echo \$( cat contract.yaml | openssl dgst -sha256 -sign private.pem -passin pass:test1234 | openssl enc -base64) | tr -d ' ' > signature.yaml
 
     # Create user data and add signature:
     echo "workload: \$(cat workload.yaml)
@@ -152,7 +152,7 @@
 1. Skip this instruction if it is already set; otherwise, set an environment variable for your IBM Log Analysis ingestion key
 
     ``` bash
-    LOG_INGESTION_KEY="paste your ingestion key here"
+    read -sp "Log Ingestion Key: " LOG_INGESTION_KEY && echo
     ```
 
 1. Check to see if the environment variable for the hostname of your IBM Log Analysis instance is still set from the prior lab:
@@ -164,7 +164,7 @@
 1. Skip this instruction if it is already set; otherwise, set an environment variable for the hostname of your IBM Log Analysis instance
 
     ``` bash
-    LOG_HOSTNAME="paste your IBM Log Analysis hostname here">
+    read -p "Log Hostname: " LOG_HOSTNAME
     ```
 
 1. Create this convenience script to encrypt the environment portion of the contract:
@@ -236,8 +236,6 @@
     ``` bash
     . ./makeContract
     ```
-
-    Enter the passphrase `test1234` when prompted.
    
 1. Display your contract data:
 

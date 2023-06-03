@@ -6,7 +6,7 @@ These labs provide a gentle introduction to the art of creating a *contract* for
 
 The best practice is to specify a contract that is encrypted and signed.  These labs start simple-  with an unsigned, plain text contract.  Such a contract would be hard to justify in a production environment, but is a great starting point for learning what is involved with creating a contract.
 
-Then each subsequent lab increases the complexity of the contract such that our final lab guides you to the best practice of creating and encrypted and signed contract.
+Then each subsequent lab increases the complexity of the contract such that our final lab guides you to the best practice of creating an encrypted and signed contract.
 
 !!! Warning "Caution- you may incur charges from IBM Cloud for activities performed in these labs "
 
@@ -16,15 +16,15 @@ The flow of the labs can be summarized as:
 
 1. Create prerequisite resources on IBM Cloud such as a Virtual Private Cloud and an IBM Log Analysis instance.
 
-1. Create a Hyper Protect Virtual Server instance using a plain text contract.
+2. Create a Hyper Protect Virtual Server instance using a plain text contract.
 
-1. Create a Hyper Protect Virtual Server instance where the workload provider encrypts their portion of the contract but the environment provider provides their portion in plain text.
+3. Create a Hyper Protect Virtual Server instance where the workload provider encrypts their portion of the contract but the environment provider provides their portion in plain text.
 
-1. Create a Hyper Protect Virtual Server instance where both the workload provider encrypts their portion of the contract and the environment prvider encrypts their porition of the contract.
+4. Create a Hyper Protect Virtual Server instance where both the workload provider encrypts their portion of the contract and the environment provider encrypts their portion of the contract.
 
-1. Create a Hyper Protect Virtual Server instance where both portions of the contract are encrypted and then signed by the environment provider.
+5. Create a Hyper Protect Virtual Server instance where both portions of the contract are encrypted and then signed by the environment provider.
 
-1. Deleting the resources created during the labs.
+6. Deleting the resources created during the labs.
 
 
 
