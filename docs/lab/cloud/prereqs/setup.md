@@ -4,11 +4,12 @@ This lab is written to work on MacOS and Linux.
 
 On most Linux distributions you will have *tar* and it will be fine.
 
-!!! Info "gtar for macos"
-	On most MacOS systems the default *tar* command is less desirable than a version of tar provided by the GNU project, called *gtar*. *gtar* is preferred for the labs.
-	
-	Follow these instructions on your prep system.  The environment variables set by these instructions are in effect only for the terminal session in which you enter the commands. If you finish the labs in one sitting within the same terminal session, you will only have to repeat these instructions once.  Otherwise, you can repeat these instructions as necessary.
-	
+On most MacOS systems the default *tar* command is less desirable than a version of tar provided by the GNU project, called *gtar*. *gtar* is preferred for the labs.
+
+Follow these instructions on your prep system.  The environment variables set by these instructions are in effect only for the terminal session in which you enter the commands. If you finish the labs in one sitting within the same terminal session, you will only have to repeat these instructions once.  Otherwise, you can repeat these instructions as necessary.
+
+!!! Note
+
 	The following set of commands will set an environment variable that will be used throughout the labs. It will point to either *tar* or *gtar* or it will print an error message if it cannot find either one.
 
 	``` bash
@@ -54,5 +55,5 @@ else
 fi
 ```
 
-Click the **Next** link in the lower right to begin the first lab.
+Click the **Next** link in the lower right to see directions to set a few more environment variables.
 
