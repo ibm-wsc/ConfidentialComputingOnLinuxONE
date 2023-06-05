@@ -1196,9 +1196,68 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Prepare the contract
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Prepare the contract
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ensure-necessary-environment-variables-are-set" class="md-nav__link">
+    Ensure necessary environment variables are set
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#make-a-new-directory-for-lab-2" class="md-nav__link">
+    Make a new directory for Lab 2
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-docker-compose-file-to-specify-the-application-workload" class="md-nav__link">
+    Create a Docker compose file to specify the application workload
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-encrypted-workload-section-of-the-contract" class="md-nav__link">
+    Create encrypted workload section of the contract
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-a-plaintext-environment-section-to-the-encrypted-workload-section" class="md-nav__link">
+    Add a plaintext environment section to the encrypted workload section
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1464,6 +1523,49 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ensure-necessary-environment-variables-are-set" class="md-nav__link">
+    Ensure necessary environment variables are set
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#make-a-new-directory-for-lab-2" class="md-nav__link">
+    Make a new directory for Lab 2
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-docker-compose-file-to-specify-the-application-workload" class="md-nav__link">
+    Create a Docker compose file to specify the application workload
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-encrypted-workload-section-of-the-contract" class="md-nav__link">
+    Create encrypted workload section of the contract
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-a-plaintext-environment-section-to-the-encrypted-workload-section" class="md-nav__link">
+    Add a plaintext environment section to the encrypted workload section
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1494,15 +1596,31 @@
 
 
 <h1 id="prepare-the-contract">Prepare the contract<a class="headerlink" href="#prepare-the-contract" title="Permanent link">&para;</a></h1>
+<h2 id="ensure-necessary-environment-variables-are-set">Ensure necessary environment variables are set<a class="headerlink" href="#ensure-necessary-environment-variables-are-set" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
 <p>Go to a command prompt on your prep system</p>
 </li>
 <li>
-<p>Make a fresh directory and change in to it:</p>
-<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/cloudlabs/lab2<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/cloudlabs/lab2
+<p>You should have each of these environment variables set on your prep system:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span>LAB_WORKDIR<span class="w"> </span>is<span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>
+<span class="nb">echo</span><span class="w"> </span>LAB_TAR<span class="w"> </span>is<span class="w"> </span><span class="si">${</span><span class="nv">LAB_TAR</span><span class="si">}</span>
+<span class="nb">echo</span><span class="w"> </span>LOG_INGESTION_KEY<span class="w"> </span>is<span class="w"> </span><span class="si">${</span><span class="nv">LOG_INGESTION_KEY</span><span class="si">}</span>
+<span class="nb">echo</span><span class="w"> </span>LOG_HOSTNAME<span class="w"> </span>is<span class="w"> </span><span class="si">${</span><span class="nv">LOG_HOSTNAME</span><span class="si">}</span>
+</code></pre></div>
+<p>If any of the above commands do not display a value after the _is _ then revisit <a href="../../prereqs/setup/" rel="noopener" target="_blank">sections</a> on setting environment variables.</p>
+</li>
+</ol>
+<h2 id="make-a-new-directory-for-lab-2">Make a new directory for Lab 2<a class="headerlink" href="#make-a-new-directory-for-lab-2" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Make a fresh directory structure and change in to it:</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>/lab2<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>/lab2
 </code></pre></div>
 </li>
+</ol>
+<h2 id="create-a-docker-compose-file-to-specify-the-application-workload">Create a Docker compose file to specify the application workload<a class="headerlink" href="#create-a-docker-compose-file-to-specify-the-application-workload" title="Permanent link">&para;</a></h2>
+<ol>
 <li>
 <p>Create another directory to hold a docker compose file and switch to it:</p>
 <div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>workload/compose<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>workload/compose
@@ -1543,26 +1661,9 @@
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>..<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">pwd</span>
 </code></pre></div>
 </li>
-<li>
-<p>Check to see if the environment variable for your IBM Log Analysis instance is still set from the prior lab:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">LOG_INGESTION_KEY</span><span class="si">}</span>
-</code></pre></div>
-</li>
-<li>
-<p>Skip this instruction if it is already set; otherwise, set an environment variable for your IBM Log Analysis ingestion key</p>
-<div class="highlight"><pre><span></span><code><span class="nb">read</span><span class="w"> </span>-sp<span class="w"> </span><span class="s2">&quot;Log Ingestion Key: &quot;</span><span class="w"> </span>LOG_INGESTION_KEY<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span>
-</code></pre></div>
-</li>
-<li>
-<p>Check to see if the environment variable for the hostname of your IBM Log Analysis instance is still set from the prior lab:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">LOG_HOSTNAME</span><span class="si">}</span>
-</code></pre></div>
-</li>
-<li>
-<p>Skip this instruction if it is already set; otherwise, set an environment variable for the hostname of your IBM Log Analysis instance</p>
-<div class="highlight"><pre><span></span><code><span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Log Hostname: &quot;</span><span class="w"> </span>LOG_HOSTNAME
-</code></pre></div>
-</li>
+</ol>
+<h2 id="create-encrypted-workload-section-of-the-contract">Create encrypted workload section of the contract<a class="headerlink" href="#create-encrypted-workload-section-of-the-contract" title="Permanent link">&para;</a></h2>
+<ol>
 <li>
 <p>Create this convenience script to encrypt the workload portion of the contract:</p>
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; flow.workload</span>
@@ -1621,8 +1722,11 @@
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span>workload.yaml
 </code></pre></div>
 </li>
+</ol>
+<h2 id="add-a-plaintext-environment-section-to-the-encrypted-workload-section">Add a plaintext environment section to the encrypted workload section<a class="headerlink" href="#add-a-plaintext-environment-section-to-the-encrypted-workload-section" title="Permanent link">&para;</a></h2>
+<ol>
 <li>
-<p>Add a plaintext environment section to the encrypted workload section:</p>
+<p>This command combines the workload section (which is encrypted) with a plain text environment section.  The contract is the output file, <em>user_data.yaml</em>.</p>
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; user_data.yaml</span>
 <span class="s">workload: $(cat workload.yaml)</span>
 <span class="s">env: |</span>
@@ -1654,7 +1758,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 2, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 5, 2023</span>
       
         <br>
         Created:

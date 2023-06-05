@@ -9783,39 +9783,33 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <p>In the first lab, you will provide a simple, plaintext contract in order to get a clear view of what a Hyper Protect Virtual Servers contract looks like. This is for learning purposes-  most production use cases will require an encrypted, and possibly signed, contract. </p>
 <p>The lab will also introduce you to persistent disk volumes.</p>
 <p>Your first step will be to prepare the contract on your prep system.  Click the <strong>Next</strong> link at the lower right to continue.</p></section><section class="print-page" id="lab-cloud-lab1-prepcontract"><h1 id="lab-cloud-lab1-prepcontract-prepare-the-contract">Prepare the contract<a class="headerlink" href="#lab-cloud-lab1-prepcontract-prepare-the-contract" title="Permanent link">&para;</a></h1>
-<h2 id="lab-cloud-lab1-prepcontract-make-a-new-directory-structure-for-the-labs">Make a new directory structure for the labs<a class="headerlink" href="#lab-cloud-lab1-prepcontract-make-a-new-directory-structure-for-the-labs" title="Permanent link">&para;</a></h2>
-<p>These labs assume that ${HOME}/cloudlabs does not exist on your prep system. </p>
+<h2 id="lab-cloud-lab1-prepcontract-ensure-necessary-environment-variables-are-set">Ensure necessary environment variables are set<a class="headerlink" href="#lab-cloud-lab1-prepcontract-ensure-necessary-environment-variables-are-set" title="Permanent link">&para;</a></h2>
 <ol>
-<li>
-<p>This command will warn you if this directory already exists:</p>
-<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/cloudlabs<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;${HOME}/cloudlabs exists. Please use a new directory.&#39;</span>
-</code></pre></div>
-</li>
-<li>
-<p>This command will warn you if this directory already exists:</p>
-<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>-e<span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">   </span><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span><span class="w"> </span>already<span class="w"> </span>exists
-<span class="w">   </span><span class="nb">echo</span><span class="w"> </span>Please<span class="w"> </span>choose<span class="w"> </span>new<span class="w"> </span>value<span class="w"> </span><span class="k">for</span><span class="w"> </span>LAB_WORKDIR
-<span class="w">   </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;  or rename ${LAB_WORKDIR}</span>
-<span class="s1">   echo &#39;</span><span class="w">  </span>and<span class="w"> </span>try<span class="w"> </span>again<span class="s1">&#39;</span>
-<span class="s1">else </span>
-<span class="s1">    mkdir ${LAB_WORKDIR} &amp;&amp; \</span>
-<span class="s1">    echo &#39;</span>Fresh<span class="w"> </span>lab<span class="w"> </span>working<span class="w"> </span>directory<span class="w"> </span>created<span class="s1">&#39; \</span>
-<span class="s1">    &amp;&amp; cd ${LAB_WORKDIR} &amp;&amp; \</span>
-<span class="s1">    echo &#39;</span><span class="w"> </span>Changed<span class="w"> </span>to<span class="w"> </span>working<span class="w"> </span>directory<span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>
-<span class="k">fi</span>
-</code></pre></div>
-</li>
 <li>
 <p>Go to a command prompt on your prep system</p>
 </li>
 <li>
+<p>You should have each of these environment variables set on your prep system:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span>LAB_WORKDIR<span class="w"> </span>is<span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>
+<span class="nb">echo</span><span class="w"> </span>LAB_TAR<span class="w"> </span>is<span class="w"> </span><span class="si">${</span><span class="nv">LAB_TAR</span><span class="si">}</span>
+<span class="nb">echo</span><span class="w"> </span>LOG_INGESTION_KEY<span class="w"> </span>is<span class="w"> </span><span class="si">${</span><span class="nv">LOG_INGESTION_KEY</span><span class="si">}</span>
+<span class="nb">echo</span><span class="w"> </span>LOG_HOSTNAME<span class="w"> </span>is<span class="w"> </span><span class="si">${</span><span class="nv">LOG_HOSTNAME</span><span class="si">}</span>
+</code></pre></div>
+<p>If any of the above commands do not display a value after the _is _ then revisit <a href="#lab-cloud-prereqs-setup" rel="noopener" target="_blank">sections</a> on setting environment variables.</p>
+</li>
+</ol>
+<h2 id="lab-cloud-lab1-prepcontract-make-a-new-directory-for-lab-1">Make a new directory for Lab 1<a class="headerlink" href="#lab-cloud-lab1-prepcontract-make-a-new-directory-for-lab-1" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
 <p>Make a fresh directory structure and change in to it:</p>
-<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/cloudlabs/lab1<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/cloudlabs/lab1
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>/lab1<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>/lab1
 </code></pre></div>
 </li>
+</ol>
+<h2 id="lab-cloud-lab1-prepcontract-create-a-docker-compose-file-to-specify-the-application-workload">Create a Docker compose file to specify the application workload<a class="headerlink" href="#lab-cloud-lab1-prepcontract-create-a-docker-compose-file-to-specify-the-application-workload" title="Permanent link">&para;</a></h2>
+<ol>
 <li>
-<p>Create another directory to hold a docker compose file and switch to it:</p>
+<p>Create another directory to hold a Docker compose file and switch to it:</p>
 <div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>compose<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>compose
 </code></pre></div>
 </li>
@@ -9842,19 +9836,12 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span>docker-compose.yml
 </code></pre></div>
 </li>
+</ol>
+<h2 id="lab-cloud-lab1-prepcontract-create-the-contract">Create the contract<a class="headerlink" href="#lab-cloud-lab1-prepcontract-create-the-contract" title="Permanent link">&para;</a></h2>
+<ol>
 <li>
 <p>Change to the directory one level higher than your current location (and display it):</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>..<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">pwd</span>
-</code></pre></div>
-</li>
-<li>
-<p>Set an environment variable for your IBM Log Analysis ingestion key. You saved this somewhere safe earlier in the lab.  If you lost track of it, revisit the section *Create an IBM Log Analysis instance" for the steps to retrieve it.</p>
-<div class="highlight"><pre><span></span><code><span class="nb">read</span><span class="w"> </span>-sp<span class="w"> </span><span class="s2">&quot;Log Ingestion Key: &quot;</span><span class="w"> </span>LOG_INGESTION_KEY<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span>
-</code></pre></div>
-</li>
-<li>
-<p>Set an environment variable for the hostname of your IBM Log Analysis instance. You saved this somewhere safe earlier in the lab. If you lost track of it, revisit the section *Create an IBM Log Analysis instance" for the steps to retrieve it.</p>
-<div class="highlight"><pre><span></span><code><span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Log Hostname: &quot;</span><span class="w"> </span>LOG_HOSTNAME
 </code></pre></div>
 </li>
 <li>
@@ -9962,15 +9949,31 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
                         </h2>
                         <section class="print-page" id="lab-cloud-lab2"><h1 id="lab-cloud-lab2-lab-2-partially-encrypted-contract">Lab 2 - partially encrypted contract<a class="headerlink" href="#lab-cloud-lab2-lab-2-partially-encrypted-contract" title="Permanent link">&para;</a></h1>
 <p>This lab builds upon lab 1 by encrypting part of the contract, illustrating separation of responsibilities. It also demonstrates data persistence by using the same data volume used in lab 1.</p></section><section class="print-page" id="lab-cloud-lab2-prepcontract"><h1 id="lab-cloud-lab2-prepcontract-prepare-the-contract">Prepare the contract<a class="headerlink" href="#lab-cloud-lab2-prepcontract-prepare-the-contract" title="Permanent link">&para;</a></h1>
+<h2 id="lab-cloud-lab2-prepcontract-ensure-necessary-environment-variables-are-set">Ensure necessary environment variables are set<a class="headerlink" href="#lab-cloud-lab2-prepcontract-ensure-necessary-environment-variables-are-set" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
 <p>Go to a command prompt on your prep system</p>
 </li>
 <li>
-<p>Make a fresh directory and change in to it:</p>
-<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/cloudlabs/lab2<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/cloudlabs/lab2
+<p>You should have each of these environment variables set on your prep system:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span>LAB_WORKDIR<span class="w"> </span>is<span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>
+<span class="nb">echo</span><span class="w"> </span>LAB_TAR<span class="w"> </span>is<span class="w"> </span><span class="si">${</span><span class="nv">LAB_TAR</span><span class="si">}</span>
+<span class="nb">echo</span><span class="w"> </span>LOG_INGESTION_KEY<span class="w"> </span>is<span class="w"> </span><span class="si">${</span><span class="nv">LOG_INGESTION_KEY</span><span class="si">}</span>
+<span class="nb">echo</span><span class="w"> </span>LOG_HOSTNAME<span class="w"> </span>is<span class="w"> </span><span class="si">${</span><span class="nv">LOG_HOSTNAME</span><span class="si">}</span>
+</code></pre></div>
+<p>If any of the above commands do not display a value after the _is _ then revisit <a href="#lab-cloud-prereqs-setup" rel="noopener" target="_blank">sections</a> on setting environment variables.</p>
+</li>
+</ol>
+<h2 id="lab-cloud-lab2-prepcontract-make-a-new-directory-for-lab-2">Make a new directory for Lab 2<a class="headerlink" href="#lab-cloud-lab2-prepcontract-make-a-new-directory-for-lab-2" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Make a fresh directory structure and change in to it:</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>/lab2<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>/lab2
 </code></pre></div>
 </li>
+</ol>
+<h2 id="lab-cloud-lab2-prepcontract-create-a-docker-compose-file-to-specify-the-application-workload">Create a Docker compose file to specify the application workload<a class="headerlink" href="#lab-cloud-lab2-prepcontract-create-a-docker-compose-file-to-specify-the-application-workload" title="Permanent link">&para;</a></h2>
+<ol>
 <li>
 <p>Create another directory to hold a docker compose file and switch to it:</p>
 <div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>workload/compose<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>workload/compose
@@ -10011,26 +10014,9 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>..<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">pwd</span>
 </code></pre></div>
 </li>
-<li>
-<p>Check to see if the environment variable for your IBM Log Analysis instance is still set from the prior lab:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">LOG_INGESTION_KEY</span><span class="si">}</span>
-</code></pre></div>
-</li>
-<li>
-<p>Skip this instruction if it is already set; otherwise, set an environment variable for your IBM Log Analysis ingestion key</p>
-<div class="highlight"><pre><span></span><code><span class="nb">read</span><span class="w"> </span>-sp<span class="w"> </span><span class="s2">&quot;Log Ingestion Key: &quot;</span><span class="w"> </span>LOG_INGESTION_KEY<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span>
-</code></pre></div>
-</li>
-<li>
-<p>Check to see if the environment variable for the hostname of your IBM Log Analysis instance is still set from the prior lab:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">LOG_HOSTNAME</span><span class="si">}</span>
-</code></pre></div>
-</li>
-<li>
-<p>Skip this instruction if it is already set; otherwise, set an environment variable for the hostname of your IBM Log Analysis instance</p>
-<div class="highlight"><pre><span></span><code><span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Log Hostname: &quot;</span><span class="w"> </span>LOG_HOSTNAME
-</code></pre></div>
-</li>
+</ol>
+<h2 id="lab-cloud-lab2-prepcontract-create-encrypted-workload-section-of-the-contract">Create encrypted workload section of the contract<a class="headerlink" href="#lab-cloud-lab2-prepcontract-create-encrypted-workload-section-of-the-contract" title="Permanent link">&para;</a></h2>
+<ol>
 <li>
 <p>Create this convenience script to encrypt the workload portion of the contract:</p>
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; flow.workload</span>
@@ -10089,8 +10075,11 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span>workload.yaml
 </code></pre></div>
 </li>
+</ol>
+<h2 id="lab-cloud-lab2-prepcontract-add-a-plaintext-environment-section-to-the-encrypted-workload-section">Add a plaintext environment section to the encrypted workload section<a class="headerlink" href="#lab-cloud-lab2-prepcontract-add-a-plaintext-environment-section-to-the-encrypted-workload-section" title="Permanent link">&para;</a></h2>
+<ol>
 <li>
-<p>Add a plaintext environment section to the encrypted workload section:</p>
+<p>This command combines the workload section (which is encrypted) with a plain text environment section.  The contract is the output file, <em>user_data.yaml</em>.</p>
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; user_data.yaml</span>
 <span class="s">workload: $(cat workload.yaml)</span>
 <span class="s">env: |</span>
@@ -10195,15 +10184,31 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
                         </h2>
                         <section class="print-page" id="lab-cloud-lab3"><h1 id="lab-cloud-lab3-lab-3-encrypted-contract">Lab 3 - encrypted contract<a class="headerlink" href="#lab-cloud-lab3-lab-3-encrypted-contract" title="Permanent link">&para;</a></h1>
 <p>Lab 3 builds on the first two contracts.  It shows encryption of both the workload section and the environment section of the contract.</p></section><section class="print-page" id="lab-cloud-lab3-prepcontract"><h1 id="lab-cloud-lab3-prepcontract-prepare-the-contract">Prepare the contract<a class="headerlink" href="#lab-cloud-lab3-prepcontract-prepare-the-contract" title="Permanent link">&para;</a></h1>
+<h2 id="lab-cloud-lab3-prepcontract-ensure-necessary-environment-variables-are-set">Ensure necessary environment variables are set<a class="headerlink" href="#lab-cloud-lab3-prepcontract-ensure-necessary-environment-variables-are-set" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
 <p>Go to a command prompt on your prep system</p>
 </li>
 <li>
-<p>Make a fresh directory and change in to it:</p>
-<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/cloudlabs/lab3<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/cloudlabs/lab3
+<p>You should have each of these environment variables set on your prep system:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span>LAB_WORKDIR<span class="w"> </span>is<span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>
+<span class="nb">echo</span><span class="w"> </span>LAB_TAR<span class="w"> </span>is<span class="w"> </span><span class="si">${</span><span class="nv">LAB_TAR</span><span class="si">}</span>
+<span class="nb">echo</span><span class="w"> </span>LOG_INGESTION_KEY<span class="w"> </span>is<span class="w"> </span><span class="si">${</span><span class="nv">LOG_INGESTION_KEY</span><span class="si">}</span>
+<span class="nb">echo</span><span class="w"> </span>LOG_HOSTNAME<span class="w"> </span>is<span class="w"> </span><span class="si">${</span><span class="nv">LOG_HOSTNAME</span><span class="si">}</span>
+</code></pre></div>
+<p>If any of the above commands do not display a value after the _is _ then revisit <a href="#lab-cloud-prereqs-setup" rel="noopener" target="_blank">sections</a> on setting environment variables.</p>
+</li>
+</ol>
+<h2 id="lab-cloud-lab3-prepcontract-make-a-new-directory-for-lab-3">Make a new directory for Lab 3<a class="headerlink" href="#lab-cloud-lab3-prepcontract-make-a-new-directory-for-lab-3" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Make a fresh directory structure and change in to it:</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>/lab3<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>/lab3
 </code></pre></div>
 </li>
+</ol>
+<h2 id="lab-cloud-lab3-prepcontract-create-a-docker-compose-file-to-specify-the-application-workload">Create a Docker compose file to specify the application workload<a class="headerlink" href="#lab-cloud-lab3-prepcontract-create-a-docker-compose-file-to-specify-the-application-workload" title="Permanent link">&para;</a></h2>
+<ol>
 <li>
 <p>Create the following directory structure and then switch to the directory that will hold the docker compose file:</p>
 <div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="o">{</span>environment,workload/compose<span class="o">}</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>workload/compose
@@ -10243,26 +10248,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <p>Change to the directory one level higher than your current location (and display it):</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>..<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">pwd</span>
 </code></pre></div>
-</li>
-<li>
-<p>Check to see if the environment variable for your IBM Log Analysis instance is still set from the prior lab:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">LOG_INGESTION_KEY</span><span class="si">}</span>
-</code></pre></div>
-</li>
-<li>
-<p>Skip this instruction if it is already set; otherwise, set an environment variable for your IBM Log Analysis ingestion key</p>
-<div class="highlight"><pre><span></span><code><span class="nb">read</span><span class="w"> </span>-sp<span class="w"> </span><span class="s2">&quot;Log Ingestion Key: &quot;</span><span class="w"> </span>LOG_INGESTION_KEY<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span>
-</code></pre></div>
-</li>
-<li>
-<p>Check to see if the environment variable for the hostname of your IBM Log Analysis instance is still set from the prior lab:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">LOG_HOSTNAME</span><span class="si">}</span>
-</code></pre></div>
-</li>
-<li>
-<p>Skip this instruction if it is already set; otherwise, set an environment variable for the hostname of your IBM Log Analysis instance</p>
-<div class="highlight"><pre><span></span><code><span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Log Hostname: &quot;</span><span class="w"> </span>LOG_HOSTNAME
-</code></pre></div>
+<h2 id="lab-cloud-lab3-prepcontract-create-encrypted-workload-section-of-the-contract">Create encrypted workload section of the contract<a class="headerlink" href="#lab-cloud-lab3-prepcontract-create-encrypted-workload-section-of-the-contract" title="Permanent link">&para;</a></h2>
 </li>
 <li>
 <p>Create this convenience script to encrypt the workload portion of the contract:</p>
@@ -10322,6 +10308,9 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span>workload.yaml
 </code></pre></div>
 </li>
+</ol>
+<h2 id="lab-cloud-lab3-prepcontract-create-encrypted-environment-section-of-the-contract">Create encrypted environment section of the contract<a class="headerlink" href="#lab-cloud-lab3-prepcontract-create-encrypted-environment-section-of-the-contract" title="Permanent link">&para;</a></h2>
+<ol>
 <li>
 <p>Switch to the <em>environment</em> directory:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>environment
@@ -10387,9 +10376,10 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <p>Display the encrypted environment section you just created:  </p>
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span>env.yaml
 </code></pre></div>
+<h2 id="lab-cloud-lab3-prepcontract-combine-the-encrypted-workload-section-with-the-encrypted-environment-section">Combine the encrypted workload section with the encrypted environment  section<a class="headerlink" href="#lab-cloud-lab3-prepcontract-combine-the-encrypted-workload-section-with-the-encrypted-environment-section" title="Permanent link">&para;</a></h2>
 </li>
 <li>
-<p>Combine the encrypted workload section with the encrypted environment section:</p>
+<p>This command combines the workload section (which is encrypted) with the environment section (which is also encrypted).  The contract is the output file, <em>user_data.yaml</em>.. </p>
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; user_data.yaml</span>
 <span class="s">workload: $(cat workload.yaml)</span>
 <span class="s">env: $(cat env.yaml)</span>
@@ -10480,15 +10470,31 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
                         </h2>
                         <section class="print-page" id="lab-cloud-lab4"><h1 id="lab-cloud-lab4-lab-4-encrypted-and-signed-contract">Lab 4 - encrypted and signed contract<a class="headerlink" href="#lab-cloud-lab4-lab-4-encrypted-and-signed-contract" title="Permanent link">&para;</a></h1>
 <p>This lab demonstrates the best practice of having a contract that is encrypted and signed.</p></section><section class="print-page" id="lab-cloud-lab4-prepcontract"><h1 id="lab-cloud-lab4-prepcontract-prepare-the-contract">Prepare the contract<a class="headerlink" href="#lab-cloud-lab4-prepcontract-prepare-the-contract" title="Permanent link">&para;</a></h1>
+<h2 id="lab-cloud-lab4-prepcontract-ensure-necessary-environment-variables-are-set">Ensure necessary environment variables are set<a class="headerlink" href="#lab-cloud-lab4-prepcontract-ensure-necessary-environment-variables-are-set" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
 <p>Go to a command prompt on your prep system</p>
 </li>
 <li>
-<p>Make a fresh directory and change in to it:</p>
-<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/cloudlabs/lab4<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/cloudlabs/lab4
+<p>You should have each of these environment variables set on your prep system:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span>LAB_WORKDIR<span class="w"> </span>is<span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>
+<span class="nb">echo</span><span class="w"> </span>LAB_TAR<span class="w"> </span>is<span class="w"> </span><span class="si">${</span><span class="nv">LAB_TAR</span><span class="si">}</span>
+<span class="nb">echo</span><span class="w"> </span>LOG_INGESTION_KEY<span class="w"> </span>is<span class="w"> </span><span class="si">${</span><span class="nv">LOG_INGESTION_KEY</span><span class="si">}</span>
+<span class="nb">echo</span><span class="w"> </span>LOG_HOSTNAME<span class="w"> </span>is<span class="w"> </span><span class="si">${</span><span class="nv">LOG_HOSTNAME</span><span class="si">}</span>
+</code></pre></div>
+<p>If any of the above commands do not display a value after the _is _ then revisit <a href="#lab-cloud-prereqs-setup" rel="noopener" target="_blank">sections</a> on setting environment variables.</p>
+</li>
+</ol>
+<h2 id="lab-cloud-lab4-prepcontract-make-a-new-directory-for-lab-4">Make a new directory for Lab 4<a class="headerlink" href="#lab-cloud-lab4-prepcontract-make-a-new-directory-for-lab-4" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Make a fresh directory structure and change in to it:</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>/lab4<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>/lab4
 </code></pre></div>
 </li>
+</ol>
+<h2 id="lab-cloud-lab4-prepcontract-create-a-docker-compose-file-to-specify-the-application-workload">Create a Docker compose file to specify the application workload<a class="headerlink" href="#lab-cloud-lab4-prepcontract-create-a-docker-compose-file-to-specify-the-application-workload" title="Permanent link">&para;</a></h2>
+<ol>
 <li>
 <p>Create the following directory structure and then switch to the directory that will hold the docker compose file:</p>
 <div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="o">{</span>environment,workload/compose<span class="o">}</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>workload/compose
@@ -10524,55 +10530,17 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span>docker-compose.yml
 </code></pre></div>
 </li>
+</ol>
+<h2 id="lab-cloud-lab4-prepcontract-create-a-convenience-script-to-encrypt-the-workload-section">Create a convenience script to encrypt the workload section<a class="headerlink" href="#lab-cloud-lab4-prepcontract-create-a-convenience-script-to-encrypt-the-workload-section" title="Permanent link">&para;</a></h2>
+<ol>
 <li>
 <p>Backup one directory level:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>..
 </code></pre></div>
 </li>
 <li>
-<p>Change to the directory one level higher than your current location (and display it):</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>..<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">pwd</span>
-</code></pre></div>
-</li>
-<li>
-<p>Create the following convenience script that will create an RSA key pair that you will use to sign the contract. </p>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; flow.prepare</span>
-<span class="s"># Use the following command to generate key pair to sign the contract </span>
-<span class="s">openssl genrsa -aes128 -passout pass:test1234 -out private.pem 4096</span>
-<span class="s">openssl rsa -in private.pem -passin pass:test1234 -pubout -out public.pem</span>
-
-<span class="s"># The following command is an example of how you can get the signing key:</span>
-<span class="s">key=\$(awk -vRS=&quot;\n&quot; -vORS=&quot;\\\\\n&quot; &#39;1&#39; public.pem)</span>
-<span class="s"># echo &quot;  signingKey: \&quot;\${key%\\\\n}\&quot;&quot; &gt; environment/pubSigningKey.yaml</span>
-<span class="s">printf &quot;%s&quot; &quot;  signingKey: \&quot;\${key%\\\\n}\&quot;&quot; &gt; environment/pubSigningKey.yaml</span>
-<span class="s">EOF</span>
-</code></pre></div>
-</li>
-<li>
-<p>Create the following convenience script that will sign the encrypted contract.</p>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; flow.signature</span>
-<span class="s"># combine workload and environment</span>
-<span class="s">cat workload.yaml env.yaml | tr -d &#39;\n&#39; &gt; contract.yaml</span>
-
-<span class="s"># Sign the combination from workload and env being approved</span>
-<span class="s">echo \$( cat contract.yaml | openssl dgst -sha256 -sign private.pem -passin pass:test1234 | openssl enc -base64) | tr -d &#39; &#39; &gt; signature.yaml</span>
-
-<span class="s"># Create user data and add signature:</span>
-<span class="s">echo &quot;workload: \$(cat workload.yaml)</span>
-<span class="s">env: \$(cat env.yaml)</span>
-<span class="s">envWorkloadSignature: \$(cat signature.yaml)&quot; &gt; user_data.yaml</span>
-
-<span class="s">echo &quot;&quot;</span>
-<span class="s">echo &quot;import `pwd`/user_data.yaml into User Data or copy and paste from below:&quot;</span>
-<span class="s">echo &quot;&quot;</span>
-
-<span class="s">cat user_data.yaml</span>
-<span class="s">EOF</span>
-</code></pre></div>
-</li>
-<li>
 <p>Create this convenience script to encrypt the workload portion of the contract:</p>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; workload/flow.workload</span>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; flow.workload</span>
 <span class="s"># Create the workload section of the contract and add the contents in the workload.yaml file.</span>
 
 <span class="s">WORKLOAD_PLAIN=./workload.yaml.plaintext</span>
@@ -10613,29 +10581,17 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="s">EOF</span>
 </code></pre></div>
 </li>
+</ol>
+<h2 id="lab-cloud-lab4-prepcontract-create-a-convenience-script-to-encrypt-the-environment-section">Create a convenience script to encrypt the environment  section<a class="headerlink" href="#lab-cloud-lab4-prepcontract-create-a-convenience-script-to-encrypt-the-environment-section" title="Permanent link">&para;</a></h2>
+<ol>
 <li>
-<p>Check to see if the environment variable for your IBM Log Analysis instance is still set from the prior lab:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">LOG_INGESTION_KEY</span><span class="si">}</span>
-</code></pre></div>
-</li>
-<li>
-<p>Skip this instruction if it is already set; otherwise, set an environment variable for your IBM Log Analysis ingestion key</p>
-<div class="highlight"><pre><span></span><code><span class="nb">read</span><span class="w"> </span>-sp<span class="w"> </span><span class="s2">&quot;Log Ingestion Key: &quot;</span><span class="w"> </span>LOG_INGESTION_KEY<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span>
-</code></pre></div>
-</li>
-<li>
-<p>Check to see if the environment variable for the hostname of your IBM Log Analysis instance is still set from the prior lab:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">LOG_HOSTNAME</span><span class="si">}</span>
-</code></pre></div>
-</li>
-<li>
-<p>Skip this instruction if it is already set; otherwise, set an environment variable for the hostname of your IBM Log Analysis instance</p>
-<div class="highlight"><pre><span></span><code><span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Log Hostname: &quot;</span><span class="w"> </span>LOG_HOSTNAME
+<p>Change to the directory used for the environment section display it:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>../environment<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">pwd</span>
 </code></pre></div>
 </li>
 <li>
 <p>Create this convenience script to encrypt the environment portion of the contract:</p>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; environment/flow.env</span>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; flow.env</span>
 <span class="s"># Create the env section of the contract and add the contents in the env.yaml file.</span>
 <span class="s">ENV_PLAIN=&quot;./env.yaml.plaintext&quot;</span>
 <span class="s">ENV=&quot;env.yaml&quot;</span>
@@ -10681,8 +10637,50 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="s">EOF</span>
 </code></pre></div>
 </li>
+</ol>
+<h2 id="lab-cloud-lab4-prepcontract-create-convenience-scripts-to-facilitate-signing-the-contract">Create convenience scripts to facilitate signing the contract<a class="headerlink" href="#lab-cloud-lab4-prepcontract-create-convenience-scripts-to-facilitate-signing-the-contract" title="Permanent link">&para;</a></h2>
+<ol>
 <li>
-<p>Create this convenience script that you will use to create the signed and encrypted contract:</p>
+<p>Create the following convenience script that will create an RSA key pair that you will use to sign the contract. </p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; flow.prepare</span>
+<span class="s"># Use the following command to generate key pair to sign the contract </span>
+<span class="s">openssl genrsa -aes128 -passout pass:test1234 -out private.pem 4096</span>
+<span class="s">openssl rsa -in private.pem -passin pass:test1234 -pubout -out public.pem</span>
+
+<span class="s"># The following command is an example of how you can get the signing key:</span>
+<span class="s">key=\$(awk -vRS=&quot;\n&quot; -vORS=&quot;\\\\\n&quot; &#39;1&#39; public.pem)</span>
+<span class="s"># echo &quot;  signingKey: \&quot;\${key%\\\\n}\&quot;&quot; &gt; environment/pubSigningKey.yaml</span>
+<span class="s">printf &quot;%s&quot; &quot;  signingKey: \&quot;\${key%\\\\n}\&quot;&quot; &gt; environment/pubSigningKey.yaml</span>
+<span class="s">EOF</span>
+</code></pre></div>
+</li>
+<li>
+<p>Create the following convenience script that will sign the encrypted contract.</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; flow.signature</span>
+<span class="s"># combine workload and environment</span>
+<span class="s">cat workload.yaml env.yaml | tr -d &#39;\n&#39; &gt; contract.yaml</span>
+
+<span class="s"># Sign the combination from workload and env being approved</span>
+<span class="s">echo \$( cat contract.yaml | openssl dgst -sha256 -sign private.pem -passin pass:test1234 | openssl enc -base64) | tr -d &#39; &#39; &gt; signature.yaml</span>
+
+<span class="s"># Create user data and add signature:</span>
+<span class="s">echo &quot;workload: \$(cat workload.yaml)</span>
+<span class="s">env: \$(cat env.yaml)</span>
+<span class="s">envWorkloadSignature: \$(cat signature.yaml)&quot; &gt; user_data.yaml</span>
+
+<span class="s">echo &quot;&quot;</span>
+<span class="s">echo &quot;import `pwd`/user_data.yaml into User Data or copy and paste from below:&quot;</span>
+<span class="s">echo &quot;&quot;</span>
+
+<span class="s">cat user_data.yaml</span>
+<span class="s">EOF</span>
+</code></pre></div>
+</li>
+</ol>
+<h2 id="lab-cloud-lab4-prepcontract-create-and-run-helper-script-to-produce-the-encrypted-and-signed-contract">Create and run helper script to produce the encrypted and signed contract<a class="headerlink" href="#lab-cloud-lab4-prepcontract-create-and-run-helper-script-to-produce-the-encrypted-and-signed-contract" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Create this helper script that you will use to create the signed and encrypted contract:</p>
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; makeContract</span>
 <span class="s">. ./flow.prepare</span>
 <span class="s">cd workload</span>
