@@ -2,9 +2,9 @@
 
 ## Overview
 
-These labs provide a gentle introduction to the art of creating a *contract* for a Hyper Protect Virtual Servers instance. The contract you specify to a Hyper Protect Virtual Servers instance specifies the application workload you wish to run and the environmental characteristics such as where to send log messages from your instance.
+These labs provide a gentle introduction to the art of creating a [*contract*](https://cloud.ibm.com/docs/vpc?topic=vpc-about-contract_se&interface=ui){target="_blank" rel="noopener"} for a Hyper Protect Virtual Servers instance. The contract you specify to a Hyper Protect Virtual Servers instance specifies the application workload you wish to run and the environmental characteristics such as where to send log messages from your instance.
 
-The best practice is to specify a contract that is encrypted and signed.  These labs start simple-  with an unsigned, plain text contract.  Such a contract would be hard to justify in a production environment, but is a great starting point for learning what is involved with creating a contract.
+A best practice is to specify a contract that is encrypted and signed.  These labs start simple-  with an unsigned, plain text contract.  Such a contract would be hard to justify in a production environment, but is a great starting point for learning what is involved with creating a contract.
 
 Then each subsequent lab increases the complexity of the contract such that our final lab guides you to the best practice of creating an encrypted and signed contract.
 
@@ -25,7 +25,6 @@ The flow of the labs can be summarized as:
 5. Create a Hyper Protect Virtual Server instance where both portions of the contract are encrypted and then signed by the environment provider.
 
 6. Deleting the resources created during the labs.
-
 
 
 ## Prerequisites
