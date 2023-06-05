@@ -47,17 +47,33 @@ In order to avoid interference with other work, we want you to create a brand ne
 
 1. Set an environment variable for your IBM Log Analysis ingestion key. You saved this somewhere safe earlier in the lab.  If you lost track of it, revisit the section [Create an IBM Log Analysis instance](../ibmlog){target="_blank" rel="noopener"} for the steps to retrieve it.
 
-    ``` bash
-    read -sp "Log Ingestion Key: " LOG_INGESTION_KEY && echo
-    ```
+	=== "bash"
+
+		``` bash
+		read -sp "Log Ingestion Key: " LOG_INGESTION_KEY && echo
+		```
+
+	=== "zsh"
+
+		``` zsh
+		read -s "LOG_INGESTION_KEY?Log Ingestion Key: " && echo
+		```
        
 ## Set LOG_HOSTNAME
 
 1. Set an environment variable for the hostname of your IBM Log Analysis instance. You saved this somewhere safe earlier in the lab. If you lost track of it, revisit the section [Create an IBM Log Analysis instance](../ibmlog){target="_blank" rel="noopener"} for the steps to retrieve it.
     
-    ``` bash
-    read -p "Log Hostname: " LOG_HOSTNAME
-    ```
+	=== "bash"
+
+		``` bash
+		read -p "Log Hostname: " LOG_HOSTNAME
+		```
+
+	=== "zsh"
+
+		``` zsh
+		read "LOG_HOSTNAME?Log Hostname: "
+		```
       
 Click the **Next** link in the lower right to begin the first lab.
 
