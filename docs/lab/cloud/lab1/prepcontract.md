@@ -1,46 +1,37 @@
 # Prepare the contract 
 
-## Make a new directory structure for the labs
-
-These labs assume that ${HOME}/cloudlabs does not exist on your prep system. 
-
-1. This command will warn you if this directory already exists:
-
-    ``` bash
-    mkdir ${HOME}/cloudlabs || echo '${HOME}/cloudlabs exists. Please use a new directory.'
-    ```
-
-2. This command will warn you if this directory already exists:
-
-    ``` bash
-    if [[ -e ${LAB_WORKDIR} ]]; then
-       echo ${LAB_WORKDIR} already exists
-       echo Please choose new value for LAB_WORKDIR
-       echo '  or rename ${LAB_WORKDIR}
-       echo '  and try again'
-    else 
-        mkdir ${LAB_WORKDIR} && \
-        echo 'Fresh lab working directory created' \
-        && cd ${LAB_WORKDIR} && \
-        echo ' Changed to working directory ${LAB_WORKDIR}
-    fi
-    ```
+## Ensure necessary environment variables are set
 
 1. Go to a command prompt on your prep system
+
+2. You should have each of these environment variables set on your prep system:
+
+    ``` bash
+    echo LAB_WORKDIR is ${LAB_WORKDIR}
+    echo LAB_TAR is ${LAB_TAR}
+    echo LOG_INGESTION_KEY is ${LOG_INGESTION_KEY}
+    echo LOG_HOSTNAME is ${LOG_HOSTNAME}
+    ```
+
+    If any of the above commands do not display a value after the _is _ then revisit [sections](../prereqs/setup.md){target="_blank" rel="noopener"} on setting environment variables.
+
+## Make a new directory for Lab 1
 
 1. Make a fresh directory structure and change in to it:
 
     ``` bash
-    mkdir -p ${HOME}/cloudlabs/lab1 && cd ${HOME}/cloudlabs/lab1
+    mkdir -p ${LAB_WORKDIR}/lab1 && cd ${LAB_WORKDIR}/lab1
     ```
 
-1. Create another directory to hold a docker compose file and switch to it:
+## Create a Docker compose file to specify the application workload
+
+1. Create another directory to hold a Docker compose file and switch to it:
 
     ``` bash
     mkdir compose && cd compose
     ```
 
-1. Create the docker compose file:
+2. Create the docker compose file:
 
     ``` bash
     cat << EOF > docker-compose.yml    
@@ -59,11 +50,13 @@ These labs assume that ${HOME}/cloudlabs does not exist on your prep system.
     EOF
     ```
 
-1. Display the file's content.
+3. Display the file's content.
 
     ``` bash
     cat docker-compose.yml
     ```
+
+## Create the contract
 
 1. Change to the directory one level higher than your current location (and display it):
 
@@ -71,18 +64,6 @@ These labs assume that ${HOME}/cloudlabs does not exist on your prep system.
     cd .. && pwd
     ```
     
-1. Set an environment variable for your IBM Log Analysis ingestion key. You saved this somewhere safe earlier in the lab.  If you lost track of it, revisit the section *Create an IBM Log Analysis instance" for the steps to retrieve it.
-
-    ``` bash
-    read -sp "Log Ingestion Key: " LOG_INGESTION_KEY && echo
-    ```
-
-1. Set an environment variable for the hostname of your IBM Log Analysis instance. You saved this somewhere safe earlier in the lab. If you lost track of it, revisit the section *Create an IBM Log Analysis instance" for the steps to retrieve it.
-
-    ``` bash
-    read -p "Log Hostname: " LOG_HOSTNAME
-    ```
-
 1. Create the contract.
 
        ``` bash

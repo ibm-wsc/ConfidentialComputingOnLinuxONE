@@ -1,12 +1,29 @@
 # Prepare the contract 
 
+## Ensure necessary environment variables are set
+    
 1. Go to a command prompt on your prep system
 
-1. Make a fresh directory and change in to it:
+2. You should have each of these environment variables set on your prep system:
 
     ``` bash
-    mkdir -p ${HOME}/cloudlabs/lab2 && cd ${HOME}/cloudlabs/lab2
+    echo LAB_WORKDIR is ${LAB_WORKDIR}
+    echo LAB_TAR is ${LAB_TAR}
+    echo LOG_INGESTION_KEY is ${LOG_INGESTION_KEY}
+    echo LOG_HOSTNAME is ${LOG_HOSTNAME}
+    ```  
+         
+    If any of the above commands do not display a value after the _is _ then revisit [sections](../prereqs/setup.md){target="_blank" rel="noopener"} on setting environment variables.
+             
+## Make a new directory for Lab 2
+
+1. Make a fresh directory structure and change in to it:
+
+    ``` bash
+    mkdir -p ${LAB_WORKDIR}/lab2 && cd ${LAB_WORKDIR}/lab2
     ```
+
+## Create a Docker compose file to specify the application workload
 
 1. Create another directory to hold a docker compose file and switch to it:
 
@@ -54,29 +71,7 @@
     cd .. && pwd
     ```
     
-1. Check to see if the environment variable for your IBM Log Analysis instance is still set from the prior lab:
-
-    ``` bash
-    echo ${LOG_INGESTION_KEY}
-    ```
-
-1. Skip this instruction if it is already set; otherwise, set an environment variable for your IBM Log Analysis ingestion key
-
-    ``` bash
-    read -sp "Log Ingestion Key: " LOG_INGESTION_KEY && echo
-    ```
-
-1. Check to see if the environment variable for the hostname of your IBM Log Analysis instance is still set from the prior lab:
-
-    ``` bash
-    echo ${LOG_HOSTNAME}
-    ```
-
-1. Skip this instruction if it is already set; otherwise, set an environment variable for the hostname of your IBM Log Analysis instance
-
-    ``` bash
-    read -p "Log Hostname: " LOG_HOSTNAME
-    ```
+## Create encrypted workload section of the contract
 
 1. Create this convenience script to encrypt the workload portion of the contract:
  
@@ -140,7 +135,9 @@
     cat workload.yaml
     ```
 
-1. Add a plaintext environment section to the encrypted workload section:
+## Add a plaintext environment section to the encrypted workload section
+
+1. This command combines the workload section (which is encrypted) with a plain text environment section.  The contract is the output file, _user_data.yaml_.
 
     ``` bash
     cat << EOF > user_data.yaml

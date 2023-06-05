@@ -1,12 +1,30 @@
 # Prepare the contract 
 
+## Ensure necessary environment variables are set
+    
 1. Go to a command prompt on your prep system
 
-1. Make a fresh directory and change in to it:
+2. You should have each of these environment variables set on your prep system:
 
     ``` bash
-    mkdir -p ${HOME}/cloudlabs/lab3 && cd ${HOME}/cloudlabs/lab3
+    echo LAB_WORKDIR is ${LAB_WORKDIR}
+    echo LAB_TAR is ${LAB_TAR}
+    echo LOG_INGESTION_KEY is ${LOG_INGESTION_KEY}
+    echo LOG_HOSTNAME is ${LOG_HOSTNAME}
+    ```  
+         
+    If any of the above commands do not display a value after the _is _ then revisit [sections](../prereqs/setup.md){target="_blank" rel="noopener"} on setting environment variables.
+             
+## Make a new directory for Lab 3
+
+1. Make a fresh directory structure and change in to it:
+
+    ``` bash
+    mkdir -p ${LAB_WORKDIR}/lab3 && cd ${LAB_WORKDIR}/lab3
     ```
+
+## Create a Docker compose file to specify the application workload
+
 
 1. Create the following directory structure and then switch to the directory that will hold the docker compose file:
 
@@ -14,7 +32,7 @@
     mkdir -p {environment,workload/compose} && cd workload/compose
     ```
 
-1. Create the docker compose file (Note: this is the same docker compose file from the first two labs):
+2. Create the docker compose file (Note: this is the same docker compose file from the first two labs):
 
     ``` bash
     cat << EOF > docker-compose.yml    
@@ -33,7 +51,7 @@
     EOF
     ```
 
-1. **Optional**.  This command will show that you are indeed using the same docker compose file in this lab (lab 3)  as you did in the previous lab (lab 2).  We could have had you just copy that file over instead of using the *cat* command in the prior step.
+3. **Optional**.  This command will show that you are indeed using the same docker compose file in this lab (lab 3)  as you did in the previous lab (lab 2).  We could have had you just copy that file over instead of using the *cat* command in the prior step.
 
 
     ``` bash
@@ -43,41 +61,18 @@
     ```
 
 
-1. Display the file's content.
+4. Display the file's content.
 
     ``` bash
     cat docker-compose.yml
     ```
 
-1. Change to the directory one level higher than your current location (and display it):
+5. Change to the directory one level higher than your current location (and display it):
 
     ``` bash
     cd .. && pwd
     ```
-    
-1. Check to see if the environment variable for your IBM Log Analysis instance is still set from the prior lab:
-
-    ``` bash
-    echo ${LOG_INGESTION_KEY}
-    ```
-
-1. Skip this instruction if it is already set; otherwise, set an environment variable for your IBM Log Analysis ingestion key
-
-    ``` bash
-    read -sp "Log Ingestion Key: " LOG_INGESTION_KEY && echo
-    ```
-
-1. Check to see if the environment variable for the hostname of your IBM Log Analysis instance is still set from the prior lab:
-
-    ``` bash
-    echo ${LOG_HOSTNAME}
-    ```
-
-1. Skip this instruction if it is already set; otherwise, set an environment variable for the hostname of your IBM Log Analysis instance
-
-    ``` bash
-    read -p "Log Hostname: " LOG_HOSTNAME
-    ```
+## Create encrypted workload section of the contract    
 
 1. Create this convenience script to encrypt the workload portion of the contract:
  
@@ -123,23 +118,25 @@
     EOF
     ```
 
-1. Run the script you just created:
+2. Run the script you just created:
 
     ``` bash
     . ./flow.workload
     ```
 
-1. Back up one directory:
+3. Back up one directory:
 
     ``` bash
     cd ..
     ```
 
-1. Display the encrypted workload section you just created:  
+4. Display the encrypted workload section you just created:  
 
     ``` bash
     cat workload.yaml
     ```
+
+## Create encrypted environment section of the contract
 
 1. Switch to the *environment* directory:
 
@@ -147,7 +144,7 @@
     cd environment
     ```
 
-1. Create this convenience script to encrypt the environment portion of the contract:
+2. Create this convenience script to encrypt the environment portion of the contract:
 
 
     ``` bash
@@ -195,25 +192,26 @@
     EOF
     ```
 
-1. Run the script you just created:
+3. Run the script you just created:
 
     ``` bash
     . ./flow.env
     ```
 
-1. Back up one directory:
+4. Back up one directory:
 
     ``` bash
     cd ..
     ```
 
-1. Display the encrypted environment section you just created:  
+5. Display the encrypted environment section you just created:  
 
     ``` bash
     cat env.yaml
     ```
+## Combine the encrypted workload section with the encrypted environment  section
 
-1. Combine the encrypted workload section with the encrypted environment section:
+1. This command combines the workload section (which is encrypted) with the environment section (which is also encrypted).  The contract is the output file, _user_data.yaml_.. 
 
     ``` bash
     cat << EOF > user_data.yaml
@@ -222,7 +220,7 @@
     EOF
     ```
    
-1. Display your contract data:
+2. Display your contract data:
 
     ``` bash
     cat user_data.yaml

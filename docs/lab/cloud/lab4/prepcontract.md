@@ -1,12 +1,29 @@
 # Prepare the contract 
 
+## Ensure necessary environment variables are set
+
 1. Go to a command prompt on your prep system
 
-1. Make a fresh directory and change in to it:
+2. You should have each of these environment variables set on your prep system:
 
     ``` bash
-    mkdir -p ${HOME}/cloudlabs/lab4 && cd ${HOME}/cloudlabs/lab4
+    echo LAB_WORKDIR is ${LAB_WORKDIR}
+    echo LAB_TAR is ${LAB_TAR}
+    echo LOG_INGESTION_KEY is ${LOG_INGESTION_KEY}
+    echo LOG_HOSTNAME is ${LOG_HOSTNAME}
     ```
+
+    If any of the above commands do not display a value after the _is _ then revisit [sections](../prereqs/setup.md){target="_blank" rel="noopener"} on setting environment variables.
+
+## Make a new directory for Lab 4
+
+1. Make a fresh directory structure and change in to it:
+
+    ``` bash
+    mkdir -p ${LAB_WORKDIR}/lab4 && cd ${LAB_WORKDIR}/lab4
+    ```
+
+## Create a Docker compose file to specify the application workload
 
 1. Create the following directory structure and then switch to the directory that will hold the docker compose file:
 
@@ -14,7 +31,7 @@
     mkdir -p {environment,workload/compose} && cd workload/compose
     ```
 
-1. Create the docker compose file (Note: this is the same docker compose file from the first three labs):
+2. Create the docker compose file (Note: this is the same docker compose file from the first three labs):
 
     ``` bash
     cat << EOF > docker-compose.yml    
@@ -33,7 +50,7 @@
     EOF
     ```
 
-1. **Optional**.  This command will show that you are indeed using the same docker compose file in this lab (lab 4)  as you did in the previous lab (lab 3).  We could have had you just copy that file over instead of using the *cat* command in the prior step.
+3. **Optional**.  This command will show that you are indeed using the same docker compose file in this lab (lab 4)  as you did in the previous lab (lab 3).  We could have had you just copy that file over instead of using the *cat* command in the prior step.
 
 
     ``` bash
@@ -43,11 +60,13 @@
     ```
 
 
-1. Display the file's content.
+4. Display the file's content.
 
     ``` bash
     cat docker-compose.yml
     ```
+
+## Create a convenience script to encrypt the workload section
 
 1. Backup one directory level:
 
@@ -55,54 +74,10 @@
     cd ..
     ```
     
-1. Change to the directory one level higher than your current location (and display it):
-
-    ``` bash
-    cd .. && pwd
-    ```
-    
-1. Create the following convenience script that will create an RSA key pair that you will use to sign the contract. 
-
-    ``` bash
-    cat << EOF > flow.prepare
-    # Use the following command to generate key pair to sign the contract 
-    openssl genrsa -aes128 -passout pass:test1234 -out private.pem 4096
-    openssl rsa -in private.pem -passin pass:test1234 -pubout -out public.pem
-
-    # The following command is an example of how you can get the signing key:
-    key=\$(awk -vRS="\n" -vORS="\\\\\n" '1' public.pem)
-    # echo "  signingKey: \"\${key%\\\\n}\"" > environment/pubSigningKey.yaml
-    printf "%s" "  signingKey: \"\${key%\\\\n}\"" > environment/pubSigningKey.yaml
-    EOF
-    ```
-
-1. Create the following convenience script that will sign the encrypted contract.
-
-    ``` bash
-    cat << EOF > flow.signature
-    # combine workload and environment
-    cat workload.yaml env.yaml | tr -d '\n' > contract.yaml
-
-    # Sign the combination from workload and env being approved
-    echo \$( cat contract.yaml | openssl dgst -sha256 -sign private.pem -passin pass:test1234 | openssl enc -base64) | tr -d ' ' > signature.yaml
-
-    # Create user data and add signature:
-    echo "workload: \$(cat workload.yaml)
-    env: \$(cat env.yaml)
-    envWorkloadSignature: \$(cat signature.yaml)" > user_data.yaml
-    
-    echo ""
-    echo "import `pwd`/user_data.yaml into User Data or copy and paste from below:"
-    echo ""
-    
-    cat user_data.yaml
-    EOF
-    ```
-
-1. Create this convenience script to encrypt the workload portion of the contract:
+2. Create this convenience script to encrypt the workload portion of the contract:
  
     ``` bash
-    cat << EOF > workload/flow.workload
+    cat << EOF > flow.workload
     # Create the workload section of the contract and add the contents in the workload.yaml file.
     
     WORKLOAD_PLAIN=./workload.yaml.plaintext
@@ -143,35 +118,18 @@
     EOF
     ```
 
-1. Check to see if the environment variable for your IBM Log Analysis instance is still set from the prior lab:
+## Create a convenience script to encrypt the environment  section
+
+1. Change to the directory used for the environment section display it:
 
     ``` bash
-    echo ${LOG_INGESTION_KEY}
+    cd ../environment && pwd
     ```
-
-1. Skip this instruction if it is already set; otherwise, set an environment variable for your IBM Log Analysis ingestion key
-
-    ``` bash
-    read -sp "Log Ingestion Key: " LOG_INGESTION_KEY && echo
-    ```
-
-1. Check to see if the environment variable for the hostname of your IBM Log Analysis instance is still set from the prior lab:
+    
+2. Create this convenience script to encrypt the environment portion of the contract:
 
     ``` bash
-    echo ${LOG_HOSTNAME}
-    ```
-
-1. Skip this instruction if it is already set; otherwise, set an environment variable for the hostname of your IBM Log Analysis instance
-
-    ``` bash
-    read -p "Log Hostname: " LOG_HOSTNAME
-    ```
-
-1. Create this convenience script to encrypt the environment portion of the contract:
-
-
-    ``` bash
-    cat << EOF > environment/flow.env
+    cat << EOF > flow.env
     # Create the env section of the contract and add the contents in the env.yaml file.
     ENV_PLAIN="./env.yaml.plaintext"
     ENV="env.yaml"
@@ -217,7 +175,49 @@
     EOF
     ```
 
-1. Create this convenience script that you will use to create the signed and encrypted contract:
+## Create convenience scripts to facilitate signing the contract
+
+1. Create the following convenience script that will create an RSA key pair that you will use to sign the contract. 
+
+    ``` bash
+    cat << EOF > flow.prepare
+    # Use the following command to generate key pair to sign the contract 
+    openssl genrsa -aes128 -passout pass:test1234 -out private.pem 4096
+    openssl rsa -in private.pem -passin pass:test1234 -pubout -out public.pem
+
+    # The following command is an example of how you can get the signing key:
+    key=\$(awk -vRS="\n" -vORS="\\\\\n" '1' public.pem)
+    # echo "  signingKey: \"\${key%\\\\n}\"" > environment/pubSigningKey.yaml
+    printf "%s" "  signingKey: \"\${key%\\\\n}\"" > environment/pubSigningKey.yaml
+    EOF
+    ```
+
+2. Create the following convenience script that will sign the encrypted contract.
+
+    ``` bash
+    cat << EOF > flow.signature
+    # combine workload and environment
+    cat workload.yaml env.yaml | tr -d '\n' > contract.yaml
+
+    # Sign the combination from workload and env being approved
+    echo \$( cat contract.yaml | openssl dgst -sha256 -sign private.pem -passin pass:test1234 | openssl enc -base64) | tr -d ' ' > signature.yaml
+
+    # Create user data and add signature:
+    echo "workload: \$(cat workload.yaml)
+    env: \$(cat env.yaml)
+    envWorkloadSignature: \$(cat signature.yaml)" > user_data.yaml
+    
+    echo ""
+    echo "import `pwd`/user_data.yaml into User Data or copy and paste from below:"
+    echo ""
+    
+    cat user_data.yaml
+    EOF
+    ```
+
+## Create and run helper script to produce the encrypted and signed contract
+
+1. Create this helper script that you will use to create the signed and encrypted contract:
 
     ``` bash
     cat << EOF > makeContract
@@ -231,13 +231,13 @@
     EOF
     ```
 
-1. Create the contract:
+2. Create the contract:
 
     ``` bash
     . ./makeContract
     ```
    
-1. Display your contract data:
+3. Display your contract data:
 
     ``` bash
     cat user_data.yaml
