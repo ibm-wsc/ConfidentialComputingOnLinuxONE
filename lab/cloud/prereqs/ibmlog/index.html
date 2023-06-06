@@ -101,7 +101,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#create-an-ibm-log-analysis-instance" class="md-skip">
+        <a href="#create-an-ibm-log-analysis-instance-and-save-connection-information" class="md-skip">
           Skip to content
         </a>
       
@@ -933,8 +933,6 @@
         
           
         
-          
-        
       
       
         
@@ -1000,9 +998,54 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Create an IBM Log Analysis instance
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Create an IBM Log Analysis instance
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#create-an-ibm-log-analysis-instance" class="md-nav__link">
+    Create an IBM Log Analysis instance
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retrieve-your-ibm-log-analysis-instances-ingestion-key" class="md-nav__link">
+    Retrieve your IBM Log Analysis instance's ingestion key
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retrieve-your-ibm-log-analysis-instances-host-name" class="md-nav__link">
+    Retrieve your IBM Log Analysis instance's host name
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1030,21 +1073,7 @@
   
     <li class="md-nav__item">
       <a href="../setup/" class="md-nav__link">
-        Set environment variables for lab portability
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../setup2/" class="md-nav__link">
-        Set environment variables for contract preparation
+        Set environment variables for lab
       </a>
     </li>
   
@@ -1464,6 +1493,35 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#create-an-ibm-log-analysis-instance" class="md-nav__link">
+    Create an IBM Log Analysis instance
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retrieve-your-ibm-log-analysis-instances-ingestion-key" class="md-nav__link">
+    Retrieve your IBM Log Analysis instance's ingestion key
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retrieve-your-ibm-log-analysis-instances-host-name" class="md-nav__link">
+    Retrieve your IBM Log Analysis instance's host name
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1493,7 +1551,8 @@
   
 
 
-<h1 id="create-an-ibm-log-analysis-instance">Create an IBM Log Analysis instance<a class="headerlink" href="#create-an-ibm-log-analysis-instance" title="Permanent link">&para;</a></h1>
+<h1 id="create-an-ibm-log-analysis-instance-and-save-connection-information">Create an IBM Log Analysis instance and save connection information<a class="headerlink" href="#create-an-ibm-log-analysis-instance-and-save-connection-information" title="Permanent link">&para;</a></h1>
+<h2 id="create-an-ibm-log-analysis-instance">Create an IBM Log Analysis instance<a class="headerlink" href="#create-an-ibm-log-analysis-instance" title="Permanent link">&para;</a></h2>
 <p><strong>Note:</strong> You may use an existing IBM Log Analysis instance if you already have one.  It can be in any IBM Cloud region and availability zone.  If you are creating a new IBM Log Analysis instance for the lab, we suggest you create it in the same region and availability zone in which you created your virtual private cloud in the previous sections.</p>
 <ol>
 <li>Click the <strong>Catalog</strong> link at the top of your IBM Cloud web UI</li>
@@ -1506,10 +1565,12 @@
 <p>You'll see a screen like below.  (The name of this IBM Log Analysis instance is the default name provided when we created it-  unlike the resources we're creating within our virtual private cloud, we're not concerned about following a naming convention for this resource).</p>
 <p><img src="../log030.png" width="1627" height="556" /></p>
 <p>Click the blue <strong>Open Dashboard</strong> button in the upper right.</p>
+<h2 id="retrieve-your-ibm-log-analysis-instances-ingestion-key">Retrieve your IBM Log Analysis instance's ingestion key<a class="headerlink" href="#retrieve-your-ibm-log-analysis-instances-ingestion-key" title="Permanent link">&para;</a></h2>
 <p>Click the <em>Install instructions</em> icon (that looks like a question mark) in the lower left of your IBM Log Analysis dashboard:</p>
 <p><img src="../log040.png" width="470" height="952" /></p>
 <p>In the window that opens up, click the icon highlighted below in order to copy your IBM Log Analysis instance's ingestion key into your clipboard.  Paste it into a safe place for use later in the lab.  <strong>Treat this ingestion key with care like you would a password, <em>especially if you are using an already existing IBM Log Analysis instance</em></strong>. (You do have the ability to return to this screen to retrieve it later if you lose track of where you paste it).  See the below screen snippet:</p>
 <p><img src="../log050.png" width="936" height="186" /></p>
+<h2 id="retrieve-your-ibm-log-analysis-instances-host-name">Retrieve your IBM Log Analysis instance's host name<a class="headerlink" href="#retrieve-your-ibm-log-analysis-instances-host-name" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Scroll down on this same window and choose <strong><abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr></strong></li>
 <li>Use copy and paste to save the information that corresponds to the information highlighted in the screen snippet below.  (This information will not be highlighted on your screen until you select it as we did prior to taking this screenshot). You will be using this information later in the labs.  This information does not have to be kept secret.</li>
@@ -1523,7 +1584,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 2, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 6, 2023</span>
       
         <br>
         Created:

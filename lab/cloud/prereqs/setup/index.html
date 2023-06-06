@@ -14,14 +14,14 @@
         <link rel="prev" href="../prepsystem/">
       
       
-        <link rel="next" href="../setup2/">
+        <link rel="next" href="../../lab1/">
       
       <link rel="icon" href="../../../../images/HPVS2.1.xGraphic.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.11">
     
     
       
-        <title>Set environment variables for lab portability - Confidential Computing LinuxONE Workshop</title>
+        <title>Set environment variables for lab - Confidential Computing LinuxONE Workshop</title>
       
     
     
@@ -101,7 +101,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#set-up-your-environment" class="md-skip">
+        <a href="#set-up-environment-variables-used-throughout-the-four-ibm-cloud-based-labs" class="md-skip">
           Skip to content
         </a>
       
@@ -135,7 +135,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Set environment variables for lab portability
+              Set environment variables for lab
             
           </span>
         </div>
@@ -933,8 +933,6 @@
         
           
         
-          
-        
       
       
         
@@ -1028,24 +1026,69 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Set environment variables for lab
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
-        Set environment variables for lab portability
+        Set environment variables for lab
       </a>
       
-    </li>
-  
+        
 
-            
-          
-            
-              
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
-    <li class="md-nav__item">
-      <a href="../setup2/" class="md-nav__link">
-        Set environment variables for contract preparation
-      </a>
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#set-lab_workdir" class="md-nav__link">
+    Set LAB_WORKDIR
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-log_tar" class="md-nav__link">
+    SET LOG_TAR
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-lab_wrap-if-necessary" class="md-nav__link">
+    Set LAB_WRAP if necessary
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-log_ingestion_key" class="md-nav__link">
+    Set LOG_INGESTION_KEY
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-log_hostname" class="md-nav__link">
+    Set LOG_HOSTNAME
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1464,6 +1507,49 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#set-lab_workdir" class="md-nav__link">
+    Set LAB_WORKDIR
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-log_tar" class="md-nav__link">
+    SET LOG_TAR
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-lab_wrap-if-necessary" class="md-nav__link">
+    Set LAB_WRAP if necessary
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-log_ingestion_key" class="md-nav__link">
+    Set LOG_INGESTION_KEY
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-log_hostname" class="md-nav__link">
+    Set LOG_HOSTNAME
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1493,8 +1579,79 @@
   
 
 
-<h1 id="set-up-your-environment">Set up your environment<a class="headerlink" href="#set-up-your-environment" title="Permanent link">&para;</a></h1>
-<p>This lab is written to work on MacOS and Linux.  </p>
+<h1 id="set-up-environment-variables-used-throughout-the-four-ibm-cloud-based-labs">Set up environment variables used throughout the four IBM Cloud-based labs<a class="headerlink" href="#set-up-environment-variables-used-throughout-the-four-ibm-cloud-based-labs" title="Permanent link">&para;</a></h1>
+<div class="admonition note">
+<p class="admonition-title">A note about support for these labs</p>
+<p>The official documentation <a href="https://cloud.ibm.com/docs/vpc?topic=vpc-about-contract_se&amp;interface=ui#hpcr_contract_encrypt_workload" rel="noopener" target="_blank">states often</a> to use an Ubuntu system to enter commands for contract preparation.  We have written the lab to work on Linux and MacOS.   </p>
+<p>There are so many Linux distributions that it is impossible to test on all of them, but we think that this lab should work on many distributions besides Ubuntu.  We will attempt to help if you are having problems on a Linux distribution other than Ubuntu, but we reserve the right to ask you to use an Ubuntu system.</p>
+<p>Similarly, since we have Apple laptops we wrote the lab to work on MacOS as well.  Since it works for us on MacOS we suspect it could work for you as well, but, again, we reserve the right to ask you to use an Ubuntu system if you ask for our help in troubleshooting.</p>
+<p>These labs are for educational purposes at a beginning or intermediate level and do not demonstrate all product features, and may demonstrate practices not suitable for a production environment.  Usage of these labs for any purposes other than education is at your own discretion and risk. </p>
+<p>Support for this lab is solely in an educational context, and solely from the lab authors on a best-effort basis. In other words, there is no guarantee of timeliness of response from the authors to inquiries, nor even a guarantee that the authors will ever resolve any problems you have with these labs.  This informal support is outside of any official IBM support channels.</p>
+</div>
+<p>On your prep system, there are some environment variables that will be used in the four labs.</p>
+<table>
+<thead>
+<tr>
+<th>Variable name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LAB_WORKDIR</td>
+<td>working directory for contract preparation</td>
+</tr>
+<tr>
+<td>LAB_TAR</td>
+<td>The variant of tar used on the prep system</td>
+</tr>
+<tr>
+<td>LAB_WRAP</td>
+<td>Wrap arguments to base64 on Linux; typically unset on MacOS</td>
+</tr>
+<tr>
+<td>LOG_INGESTION_KEY</td>
+<td>The ingestion key for your IBM Log Analysis instance</td>
+</tr>
+<tr>
+<td>LOG_HOSTNAME</td>
+<td>The hostname on IBM Cloud that hosts your IBM Log Analysis instance</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Our instructions set these variables only for the duration of your terminal session.  If you do not finish the labs in one terminal session, then you will need to revisit this section to set these variables again when you resume.  Advanced shell users may be interested in setting these variables permanently in their shell if they plan to do the lab in more than one session, but setting this up is not covered here.</p>
+</div>
+<h2 id="set-lab_workdir">Set LAB_WORKDIR<a class="headerlink" href="#set-lab_workdir" title="Permanent link">&para;</a></h2>
+<p>In order to avoid interference with other work, we want you to create a brand new directory for these labs- each of the four labs will use a subdirectory underneath the new directory.</p>
+<ol>
+<li>
+<p>This next instruction sets the environment variable to ${HOME}/cloudlabs.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">LAB_WORKDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/cloudlabs
+</code></pre></div>
+</li>
+<li>
+<p>This next set of commands will either successfully create this new directory and then change to it, or it will warn you to try again.  (If you are warned, retry step 1 above with a different name and then try these commands again.)</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>-e<span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">   </span><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span><span class="w"> </span>already<span class="w"> </span>exists
+<span class="w">   </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  This may be appropriate if you are&quot;</span>
+<span class="w">   </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  resuming these labs in a new terminal session&quot;</span>
+<span class="w">   </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  and have already created this directory structure&quot;</span>
+<span class="w">   </span><span class="nb">echo</span>
+<span class="w">   </span><span class="nb">echo</span><span class="w"> </span>Otherwise,<span class="w"> </span>choose<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>value<span class="w"> </span><span class="k">for</span><span class="w"> </span>LAB_WORKDIR
+<span class="w">   </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  or rename </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">   </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  and try again&quot;</span>
+<span class="k">else</span>
+<span class="w">    </span>mkdir<span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>Fresh<span class="w"> </span>lab<span class="w"> </span>working<span class="w"> </span>directory<span class="w"> </span>created<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>Changed<span class="w"> </span>to<span class="w"> </span>working<span class="w"> </span>directory<span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>
+<span class="k">fi</span>
+</code></pre></div>
+</li>
+</ol>
+<h2 id="set-log_tar">SET LOG_TAR<a class="headerlink" href="#set-log_tar" title="Permanent link">&para;</a></h2>
 <p>On most Linux distributions you will have <em>tar</em> and it will be fine.</p>
 <p>On most MacOS systems the default <em>tar</em> command is less desirable than a version of tar provided by the GNU project, called <em>gtar</em>. <em>gtar</em> is preferred for the labs.</p>
 <p>Follow these instructions on your prep system.  The environment variables set by these instructions are in effect only for the terminal session in which you enter the commands. If you finish the labs in one sitting within the same terminal session, you will only have to repeat these instructions once.  Otherwise, you can repeat these instructions as necessary.</p>
@@ -1521,6 +1678,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="k">fi</span>
 </code></pre></div>
 </div>
+<h2 id="set-lab_wrap-if-necessary">Set LAB_WRAP if necessary<a class="headerlink" href="#set-lab_wrap-if-necessary" title="Permanent link">&para;</a></h2>
 <p>The following set of commands will set an environment variable that will be used throughout the labs if the <em>base64</em> command supports the <em>wrap</em> option. (Typically, the wrap option will be supported on Linux systems but not on MacOS.)</p>
 <div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">LAB_WRAP</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
 <span class="w">  </span><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..6<span class="o">}</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;******************&#39;</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
@@ -1540,14 +1698,52 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;wrap argument </span><span class="si">${</span><span class="nv">LAB_WRAP</span><span class="si">}</span><span class="s2"> to base64 will be used in the labs&quot;</span>
 <span class="k">fi</span>
 </code></pre></div>
-<p>Click the <strong>Next</strong> link in the lower right to see directions to set a few more environment variables.</p>
+<h2 id="set-log_ingestion_key">Set LOG_INGESTION_KEY<a class="headerlink" href="#set-log_ingestion_key" title="Permanent link">&para;</a></h2>
+<p>This command differs based on whether or not you are using bash or zsh.  If you are unsure of which shell you are using, enter the command <code>echo $0</code> from your shell.</p>
+<ol>
+<li>
+<p>Set an environment variable for your IBM Log Analysis ingestion key. You saved this somewhere safe earlier in the lab.  If you lost track of it, revisit the section <a href="../ibmlog/#retrieve-your-ibm-log-analysis-instances-ingestion-key" rel="noopener" target="_blank">Create an IBM Log Analysis instance</a> for the steps to retrieve it. Enter the command appropriate to your shell and you will be prompted to enter your IBM Log Analysis INgestion Key.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">bash</label><label for="__tabbed_1_2">zsh</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">read</span><span class="w"> </span>-sp<span class="w"> </span><span class="s2">&quot;Log Ingestion Key: &quot;</span><span class="w"> </span>LOG_INGESTION_KEY<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">read</span><span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;LOG_INGESTION_KEY?Log Ingestion Key: &quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</li>
+</ol>
+<h2 id="set-log_hostname">Set LOG_HOSTNAME<a class="headerlink" href="#set-log_hostname" title="Permanent link">&para;</a></h2>
+<p>This command differs based on whether or not you are using bash or zsh.  If you are unsure of which shell you are using, enter the command <code>echo $0</code> from your shell.</p>
+<ol>
+<li>
+<p>Set an environment variable for the hostname of your IBM Log Analysis instance. You saved this somewhere safe earlier in the lab. If you lost track of it, revisit the section <a href="../ibmlog/#retrieve-your-ibm-log-analysis-instances-host-name" rel="noopener" target="_blank">Create an IBM Log Analysis instance</a> for the steps to retrieve it. Enter the command appropriate for your shell and you will be prompted to enter the hostname of your IBM Log Analysis instance.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">bash</label><label for="__tabbed_2_2">zsh</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Log Hostname: &quot;</span><span class="w"> </span>LOG_HOSTNAME
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">read</span><span class="w"> </span><span class="s2">&quot;LOG_HOSTNAME?Log Hostname: &quot;</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</li>
+</ol>
+<p>Click the <strong>Next</strong> link in the lower right to begin the first lab.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 3, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 6, 2023</span>
       
         <br>
         Created:
@@ -1594,7 +1790,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
               
                 
               
-              Thanks for your feedback! Help us improve this page by using our <a href="https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE/issues/new/?title=[Feedback]+Set%20environment%20variables%20for%20lab%20portability+-+/lab/cloud/prereqs/setup/" target="_blank" rel="noopener">feedback form</a>.
+              Thanks for your feedback! Help us improve this page by using our <a href="https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE/issues/new/?title=[Feedback]+Set%20environment%20variables%20for%20lab+-+/lab/cloud/prereqs/setup/" target="_blank" rel="noopener">feedback form</a>.
             </div>
           
         </div>
@@ -1642,13 +1838,13 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
         
         
           
-          <a href="../setup2/" class="md-footer__link md-footer__link--next" aria-label="Next: Set environment variables for contract preparation" rel="next">
+          <a href="../../lab1/" class="md-footer__link md-footer__link--next" aria-label="Next: Lab 1 overview" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Set environment variables for contract preparation
+                Lab 1 overview
               </div>
             </div>
             <div class="md-footer__button md-icon">
