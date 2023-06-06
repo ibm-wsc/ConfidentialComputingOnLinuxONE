@@ -13,7 +13,7 @@
     echo LOG_HOSTNAME is ${LOG_HOSTNAME}
     ```
 
-    If any of the above commands do not display a value after the _is_ then revisit [sections](../prereqs/setup.md){target="_blank" rel="noopener"} on setting environment variables.
+    If any of the above commands do not display a value after the _is_ then revisit [the section on setting environment variables](../prereqs/setup.md){target="_blank" rel="noopener"}.
 
 ## Make a new directory for Lab 4
 

@@ -38,8 +38,7 @@ nav:
       - Create a Public Gateway: lab/cloud/prereqs/gateway.md
       - Create an IBM Log Analysis instance: lab/cloud/prereqs/ibmlog.md
       - Establish a "prep system" to use to create contracts: lab/cloud/prereqs/prepsystem.md
-      - Set environment variables for lab portability: lab/cloud/prereqs/setup.md
-      - Set environment variables for contract preparation: lab/cloud/prereqs/setup2.md
+      - Set environment variables for lab: lab/cloud/prereqs/setup.md
     - Lab 1 - simple plaintext contract: 
       - Lab 1 overview: lab/cloud/lab1/index.md
       - Prepare the contract: lab/cloud/lab1/prepcontract.md

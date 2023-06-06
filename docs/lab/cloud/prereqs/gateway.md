@@ -1,5 +1,7 @@
 # Create a public gateway
 
+You need a public gateway so that the Hyper Protect Virtual Servers for IBM Cloud VPC instances that you will create in the labs can send log messages to your IBM Log Analysis instance which is running outside of your VPC.
+
 1. Click the **Public gateways** link on the left and you should see that you currently have no public gateways defined.
  
 2. Click the blue **Create** button in the upper right:
@@ -21,7 +23,5 @@ Ensure that your subnet is selected and click the blue **Attach** button:
 You should see that your subnet is now attached to your public gateway:
 
 <img src="../gw050.png" width="1351" height="275" />
-
-This will enable the Hyper Protect Virtual Servers for IBM Cloud VPC instances that you will create in the labs to be able to connect to your IBM Log Analysis instance which is running outside of your VPC.
 
 Click the **Next** link at the lower right to go to your next task, which is to create an *IBM Log Analysis* instance.
