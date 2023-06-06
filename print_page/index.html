@@ -13,7 +13,7 @@
       
       
       <link rel="icon" href="../images/HPVS2.1.xGraphic.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.15">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.11">
     
     
       
@@ -21,10 +21,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.26e3688c.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.85bb2934.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ecc896b0.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a6bdf11c.min.css">
       
       
 
@@ -1005,8 +1005,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../lab/cloud/prereqs/helperserver/" class="md-nav__link">
-        (Optional) Create a server to use to create contracts
+      <a href="../lab/cloud/prereqs/prepsystem/" class="md-nav__link">
+        Establish a "prep system" to use to create contracts
       </a>
     </li>
   
@@ -9529,8 +9529,8 @@ error: internal error: unable to execute QEMU command &#39;migrate&#39;: protect
                         </h2>
                         <section class="print-page" id="lab-cloud-prereqs"><h1 id="lab-cloud-prereqs-overview-and-pre-reqs">Overview and Pre-reqs<a class="headerlink" href="#lab-cloud-prereqs-overview-and-pre-reqs" title="Permanent link">&para;</a></h1>
 <h2 id="lab-cloud-prereqs-overview">Overview<a class="headerlink" href="#lab-cloud-prereqs-overview" title="Permanent link">&para;</a></h2>
-<p>These labs provide a gentle introduction to the art of creating a <em>contract</em> for a Hyper Protect Virtual Servers instance. The contract you specify to a Hyper Protect Virtual Servers instance specifies the application workload you wish to run and the environmental characteristics such as where to send log messages from your instance.</p>
-<p>The best practice is to specify a contract that is encrypted and signed.  These labs start simple-  with an unsigned, plain text contract.  Such a contract would be hard to justify in a production environment, but is a great starting point for learning what is involved with creating a contract.</p>
+<p>These labs provide a gentle introduction to the art of creating a <a href="https://cloud.ibm.com/docs/vpc?topic=vpc-about-contract_se&amp;interface=ui" rel="noopener" target="_blank"><em>contract</em></a> for a Hyper Protect Virtual Servers instance. The contract you specify to a Hyper Protect Virtual Servers instance specifies the application workload you wish to run and the environmental characteristics such as where to send log messages from your instance.</p>
+<p>A best practice is to specify a contract that is encrypted and signed.  These labs start simple-  with an unsigned, plain text contract.  Such a contract would be hard to justify in a production environment, but is a great starting point for learning what is involved with creating a contract.</p>
 <p>Then each subsequent lab increases the complexity of the contract such that our final lab guides you to the best practice of creating an encrypted and signed contract.</p>
 <div class="admonition warning">
 <p class="admonition-title">Caution- you may incur charges from IBM Cloud for activities performed in these labs </p>
@@ -9554,14 +9554,82 @@ error: internal error: unable to execute QEMU command &#39;migrate&#39;: protect
 <p>Create a Hyper Protect Virtual Server instance where both portions of the contract are encrypted and then signed by the environment provider.</p>
 </li>
 <li>
-<p>Deleting the resources created during the labs.</p>
+<p>Delete the resources created during the labs.</p>
 </li>
 </ol>
 <h2 id="lab-cloud-prereqs-prerequisites">Prerequisites<a class="headerlink" href="#lab-cloud-prereqs-prerequisites" title="Permanent link">&para;</a></h2>
-<p>These labs assume that you have an IBM Cloud account and have the authorization needed to create the artifacts required by the labs..</p>
+<h3 id="lab-cloud-prereqs-ibm-cloud-account">IBM Cloud account<a class="headerlink" href="#lab-cloud-prereqs-ibm-cloud-account" title="Permanent link">&para;</a></h3>
+<p>These labs assume that you have an IBM Cloud account and have the authorization needed to create the artifacts required by the labs.</p>
 <p>All IBM Cloud resources are created with the IBM Cloud web UI from your web browser.</p>
+<p>You must be able to create the following IBM Cloud artifacts in order to complete this lab.</p>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IBM Log Analysis</td>
+<td>required as a target for log messages from your Hyper Protect Virtual Server instances</td>
+</tr>
+<tr>
+<td>Virtual Private Cloud</td>
+<td>Must reside in London, Sao Paulo, Tokyo, Toronto or Washington, D.C</td>
+</tr>
+<tr>
+<td>Subnets for VPC</td>
+<td>created when you create your Virtual Private Cloud</td>
+</tr>
+<tr>
+<td>Public gateways for VPC</td>
+<td>needed so that your instances can communicate with your IBM Log Analysis instance</td>
+</tr>
+<tr>
+<td>Access control lists for VPC</td>
+<td>created automatically when you create your Virtual Private Cloud</td>
+</tr>
+<tr>
+<td>Secrity groups for VPC</td>
+<td>created automatically when you create your Virtual Private Cloud</td>
+</tr>
+<tr>
+<td>Virtual server instances for VPC</td>
+<td>The resource type of your Hyper Protect Virtual Server instances</td>
+</tr>
+<tr>
+<td>Block storage volumes for VPC</td>
+<td>Used to provide persistent disk storage</td>
+</tr>
+<tr>
+<td>Hyper Protect Virtual Servers for Classic</td>
+<td><em>Optional</em>- can be used as a <em>prep system</em> if you can provide an SSH key pair</td>
+</tr>
+<tr>
+<td>Virtual Servers for Classic</td>
+<td><em>Optional</em>- can be used as a <em>prep system</em> if you cannot provide an SSH key pair</td>
+</tr>
+</tbody>
+</table>
+<h3 id="lab-cloud-prereqs-prep-system-to-prepare-contracts-for-hyper-protect-virtual-server-instances">Prep system to prepare contracts for Hyper Protect Virtual Server instances<a class="headerlink" href="#lab-cloud-prereqs-prep-system-to-prepare-contracts-for-hyper-protect-virtual-server-instances" title="Permanent link">&para;</a></h3>
 <p>You must have access to a Linux or MacOS system in order to create the contracts required by the lab.</p>
-<p>If you have a Windows system you can try to use the <a href="https://learn.microsoft.com/en-us/windows/wsl/" rel="noopener" target="_blank">Windows Subsystem for Linux</a> or you can create a Linux server elsewhere. We provide instructions on how to create a Linux server using <em>Hyper Protect Virtual Server for Classic</em> in a <a href="#lab-cloud-prereqs-helperserver" rel="noopener" target="_blank">subsequent section</a> of the lab.</p></section><section class="print-page" id="lab-cloud-prereqs-vpc"><h1 id="lab-cloud-prereqs-vpc-create-a-virtual-private-cloud">Create a Virtual Private Cloud<a class="headerlink" href="#lab-cloud-prereqs-vpc-create-a-virtual-private-cloud" title="Permanent link">&para;</a></h1>
+<p>If your laptop or workstation is not running Linux or MacOS there are some alternatives available to you:</p>
+<ul>
+<li>
+<p>If you have a Windows system you can try to use the <a href="https://learn.microsoft.com/en-us/windows/wsl/" rel="noopener" target="_blank">Windows Subsystem for Linux</a> or you can create a Linux server elsewhere. </p>
+</li>
+<li>
+<p>We provide instructions on how to create a Linux server using <em>Hyper Protect Virtual Server for Classic</em> in a <a href="#lab-cloud-prereqs-prepsystem" rel="noopener" target="_blank">subsequent section</a> of the lab. This is a server running on LinuxONE servers in IBM Cloud and uses IBM's earlier, <abbr title="a type of LPAR introduced by IBM with the z14 hardware generation.  Hyper Protect Virtual Servers v1.x was built on SSC technology, and the Crypto Express Network API for Secure Execution Enclaves component of HPVS v2.x is also built on SSC technology.">Secure Service Container</abbr>-based implementation of <abbr title="Confidential computing is a cloud computing technology that isolates sensitive data in a protected CPU enclave during processing. The contents of the enclave—the data being processed, and the techniques that are used to process it—are accessible only to authorized programming code, and are invisible and unknowable to anything or anyone else, including the cloud provider.">Confidential Computing</abbr>.  You may be able to provision this for free- each account can have two free instances at any point in time. You must provide the public key portion of your SSH key pair when provisioning this. </p>
+<div class="admonition note">
+<p class="admonition-title">An attempt at clarification</p>
+<p>This lab focuses on the newer, <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-based implementation of <em>Hyper Protect Virtual Servers for IBM Cloud VPC</em>- not the earlier, <abbr title="a type of LPAR introduced by IBM with the z14 hardware generation.  Hyper Protect Virtual Servers v1.x was built on SSC technology, and the Crypto Express Network API for Secure Execution Enclaves component of HPVS v2.x is also built on SSC technology.">Secure Service Container</abbr>-based implementation of <em>Hyper Protect Virtual Servers for Classic</em> that we are suggesting may be used as your <em>prep system</em>.  We'd prefer that you use your own system for the <em>prep system</em> if possible.  Why? Because it will be easier for you to save the lab artifacts that way.  At the risk of confusing you, we suggest <em>Hyper Protect Virtual Servers for Classic</em> as a <em>prep system</em> for a key reason-  you can (probably) provision one for free! </p>
+</div>
+</li>
+<li>
+<p>If you cannot provide your SSH key pair's public key portion, you can provision a Linux server using <em>Virtual Server for Classic</em> that will enable access via a password instead of an SSH key.  This is a server running on x86 architecture and you may incur charges for this service.</p>
+</li>
+</ul></section><section class="print-page" id="lab-cloud-prereqs-vpc"><h1 id="lab-cloud-prereqs-vpc-create-a-virtual-private-cloud">Create a Virtual Private Cloud<a class="headerlink" href="#lab-cloud-prereqs-vpc-create-a-virtual-private-cloud" title="Permanent link">&para;</a></h1>
 <div class="admonition tip">
 <p class="admonition-title">We advise you to create a new Virtual Private Cloud for these labs</p>
 <p>These labs assume you are starting with an account that has no Virtual Private Cloud (VPC) resources defined when you start the lab.  If your account has existing VPC resources then it is up to you to decide whether to use those existing resources when available or whether to create new resources for all parts of the labs. Using existing resources may help to avoid incurring costs, but at the risk of inadvertently impacting existing users of these resources- an essential consideraton if these resources are being used in production!  You'd also have to take extra care when deleting resources at the end of the labs.</p>
@@ -9626,12 +9694,65 @@ error: internal error: unable to execute QEMU command &#39;migrate&#39;: protect
 </ol>
 <p><img src="../lab/cloud/prereqs/log060.png" width="802" height="671" /></p>
 <p>You do not have to follow the instructions that the popup window is giving you, you only needed to copy the information as directed here in the lab. You can click the <strong>X</strong> in the upper right corner of the popup window or just click outside of the popup window so that it goes away.</p>
-<p>Click the <strong>Next</strong> link in the lower right to continue.</p></section><section class="print-page" id="lab-cloud-prereqs-helperserver"><h1 id="lab-cloud-prereqs-helperserver-optional-create-a-server-to-use-to-create-contracts">(Optional) Create a server to use to create contracts<a class="headerlink" href="#lab-cloud-prereqs-helperserver-optional-create-a-server-to-use-to-create-contracts" title="Permanent link">&para;</a></h1>
-<p>If you already have access to a Linux system or to a MacOS system you may skip this step.  If you have a Windows system and have the expertise to translate these instructions into something workable on Windows, you may skip this step.  </p>
-<p>The lab authors have tested the instructions on Linux and macOS.</p>
+<p>Click the <strong>Next</strong> link in the lower right to continue.</p></section><section class="print-page" id="lab-cloud-prereqs-prepsystem"><h1 id="lab-cloud-prereqs-prepsystem-establish-a-prep-system-for-creating-contracts">Establish a <em>prep system</em> for creating contracts<a class="headerlink" href="#lab-cloud-prereqs-prepsystem-establish-a-prep-system-for-creating-contracts" title="Permanent link">&para;</a></h1>
+<p>Here are our suggestions for what to use for your <a href="#lab-cloud-prereqs-prep-system-to-prepare-contracts-for-hyper-protect-virtual-server-instances" rel="noopener" target="_blank"><em>prep system</em></a>.  When you find a solution that works for you, you can move on the next section by clicking the <em>Next</em> link at the lower right of the page.</p>
+<p>The lab authors have tested the lab instructions using the following prep systems:</p>
+<table>
+<thead>
+<tr>
+<th>Operating System</th>
+<th>Architecture</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MacOS</td>
+<td>Apple M1 Silicon</td>
+<td></td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>Apple M1 Silicon</td>
+<td>running as Ubuntu guest under MacOS</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>s390x</td>
+<td>Hyper Protect Virtual Server for Classic free instance on IBM Cloud</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>x86-64</td>
+<td>Virtual Server for Classic paid instance on IBM Cloud</td>
+</tr>
+</tbody>
+</table>
+<h2 id="lab-cloud-prereqs-prepsystem-use-your-workstation-if-it-is-running-linux-or-macos">Use your workstation if it is running Linux or MacOS<a class="headerlink" href="#lab-cloud-prereqs-prepsystem-use-your-workstation-if-it-is-running-linux-or-macos" title="Permanent link">&para;</a></h2>
+<p>If you already have access to a Linux system or to a MacOS system we encourage you to use it as your <em>prep system</em>.  <em>prep system</em> is a term we;ve coined in these labs to refer to the system on which you will create the contracts for your Hyper Protect Virtual Servers instance. This could certainly be your laptop or workstation if you are running a Linux distribution or MacOS.</p>
+<h2 id="lab-cloud-prereqs-prepsystem-if-you-are-running-windows">If you are running Windows<a class="headerlink" href="#lab-cloud-prereqs-prepsystem-if-you-are-running-windows" title="Permanent link">&para;</a></h2>
+<p>If you have a Windows system you could try one of the following options.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Neither of the following two options have been tested on Windows by the lab instructors.</p>
+</div>
+<ol>
+<li>
+<p>You could run a Linux virtual machine under a virtualization hypervisor such as VMware or VirtualBox</p>
+</li>
+<li>
+<p>You could run the Windows Subsystem for Linux under more recent versions of Windows such as Windows 10 or Windows 11</p>
+</li>
+</ol>
+<p>If your own laptop or workstation is not running Linux or MacOS or if you have Windows but are unable or unwilling to try one of the two suggestions from above, keep reading..</p>
+<h2 id="lab-cloud-prereqs-prepsystem-create-a-hyper-protect-virtual-server-for-classic-instance-on-ibm-cloud">Create a Hyper Protect Virtual Server for Classic instance on IBM Cloud<a class="headerlink" href="#lab-cloud-prereqs-prepsystem-create-a-hyper-protect-virtual-server-for-classic-instance-on-ibm-cloud" title="Permanent link">&para;</a></h2>
 <p>If you do not have a suitable system already or would like to, you can create a Hyper Protect Virtual Servers <em>Classic</em> instance for free that will provide an Ubuntu system for you.  You will need to provide the public key portion of an SSH key pair when you provision this instance. </p>
-<p><strong>NOTE: Whether you already have a suitable system or choose to create one with the subsequent directions below, we will refer to this system as <em>your prep system</em> in the lab instructions, since you will use this system to <em>prepare</em> your contracts.</strong></p>
+<p><strong>NOTE: Whether you already have a suitable system or choose to create one with the directions below, we will refer to this system as <em>your prep system</em> in the lab instructions, since you will use this system to <em>prepare</em> your contracts.</strong></p>
 <p>To create this instance: </p>
+<div class="admonition note">
+<p class="admonition-title">We beg your pardon</p>
+<p>If you are reading this, it means that we have yet to add some screenshots to these instructions.  Hopefully the text is sufficient to guide you to successful completion of this task.  If not, <a _rel="noopener" href="#index-workshop-authors" target="_blank">let us know</a>.</p>
+</div>
 <ol>
 <li>
 <p>Click on the <strong>Catalog</strong> link at the top of the page.</p>
@@ -9646,7 +9767,7 @@ error: internal error: unable to execute QEMU command &#39;migrate&#39;: protect
 <p>Provide your SSH public key.</p>
 </li>
 </ol>
-<p>If you have created a <em>Hyper Protect Virtual Server for Classic</em> instance to use as your prep system, you need to install two packages:</p>
+<p>Once your Hyper Protect Virtual Server for Classic instance is available, you need to install two packages:</p>
 <ol>
 <li>
 <p>Log in to your instance via ssh.</p>
@@ -9656,6 +9777,45 @@ error: internal error: unable to execute QEMU command &#39;migrate&#39;: protect
 <div class="highlight"><pre><span></span><code>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>curl<span class="w"> </span>vim
 </code></pre></div>
 </li>
+</ol>
+<h2 id="lab-cloud-prereqs-prepsystem-create-a-virtual-server-for-classic-instance-on-ibm-cloud">Create a Virtual Server for Classic instance on IBM Cloud<a class="headerlink" href="#lab-cloud-prereqs-prepsystem-create-a-virtual-server-for-classic-instance-on-ibm-cloud" title="Permanent link">&para;</a></h2>
+<p>If for some reason you cannot create an SSH key pair, a <em>Virtual Server for Classic</em> instance allows you to log in with a password that it creates for you at provisioning time.  Using a password for logon is less secure than using an SSH key, and this service does not appear to offer a free tier, so this our suggestion of last resort.  </p>
+<p>The steps to create an instance are:</p>
+<ol>
+<li>
+<p>From the IBM Cloud Catalog, search for <em>Virtual Servers for Classic</em> and then select it.</p>
+</li>
+<li>
+<p>It doesn't matter where you provision it.  This instance does not run in your VPC.</p>
+</li>
+<li>
+<p>Choose the Ubuntu 22.04 operating system.</p>
+</li>
+<li>
+<p>On the provisioning screen, leave the <em>SSH key</em> field blank.</p>
+</li>
+<li>
+<p>Click the <em>Create</em> button to create the instance.</p>
+</li>
+</ol>
+<p>After the instance is provisioned:</p>
+<ol>
+<li>
+<p>From the Resource List, expand the <em>Compute</em> category.</p>
+</li>
+<li>
+<p>Select your new instance</p>
+</li>
+<li>
+<p>Note your instance's public IP address</p>
+</li>
+<li>
+<p>Click the tab for passwords and click the icon to show your root userid's password</p>
+</li>
+</ol>
+<p>5  Log in with this command:  <code>ssh -l root &lt;your instance's public IP&gt;</code> </p>
+<ol>
+<li>Enter root's password when prompted </li>
 </ol></section><section class="print-page" id="lab-cloud-prereqs-setup"><h1 id="lab-cloud-prereqs-setup-set-up-your-environment">Set up your environment<a class="headerlink" href="#lab-cloud-prereqs-setup-set-up-your-environment" title="Permanent link">&para;</a></h1>
 <p>This lab is written to work on MacOS and Linux.  </p>
 <p>On most Linux distributions you will have <em>tar</em> and it will be fine.</p>
@@ -9815,7 +9975,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="nb">echo</span><span class="w"> </span>LOG_INGESTION_KEY<span class="w"> </span>is<span class="w"> </span><span class="si">${</span><span class="nv">LOG_INGESTION_KEY</span><span class="si">}</span>
 <span class="nb">echo</span><span class="w"> </span>LOG_HOSTNAME<span class="w"> </span>is<span class="w"> </span><span class="si">${</span><span class="nv">LOG_HOSTNAME</span><span class="si">}</span>
 </code></pre></div>
-<p>If any of the above commands do not display a value after the _is _ then revisit <a href="#lab-cloud-prereqs-setup" rel="noopener" target="_blank">sections</a> on setting environment variables.</p>
+<p>If any of the above commands do not display a value after the <em>is</em> then revisit <a href="#lab-cloud-prereqs-setup" rel="noopener" target="_blank">sections</a> on setting environment variables.</p>
 </li>
 </ol>
 <h2 id="lab-cloud-lab1-prepcontract-make-a-new-directory-for-lab-1">Make a new directory for Lab 1<a class="headerlink" href="#lab-cloud-lab1-prepcontract-make-a-new-directory-for-lab-1" title="Permanent link">&para;</a></h2>
@@ -9981,7 +10141,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="nb">echo</span><span class="w"> </span>LOG_INGESTION_KEY<span class="w"> </span>is<span class="w"> </span><span class="si">${</span><span class="nv">LOG_INGESTION_KEY</span><span class="si">}</span>
 <span class="nb">echo</span><span class="w"> </span>LOG_HOSTNAME<span class="w"> </span>is<span class="w"> </span><span class="si">${</span><span class="nv">LOG_HOSTNAME</span><span class="si">}</span>
 </code></pre></div>
-<p>If any of the above commands do not display a value after the _is _ then revisit <a href="#lab-cloud-prereqs-setup" rel="noopener" target="_blank">sections</a> on setting environment variables.</p>
+<p>If any of the above commands do not display a value after the <em>is</em> then revisit <a href="#lab-cloud-prereqs-setup" rel="noopener" target="_blank">sections</a> on setting environment variables.</p>
 </li>
 </ol>
 <h2 id="lab-cloud-lab2-prepcontract-make-a-new-directory-for-lab-2">Make a new directory for Lab 2<a class="headerlink" href="#lab-cloud-lab2-prepcontract-make-a-new-directory-for-lab-2" title="Permanent link">&para;</a></h2>
@@ -10216,7 +10376,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="nb">echo</span><span class="w"> </span>LOG_INGESTION_KEY<span class="w"> </span>is<span class="w"> </span><span class="si">${</span><span class="nv">LOG_INGESTION_KEY</span><span class="si">}</span>
 <span class="nb">echo</span><span class="w"> </span>LOG_HOSTNAME<span class="w"> </span>is<span class="w"> </span><span class="si">${</span><span class="nv">LOG_HOSTNAME</span><span class="si">}</span>
 </code></pre></div>
-<p>If any of the above commands do not display a value after the _is _ then revisit <a href="#lab-cloud-prereqs-setup" rel="noopener" target="_blank">sections</a> on setting environment variables.</p>
+<p>If any of the above commands do not display a value after the <em>is</em> then revisit <a href="#lab-cloud-prereqs-setup" rel="noopener" target="_blank">sections</a> on setting environment variables.</p>
 </li>
 </ol>
 <h2 id="lab-cloud-lab3-prepcontract-make-a-new-directory-for-lab-3">Make a new directory for Lab 3<a class="headerlink" href="#lab-cloud-lab3-prepcontract-make-a-new-directory-for-lab-3" title="Permanent link">&para;</a></h2>
@@ -10502,7 +10662,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="nb">echo</span><span class="w"> </span>LOG_INGESTION_KEY<span class="w"> </span>is<span class="w"> </span><span class="si">${</span><span class="nv">LOG_INGESTION_KEY</span><span class="si">}</span>
 <span class="nb">echo</span><span class="w"> </span>LOG_HOSTNAME<span class="w"> </span>is<span class="w"> </span><span class="si">${</span><span class="nv">LOG_HOSTNAME</span><span class="si">}</span>
 </code></pre></div>
-<p>If any of the above commands do not display a value after the _is _ then revisit <a href="#lab-cloud-prereqs-setup" rel="noopener" target="_blank">sections</a> on setting environment variables.</p>
+<p>If any of the above commands do not display a value after the <em>is</em> then revisit <a href="#lab-cloud-prereqs-setup" rel="noopener" target="_blank">sections</a> on setting environment variables.</p>
 </li>
 </ol>
 <h2 id="lab-cloud-lab4-prepcontract-make-a-new-directory-for-lab-4">Make a new directory for Lab 4<a class="headerlink" href="#lab-cloud-lab4-prepcontract-make-a-new-directory-for-lab-4" title="Permanent link">&para;</a></h2>
@@ -10661,6 +10821,11 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <h2 id="lab-cloud-lab4-prepcontract-create-convenience-scripts-to-facilitate-signing-the-contract">Create convenience scripts to facilitate signing the contract<a class="headerlink" href="#lab-cloud-lab4-prepcontract-create-convenience-scripts-to-facilitate-signing-the-contract" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
+<p>Move up one directory level:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>..<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">pwd</span>
+</code></pre></div>
+</li>
+<li>
 <p>Create the following convenience script that will create an RSA key pair that you will use to sign the contract. </p>
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; flow.prepare</span>
 <span class="s"># Use the following command to generate key pair to sign the contract </span>
@@ -10796,16 +10961,63 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <p>Proceed to the next section to clean up all of the resources you created in these four labs.</p>
 </li>
 </ol></section><h1 class='nav-section-title-end'>Ended: Lab 4 - encrypted and signed contract</h1><section class="print-page" id="lab-cloud-cleanup-cleanup"><h1 id="lab-cloud-cleanup-cleanup-delete-the-resources-you-created-in-the-ibm-cloud-based-labs">Delete the resources you created in the IBM Cloud-based labs<a class="headerlink" href="#lab-cloud-cleanup-cleanup-delete-the-resources-you-created-in-the-ibm-cloud-based-labs" title="Permanent link">&para;</a></h1>
-<div class="admonition warning">
-<p class="admonition-title">This page is under construction</p>
-<p>This page is under construction- stay tuned for updates</p>
-</div>
 <div class="admonition danger">
 <p class="admonition-title">Danger</p>
-<p>If you used a pre-existing virtual private cloud, do not follow these instructions. Instead, delete just those resources that you created for these labs.  </p>
+<p>We get a little nervous when telling students to delete things on their IBM Cloud account, but we promised to help you minimize any costs associated with this lab. </p>
+<p>Be aware that the these cleanup instructions make two important assumptions.  </p>
+<p>The first is that you created a new Virtual Private Cloud (VPC) just for these labs so that you can delete the entire VPC without impacting any other users or resources.  </p>
+<p>The second assumption is that you created a new <em>IBM Log Analysis</em> instance just for these labs so that you can delete the IBM Log Analysis instance without impacting any other users or resources.</p>
+<p>If you used a pre-existing virtual private cloud or a pre-existing IBM Log Analysis instance, do not follow these instructions verbatim but take extreme care instead in deleting only the resources you created for theses labs.  Our assumption is that if you were confident enough to use pre-existing resources, then you are confident enough to know what to delete afterwards and what not to delete. Please, err on the side of caution-  ask an instructor or the appropriate person(s) in your company for help if you are unsure!  </p>
 </div>
-<p>Delete your virtual private cloud.</p>
-<p>Delete your storage volume.</p></section><h1 class='nav-section-title-end'>Ended: IBM Cloud-based labs</h1><section class="print-page" id="localdocbuild"><h1 id="localdocbuild-building-the-documentation-yourself">Building the Documentation Yourself<a class="headerlink" href="#localdocbuild-building-the-documentation-yourself" title="Permanent link">&para;</a></h1>
+<h2 id="lab-cloud-cleanup-cleanup-delete-your-virtual-private-cloud">Delete your virtual private cloud<a class="headerlink" href="#lab-cloud-cleanup-cleanup-delete-your-virtual-private-cloud" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Skip this step if you used a pre-existing Virtual Private Cloud that you or others in your company are using for any purposes other than these labs.  </p>
+</div>
+<p>Navigate to your Virtual Private Cloud and from the "vertical dots" icon on the right, select the <strong>Delete</strong> choice.</p>
+<p><img src="../lab/cloud/cleanup/cleanup010.png" height="2039" width="800" /></p>
+<p>You may be presented with a list of attached resources that will also be deleted when you delete the VPC, similar to what is shown here:</p>
+<p><img src="../lab/cloud/cleanup/cleanup020.png" height="1799" width="1368" /></p>
+<ol>
+<li>
+<p><strong>Select</strong> the checkbox to confirm that you agree to these attached resources.</p>
+</li>
+<li>
+<p>Click the blue <strong>Delete all</strong> button in the lower right to start the deletion.</p>
+</li>
+</ol>
+<p>Wait until you see the message that your VPC and all attached resources have been deleted:</p>
+<p><img src="../lab/cloud/cleanup/cleanup030.png" height="1764" width="746" /></p>
+<h2 id="lab-cloud-cleanup-cleanup-delete-your-storage-volume">Delete your storage volume<a class="headerlink" href="#lab-cloud-cleanup-cleanup-delete-your-storage-volume" title="Permanent link">&para;</a></h2>
+<p>After deleting your VPC your storage volume remains assigned to you.  To delete it, select <strong>Block storage volumes</strong> to see your data volume in a list:</p>
+<p><img src="../lab/cloud/cleanup/cleanup040.png" height="2477" width="1193" /></p>
+<p>From the "vertical dots" menu on the right select the <strong>Delete</strong> action:</p>
+<p><img src="../lab/cloud/cleanup/cleanup050.png" height="2036" width="1155" /></p>
+<p>Confirm the deletion of your storage volume:</p>
+<p><img src="../lab/cloud/cleanup/cleanup060.png" height="1612" width="444" /></p>
+<h2 id="lab-cloud-cleanup-cleanup-delete-your-ibm-log-analysis-instance">Delete your IBM Log Analysis instance<a class="headerlink" href="#lab-cloud-cleanup-cleanup-delete-your-ibm-log-analysis-instance" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Skip this step if you used a pre-existing IBM Log Analysis instance that you or others in your company are using for any purposes other than these labs</p>
+</div>
+<ol>
+<li>
+<p>Go to your resources list</p>
+</li>
+<li>
+<p>Expand  the <strong>Logging and Monitoring</strong> category</p>
+</li>
+<li>
+<p>Find your IBM Log Analysis instance and find the <strong>Delete</strong> option from the 'vertical dots' menu</p>
+</li>
+</ol>
+<p>The below screenshot shows what it looks like after completing the above three steps:</p>
+<p><img src="../lab/cloud/cleanup/cleanup070.png" height="2373" width="987" /></p>
+<ol>
+<li>Click <strong>Delete</strong> and confim the deletion if prompted.</li>
+</ol>
+<h2 id="lab-cloud-cleanup-cleanup-congratulations">Congratulations!!<a class="headerlink" href="#lab-cloud-cleanup-cleanup-congratulations" title="Permanent link">&para;</a></h2>
+<p>Congratulations on finishing the labs and cleaning up afterwards.  We hope you learned something useful in the labs and we know there is always room for improvement, so constructive criticism on the current labs or ideas for new labs are always welcome, either by a GitHub issue if you are comfortable with that (click the GitHub link on the right side of the banner at the top of the page) or via <a href="#index-workshop-authors" rel="_noopener" target="_blank">email to the authors</a>.</p></section><h1 class='nav-section-title-end'>Ended: IBM Cloud-based labs</h1><section class="print-page" id="localdocbuild"><h1 id="localdocbuild-building-the-documentation-yourself">Building the Documentation Yourself<a class="headerlink" href="#localdocbuild-building-the-documentation-yourself" title="Permanent link">&para;</a></h1>
 <div class="admonition warning">
 <p class="admonition-title">For Documentation Contributors Only</p>
 <p>This is for people who want to update the documentation of <code>Confidential Computing LinuxONE Workshop</code> and see the updates locally or if you are a regular user and are curious on how to do it. In most cases, just accessing the documentation via this site (<a href="https://ibm-wsc.github.io/ConfidentialComputingOnLinuxONE/">https://ibm-wsc.github.io/ConfidentialComputingOnLinuxONE/</a>) is best. If you want to access the documentation without internet access, instead of following this documentation, you should navigate to the print page (which displays the documentation in printable format). Then, Print-&gt;Save to pdf in your web browser and access the PDF freely offline.</p>
@@ -11068,7 +11280,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
     <script id="__config" type="application/json">{"base": "/ConfidentialComputingOnLinuxONE/", "features": ["header.autohide", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.footer", "search.share", "navigation.indexes", "announce.dismiss", "content.tabs.link", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.b4d07000.min.js"></script>
+      <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>
       
         <script src="../js/print-site.js"></script>
       
