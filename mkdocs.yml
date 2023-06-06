@@ -37,7 +37,7 @@ nav:
       - Create a Virtual Private Cloud: lab/cloud/prereqs/vpc.md
       - Create a Public Gateway: lab/cloud/prereqs/gateway.md
       - Create an IBM Log Analysis instance: lab/cloud/prereqs/ibmlog.md
-      - (Optional) Create a server to use to create contracts: lab/cloud/prereqs/helperserver.md
+      - Establish a "prep system" to use to create contracts: lab/cloud/prereqs/prepsystem.md
       - Set environment variables for lab portability: lab/cloud/prereqs/setup.md
       - Set environment variables for contract preparation: lab/cloud/prereqs/setup2.md
     - Lab 1 - simple plaintext contract: 

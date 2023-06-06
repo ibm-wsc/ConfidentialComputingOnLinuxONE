@@ -177,7 +177,13 @@
 
 ## Create convenience scripts to facilitate signing the contract
 
-1. Create the following convenience script that will create an RSA key pair that you will use to sign the contract. 
+1. Move up one directory level:
+
+    ``` bash
+    cd .. && pwd
+    ```
+
+2. Create the following convenience script that will create an RSA key pair that you will use to sign the contract. 
 
     ``` bash
     cat << EOF > flow.prepare
@@ -192,7 +198,7 @@
     EOF
     ```
 
-2. Create the following convenience script that will sign the encrypted contract.
+3. Create the following convenience script that will sign the encrypted contract.
 
     ``` bash
     cat << EOF > flow.signature
