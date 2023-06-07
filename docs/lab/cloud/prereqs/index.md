@@ -45,7 +45,7 @@ You must be able to create the following IBM Cloud artifacts in order to complet
 | Subnets for VPC | created when you create your Virtual Private Cloud |
 | Public gateways for VPC | needed so that your instances can communicate with your IBM Log Analysis instance |
 | Access control lists for VPC | created automatically when you create your Virtual Private Cloud |
-| Secrity groups for VPC | created automatically when you create your Virtual Private Cloud |
+| Security groups for VPC | created automatically when you create your Virtual Private Cloud |
 | Virtual server instances for VPC | The resource type of your Hyper Protect Virtual Server instances |
 | Block storage volumes for VPC | Used to provide persistent disk storage |
 | Hyper Protect Virtual Servers for Classic | *Optional*- can be used as a _prep system_ if you can provide an SSH key pair |
