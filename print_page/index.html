@@ -1964,7 +1964,7 @@
             </div>
         </section>
         <section class="print-page" id="index"><h1 id="index-confidential-computing-linuxone-workshop"><abbr title="Confidential computing is a cloud computing technology that isolates sensitive data in a protected CPU enclave during processing. The contents of the enclave—the data being processed, and the techniques that are used to process it—are accessible only to authorized programming code, and are invisible and unknowable to anything or anyone else, including the cloud provider.">Confidential Computing</abbr> LinuxONE Workshop<a class="headerlink" href="#index-confidential-computing-linuxone-workshop" title="Permanent link">&para;</a></h1>
-<p>Welcome to our <abbr title="Confidential computing is a cloud computing technology that isolates sensitive data in a protected CPU enclave during processing. The contents of the enclave—the data being processed, and the techniques that are used to process it—are accessible only to authorized programming code, and are invisible and unknowable to anything or anyone else, including the cloud provider.">Confidential Computing</abbr> LinuxONE workshop. Organizations can leverage secure execution to protect Linux® workloads on IBM zSystems and LinuxONE. This workshop will cover how to get started with this technology on-premises using Hyper Protect Virtual Servers 2.1.x.</p>
+<p>Welcome to our <abbr title="Confidential computing is a cloud computing technology that isolates sensitive data in a protected CPU enclave during processing. The contents of the enclave—the data being processed, and the techniques that are used to process it—are accessible only to authorized programming code, and are invisible and unknowable to anything or anyone else, including the cloud provider.">Confidential Computing</abbr> LinuxONE workshop. Organizations can leverage secure execution to protect Linux® workloads on IBM Z and LinuxONE. This workshop will cover how to get started with this technology on-premises using Hyper Protect Virtual Servers 2.1.x.</p>
 <h2 id="index-agenda">Agenda<a class="headerlink" href="#index-agenda" title="Permanent link">&para;</a></h2>
 <h3 id="index-introductory-presentations">Introductory Presentations<a class="headerlink" href="#index-introductory-presentations" title="Permanent link">&para;</a></h3>
 <ul>
@@ -2008,10 +2008,10 @@
   </p>
 <figcaption>PayNow Demo Lab Architecture</figcaption>
 </figure>
-<p>Hyper Protect Virtual Servers 2.1.4 provides an IBM-provided and -supported <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-enabled KVM image that runs on a Linux LPAR on an IBM zSystems or LinuxONE server. </p>
+<p>Hyper Protect Virtual Servers 2.1.4 provides an IBM-provided and -supported <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-enabled KVM image that runs on a Linux LPAR on an IBM Z or LinuxONE server. </p>
 <p>Hyper Protect Virtual Servers (HPVS) requires you to specify your workload via a "contract" that you define. </p>
 <p>Within the contract you specify an <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr>-compliant image that provides your workload.</p>
-<p>For our lab this LPAR is running <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5.  You can use any distribution on IBM zSystems or LinuxONE that supports <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>- i.e., recent versions of Ubuntu and SUSE as well as <abbr title="Red Hat Enterprise Linux">RHEL</abbr>.</p>
+<p>For our lab this LPAR is running <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5.  You can use any distribution on IBM Z or LinuxONE that supports <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>- i.e., recent versions of Ubuntu and SUSE as well as <abbr title="Red Hat Enterprise Linux">RHEL</abbr>.</p>
 <p>In the lab, you will run the a demonstration application called the <em>PayNow Demo</em> in two places-  you will run it once in a <abbr title="this is a term we use to refer to a KVM guest that is not protected with Secure Execution for Linux">standard KVM guest</abbr>, and you will run it once in an HPVS KVM guest protected by <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>.</p>
 <p>You will access both instances of the PayNow demo from a web browser and enter data representing sensitive information such as name, credit card number, credit card security code, etc.  This should be fictitious data that you make up for learning purposes in the lab.</p>
 <p>From each instance of PayNow you will take a memory dump of the KVM guest and by following the lab instructions you will see that an insider attack from a malicious system administrator could extract sensitve data from the <abbr title="this is a term we use to refer to a KVM guest that is not protected with Secure Execution for Linux">standard KVM guest</abbr>, and then you will see that this insider attack fails when attempted against an HPVS KVM guest, mitigating against the insider attack, thus demonstrating the value of <abbr title="Confidential computing is a cloud computing technology that isolates sensitive data in a protected CPU enclave during processing. The contents of the enclave—the data being processed, and the techniques that are used to process it—are accessible only to authorized programming code, and are invisible and unknowable to anything or anyone else, including the cloud provider.">Confidential Computing</abbr> as implemented by Hyper Protect Virtual Servers 2.1.4.</p>
@@ -2090,7 +2090,7 @@ student02
 <summary>Example messages upon login [Click me]</summary>
 <div class="highlight"><pre><span></span><code>*
 *  IBM Washington Systems Center (WSC)   .....
-*    IBM zSystems and LinuxONE          C C  /
+*    IBM Z and LinuxONE                 C C  /
 *                                      /&lt;   /
 *                       ___ __________/_#__=o
 *                      /(- /(\_\________   \
@@ -2105,7 +2105,7 @@ student02
 *  KVM Hypervisor for Blockchain  \    \    \
 *       and Hyper Protect          \    \    \
 *       and Digital Assets          \____\____\
-*    on IBM zSystems and LinuxONE ____\_\__\_\
+*    on IBM Z and LinuxONE        ____\_\__\_\
 *                                /`   /`     o\
 *           &quot;It&#39;s alive!&quot;        |___ |_______|..o-o-o-(#)
 *
@@ -2870,7 +2870,7 @@ logout
 
 <span class="s">[ dn ]</span>
 <span class="s">C = US</span>
-<span class="s">O = IBM WSC zSystems and LinuxONE</span>
+<span class="s">O = IBM WSC IBM Z and LinuxONE</span>
 <span class="s">CN = CA for rsyslog for SE-enabled KVM guests</span>
 
 <span class="s">EOF</span>
@@ -2898,7 +2898,7 @@ logout
 <details class="- example">
 <summary>Output from creating self-signed <abbr title="certification authority">CA</abbr> certificate</summary>
 <div class="highlight"><pre><span></span><code>Certificate request self-signature ok
-subject=C = US, O = IBM WSC zSystems and LinuxONE, CN = CA for rsyslog for SE-enabled KVM guests
+subject=C = US, O = IBM WSC IBM Z and LinuxONE, CN = CA for rsyslog for SE-enabled KVM guests
 </code></pre></div>
 </details>
 </li>
@@ -2977,7 +2977,7 @@ subject=C = US, O = Rsyslog Test Server, CN = 172.16.0.42
         Serial Number:
             72:1b:54:77:9d:c9:28:b0:7c:f0:b8:d6:dc:24:e1:b1:60:fa:59:f7
         Signature Algorithm: sha256WithRSAEncryption
-        Issuer: C = US, O = IBM WSC zSystems and LinuxONE, CN = CA for rsyslog for SE-enabled KVM guests
+        Issuer: C = US, O = IBM WSC IBM Z and LinuxONE, CN = CA for rsyslog for SE-enabled KVM guests
         Validity
             Not Before: Feb 14 01:18:18 2023 GMT
             Not After : Feb 14 01:18:18 2024 GMT
@@ -3030,7 +3030,7 @@ subject=C = US, O = Rsyslog Test Server, CN = 172.16.0.42
             X509v3 Subject Key Identifier: 
                 CC:01:AD:BA:8C:5F:31:B9:58:A9:2D:4E:05:C7:B1:B7:82:10:90:05
             X509v3 Authority Key Identifier: 
-                DirName:/C=US/O=IBM WSC zSystems and LinuxONE/CN=CA for rsyslog for SE-enabled KVM guests
+                DirName:/C=US/O=IBM WSC IBM Z and LinuxONE/CN=CA for rsyslog for SE-enabled KVM guests
                 serial:0B:4A:84:C6:84:00:F8:7F:B7:0A:F0:82:FD:4E:C1:F2:99:C2:63:BC
     Signature Algorithm: sha256WithRSAEncryption
     Signature Value:
@@ -3198,7 +3198,7 @@ e is 65537 (0x010001)
 
 <span class="s">[ dn ]</span>
 <span class="s">C = US</span>
-<span class="s">O = IBM WSC zSystems and LinuxONE</span>
+<span class="s">O = IBM WSC IBM Z and LinuxONE</span>
 <span class="s">CN = SE-enabled HPVS KVM guest for PayNow demo</span>
 
 <span class="s">EOF</span>
@@ -3252,7 +3252,7 @@ client-req.csr                                                          100% 169
 <div class="highlight"><pre><span></span><code>Certificate Request:
     Data:
         Version: 1 (0x0)
-        Subject: C = US, O = IBM WSC zSystems and LinuxONE, CN = SE-enabled HPVS KVM guest for PayNow demo
+        Subject: C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS KVM guest for PayNow demo
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
                 Public-Key: (4096 bit)
@@ -3343,7 +3343,7 @@ client-req.csr                                                          100% 169
 <details class="- example">
 <summary>Output from creating the certificate</summary>
 <div class="highlight"><pre><span></span><code>Certificate request self-signature ok
-subject=C = US, O = IBM WSC zSystems and LinuxONE, CN = SE-enabled HPVS KVM guest for PayNow demo
+subject=C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS KVM guest for PayNow demo
 </code></pre></div>
 </details>
 </li>
@@ -3359,11 +3359,11 @@ subject=C = US, O = IBM WSC zSystems and LinuxONE, CN = SE-enabled HPVS KVM gues
         Serial Number:
             29:4a:dd:c7:66:81:ab:5a:1d:bb:20:76:a0:25:34:90:21:93:40:6b
         Signature Algorithm: sha256WithRSAEncryption
-        Issuer: C = US, O = IBM WSC zSystems and LinuxONE, CN = CA for rsyslog for SE-enabled KVM guests
+        Issuer: C = US, O = IBM WSC IBM Z and LinuxONE, CN = CA for rsyslog for SE-enabled KVM guests
         Validity
             Not Before: Feb 14 01:58:14 2023 GMT
             Not After : Feb 14 01:58:14 2024 GMT
-        Subject: C = US, O = IBM WSC zSystems and LinuxONE, CN = SE-enabled HPVS KVM guest for PayNow demo
+        Subject: C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS KVM guest for PayNow demo
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
                 Public-Key: (4096 bit)
@@ -3488,11 +3488,11 @@ client.crt                                                              100% 190
         Serial Number:
             29:4a:dd:c7:66:81:ab:5a:1d:bb:20:76:a0:25:34:90:21:93:40:6b
         Signature Algorithm: sha256WithRSAEncryption
-        Issuer: C = US, O = IBM WSC zSystems and LinuxONE, CN = CA for rsyslog for SE-enabled KVM guests
+        Issuer: C = US, O = IBM WSC IBM Z and LinuxONE, CN = CA for rsyslog for SE-enabled KVM guests
         Validity
             Not Before: Feb 14 01:58:14 2023 GMT
             Not After : Feb 14 01:58:14 2024 GMT
-        Subject: C = US, O = IBM WSC zSystems and LinuxONE, CN = SE-enabled HPVS KVM guest for PayNow demo
+        Subject: C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS KVM guest for PayNow demo
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
                 RSA Public-Key: (4096 bit)
@@ -3563,15 +3563,15 @@ client.crt                                                              100% 190
         f0:4f:6f:a0:36:80:ae:ab:a2:4d:07:6e:ba:14:bf:85:82:50:
         e1:3d:df:64:bc:91:3d:60:c4:90:8c:3b:6f:0f:11:31:a6:5f:
         4f:36:5a:69:04:05:88:b5
-issuer=C = US, O = IBM WSC zSystems and LinuxONE, CN = CA for rsyslog for SE-enabled KVM guests
-subject=C = US, O = IBM WSC zSystems and LinuxONE, CN = SE-enabled HPVS KVM guest for PayNow demo
+issuer=C = US, O = IBM WSC IBM Z and LinuxONE, CN = CA for rsyslog for SE-enabled KVM guests
+subject=C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS KVM guest for PayNow demo
 </code></pre></div>
 </details>
 </li>
 </ol>
 <p>Click the <em>Next</em> link at the bottom of the page to continue to the next part of the lab, where you will create the <em>contract</em> that HPVS 2.1.4 expects, so that you can run the PayNow demo in your HPVS KVM guest.</p></section><section class="print-page" id="lab-paynow-createcontract"><h1 id="lab-paynow-createcontract-create-contract-for-hpvs-guest">Create contract for HPVS guest<a class="headerlink" href="#lab-paynow-createcontract-create-contract-for-hpvs-guest" title="Permanent link">&para;</a></h1>
 <h2 id="lab-paynow-createcontract-overview-of-this-section">Overview of this section<a class="headerlink" href="#lab-paynow-createcontract-overview-of-this-section" title="Permanent link">&para;</a></h2>
-<p>IBM provides the <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr> feature on z15 and newer generations of its IBM zSystems and LinuxONE servers.  Currently, that's z15 and LinuxONE III for the "z15" generation and z16 and LinuxONE Emperor 4 for the "z16" generation.</p>
+<p>IBM provides the <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr> feature on z15 and newer generations of its IBM Z and LinuxONE servers.  Currently, that's z15 and LinuxONE III for the "z15" generation and z16 and LinuxONE Emperor 4 for the "z16" generation.</p>
 <p>You could create your own <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-enabled KVM guests and run a workload in it without Hyper Protect Virtual Servers 2.1.4.  However, there's non-trivial work involved in setting this up.  HPVS 2.1.4 has done that hard work for you, and provided a KVM guest image that will run your application workload as an <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr>-compliant (again, think "Docker" in the popular vernacular) <abbr title="a running instance of an OCI image.">container</abbr> within the HPVS 2.1.4 KVM guest.  There is still some work involved in setting up the contract that HPVS 2.1.4 expects- but this is work closer to the <em>application</em> or <em>business</em> level. There is also added value in HPVS 2.1.4 in areas such as:</p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> logging</li>
@@ -5193,10 +5193,10 @@ sudo<span class="w"> </span>virsh<span class="w"> </span>shutdown<span class="w"
   </p>
 <figcaption>Confidential Computing Lab Architecture</figcaption>
 </figure>
-<p>Hyper Protect Virtual Servers 2.1.4 provides an IBM-provided and -supported <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-enabled KVM image that runs on a Linux LPAR on an IBM zSystems or LinuxONE server. </p>
+<p>Hyper Protect Virtual Servers 2.1.4 provides an IBM-provided and -supported <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-enabled KVM image that runs on a Linux LPAR on an IBM Z or LinuxONE server. </p>
 <p>Hyper Protect Virtual Servers allows you to specify your workload via a "contract" that you define. </p>
 <p>Within the contract you specify an <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr>-compliant image that provides your workload.</p>
-<p>For our lab this LPAR is running <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5.  You can use any distribution on IBM zSystems or LinuxONE that supports <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>- i.e., recent versions of Ubuntu and SUSE as well as <abbr title="Red Hat Enterprise Linux">RHEL</abbr>.</p>
+<p>For our lab this LPAR is running <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5.  You can use any distribution on IBM Z or LinuxONE that supports <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>- i.e., recent versions of Ubuntu and SUSE as well as <abbr title="Red Hat Enterprise Linux">RHEL</abbr>.</p>
 <p>The Hyper Protect Virtual Servers 2.1.4 product provides a component, Crypto Express Network API for <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr> Enclaves (<abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr>) 1.1.1.4, that runs as an appliance in a <abbr title="a type of LPAR introduced by IBM with the z14 hardware generation.  Hyper Protect Virtual Servers v1.x was built on SSC technology, and the Crypto Express Network API for Secure Execution Enclaves component of HPVS v2.x is also built on SSC technology.">Secure Service Container</abbr> (<abbr title="Secure Service Container- a type of LPAR introduced by IBM with the z14 hardware generation.  Hyper Protect Virtual Servers v1.x was built on SSC technology, and the Crypto Express Network API for Secure Execution Enclaves component of HPVS v2.x is also built on SSC technology.">SSC</abbr>) LPAR that has direct-attached Crypto Express cards.  <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> also provides a <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> image that communicates with the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> appliance. </p>
 <p>This enables <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> client code written to call the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server API to  access the Crypto Express cards on the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> <abbr title="Secure Service Container- a type of LPAR introduced by IBM with the z14 hardware generation.  Hyper Protect Virtual Servers v1.x was built on SSC technology, and the Crypto Express Network API for Secure Execution Enclaves component of HPVS v2.x is also built on SSC technology.">SSC</abbr> LPAR.
 The <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> client code can run from anywhere as long as it has network connectivity to the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server.  The <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server can run anywhere as long as it has network connectivity to the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> server.</p>
@@ -5326,7 +5326,7 @@ Thus, we will show two commands to add the environment variable to your shell st
 <summary>Example messages upon login [Click me]</summary>
 <div class="highlight"><pre><span></span><code>*
 *  IBM Washington Systems Center (WSC)   .....
-*    IBM zSystems and LinuxONE          C C  /
+*    IBM Z and LinuxONE                 C C  /
 *                                      /&lt;   /
 *                       ___ __________/_#__=o
 *                      /(- /(\_\________   \
@@ -5341,7 +5341,7 @@ Thus, we will show two commands to add the environment variable to your shell st
 *  KVM Hypervisor for Blockchain  \    \    \
 *       and Hyper Protect          \    \    \
 *       and Digital Assets          \____\____\
-*    on IBM zSystems and LinuxONE ____\_\__\_\
+*    on IBM Z and LinuxONE        ____\_\__\_\
 *                                /`   /`     o\
 *           &quot;It&#39;s alive!&quot;        |___ |_______|..o-o-o-(#)
 *
@@ -5768,7 +5768,7 @@ logout
 
 <span class="s">[ dn ]</span>
 <span class="s">C = US</span>
-<span class="s">O = IBM WSC zSystems and LinuxONE</span>
+<span class="s">O = IBM WSC IBM Z and LinuxONE</span>
 <span class="s">CN = CA for rsyslog for SE-enabled KVM guests</span>
 
 <span class="s">EOF</span>
@@ -5796,7 +5796,7 @@ logout
 <details class="- example">
 <summary>Output from creating self-signed <abbr title="certification authority">CA</abbr> certificate</summary>
 <div class="highlight"><pre><span></span><code>Certificate request self-signature ok
-subject=C = US, O = IBM WSC zSystems and LinuxONE, CN = CA for rsyslog for SE-enabled KVM guests
+subject=C = US, O = IBM WSC IBM Z and LinuxONE, CN = CA for rsyslog for SE-enabled KVM guests
 </code></pre></div>
 </details>
 </li>
@@ -5875,7 +5875,7 @@ subject=C = US, O = Rsyslog Test Server, CN = 172.16.0.42
         Serial Number:
             72:1b:54:77:9d:c9:28:b0:7c:f0:b8:d6:dc:24:e1:b1:60:fa:59:f7
         Signature Algorithm: sha256WithRSAEncryption
-        Issuer: C = US, O = IBM WSC zSystems and LinuxONE, CN = CA for rsyslog for SE-enabled KVM guests
+        Issuer: C = US, O = IBM WSC IBM Z and LinuxONE, CN = CA for rsyslog for SE-enabled KVM guests
         Validity
             Not Before: Feb 14 01:18:18 2023 GMT
             Not After : Feb 14 01:18:18 2024 GMT
@@ -5928,7 +5928,7 @@ subject=C = US, O = Rsyslog Test Server, CN = 172.16.0.42
             X509v3 Subject Key Identifier: 
                 CC:01:AD:BA:8C:5F:31:B9:58:A9:2D:4E:05:C7:B1:B7:82:10:90:05
             X509v3 Authority Key Identifier: 
-                DirName:/C=US/O=IBM WSC zSystems and LinuxONE/CN=CA for rsyslog for SE-enabled KVM guests
+                DirName:/C=US/O=IBM WSC IBM Z and LinuxONE/CN=CA for rsyslog for SE-enabled KVM guests
                 serial:0B:4A:84:C6:84:00:F8:7F:B7:0A:F0:82:FD:4E:C1:F2:99:C2:63:BC
     Signature Algorithm: sha256WithRSAEncryption
     Signature Value:
@@ -6100,7 +6100,7 @@ e is 65537 (0x010001)
 
 <span class="s">[ dn ]</span>
 <span class="s">C = US</span>
-<span class="s">O = IBM WSC zSystems and LinuxONE</span>
+<span class="s">O = IBM WSC IBM Z and LinuxONE</span>
 <span class="s">CN = SE-enabled HPVS 2.1.4 Grep11 Server</span>
 
 <span class="s">EOF</span>
@@ -6154,7 +6154,7 @@ client-req.csr                                                          100% 169
 <div class="highlight"><pre><span></span><code>Certificate Request:
     Data:
         Version: 1 (0x0)
-        Subject: C = US, O = IBM WSC zSystems and LinuxONE, CN = SE-enabled HPVS 2.1.4 Grep11 Server
+        Subject: C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS 2.1.4 Grep11 Server
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
                 Public-Key: (4096 bit)
@@ -6245,7 +6245,7 @@ client-req.csr                                                          100% 169
 <details class="- example">
 <summary>Output from creating the certificate</summary>
 <div class="highlight"><pre><span></span><code>Certificate request self-signature ok
-subject=C = US, O = IBM WSC zSystems and LinuxONE, CN = SE-enabled HPVS 2.1.4 Grep11 Server
+subject=C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS 2.1.4 Grep11 Server
 </code></pre></div>
 </details>
 </li>
@@ -6261,11 +6261,11 @@ subject=C = US, O = IBM WSC zSystems and LinuxONE, CN = SE-enabled HPVS 2.1.4 Gr
         Serial Number:
             29:4a:dd:c7:66:81:ab:5a:1d:bb:20:76:a0:25:34:90:21:93:40:6b
         Signature Algorithm: sha256WithRSAEncryption
-        Issuer: C = US, O = IBM WSC zSystems and LinuxONE, CN = CA for rsyslog for SE-enabled KVM guests
+        Issuer: C = US, O = IBM WSC IBM Z and LinuxONE, CN = CA for rsyslog for SE-enabled KVM guests
         Validity
             Not Before: Feb 14 01:58:14 2023 GMT
             Not After : Feb 14 01:58:14 2024 GMT
-        Subject: C = US, O = IBM WSC zSystems and LinuxONE, CN = SE-enabled HPVS 2.1.4 Grep11 Server
+        Subject: C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS 2.1.4 Grep11 Server
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
                 Public-Key: (4096 bit)
@@ -6390,11 +6390,11 @@ client.crt                                                              100% 190
         Serial Number:
             29:4a:dd:c7:66:81:ab:5a:1d:bb:20:76:a0:25:34:90:21:93:40:6b
         Signature Algorithm: sha256WithRSAEncryption
-        Issuer: C = US, O = IBM WSC zSystems and LinuxONE, CN = CA for rsyslog for SE-enabled KVM guests
+        Issuer: C = US, O = IBM WSC IBM Z and LinuxONE, CN = CA for rsyslog for SE-enabled KVM guests
         Validity
             Not Before: Feb 14 01:58:14 2023 GMT
             Not After : Feb 14 01:58:14 2024 GMT
-        Subject: C = US, O = IBM WSC zSystems and LinuxONE, CN = SE-enabled HPVS 2.1.4 Grep11 Server
+        Subject: C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS 2.1.4 Grep11 Server
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
                 RSA Public-Key: (4096 bit)
@@ -6465,15 +6465,15 @@ client.crt                                                              100% 190
         f0:4f:6f:a0:36:80:ae:ab:a2:4d:07:6e:ba:14:bf:85:82:50:
         e1:3d:df:64:bc:91:3d:60:c4:90:8c:3b:6f:0f:11:31:a6:5f:
         4f:36:5a:69:04:05:88:b5
-issuer=C = US, O = IBM WSC zSystems and LinuxONE, CN = CA for rsyslog for SE-enabled KVM guests
-subject=C = US, O = IBM WSC zSystems and LinuxONE, CN = SE-enabled HPVS 2.1.4 Grep11 Server
+issuer=C = US, O = IBM WSC IBM Z and LinuxONE, CN = CA for rsyslog for SE-enabled KVM guests
+subject=C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS 2.1.4 Grep11 Server
 </code></pre></div>
 </details>
 </li>
 </ol>
 <p>Click the <em>Next</em> link at the bottom of the page to continue to the next part of the lab, where you will create the <em>contract</em> that HPVS 2.1.4 expects, so that you can run your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server.</p></section><section class="print-page" id="lab-grep11-creategrep11contract"><h1 id="lab-grep11-creategrep11contract-create-contract-for-grep11-server">Create Contract for <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server<a class="headerlink" href="#lab-grep11-creategrep11contract-create-contract-for-grep11-server" title="Permanent link">&para;</a></h1>
 <h2 id="lab-grep11-creategrep11contract-overview-of-this-section">Overview of this section<a class="headerlink" href="#lab-grep11-creategrep11contract-overview-of-this-section" title="Permanent link">&para;</a></h2>
-<p>IBM provides the <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr> feature on z15 and newer generations of its IBM zSystems and LinuxONE servers.  Currently, that's z15 and LinuxONE III for the "z15" generation and z16 and LinuxONE Emperor 4 for the "z16" generation.</p>
+<p>IBM provides the <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr> feature on z15 and newer generations of its IBM Z and LinuxONE servers.  Currently, that's z15 and LinuxONE III for the "z15" generation and z16 and LinuxONE Emperor 4 for the "z16" generation.</p>
 <p>You could create your own <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-enabled KVM guests and run a workload in it without Hyper Protect Virtual Servers 2.1.4.  However, there's non-trivial work involved in setting this up.  HPVS 2.1.4 has done that hard work for you, and provided a KVM guest image that will run your application workload as an <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr>-compliant (again, think "Docker" in the popular vernacular) <abbr title="a running instance of an OCI image.">container</abbr> within the HPVS 2.1.4 KVM guest.  There is still some work involved in setting up the contract that HPVS 2.1.4 expects- but this is work closer to the <em>application</em> or <em>business</em> level. There is also added value in HPVS 2.1.4 in areas such as:</p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> logging</li>
@@ -6737,7 +6737,7 @@ subject=C = US, O = IBM WSC zSystems and LinuxONE, CN = SE-enabled HPVS 2.1.4 Gr
 <span class="s">ST                     = Virginia</span>
 <span class="s">L                      = Herndon</span>
 <span class="s">O                      = IBM</span>
-<span class="s">OU                     = Washington Systems Center - IBM zSystems and LinuxONE</span>
+<span class="s">OU                     = Washington Systems Center - IBM Z and LinuxONE</span>
 <span class="s">CN                     = WSC $(whoami) HPVS CA</span>
 <span class="s">emailAddress           = student@notreal.email.com</span>
 
@@ -6774,11 +6774,11 @@ subject=C = US, O = IBM WSC zSystems and LinuxONE, CN = SE-enabled HPVS 2.1.4 Gr
         Serial Number:
             61:1d:d1:10:f4:34:bd:84:7b:ca:0b:59:2b:cf:1e:e2:16:5a:01:5c
         Signature Algorithm: sha256WithRSAEncryption
-        Issuer: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM zSystems and LinuxONE, CN = WSC student02 HPVS CA, emailAddress = student@notreal.email.com.com
+        Issuer: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM Z and LinuxONE, CN = WSC student02 HPVS CA, emailAddress = student@notreal.email.com.com
         Validity
             Not Before: Feb 14 14:36:41 2023 GMT
             Not After : Mar 15 14:36:41 2024 GMT
-        Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM zSystems and LinuxONE, CN = WSC student02 HPVS CA, emailAddress = student@notreal.email.com
+        Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM Z and LinuxONE, CN = WSC student02 HPVS CA, emailAddress = student@notreal.email.com
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
                 RSA Public-Key: (2048 bit)
@@ -6883,7 +6883,7 @@ subject=C = US, O = IBM WSC zSystems and LinuxONE, CN = SE-enabled HPVS 2.1.4 Gr
 <span class="s">ST = Virginia</span>
 <span class="s">L  = Herndon</span>
 <span class="s">O  = IBM  </span>
-<span class="s">OU = Washington Systems Center - IBM zSystems and LinuxONE</span>
+<span class="s">OU = Washington Systems Center - IBM Z and LinuxONE</span>
 
 <span class="s">CN = \$ENV::COMMON_NAME</span>
 
@@ -6949,7 +6949,7 @@ subject=C = US, O = IBM WSC zSystems and LinuxONE, CN = SE-enabled HPVS 2.1.4 Gr
 <span class="s">ST = Virginia</span>
 <span class="s">L  = Herndon</span>
 <span class="s">O  = IBM  </span>
-<span class="s">OU = Washington Systems Center - IBM zSystems and LinuxONE</span>
+<span class="s">OU = Washington Systems Center - IBM Z and LinuxONE</span>
 <span class="s">CN = \${ENV::COMMON_NAME}</span>
 
 <span class="s">[ server ]</span>
@@ -6977,7 +6977,7 @@ subject=C = US, O = IBM WSC zSystems and LinuxONE, CN = SE-enabled HPVS 2.1.4 Gr
 <details class="- example">
 <summary>Example output from certificate creation</summary>
 <div class="highlight"><pre><span></span><code>Signature ok
-subject=C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM zSystems and LinuxONE, CN = 172.16.0.61
+subject=C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM Z and LinuxONE, CN = 172.16.0.61
 Getting CA Private Key
 </code></pre></div>
 </details>
@@ -6994,11 +6994,11 @@ Getting CA Private Key
         Version: 3 (0x2)
         Serial Number: 8086 (0x1f96)
         Signature Algorithm: sha256WithRSAEncryption
-        Issuer: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM zSystems and LinuxONE, CN = WSC student02 HPVS CA, emailAddress = student@notreal.email.com.com
+        Issuer: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM Z and LinuxONE, CN = WSC student02 HPVS CA, emailAddress = student@notreal.email.com.com
         Validity
             Not Before: Feb 14 14:47:20 2023 GMT
             Not After : Mar 10 14:47:20 2024 GMT
-        Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM zSystems and LinuxONE, CN = 172.16.0.61
+        Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM Z and LinuxONE, CN = 172.16.0.61
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
                 RSA Public-Key: (2048 bit)
@@ -7126,7 +7126,7 @@ Getting CA Private Key
 <span class="s">cn = &quot;c16client&quot;</span>
 
 <span class="s"># The organizational unit of the subject.</span>
-<span class="s">unit = &quot;IBM WSC zSystems and LinuxONE&quot;</span>
+<span class="s">unit = &quot;IBM WSC IBM Z and LinuxONE&quot;</span>
 
 <span class="s"># The organization of the subject</span>
 <span class="s">organization = &quot;IBM WSC&quot;</span>
@@ -7176,7 +7176,7 @@ Getting CA Private Key
 <summary>Example <abbr title="certificate signing request">CSR</abbr> info</summary>
 <div class="highlight"><pre><span></span><code>PKCS #10 Certificate Request Information:
         Version: 1
-        Subject: DC=bczkvm,C=US,ST=Virginia,L=Herndon,O=IBM WSC,OU=IBM WSC zSystems and LinuxONE,CN=c16client
+        Subject: DC=bczkvm,C=US,ST=Virginia,L=Herndon,O=IBM WSC,OU=IBM WSC IBM Z and LinuxONE,CN=c16client
         Subject Public Key Algorithm: RSA
         Algorithm Security Level: High (3072 bits)
             Modulus (bits 3072):
@@ -7304,11 +7304,11 @@ chown<span class="w"> </span><span class="si">${</span><span class="nv">student<
 <div class="highlight"><pre><span></span><code>X.509 Certificate Information:
         Version: 3
         Serial Number (hex): 6c8e1ecbc1ee385c441c03bd1dd64759641c5073
-        Issuer: DC=hpvs1,C=US,ST=Virginia,L=Herndon,O=IBM WSC zSystems and LinuxONE,OU=IBM WSC,CN=c16server CA
+        Issuer: DC=hpvs1,C=US,ST=Virginia,L=Herndon,O=IBM WSC IBM Z and LinuxONE,OU=IBM WSC,CN=c16server CA
         Validity:
             Not Before: Tue Feb 14 15:41:45 UTC 2023
             Not After: Mon Dec 11 15:41:45 UTC 2023
-        Subject: DC=bczkvm,C=US,ST=Virginia,L=Herndon,O=IBM WSC,OU=IBM WSC zSystems and LinuxONE,CN=c16client
+        Subject: DC=bczkvm,C=US,ST=Virginia,L=Herndon,O=IBM WSC,OU=IBM WSC IBM Z and LinuxONE,CN=c16client
         Subject Public Key Algorithm: RSA
         Algorithm Security Level: High (3072 bits)
             Modulus (bits 3072):
@@ -9182,7 +9182,7 @@ Resolving deltas: 100% (22/22), done.
 <span class="s">ST                     = Virginia</span>
 <span class="s">L                      = Herndon</span>
 <span class="s">O                      = IBM</span>
-<span class="s">OU                     = Washington Systems Center - IBM zSystems and LinuxONE</span>
+<span class="s">OU                     = Washington Systems Center - IBM IBM Z and LinuxONE</span>
 <span class="s">CN                     = Lab Student</span>
 <span class="s">emailAddress           = student@not.real.email.com</span>
 
@@ -9207,7 +9207,7 @@ Resolving deltas: 100% (22/22), done.
 <div class="highlight"><pre><span></span><code>Certificate Request:
     Data:
         Version: 1 (0x0)
-        Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM zSystems and LinuxONE, CN = Lab Student, emailAddress = student@not.real.email.com
+        Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM IBM Z and LinuxONE, CN = Lab Student, emailAddress = student@not.real.email.com
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
                 Public-Key: (2048 bit)
@@ -9271,7 +9271,7 @@ Resolving deltas: 100% (22/22), done.
 <details class="- example">
 <summary>Output from certificate creation</summary>
 <div class="highlight"><pre><span></span><code>Signature ok
-subject=C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM zSystems and LinuxONE, CN = Lab Student, emailAddress = student@not.real.email.com
+subject=C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM IBM Z and LinuxONE, CN = Lab Student, emailAddress = student@not.real.email.com
 Getting CA Private Key
 </code></pre></div>
 </details>
@@ -9286,11 +9286,11 @@ Getting CA Private Key
         Serial Number:
             79:dd:5b:25:cc:24:f9:71:e5:e0:71:23:db:f8:9e:b8:92:b9:2d:1a
         Signature Algorithm: sha256WithRSAEncryption
-        Issuer: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM zSystems and LinuxONE, CN = WSC student02 HPVS CA, emailAddress = student@notreal.email.com.com
+        Issuer: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM IBM Z and LinuxONE, CN = WSC student02 HPVS CA, emailAddress = student@notreal.email.com.com
         Validity
             Not Before: Feb 15 16:07:56 2023 GMT
             Not After : Dec 12 16:07:56 2023 GMT
-        Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM zSystems and LinuxONE, CN = Lab Student, emailAddress = student@not.real.email.com
+        Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM IBM Z and LinuxONE, CN = Lab Student, emailAddress = student@not.real.email.com
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
                 RSA Public-Key: (2048 bit)
@@ -10043,7 +10043,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="s">    data:</span>
 <span class="s">      seed: seed-supplied-by-env-persona</span>
 <span class="s">  env:</span>
-<span class="s">    firstname: King Charles</span>
+<span class="s">    firstname: Lab 1 Student</span>
 <span class="s">    interval: &quot;30&quot;</span>
 <span class="s">workload: |</span>
 <span class="s">  type: workload</span>
@@ -10116,12 +10116,12 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 </li>
 <li>
 <p>Verify that your instance came up successfully.</p>
-<p>Within a couple of minutes of starting your instance, you should see many messages appear in your IBM Log Analysis Dashboard.  After startup completes, you should see some simple messages every thirty seconds greeting King Charles and telling him what time it is. Our workload is rather simple isn't it, but it is useful for demonstrating disk persistence. </p>
+<p>Within a couple of minutes of starting your instance, you should see many messages appear in your IBM Log Analysis Dashboard.  After startup completes, you should see some simple messages every thirty seconds greeting <em>Lab 1 Student</em> and telling them what time it is. Our workload is rather simple isn't it, but it is useful for demonstrating disk persistence. </p>
 <p>If something went wrong in your setup of the contract that the hyper protect <abbr title="a running instance of an OCI image.">container</abbr> runtime detects, your instance will automatically be stopped in five minutes.  So if you receive no messages within five minutes of starting your instance, it is time to contact your instructor.</p>
 </li>
 <li>
 <p>Delete your instance.</p>
-<p>Your instance either started successfully- as evidenced by greetings to King Charles, or it failed to start successfully.  In either case you will want to delete your instance at this point.  Future labs will use the data volume that you created, but your current instance is no longer needed- in fact, leaving it around hinders subsequent labs-  you won't be able to reuse your disk volume if it is still attached to this instance. </p>
+<p>Your instance either started successfully- as evidenced by greetings to <em>Lab 1 Student</em>, or it failed to start successfully.  In either case you will want to delete your instance at this point.  Future labs will use the data volume that you created, but your current instance is no longer needed- in fact, leaving it around hinders subsequent labs-  you won't be able to reuse your disk volume if it is still attached to this instance. </p>
 <p>The screenshot below shows how you can delete this instance if you are currently displaying it-  by clicking the blue <strong>Actions</strong> button in the upper right, then choosing <strong>Delete</strong>.  From there, follow the instructions to confirm your intention to delete the instance.  </p>
 <p><img src="../lab/cloud/lab1/create110.png" width="1389" height="482" /></p>
 </li>
@@ -10278,7 +10278,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="s">    data:</span>
 <span class="s">      seed: seed-supplied-by-env-persona</span>
 <span class="s">  env:</span>
-<span class="s">    firstname: Queen Camilla</span>
+<span class="s">    firstname: Lab 2 Student</span>
 <span class="s">    interval: &quot;30&quot;</span>
 <span class="s">EOF</span>
 </code></pre></div>
@@ -10351,12 +10351,12 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <p><img src="../lab/cloud/lab2/create108.png" width="1343" height="279" /></p>
 </li>
 <li>
-<p>Now that you have attached the disk volume, startup continues and completes. Within your IBM Log Analysis Dashboard you should be able to see some messages greeting King Charles- this is data written from your earlier instance from lab 1.  (You may need to scroll up to find them.) Then, this instance will provide similar greetings to Queen Camilla- this provides a demonstration of successfully reusing a data volume to provide data persistence across different virtual server instances. </p>
+<p>Now that you have attached the disk volume, startup continues and completes. Within your IBM Log Analysis Dashboard you should be able to see some messages greeting <em>Lab 1 Student</em>- this is data written from your earlier instance from lab 1.  (You may need to scroll up to find them.) Then, this instance will provide similar greetings to <em>Lab 2 Student</em>- this provides a demonstration of successfully reusing a data volume to provide data persistence across different virtual server instances. </p>
 <p>If something went wrong in your setup of the contract that the hyper protect <abbr title="a running instance of an OCI image.">container</abbr> runtime detects, your instance will automatically be stopped in five minutes.  So if you receive no messages within five minutes of starting your instance, it is time to contact your instructor.</p>
 </li>
 <li>
 <p>Delete your instance.</p>
-<p>Your instance either started successfully- as evidenced by the display of earlier greetings to King Charles and then periodic greetings to Queen Camilla, or it failed to start successfully.  In either case you will want to delete your instance at this point.  Future labs will use the data volume that you created, but your current instance is no longer needed- in fact, leaving it around hinders subsequent labs-  you won't be able to reuse your disk volume if it is still attached to this instance. </p>
+<p>Your instance either started successfully- as evidenced by the display of earlier greetings to <em>Lab 1 Student</em> and then periodic greetings to <em>Lab 2 Student</em>, or it failed to start successfully.  In either case you will want to delete your instance at this point.  Future labs will use the data volume that you created, but your current instance is no longer needed- in fact, leaving it around hinders subsequent labs-  you won't be able to reuse your disk volume if it is still attached to this instance. </p>
 <p>The screenshot below shows how you can delete an instance if you are currently displaying it-  by clicking the blue <strong>Actions</strong> button in the upper right, then choosing <strong>Delete</strong>.  From there, follow the instructions to confirm your intention to delete the instance.  (This screen snippet is from the instance created in lab 1, but the process to delete the instance is the same.) </p>
 <p><img src="../lab/cloud/lab2/create110.png" width="1389" height="482" /></p>
 </li>
@@ -10515,7 +10515,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="s">      ingestionKey: \${LOG_INGESTION_KEY}</span>
 <span class="s">      port: 6514</span>
 <span class="s">  env:</span>
-<span class="s">    firstname: Prince William</span>
+<span class="s">    firstname: Lab 3 Student</span>
 <span class="s">    interval: \&quot;30\&quot;</span>
 <span class="s">  volumes:</span>
 <span class="s">    data:</span>
@@ -10637,12 +10637,12 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <p><img src="../lab/cloud/lab3/create108.png" width="1343" height="279" /></p>
 </li>
 <li>
-<p>Now that you have attached the disk volume, startup continues and completes. Within your IBM Log Analysis Dashboard you should be able to see some messages greeting King Charles and some messages greeting Queen Camilla- this is data written from your earlier instances from labs 1 and 2.  (You may need to scroll up to find them.) Then, this instance will provide similar greetings to Prince William- this provides a demonstration of successfully reusing a data volume to provide data persistence across different virtual server instances. </p>
+<p>Now that you have attached the disk volume, startup continues and completes. Within your IBM Log Analysis Dashboard you should be able to see some messages greeting <em>Lab 1 Student</em> and some messages greeting <em>Lab 2 Student</em>- this is data written from your earlier instances from labs 1 and 2.  (You may need to scroll up to find them.) Then, this instance will provide similar greetings to <em>Lab 3 Student</em>- this provides a demonstration of successfully reusing a data volume to provide data persistence across different virtual server instances. </p>
 <p>If something went wrong in your setup of the contract that the hyper protect <abbr title="a running instance of an OCI image.">container</abbr> runtime detects, your instance will automatically be stopped in five minutes.  So if you receive no messages within five minutes of starting your instance, it is time to contact your instructor.</p>
 </li>
 <li>
 <p>Delete your instance.</p>
-<p>Your instance either started successfully- as evidenced by the display of earlier greetings to King Charles and Queen Camilla and then periodic greetings to Prince William, or it failed to start successfully.  In either case you will want to delete your instance at this point.  Future labs will use the data volume that you created, but your current instance is no longer needed- in fact, leaving it around hinders subsequent labs-  you won't be able to reuse your disk volume if it is still attached to this instance. </p>
+<p>Your instance either started successfully- as evidenced by the display of earlier greetings to <em>Lab 1 Student</em> and <em>Lab 2 Student</em> and then periodic greetings to <em>Lab 3 Student</em>, or it failed to start successfully.  In either case you will want to delete your instance at this point.  Future labs will use the data volume that you created, but your current instance is no longer needed- in fact, leaving it around hinders subsequent labs-  you won't be able to reuse your disk volume if it is still attached to this instance. </p>
 <p>The screenshot below shows how you can delete an instance if you are currently displaying it-  by clicking the blue <strong>Actions</strong> button in the upper right, then choosing <strong>Delete</strong>.  From there, follow the instructions to confirm your intention to delete the instance.  (This screen snippet is from the instance created in lab 1, but the process to delete the instance is the same.) </p>
 <p><img src="../lab/cloud/lab3/create110.png" width="1389" height="482" /></p>
 </li>
@@ -10788,7 +10788,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="s">      ingestionKey: \${LOG_INGESTION_KEY}</span>
 <span class="s">      port: 6514</span>
 <span class="s">  env:</span>
-<span class="s">    firstname: Princess Catherine</span>
+<span class="s">    firstname: Lab 4 Student</span>
 <span class="s">    interval: \&quot;30\&quot;</span>
 <span class="s">  volumes:</span>
 <span class="s">    data:</span>
@@ -10953,12 +10953,12 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <p><img src="../lab/cloud/lab4/create108.png" width="1343" height="279" /></p>
 </li>
 <li>
-<p>Now that you have attached the disk volume, startup continues and completes. Within your IBM Log Analysis Dashboard you should be able to see some messages greeting King Charles and some messages greeting Prince William (and maybe with some messages to Queen Camilla- extra credit if you understand why you may or may not see greetings to her)- this is data written from your earlier instances from the first three labs.  (You may need to scroll up to find them.) Then, this instance will provide similar greetings to Princess Catherine- this provides a demonstration of successfully reusing a data volume to provide data persistence across different virtual server instances. </p>
+<p>Now that you have attached the disk volume, startup continues and completes. Within your IBM Log Analysis Dashboard you should be able to see some messages greeting <em>Lab 1 Student</em> and some messages greeting <em>Lab 3 Student</em> (and maybe with some messages to <em>Lab 2 Student</em>- extra credit if you understand why you may or may not see greetings to her)- this is data written from your earlier instances from the first three labs.  (You may need to scroll up to find them.) Then, this instance will provide similar greetings to <em>Lab 4 Student</em>- this provides a demonstration of successfully reusing a data volume to provide data persistence across different virtual server instances. </p>
 <p>If something went wrong in your setup of the contract that the hyper protect <abbr title="a running instance of an OCI image.">container</abbr> runtime detects, your instance will automatically be stopped in five minutes.  So if you receive no messages within five minutes of starting your instance, it is time to contact your instructor.</p>
 </li>
 <li>
 <p>Delete your instance.</p>
-<p>Your instance either started successfully- as evidenced by the display of earlier greetings to King Charles and Prince William and then periodic greetings to Princess Catherine, or it failed to start successfully.  In either case you will want to delete your instance at this point.  </p>
+<p>Your instance either started successfully- as evidenced by the display of earlier greetings to <em>Lab 1 Student</em> and <em>Lab 3 Student</em> and then periodic greetings to <em>Lab 4 Student</em>, or it failed to start successfully.  In either case you will want to delete your instance at this point.  </p>
 <p>The screenshot below shows how you can delete an instance if you are currently displaying it-  by clicking the blue <strong>Actions</strong> button in the upper right, then choosing <strong>Delete</strong>.  From there, follow the instructions to confirm your intention to delete the instance.  (This screen snippet is from the instance created in lab 1, but the process to delete the instance is the same.) </p>
 <p><img src="../lab/cloud/lab4/create110.png" width="1389" height="482" /></p>
 </li>

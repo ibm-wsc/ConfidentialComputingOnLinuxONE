@@ -1677,7 +1677,7 @@
 
 <h1 id="create-contract-for-grep11-server">Create Contract for <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server<a class="headerlink" href="#create-contract-for-grep11-server" title="Permanent link">&para;</a></h1>
 <h2 id="overview-of-this-section">Overview of this section<a class="headerlink" href="#overview-of-this-section" title="Permanent link">&para;</a></h2>
-<p>IBM provides the <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr> feature on z15 and newer generations of its IBM zSystems and LinuxONE servers.  Currently, that's z15 and LinuxONE III for the "z15" generation and z16 and LinuxONE Emperor 4 for the "z16" generation.</p>
+<p>IBM provides the <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr> feature on z15 and newer generations of its IBM Z and LinuxONE servers.  Currently, that's z15 and LinuxONE III for the "z15" generation and z16 and LinuxONE Emperor 4 for the "z16" generation.</p>
 <p>You could create your own <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-enabled KVM guests and run a workload in it without Hyper Protect Virtual Servers 2.1.4.  However, there's non-trivial work involved in setting this up.  HPVS 2.1.4 has done that hard work for you, and provided a KVM guest image that will run your application workload as an <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr>-compliant (again, think "Docker" in the popular vernacular) <abbr title="a running instance of an OCI image.">container</abbr> within the HPVS 2.1.4 KVM guest.  There is still some work involved in setting up the contract that HPVS 2.1.4 expects- but this is work closer to the <em>application</em> or <em>business</em> level. There is also added value in HPVS 2.1.4 in areas such as:</p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> logging</li>
@@ -1941,7 +1941,7 @@
 <span class="s">ST                     = Virginia</span>
 <span class="s">L                      = Herndon</span>
 <span class="s">O                      = IBM</span>
-<span class="s">OU                     = Washington Systems Center - IBM zSystems and LinuxONE</span>
+<span class="s">OU                     = Washington Systems Center - IBM Z and LinuxONE</span>
 <span class="s">CN                     = WSC $(whoami) HPVS CA</span>
 <span class="s">emailAddress           = student@notreal.email.com</span>
 
@@ -1978,11 +1978,11 @@
         Serial Number:
             61:1d:d1:10:f4:34:bd:84:7b:ca:0b:59:2b:cf:1e:e2:16:5a:01:5c
         Signature Algorithm: sha256WithRSAEncryption
-        Issuer: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM zSystems and LinuxONE, CN = WSC student02 HPVS CA, emailAddress = student@notreal.email.com.com
+        Issuer: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM Z and LinuxONE, CN = WSC student02 HPVS CA, emailAddress = student@notreal.email.com.com
         Validity
             Not Before: Feb 14 14:36:41 2023 GMT
             Not After : Mar 15 14:36:41 2024 GMT
-        Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM zSystems and LinuxONE, CN = WSC student02 HPVS CA, emailAddress = student@notreal.email.com
+        Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM Z and LinuxONE, CN = WSC student02 HPVS CA, emailAddress = student@notreal.email.com
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
                 RSA Public-Key: (2048 bit)
@@ -2087,7 +2087,7 @@
 <span class="s">ST = Virginia</span>
 <span class="s">L  = Herndon</span>
 <span class="s">O  = IBM  </span>
-<span class="s">OU = Washington Systems Center - IBM zSystems and LinuxONE</span>
+<span class="s">OU = Washington Systems Center - IBM Z and LinuxONE</span>
 
 <span class="s">CN = \$ENV::COMMON_NAME</span>
 
@@ -2153,7 +2153,7 @@
 <span class="s">ST = Virginia</span>
 <span class="s">L  = Herndon</span>
 <span class="s">O  = IBM  </span>
-<span class="s">OU = Washington Systems Center - IBM zSystems and LinuxONE</span>
+<span class="s">OU = Washington Systems Center - IBM Z and LinuxONE</span>
 <span class="s">CN = \${ENV::COMMON_NAME}</span>
 
 <span class="s">[ server ]</span>
@@ -2181,7 +2181,7 @@
 <details class="- example">
 <summary>Example output from certificate creation</summary>
 <div class="highlight"><pre><span></span><code>Signature ok
-subject=C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM zSystems and LinuxONE, CN = 172.16.0.61
+subject=C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM Z and LinuxONE, CN = 172.16.0.61
 Getting CA Private Key
 </code></pre></div>
 </details>
@@ -2198,11 +2198,11 @@ Getting CA Private Key
         Version: 3 (0x2)
         Serial Number: 8086 (0x1f96)
         Signature Algorithm: sha256WithRSAEncryption
-        Issuer: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM zSystems and LinuxONE, CN = WSC student02 HPVS CA, emailAddress = student@notreal.email.com.com
+        Issuer: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM Z and LinuxONE, CN = WSC student02 HPVS CA, emailAddress = student@notreal.email.com.com
         Validity
             Not Before: Feb 14 14:47:20 2023 GMT
             Not After : Mar 10 14:47:20 2024 GMT
-        Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM zSystems and LinuxONE, CN = 172.16.0.61
+        Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM Z and LinuxONE, CN = 172.16.0.61
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
                 RSA Public-Key: (2048 bit)
@@ -2330,7 +2330,7 @@ Getting CA Private Key
 <span class="s">cn = &quot;c16client&quot;</span>
 
 <span class="s"># The organizational unit of the subject.</span>
-<span class="s">unit = &quot;IBM WSC zSystems and LinuxONE&quot;</span>
+<span class="s">unit = &quot;IBM WSC IBM Z and LinuxONE&quot;</span>
 
 <span class="s"># The organization of the subject</span>
 <span class="s">organization = &quot;IBM WSC&quot;</span>
@@ -2380,7 +2380,7 @@ Getting CA Private Key
 <summary>Example <abbr title="certificate signing request">CSR</abbr> info</summary>
 <div class="highlight"><pre><span></span><code>PKCS #10 Certificate Request Information:
         Version: 1
-        Subject: DC=bczkvm,C=US,ST=Virginia,L=Herndon,O=IBM WSC,OU=IBM WSC zSystems and LinuxONE,CN=c16client
+        Subject: DC=bczkvm,C=US,ST=Virginia,L=Herndon,O=IBM WSC,OU=IBM WSC IBM Z and LinuxONE,CN=c16client
         Subject Public Key Algorithm: RSA
         Algorithm Security Level: High (3072 bits)
             Modulus (bits 3072):
@@ -2508,11 +2508,11 @@ chown<span class="w"> </span><span class="si">${</span><span class="nv">student<
 <div class="highlight"><pre><span></span><code>X.509 Certificate Information:
         Version: 3
         Serial Number (hex): 6c8e1ecbc1ee385c441c03bd1dd64759641c5073
-        Issuer: DC=hpvs1,C=US,ST=Virginia,L=Herndon,O=IBM WSC zSystems and LinuxONE,OU=IBM WSC,CN=c16server CA
+        Issuer: DC=hpvs1,C=US,ST=Virginia,L=Herndon,O=IBM WSC IBM Z and LinuxONE,OU=IBM WSC,CN=c16server CA
         Validity:
             Not Before: Tue Feb 14 15:41:45 UTC 2023
             Not After: Mon Dec 11 15:41:45 UTC 2023
-        Subject: DC=bczkvm,C=US,ST=Virginia,L=Herndon,O=IBM WSC,OU=IBM WSC zSystems and LinuxONE,CN=c16client
+        Subject: DC=bczkvm,C=US,ST=Virginia,L=Herndon,O=IBM WSC,OU=IBM WSC IBM Z and LinuxONE,CN=c16client
         Subject Public Key Algorithm: RSA
         Algorithm Security Level: High (3072 bits)
             Modulus (bits 3072):
@@ -3020,7 +3020,7 @@ Max brk space used 0
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 25, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 16, 2023</span>
       
         <br>
         Created:
