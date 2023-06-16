@@ -58,6 +58,7 @@ nav:
     - IBM Cloud-based labs cleanup: lab/cloud/cleanup/cleanup.md
     
   - Locally Building docs: localdocbuild.md
+  - Additional Resources: additionalResources.md
 
 theme:
   favicon: images/HPVS2.1.xGraphic.png
