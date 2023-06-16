@@ -1,6 +1,6 @@
 # Confidential Computing LinuxONE Workshop
 
-Welcome to our Confidential Computing LinuxONE workshop. Organizations can leverage secure execution to protect Linux® workloads on IBM zSystems and LinuxONE. This workshop will cover how to get started with this technology on-premises using Hyper Protect Virtual Servers 2.1.x.
+Welcome to our Confidential Computing LinuxONE workshop. Organizations can leverage secure execution to protect Linux® workloads on IBM Z and LinuxONE. This workshop will cover how to get started with this technology on-premises using Hyper Protect Virtual Servers 2.1.x.
 
 ## Agenda
 

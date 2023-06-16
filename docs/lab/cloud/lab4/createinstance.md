@@ -74,13 +74,13 @@ These instructions assume you are logged in to the IBM Cloud Web UI.  If not, pl
 
     <img src="../create108.png" width="1343" height="279" />
 
-1. Now that you have attached the disk volume, startup continues and completes. Within your IBM Log Analysis Dashboard you should be able to see some messages greeting King Charles and some messages greeting Prince William (and maybe with some messages to Queen Camilla- extra credit if you understand why you may or may not see greetings to her)- this is data written from your earlier instances from the first three labs.  (You may need to scroll up to find them.) Then, this instance will provide similar greetings to Princess Catherine- this provides a demonstration of successfully reusing a data volume to provide data persistence across different virtual server instances. 
+1. Now that you have attached the disk volume, startup continues and completes. Within your IBM Log Analysis Dashboard you should be able to see some messages greeting *Lab 1 Student* and some messages greeting *Lab 3 Student* (and maybe with some messages to *Lab 2 Student*- extra credit if you understand why you may or may not see greetings to her)- this is data written from your earlier instances from the first three labs.  (You may need to scroll up to find them.) Then, this instance will provide similar greetings to *Lab 4 Student*- this provides a demonstration of successfully reusing a data volume to provide data persistence across different virtual server instances. 
 
     If something went wrong in your setup of the contract that the hyper protect container runtime detects, your instance will automatically be stopped in five minutes.  So if you receive no messages within five minutes of starting your instance, it is time to contact your instructor.
 
 1. Delete your instance.
 
-    Your instance either started successfully- as evidenced by the display of earlier greetings to King Charles and Prince William and then periodic greetings to Princess Catherine, or it failed to start successfully.  In either case you will want to delete your instance at this point.  
+    Your instance either started successfully- as evidenced by the display of earlier greetings to *Lab 1 Student* and *Lab 3 Student* and then periodic greetings to *Lab 4 Student*, or it failed to start successfully.  In either case you will want to delete your instance at this point.  
 
     The screenshot below shows how you can delete an instance if you are currently displaying it-  by clicking the blue **Actions** button in the upper right, then choosing **Delete**.  From there, follow the instructions to confirm your intention to delete the instance.  (This screen snippet is from the instance created in lab 1, but the process to delete the instance is the same.) 
 

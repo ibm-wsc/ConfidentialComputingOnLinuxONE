@@ -160,7 +160,7 @@
           ingestionKey: \${LOG_INGESTION_KEY}
           port: 6514
       env:
-        firstname: Prince William
+        firstname: Lab 3 Student
         interval: \"30\"
       volumes:
         data:

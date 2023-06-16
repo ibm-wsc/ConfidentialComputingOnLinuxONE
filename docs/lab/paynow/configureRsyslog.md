@@ -302,7 +302,7 @@ In real world practice, for external, customer-facing applications an enterprise
 
 	[ dn ]
 	C = US
-	O = IBM WSC zSystems and LinuxONE
+	O = IBM WSC IBM Z and LinuxONE
 	CN = CA for rsyslog for SE-enabled KVM guests
 
 	EOF
@@ -336,7 +336,7 @@ In real world practice, for external, customer-facing applications an enterprise
 
 		```
 		Certificate request self-signature ok
-		subject=C = US, O = IBM WSC zSystems and LinuxONE, CN = CA for rsyslog for SE-enabled KVM guests
+		subject=C = US, O = IBM WSC IBM Z and LinuxONE, CN = CA for rsyslog for SE-enabled KVM guests
 		```
 
 ## Create certificate and key for your rsyslog service
@@ -426,7 +426,7 @@ The process is the same as what you just went through for creating your CA for s
 					Serial Number:
 						72:1b:54:77:9d:c9:28:b0:7c:f0:b8:d6:dc:24:e1:b1:60:fa:59:f7
 					Signature Algorithm: sha256WithRSAEncryption
-					Issuer: C = US, O = IBM WSC zSystems and LinuxONE, CN = CA for rsyslog for SE-enabled KVM guests
+					Issuer: C = US, O = IBM WSC IBM Z and LinuxONE, CN = CA for rsyslog for SE-enabled KVM guests
 					Validity
 						Not Before: Feb 14 01:18:18 2023 GMT
 						Not After : Feb 14 01:18:18 2024 GMT
@@ -479,7 +479,7 @@ The process is the same as what you just went through for creating your CA for s
 						X509v3 Subject Key Identifier: 
 							CC:01:AD:BA:8C:5F:31:B9:58:A9:2D:4E:05:C7:B1:B7:82:10:90:05
 						X509v3 Authority Key Identifier: 
-							DirName:/C=US/O=IBM WSC zSystems and LinuxONE/CN=CA for rsyslog for SE-enabled KVM guests
+							DirName:/C=US/O=IBM WSC IBM Z and LinuxONE/CN=CA for rsyslog for SE-enabled KVM guests
 							serial:0B:4A:84:C6:84:00:F8:7F:B7:0A:F0:82:FD:4E:C1:F2:99:C2:63:BC
 				Signature Algorithm: sha256WithRSAEncryption
 				Signature Value:

@@ -64,13 +64,13 @@ These instructions assume you are logged in to the IBM Cloud Web UI.  If not, pl
 
 1. Verify that your instance came up successfully.
 
-    Within a couple of minutes of starting your instance, you should see many messages appear in your IBM Log Analysis Dashboard.  After startup completes, you should see some simple messages every thirty seconds greeting King Charles and telling him what time it is. Our workload is rather simple isn't it, but it is useful for demonstrating disk persistence. 
+    Within a couple of minutes of starting your instance, you should see many messages appear in your IBM Log Analysis Dashboard.  After startup completes, you should see some simple messages every thirty seconds greeting _Lab 1 Student_ and telling them what time it is. Our workload is rather simple isn't it, but it is useful for demonstrating disk persistence. 
 
     If something went wrong in your setup of the contract that the hyper protect container runtime detects, your instance will automatically be stopped in five minutes.  So if you receive no messages within five minutes of starting your instance, it is time to contact your instructor.
 
 1. Delete your instance.
 
-    Your instance either started successfully- as evidenced by greetings to King Charles, or it failed to start successfully.  In either case you will want to delete your instance at this point.  Future labs will use the data volume that you created, but your current instance is no longer needed- in fact, leaving it around hinders subsequent labs-  you won't be able to reuse your disk volume if it is still attached to this instance. 
+    Your instance either started successfully- as evidenced by greetings to _Lab 1 Student_, or it failed to start successfully.  In either case you will want to delete your instance at this point.  Future labs will use the data volume that you created, but your current instance is no longer needed- in fact, leaving it around hinders subsequent labs-  you won't be able to reuse your disk volume if it is still attached to this instance. 
 
     The screenshot below shows how you can delete this instance if you are currently displaying it-  by clicking the blue **Actions** button in the upper right, then choosing **Delete**.  From there, follow the instructions to confirm your intention to delete the instance.  
 

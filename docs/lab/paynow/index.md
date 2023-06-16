@@ -7,13 +7,13 @@
   <figcaption>PayNow Demo Lab Architecture</figcaption>
 </figure>
 
-Hyper Protect Virtual Servers 2.1.4 provides an IBM-provided and -supported Secure Execution-enabled KVM image that runs on a Linux LPAR on an IBM zSystems or LinuxONE server. 
+Hyper Protect Virtual Servers 2.1.4 provides an IBM-provided and -supported Secure Execution-enabled KVM image that runs on a Linux LPAR on an IBM Z or LinuxONE server. 
 
 Hyper Protect Virtual Servers (HPVS) requires you to specify your workload via a "contract" that you define. 
 
 Within the contract you specify an OCI-compliant image that provides your workload.
 
-For our lab this LPAR is running RHEL 8.5.  You can use any distribution on IBM zSystems or LinuxONE that supports Secure Execution- i.e., recent versions of Ubuntu and SUSE as well as RHEL.
+For our lab this LPAR is running RHEL 8.5.  You can use any distribution on IBM Z or LinuxONE that supports Secure Execution- i.e., recent versions of Ubuntu and SUSE as well as RHEL.
 
 In the lab, you will run the a demonstration application called the *PayNow Demo* in two places-  you will run it once in a standard KVM guest, and you will run it once in an HPVS KVM guest protected by Secure Execution.
 

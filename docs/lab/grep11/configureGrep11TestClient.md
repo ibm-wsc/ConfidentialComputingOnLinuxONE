@@ -444,7 +444,7 @@ Create a configuration file to avoid interrogation by _openssl_:
    ST                     = Virginia
    L                      = Herndon
    O                      = IBM
-   OU                     = Washington Systems Center - IBM zSystems and LinuxONE
+   OU                     = Washington Systems Center - IBM IBM Z and LinuxONE
    CN                     = Lab Student
    emailAddress           = student@not.real.email.com
 
@@ -478,7 +478,7 @@ It will look like this:
       Certificate Request:
           Data:
               Version: 1 (0x0)
-              Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM zSystems and LinuxONE, CN = Lab Student, emailAddress = student@not.real.email.com
+              Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM IBM Z and LinuxONE, CN = Lab Student, emailAddress = student@not.real.email.com
               Subject Public Key Info:
                   Public Key Algorithm: rsaEncryption
                       Public-Key: (2048 bit)
@@ -559,7 +559,7 @@ Create the certificate for the client:
 
       ```
       Signature ok
-      subject=C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM zSystems and LinuxONE, CN = Lab Student, emailAddress = student@not.real.email.com
+      subject=C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM IBM Z and LinuxONE, CN = Lab Student, emailAddress = student@not.real.email.com
       Getting CA Private Key
       ```
 
@@ -578,11 +578,11 @@ Display the certificate before sending it to the client:
               Serial Number:
                   79:dd:5b:25:cc:24:f9:71:e5:e0:71:23:db:f8:9e:b8:92:b9:2d:1a
               Signature Algorithm: sha256WithRSAEncryption
-              Issuer: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM zSystems and LinuxONE, CN = WSC student02 HPVS CA, emailAddress = student@notreal.email.com.com
+              Issuer: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM IBM Z and LinuxONE, CN = WSC student02 HPVS CA, emailAddress = student@notreal.email.com.com
               Validity
                   Not Before: Feb 15 16:07:56 2023 GMT
                   Not After : Dec 12 16:07:56 2023 GMT
-              Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM zSystems and LinuxONE, CN = Lab Student, emailAddress = student@not.real.email.com
+              Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM IBM Z and LinuxONE, CN = Lab Student, emailAddress = student@not.real.email.com
               Subject Public Key Info:
                   Public Key Algorithm: rsaEncryption
                       RSA Public-Key: (2048 bit)

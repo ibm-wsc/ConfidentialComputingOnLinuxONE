@@ -2,7 +2,7 @@
 
 ## Overview of this section
 
-IBM provides the Secure Execution feature on z15 and newer generations of its IBM zSystems and LinuxONE servers.  Currently, that's z15 and LinuxONE III for the "z15" generation and z16 and LinuxONE Emperor 4 for the "z16" generation.
+IBM provides the Secure Execution feature on z15 and newer generations of its IBM Z and LinuxONE servers.  Currently, that's z15 and LinuxONE III for the "z15" generation and z16 and LinuxONE Emperor 4 for the "z16" generation.
 
 You could create your own Secure Execution-enabled KVM guests and run a workload in it without Hyper Protect Virtual Servers 2.1.4.  However, there's non-trivial work involved in setting this up.  HPVS 2.1.4 has done that hard work for you, and provided a KVM guest image that will run your application workload as an OCI-compliant (again, think "Docker" in the popular vernacular) container within the HPVS 2.1.4 KVM guest.  There is still some work involved in setting up the contract that HPVS 2.1.4 expects- but this is work closer to the _application_ or _business_ level. There is also added value in HPVS 2.1.4 in areas such as:
 
@@ -287,7 +287,7 @@ In this section, you'll set up the material to enable the GREP11 Server's role a
 	ST                     = Virginia
 	L                      = Herndon
 	O                      = IBM
-	OU                     = Washington Systems Center - IBM zSystems and LinuxONE
+	OU                     = Washington Systems Center - IBM Z and LinuxONE
 	CN                     = WSC $(whoami) HPVS CA
 	emailAddress           = student@notreal.email.com
 
@@ -329,11 +329,11 @@ In this section, you'll set up the material to enable the GREP11 Server's role a
 				Serial Number:
 					61:1d:d1:10:f4:34:bd:84:7b:ca:0b:59:2b:cf:1e:e2:16:5a:01:5c
 				Signature Algorithm: sha256WithRSAEncryption
-				Issuer: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM zSystems and LinuxONE, CN = WSC student02 HPVS CA, emailAddress = student@notreal.email.com.com
+				Issuer: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM Z and LinuxONE, CN = WSC student02 HPVS CA, emailAddress = student@notreal.email.com.com
 				Validity
 					Not Before: Feb 14 14:36:41 2023 GMT
 					Not After : Mar 15 14:36:41 2024 GMT
-				Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM zSystems and LinuxONE, CN = WSC student02 HPVS CA, emailAddress = student@notreal.email.com
+				Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM Z and LinuxONE, CN = WSC student02 HPVS CA, emailAddress = student@notreal.email.com
 				Subject Public Key Info:
 					Public Key Algorithm: rsaEncryption
 						RSA Public-Key: (2048 bit)
@@ -441,7 +441,7 @@ In this section, you'll set up the material to enable the GREP11 Server's role a
 	ST = Virginia
 	L  = Herndon
 	O  = IBM  
-	OU = Washington Systems Center - IBM zSystems and LinuxONE
+	OU = Washington Systems Center - IBM Z and LinuxONE
 
 	CN = \$ENV::COMMON_NAME
 
@@ -511,7 +511,7 @@ In this section, you'll set up the material to enable the GREP11 Server's role a
 	ST = Virginia
 	L  = Herndon
 	O  = IBM  
-	OU = Washington Systems Center - IBM zSystems and LinuxONE
+	OU = Washington Systems Center - IBM Z and LinuxONE
 	CN = \${ENV::COMMON_NAME}
 
 	[ server ]
@@ -542,7 +542,7 @@ In this section, you'll set up the material to enable the GREP11 Server's role a
 
 		```
 		Signature ok
-		subject=C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM zSystems and LinuxONE, CN = 172.16.0.61
+		subject=C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM Z and LinuxONE, CN = 172.16.0.61
 		Getting CA Private Key
 		```
 
@@ -563,11 +563,11 @@ In this section, you'll set up the material to enable the GREP11 Server's role a
 				Version: 3 (0x2)
 				Serial Number: 8086 (0x1f96)
 				Signature Algorithm: sha256WithRSAEncryption
-				Issuer: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM zSystems and LinuxONE, CN = WSC student02 HPVS CA, emailAddress = student@notreal.email.com.com
+				Issuer: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM Z and LinuxONE, CN = WSC student02 HPVS CA, emailAddress = student@notreal.email.com.com
 				Validity
 					Not Before: Feb 14 14:47:20 2023 GMT
 					Not After : Mar 10 14:47:20 2024 GMT
-				Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM zSystems and LinuxONE, CN = 172.16.0.61
+				Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Center - IBM Z and LinuxONE, CN = 172.16.0.61
 				Subject Public Key Info:
 					Public Key Algorithm: rsaEncryption
 						RSA Public-Key: (2048 bit)
@@ -704,7 +704,7 @@ In this section, you'll set up the material to enable the GREP11 Server's role a
 	cn = "c16client"
 
 	# The organizational unit of the subject.
-	unit = "IBM WSC zSystems and LinuxONE"
+	unit = "IBM WSC IBM Z and LinuxONE"
 
 	# The organization of the subject
 	organization = "IBM WSC"
@@ -760,7 +760,7 @@ In this section, you'll set up the material to enable the GREP11 Server's role a
 		```
 		PKCS #10 Certificate Request Information:
 				Version: 1
-				Subject: DC=bczkvm,C=US,ST=Virginia,L=Herndon,O=IBM WSC,OU=IBM WSC zSystems and LinuxONE,CN=c16client
+				Subject: DC=bczkvm,C=US,ST=Virginia,L=Herndon,O=IBM WSC,OU=IBM WSC IBM Z and LinuxONE,CN=c16client
 				Subject Public Key Algorithm: RSA
 				Algorithm Security Level: High (3072 bits)
 					Modulus (bits 3072):
@@ -898,11 +898,11 @@ In this section, you'll set up the material to enable the GREP11 Server's role a
 		X.509 Certificate Information:
 				Version: 3
 				Serial Number (hex): 6c8e1ecbc1ee385c441c03bd1dd64759641c5073
-				Issuer: DC=hpvs1,C=US,ST=Virginia,L=Herndon,O=IBM WSC zSystems and LinuxONE,OU=IBM WSC,CN=c16server CA
+				Issuer: DC=hpvs1,C=US,ST=Virginia,L=Herndon,O=IBM WSC IBM Z and LinuxONE,OU=IBM WSC,CN=c16server CA
 				Validity:
 					Not Before: Tue Feb 14 15:41:45 UTC 2023
 					Not After: Mon Dec 11 15:41:45 UTC 2023
-				Subject: DC=bczkvm,C=US,ST=Virginia,L=Herndon,O=IBM WSC,OU=IBM WSC zSystems and LinuxONE,CN=c16client
+				Subject: DC=bczkvm,C=US,ST=Virginia,L=Herndon,O=IBM WSC,OU=IBM WSC IBM Z and LinuxONE,CN=c16client
 				Subject Public Key Algorithm: RSA
 				Algorithm Security Level: High (3072 bits)
 					Modulus (bits 3072):

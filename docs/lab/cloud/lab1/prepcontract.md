@@ -79,7 +79,7 @@
            data:
              seed: seed-supplied-by-env-persona
          env:
-           firstname: King Charles
+           firstname: Lab 1 Student
            interval: "30"
        workload: |
          type: workload

@@ -153,7 +153,7 @@
         data:
           seed: seed-supplied-by-env-persona
       env:
-        firstname: Queen Camilla
+        firstname: Lab 2 Student
         interval: "30"
     EOF
     ```

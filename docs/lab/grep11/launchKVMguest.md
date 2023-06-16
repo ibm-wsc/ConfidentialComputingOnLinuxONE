@@ -146,7 +146,7 @@ b. If you are not on an instructor-provided system or we did not have a chance t
       ```
       *
       *  IBM Washington Systems Center (WSC)   .....
-      *    IBM zSystems and LinuxONE          C C  /
+      *    IBM Z and LinuxONE                 C C  /
       *                                      /<   /
       *                       ___ __________/_#__=o
       *                      /(- /(\_\________   \
@@ -161,7 +161,7 @@ b. If you are not on an instructor-provided system or we did not have a chance t
       *  KVM Hypervisor for Blockchain  \    \    \
       *       and Hyper Protect          \    \    \
       *       and Digital Assets          \____\____\
-      *    on IBM zSystems and LinuxONE ____\_\__\_\
+      *    on IBM Z and LinuxONE        ____\_\__\_\
       *                                /`   /`     o\
       *           "It's alive!"        |___ |_______|..o-o-o-(#)
       *

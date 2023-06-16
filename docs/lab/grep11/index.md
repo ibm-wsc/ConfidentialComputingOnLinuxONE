@@ -7,13 +7,13 @@
   <figcaption>Confidential Computing Lab Architecture</figcaption>
 </figure>
 
-Hyper Protect Virtual Servers 2.1.4 provides an IBM-provided and -supported Secure Execution-enabled KVM image that runs on a Linux LPAR on an IBM zSystems or LinuxONE server. 
+Hyper Protect Virtual Servers 2.1.4 provides an IBM-provided and -supported Secure Execution-enabled KVM image that runs on a Linux LPAR on an IBM Z or LinuxONE server. 
 
 Hyper Protect Virtual Servers allows you to specify your workload via a "contract" that you define. 
 
 Within the contract you specify an OCI-compliant image that provides your workload.
 
-For our lab this LPAR is running RHEL 8.5.  You can use any distribution on IBM zSystems or LinuxONE that supports Secure Execution- i.e., recent versions of Ubuntu and SUSE as well as RHEL.
+For our lab this LPAR is running RHEL 8.5.  You can use any distribution on IBM Z or LinuxONE that supports Secure Execution- i.e., recent versions of Ubuntu and SUSE as well as RHEL.
 
 The Hyper Protect Virtual Servers 2.1.4 product provides a component, Crypto Express Network API for Secure Execution Enclaves (CENA4SEE) 1.1.1.4, that runs as an appliance in a Secure Service Container (SSC) LPAR that has direct-attached Crypto Express cards.  CENA4SEE also provides a GREP11 Server OCI image that communicates with the CENA4SEE appliance. 
 

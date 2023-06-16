@@ -2,7 +2,7 @@
 
 ## Overview of this section
 
-IBM provides the Secure Execution feature on z15 and newer generations of its IBM zSystems and LinuxONE servers.  Currently, that's z15 and LinuxONE III for the "z15" generation and z16 and LinuxONE Emperor 4 for the "z16" generation.
+IBM provides the Secure Execution feature on z15 and newer generations of its IBM Z and LinuxONE servers.  Currently, that's z15 and LinuxONE III for the "z15" generation and z16 and LinuxONE Emperor 4 for the "z16" generation.
 
 You could create your own Secure Execution-enabled KVM guests and run a workload in it without Hyper Protect Virtual Servers 2.1.4.  However, there's non-trivial work involved in setting this up.  HPVS 2.1.4 has done that hard work for you, and provided a KVM guest image that will run your application workload as an OCI-compliant (again, think "Docker" in the popular vernacular) container within the HPVS 2.1.4 KVM guest.  There is still some work involved in setting up the contract that HPVS 2.1.4 expects- but this is work closer to the _application_ or _business_ level. There is also added value in HPVS 2.1.4 in areas such as:
 

@@ -141,7 +141,7 @@
           ingestionKey: \${LOG_INGESTION_KEY}
           port: 6514
       env:
-        firstname: Princess Catherine
+        firstname: Lab 4 Student
         interval: \"30\"
       volumes:
         data:
