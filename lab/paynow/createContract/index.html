@@ -320,6 +320,18 @@
 
 
   <li class="md-tabs__item">
+    <a href="../../../additionalResources/" class="md-tabs__link">
+      Additional Resources
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
     <a href="../../../print_page/" class="md-tabs__link">
       Print Site
     </a>
@@ -1507,6 +1519,21 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../additionalResources/" class="md-nav__link">
+        Additional Resources
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../print_page/" class="md-nav__link">
         Print Site
       </a>
@@ -1636,7 +1663,7 @@
 <h1 id="create-contract-for-hpvs-guest">Create contract for HPVS guest<a class="headerlink" href="#create-contract-for-hpvs-guest" title="Permanent link">&para;</a></h1>
 <h2 id="overview-of-this-section">Overview of this section<a class="headerlink" href="#overview-of-this-section" title="Permanent link">&para;</a></h2>
 <p>IBM provides the <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr> feature on z15 and newer generations of its IBM Z and LinuxONE servers.  Currently, that's z15 and LinuxONE III for the "z15" generation and z16 and LinuxONE Emperor 4 for the "z16" generation.</p>
-<p>You could create your own <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-enabled KVM guests and run a workload in it without Hyper Protect Virtual Servers 2.1.4.  However, there's non-trivial work involved in setting this up.  HPVS 2.1.4 has done that hard work for you, and provided a KVM guest image that will run your application workload as an <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr>-compliant (again, think "Docker" in the popular vernacular) <abbr title="a running instance of an OCI image.">container</abbr> within the HPVS 2.1.4 KVM guest.  There is still some work involved in setting up the contract that HPVS 2.1.4 expects- but this is work closer to the <em>application</em> or <em>business</em> level. There is also added value in HPVS 2.1.4 in areas such as:</p>
+<p>You could create your own <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-enabled KVM guests and run a workload in it without Hyper Protect Virtual Servers 2.1.4.1.  However, there's non-trivial work involved in setting this up.  HPVS 2.1.4.1 has done that hard work for you, and provided a KVM guest image that will run your application workload as an <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr>-compliant (again, think "Docker" in the popular vernacular) <abbr title="a running instance of an OCI image.">container</abbr> within the HPVS 2.1.4.1 KVM guest.  There is still some work involved in setting up the contract that HPVS 2.1.4.1 expects- but this is work closer to the <em>application</em> or <em>business</em> level. There is also added value in HPVS 2.1.4.1 in areas such as:</p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> logging</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> attestation</li>
@@ -1653,10 +1680,10 @@
 </ul>
 <p>Then, you could imagine the following scenario taking place:</p>
 <ol>
-<li>application owner can encrypt their piece of the contract such that it can only be decrypted within the HPVS 2.1.4 runtime</li>
+<li>application owner can encrypt their piece of the contract such that it can only be decrypted within the HPVS 2.1.4.1 runtime</li>
 <li>application owner passes their encrypted piece of the contract to the <em>systems administrator</em></li>
 <li>the <em>systems administrator</em> encrypts their own section</li>
-<li>the <em>systems administrator</em> combines the two sections and signs the resultant contract so that it can be verified by the HPVS 2.1.4 runtime.</li>
+<li>the <em>systems administrator</em> combines the two sections and signs the resultant contract so that it can be verified by the HPVS 2.1.4.1 runtime.</li>
 </ol>
 <div class="admonition question">
 <p class="admonition-title">Your inquiring mind may say, well that's all well and good, but what about the disk storage of the machine?</p>
@@ -1669,7 +1696,7 @@
 <p>Switch to your home directory:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>
 </code></pre></div>
-<p>Create a directory structure for creating an HPVS 2.1.4 contract:</p>
+<p>Create a directory structure for creating an HPVS 2.1.4.1 contract:</p>
 <div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>contract/paynow/<span class="o">{</span>environment,workload/compose<span class="o">}</span>
 </code></pre></div>
 <p>Now see the directory structure you just created:</p>
@@ -1734,9 +1761,9 @@ It will be called later by another script.  Comments have been added to help exp
 
 <span class="c1">#</span>
 <span class="c1"># This is the encryption certificate for Hyper Protect Container Runtime and it is</span>
-<span class="c1"># provided with the Hyper Protect Virtual Servers v2.1.4 product</span>
+<span class="c1"># provided with the Hyper Protect Virtual Servers v2.1.4.1 product</span>
 <span class="c1">#</span>
-<span class="l l-Scalar l-Scalar-Plain">CONTRACT_KEY=/data/lab/hpvs214Certs/ibm-hyper-protect-container-runtime-23.3.0-encrypt.crt</span>
+<span class="l l-Scalar l-Scalar-Plain">CONTRACT_KEY=/data/lab/hpvs2141Certs/ibm-hyper-protect-container-runtime-23.4.0-encrypt.crt</span>
 
 <span class="c1">#</span>
 <span class="c1"># This variable holds a random password:</span>
@@ -1893,9 +1920,9 @@ order to have your HPVS KVM Guest log to the <abbr title="rsyslog is a system ut
 <span class="l l-Scalar l-Scalar-Plain">cat ./pubSigningKey.yaml &gt;&gt; \${ENV_PLAIN}</span>
 
 <span class="c1"># This is the encryption certificate for Hyper Protect Container Runtime and it is</span>
-<span class="c1"># provided with the Hyper Protect Virtual Servers v2.1.4 product</span>
+<span class="c1"># provided with the Hyper Protect Virtual Servers v2.1.4.1 product</span>
 <span class="c1">#</span>
-<span class="l l-Scalar l-Scalar-Plain">CONTRACT_KEY=/data/lab/hpvs214Certs/ibm-hyper-protect-container-runtime-23.3.0-encrypt.crt</span>
+<span class="l l-Scalar l-Scalar-Plain">CONTRACT_KEY=/data/lab/hpvs2141Certs/ibm-hyper-protect-container-runtime-23.4.0-encrypt.crt</span>
 
 <span class="c1">#</span>
 <span class="c1"># This variable holds a random password:</span>
@@ -2085,7 +2112,7 @@ Max brk space used 0
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 16, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 19, 2023</span>
       
         <br>
         Created:
