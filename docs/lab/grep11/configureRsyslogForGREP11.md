@@ -9,7 +9,7 @@ In the last section you created the following:
 
 In this section you will use your self-signed CA (1 above) to create:
 
-1. client certificate for your (not-yet-created) HPVS 2.1.4 GREP11 Server
+1. client certificate for your (not-yet-created) HPVS 2.1.4.1 GREP11 Server
 
 Your GREP11 Server will be a client to the rsyslog service. (It serves clients who want to make GREP11 requests, but for logging it is a client to the rsyslog service).
 
@@ -72,7 +72,7 @@ Steps 1 through 5 will be performed on the RHEL host.
 	[ dn ]
 	C = US
 	O = IBM WSC IBM Z and LinuxONE
-	CN = SE-enabled HPVS 2.1.4 Grep11 Server
+	CN = SE-enabled HPVS 2.1.4.1 Grep11 Server
 
 	EOF
 	```
@@ -136,7 +136,7 @@ Steps 1 through 5 will be performed on the RHEL host.
 		Certificate Request:
 			Data:
 				Version: 1 (0x0)
-				Subject: C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS 2.1.4 Grep11 Server
+				Subject: C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS 2.1.4.1 Grep11 Server
 				Subject Public Key Info:
 					Public Key Algorithm: rsaEncryption
 						Public-Key: (4096 bit)
@@ -228,7 +228,7 @@ Steps 1 through 5 will be performed on the RHEL host.
 
 		```
 		Certificate request self-signature ok
-		subject=C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS 2.1.4 Grep11 Server
+		subject=C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS 2.1.4.1 Grep11 Server
 		```
 
 11. Your quality control department asks you to display the certificate before sending it to the customer:
@@ -250,7 +250,7 @@ Steps 1 through 5 will be performed on the RHEL host.
 				Validity
 					Not Before: Feb 14 01:58:14 2023 GMT
 					Not After : Feb 14 01:58:14 2024 GMT
-				Subject: C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS 2.1.4 Grep11 Server
+				Subject: C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS 2.1.4.1 Grep11 Server
 				Subject Public Key Info:
 					Public Key Algorithm: rsaEncryption
 						Public-Key: (4096 bit)
@@ -385,7 +385,7 @@ Steps 1 through 5 will be performed on the RHEL host.
 				Validity
 					Not Before: Feb 14 01:58:14 2023 GMT
 					Not After : Feb 14 01:58:14 2024 GMT
-				Subject: C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS 2.1.4 Grep11 Server
+				Subject: C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS 2.1.4.1 Grep11 Server
 				Subject Public Key Info:
 					Public Key Algorithm: rsaEncryption
 						RSA Public-Key: (4096 bit)
@@ -457,8 +457,8 @@ Steps 1 through 5 will be performed on the RHEL host.
 				e1:3d:df:64:bc:91:3d:60:c4:90:8c:3b:6f:0f:11:31:a6:5f:
 				4f:36:5a:69:04:05:88:b5
 		issuer=C = US, O = IBM WSC IBM Z and LinuxONE, CN = CA for rsyslog for SE-enabled KVM guests
-		subject=C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS 2.1.4 Grep11 Server
+		subject=C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS 2.1.4.1 Grep11 Server
 		```
 
-Click the _Next_ link at the bottom of the page to continue to the next part of the lab, where you will create the _contract_ that HPVS 2.1.4 expects, so that you can run your GREP11 Server.
+Click the _Next_ link at the bottom of the page to continue to the next part of the lab, where you will create the _contract_ that HPVS 2.1.4.1 expects, so that you can run your GREP11 Server.
 

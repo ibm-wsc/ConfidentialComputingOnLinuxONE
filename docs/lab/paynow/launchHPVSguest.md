@@ -5,7 +5,7 @@ You will start this section from your login session on the RHEL host. Start from
 
 <img src="../../../images/RHELHost.png" width="351" height="216" >
 
-## launch the HPVS 2.1.4 KVM guest
+## launch the HPVS 2.1.4.1 KVM guest
 
 This fancy command figures out (and displays) the last two characters of your assigned userid and is used in other commands in this section, so that the lab instructions will work for everybody:
 
@@ -15,7 +15,7 @@ This fancy command figures out (and displays) the last two characters of your as
 
    ```
 
-You aren't going to change anything here since it's already been defined for you by the instructors, but you can display the definition of your HPVS 2.1.4 KVM guest for the PayNow demo:
+You aren't going to change anything here since it's already been defined for you by the instructors, but you can display the definition of your HPVS 2.1.4.1 KVM guest for the PayNow demo:
 
    ``` bash
    sudo virsh dumpxml paynowse${suffix}

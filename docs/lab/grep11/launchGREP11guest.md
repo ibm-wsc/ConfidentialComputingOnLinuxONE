@@ -1,6 +1,6 @@
-# Start the GREP11 Server as a Secure Execution-enabled, HPVS 2.1.4 guest
+# Start the GREP11 Server as a Secure Execution-enabled, HPVS 2.1.4.1 guest
 
-## launch the HPVS 2.1.4 GREP11 server
+## launch the HPVS 2.1.4.1 GREP11 server
 
 You will start this section from your login session on the RHEL host, and will soon be instructed to switch to your Ubuntu KVM guest session.
 But until then, start from this familiar window or tab:
@@ -13,7 +13,7 @@ This fancy command figures out the last two characters of your assigned userid a
    suffix=$(temp=$(whoami) && echo ${temp: -2})
    ```
 
-You aren't going to change anything here since it's already been defined for you by the instructors, but you can display the KVM guest definition of your HPVS 2.1.4 GREP11 Server:
+You aren't going to change anything here since it's already been defined for you by the instructors, but you can display the KVM guest definition of your HPVS 2.1.4.1 GREP11 Server:
 
    ``` bash
    sudo virsh dumpxml grep11se${suffix}
@@ -1005,4 +1005,4 @@ There are a lot of messages logged, a veritable trove of treasure for the curiou
       Feb 14 17:39:15 ubuntu2204 systemd[1439]:  Finished Online ext4 Metadata Check for All Filesystems.
       ```
 
-*Congratulations!* You have reached a significant milestone in the lab.  You have successfully configured and launched your HPVS 2.1.4 GREP11 Server. Now all that is left is to test its functionality with some sample GREP11 client code.  You will set that up on your Ubuntu KVM guest.  Click _Next_ at the bottom right of the page to continue.
+*Congratulations!* You have reached a significant milestone in the lab.  You have successfully configured and launched your HPVS 2.1.4.1 GREP11 Server. Now all that is left is to test its functionality with some sample GREP11 client code.  You will set that up on your Ubuntu KVM guest.  Click _Next_ at the bottom right of the page to continue.
