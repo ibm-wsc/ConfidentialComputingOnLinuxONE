@@ -4,7 +4,7 @@
 
 IBM provides the Secure Execution feature on z15 and newer generations of its IBM Z and LinuxONE servers.  Currently, that's z15 and LinuxONE III for the "z15" generation and z16 and LinuxONE Emperor 4 for the "z16" generation.
 
-You could create your own Secure Execution-enabled KVM guests and run a workload in it without Hyper Protect Virtual Servers 2.1.4.1.  However, there's non-trivial work involved in setting this up.  HPVS 2.1.4.1 has done that hard work for you, and provided a KVM guest image that will run your application workload as an OCI-compliant (again, think "Docker" in the popular vernacular) container within the HPVS 2.1.4.1 KVM guest.  There is still some work involved in setting up the contract that HPVS 2.1.4.1 expects- but this is work closer to the _application_ or _business_ level. There is also added value in HPVS 2.1.4.1 in areas such as:
+You could create your own Secure Execution-enabled KVM guests and run a workload in it without Hyper Protect Virtual Servers 2.1.5.  However, there's non-trivial work involved in setting this up.  HPVS 2.1.5 has done that hard work for you, and provided a KVM guest image that will run your application workload as an OCI-compliant (again, think "Docker" in the popular vernacular) container within the HPVS 2.1.5 KVM guest.  There is still some work involved in setting up the contract that HPVS 2.1.5 expects- but this is work closer to the _application_ or _business_ level. There is also added value in HPVS 2.1.5 in areas such as:
 
 - [x] logging
 - [ ] attestation
@@ -22,10 +22,10 @@ One of the things we just mentioned in the previous paragraph was _separation of
 
 Then, you could imagine the following scenario taking place:
 
-1. application owner can encrypt their piece of the contract such that it can only be decrypted within the HPVS 2.1.4.1 runtime
+1. application owner can encrypt their piece of the contract such that it can only be decrypted within the HPVS 2.1.5 runtime
 2. application owner passes their encrypted piece of the contract to the _systems administrator_
 3. the _systems administrator_ encrypts their own section
-4. the _systems administrator_ combines the two sections and signs the resultant contract so that it can be verified by the HPVS 2.1.4.1 runtime.
+4. the _systems administrator_ combines the two sections and signs the resultant contract so that it can be verified by the HPVS 2.1.5 runtime.
 
 !!! Question "Your inquiring mind may say, well that's all well and good, but what about the disk storage of the machine?"
 	
@@ -45,7 +45,7 @@ Switch to your home directory:
    cd ${HOME}
    ```
 
-Create a directory structure for creating an HPVS 2.1.4.1 contract:
+Create a directory structure for creating an HPVS 2.1.5 contract:
 
    ``` bash
    mkdir -p contract/paynow/{environment,workload/compose}
@@ -137,9 +137,9 @@ Create the convenience script:
    
    #
    # This is the encryption certificate for Hyper Protect Container Runtime and it is
-   # provided with the Hyper Protect Virtual Servers v2.1.4.1 product
+   # provided with the Hyper Protect Virtual Servers v2.1.5 product
    #
-   CONTRACT_KEY=/data/lab/hpvs2141Certs/ibm-hyper-protect-container-runtime-23.4.0-encrypt.crt
+   CONTRACT_KEY=/data/lab/hpvs215Certs/ibm-hyper-protect-container-runtime-23.6.1-encrypt.crt
    
    #
    # This variable holds a random password:
@@ -311,9 +311,9 @@ order to have your HPVS KVM Guest log to the rsyslog service that you configured
 		cat ./pubSigningKey.yaml >> \${ENV_PLAIN}
 
 		# This is the encryption certificate for Hyper Protect Container Runtime and it is
-		# provided with the Hyper Protect Virtual Servers v2.1.4.1 product
+		# provided with the Hyper Protect Virtual Servers v2.1.5 product
 		#
-		CONTRACT_KEY=/data/lab/hpvs2141Certs/ibm-hyper-protect-container-runtime-23.4.0-encrypt.crt
+		CONTRACT_KEY=/data/lab/hpvs215Certs/ibm-hyper-protect-container-runtime-23.6.1-encrypt.crt
 
 		#
 		# This variable holds a random password:
@@ -386,7 +386,7 @@ order to have your HPVS KVM Guest log to the rsyslog service that you configured
 		cat workload.yaml env.yaml | tr -d '\n' > contract.yaml
 
 		# Sign the combination from workload and env being approved
-		echo \$( cat contract.yaml | openssl dgst -sha256 -sign private.pem | openssl enc -base64) | tr -d ' ' > signature.yaml
+		echo \$( cat contract.yaml | openssl dgst -sha256 -sign private.pem -passin pass:test1234 | openssl enc -base64) | tr -d ' ' > signature.yaml
 
 		# Create user data and add signature:
 		echo "workload: \$(cat workload.yaml)
@@ -447,8 +447,6 @@ order to have your HPVS KVM Guest log to the rsyslog service that you configured
 	. ./makeContract
 
 	```
-
-You will be prompted to enter a passphrase.  In real life this is something that you would set yourself and have to keep track of.  For this lab, the script has hard-coded `test1234` so you must type that in and press enter when prompted for it.
 
 The script creates the final contract in a file named `user_data.yaml`.  It also displays the contents of this file to the screen. At the bottom of the output you will see an _envWorkloadSignature_ key.  If there is a gobbledygook value (base64-encoded text) associated with this key then things went well.
 

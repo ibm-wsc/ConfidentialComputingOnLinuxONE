@@ -45,7 +45,7 @@ If a value starting with _student_ and ending with a two-digit number is returne
 
 ## Log in to the RHEL 8.5 host
 
-You will now sign into our z15 LPAR running Red Hat Enterprise Linux 8.5.  This is a system that has been enabled for Secure Execution and so can run workloads provisioned with IBM Hyper Protect Virtual Servers 2.1.4.1.  
+You will now sign into our z15 LPAR running Red Hat Enterprise Linux 8.5.  This is a system that has been enabled for Secure Execution and so can run workloads provisioned with IBM Hyper Protect Virtual Servers 2.1.5.  
 
 Use your terminal tab or window set aside for doing work on the RHEL host- the one that (by default) looks like this:
 

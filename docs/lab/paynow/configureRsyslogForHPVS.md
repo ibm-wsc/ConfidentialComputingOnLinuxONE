@@ -7,7 +7,7 @@ In the last section you created the following:
 1. self-signed CA for the rsyslog service
 2. server certificate for the rsyslog service
 
-Your HPVS KVM guest will be a client to the rsyslog service, so in this section you will use your self-signed CA (1 above) to create a client certificate for your soon-to-be-created HPVS 2.1.4.1 KVM guest for the PayNow Demo.
+Your HPVS KVM guest will be a client to the rsyslog service, so in this section you will use your self-signed CA (1 above) to create a client certificate for your soon-to-be-created HPVS 2.1.5 KVM guest for the PayNow Demo.
 
 
 !!! Warning "Please read the instructions carefully"
@@ -457,5 +457,5 @@ Steps 1 through 5 will be performed on the RHEL host.
 		subject=C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS KVM guest for PayNow demo
 		```
 
-Click the _Next_ link at the bottom of the page to continue to the next part of the lab, where you will create the _contract_ that HPVS 2.1.4.1 expects, so that you can run the PayNow demo in your HPVS KVM guest.
+Click the _Next_ link at the bottom of the page to continue to the next part of the lab, where you will create the _contract_ that HPVS 2.1.5 expects, so that you can run the PayNow demo in your HPVS KVM guest.
 
