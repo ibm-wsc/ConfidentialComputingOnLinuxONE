@@ -92,7 +92,7 @@
         archive: \$(\${LAB_TAR} -czv -C compose . | base64 \${LAB_WRAP})" > \${WORKLOAD_PLAIN}
     
     # Download certificate to encrypt contract for Hyper Protect Container Runtime:
-    HPCR_rev=10
+    HPCR_rev=11
     CONTRACT_KEY=./ibm-hyper-protect-container-runtime-1-0-s390x-\${HPCR_rev}-encrypt.crt
     curl https://cloud.ibm.com/media/docs/downloads/hyper-protect-container-runtime/ibm-hyper-protect-container-runtime-1-0-s390x-\${HPCR_rev}-encrypt.crt > \${CONTRACT_KEY}
     
