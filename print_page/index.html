@@ -10113,7 +10113,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <p><img src="../lab/cloud/lab1/create040.png" width="846" height="842" /></p>
 </li>
 <li>
-<p>Give your instance a name in the <em>Name</em> field in the <em>Details</em> section.  We chose <em>lab-was-hpvs-lab1</em> in the screen shot below.  Then, it is very important to select the <em>Version</em> that ends in "<em>-10</em>"- you may have to select the field, then hover over the second entry to confirm that <em>ibm-hyper-protect-<abbr title="a running instance of an OCI image.">container</abbr>-runtime-1-0-s390x-10</em> is selected.  The screen widget may be sized such that you cannot distinguish between the image ending in <em>-9</em> and the one ending in <em>-10</em> without the benefit of the tool tip that appears when you hover the mouse for a bit. Hopefully this screen snippet clarifies this:</p>
+<p>Give your instance a name in the <em>Name</em> field in the <em>Details</em> section.  We chose <em>lab-was-hpvs-lab1</em> in the screen shot below.  Then, it is very important to select the <em>Version</em> that ends in "<em>-11</em>"- you may have to select the field, then hover over the entry to confirm that <em>ibm-hyper-protect-<abbr title="a running instance of an OCI image.">container</abbr>-runtime-1-0-s390x-11</em> is selected.  The screen widget may be sized such that you cannot distinguish between the image ending in <em>-10</em> and the one ending in <em>-11</em> without the benefit of the tool tip that appears when you hover the mouse for a bit. Hopefully this screen snippet clarifies this:</p>
 <p><img src="../lab/cloud/lab1/create050.png" width="1160" height="852" /></p>
 </li>
 <li>
@@ -10249,7 +10249,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="s">    archive: \$(\${LAB_TAR} -czv -C compose . | base64 \${LAB_WRAP})&quot; &gt; \${WORKLOAD_PLAIN}</span>
 
 <span class="s"># Download certificate to encrypt contract for Hyper Protect Container Runtime:</span>
-<span class="s">HPCR_rev=10</span>
+<span class="s">HPCR_rev=11</span>
 <span class="s">CONTRACT_KEY=./ibm-hyper-protect-container-runtime-1-0-s390x-\${HPCR_rev}-encrypt.crt</span>
 <span class="s">curl https://cloud.ibm.com/media/docs/downloads/hyper-protect-container-runtime/ibm-hyper-protect-container-runtime-1-0-s390x-\${HPCR_rev}-encrypt.crt &gt; \${CONTRACT_KEY}</span>
 
@@ -10339,7 +10339,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <p><img src="../lab/cloud/lab2/create040.png" width="846" height="842" /></p>
 </li>
 <li>
-<p>Give your instance a name in the <em>Name</em> field in the <em>Details</em> section.  We chose <em>lab-was-hpvs-lab2</em> in the screen shot below.  Then, it is very important to select the <em>Version</em> that ends in "<em>-10</em>"- you may have to select the field, then hover over the second entry to confirm that <em>ibm-hyper-protect-<abbr title="a running instance of an OCI image.">container</abbr>-runtime-1-0-s390x-10</em> is selected.  The screen widget may be sized such that you cannot distinguish between the image ending in <em>-9</em> and the one ending in <em>-10</em> without the benefit of the tool tip that appears when you hover the mouse for a bit. Hopefully this screen snippet clarifies this:</p>
+<p>Give your instance a name in the <em>Name</em> field in the <em>Details</em> section.  We chose <em>lab-was-hpvs-lab2</em> in the screen shot below.  Then, it is very important to select the <em>Version</em> that ends in "<em>-11</em>"- you may have to select the field, then hover over the entry to confirm that <em>ibm-hyper-protect-<abbr title="a running instance of an OCI image.">container</abbr>-runtime-1-0-s390x-11</em> is selected.  The screen widget may be sized such that you cannot distinguish between the image ending in <em>-10</em> and the one ending in <em>-11</em> without the benefit of the tool tip that appears when you hover the mouse for a bit. Hopefully this screen snippet clarifies this:</p>
 <p><img src="../lab/cloud/lab2/create050.png" width="1143" height="843" /></p>
 </li>
 <li>
@@ -10482,7 +10482,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="s">    archive: \$(\$LAB_TAR -czv -C compose . | base64 \${LAB_WRAP})&quot; &gt; \${WORKLOAD_PLAIN}</span>
 
 <span class="s"># Download certificate to encrypt contract for Hyper Protect Container Runtime:</span>
-<span class="s">HPCR_rev=10</span>
+<span class="s">HPCR_rev=11</span>
 <span class="s">CONTRACT_KEY=./ibm-hyper-protect-container-runtime-1-0-s390x-\${HPCR_rev}-encrypt.crt</span>
 <span class="s">curl https://cloud.ibm.com/media/docs/downloads/hyper-protect-container-runtime/ibm-hyper-protect-container-runtime-1-0-s390x-\${HPCR_rev}-encrypt.crt &gt; \${CONTRACT_KEY}</span>
 
@@ -10551,7 +10551,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="s">      seed: seed-supplied-by-env-persona&quot; &gt; \${ENV_PLAIN}</span>
 
 <span class="s"># Download certificate to encrypt contract for Hyper Protect Container Runtime:</span>
-<span class="s">HPCR_rev=10</span>
+<span class="s">HPCR_rev=11</span>
 <span class="s">CONTRACT_KEY=./ibm-hyper-protect-container-runtime-1-0-s390x-\${HPCR_rev}-encrypt.crt</span>
 <span class="s">curl https://cloud.ibm.com/media/docs/downloads/hyper-protect-container-runtime/\$CONTRACT_KEY &gt; \$CONTRACT_KEY</span>
 
@@ -10627,7 +10627,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <p><img src="../lab/cloud/lab3/create040.png" width="846" height="842" /></p>
 </li>
 <li>
-<p>Give your instance a name in the <em>Name</em> field in the <em>Details</em> section.  We chose <em>lab-was-hpvs-lab3</em> in the screen shot below.  Then, it is very important to select the <em>Version</em> that ends in "<em>-10</em>"- you may have to select the field, then hover over the second entry to confirm that <em>ibm-hyper-protect-<abbr title="a running instance of an OCI image.">container</abbr>-runtime-1-0-s390x-10</em> is selected.  The screen widget may be sized such that you cannot distinguish between the image ending in <em>-9</em> and the one ending in <em>-10</em> without the benefit of the tool tip that appears when you hover the mouse for a bit. Hopefully this screen snippet clarifies this:</p>
+<p>Give your instance a name in the <em>Name</em> field in the <em>Details</em> section.  We chose <em>lab-was-hpvs-lab3</em> in the screen shot below.  Then, it is very important to select the <em>Version</em> that ends in "<em>-11</em>"- you may have to select the field, then hover over the second entry to confirm that <em>ibm-hyper-protect-<abbr title="a running instance of an OCI image.">container</abbr>-runtime-1-0-s390x-11</em> is selected.  The screen widget may be sized such that you cannot distinguish between the image ending in <em>-10</em> and the one ending in <em>-11</em> without the benefit of the tool tip that appears when you hover the mouse for a bit. Hopefully this screen snippet clarifies this:</p>
 <p><img src="../lab/cloud/lab3/create050.png" width="1136" height="770" /></p>
 </li>
 <li>
@@ -10770,7 +10770,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="s">    archive: \$(\${LAB_TAR} -czv -C compose . | base64 \${LAB_WRAP})&quot; &gt; \${WORKLOAD_PLAIN}</span>
 
 <span class="s"># Download certificate to encrypt contract for Hyper Protect Container Runtime:</span>
-<span class="s">HPCR_rev=10</span>
+<span class="s">HPCR_rev=11</span>
 <span class="s">CONTRACT_KEY=./ibm-hyper-protect-container-runtime-1-0-s390x-\${HPCR_rev}-encrypt.crt</span>
 <span class="s">curl https://cloud.ibm.com/media/docs/downloads/hyper-protect-container-runtime/ibm-hyper-protect-container-runtime-1-0-s390x-\${HPCR_rev}-encrypt.crt &gt; \${CONTRACT_KEY}</span>
 
@@ -10826,7 +10826,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="s">cat ./pubSigningKey.yaml &gt;&gt; \${ENV_PLAIN}</span>
 
 <span class="s"># Download certificate to encrypt contract for Hyper Protect Container Runtime:</span>
-<span class="s">HPCR_rev=10</span>
+<span class="s">HPCR_rev=11</span>
 <span class="s">CONTRACT_KEY=./ibm-hyper-protect-container-runtime-1-0-s390x-\${HPCR_rev}-encrypt.crt</span>
 <span class="s">curl https://cloud.ibm.com/media/docs/downloads/hyper-protect-container-runtime/\$CONTRACT_KEY &gt; \$CONTRACT_KEY</span>
 
@@ -10943,7 +10943,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <p><img src="../lab/cloud/lab4/create040.png" width="846" height="842" /></p>
 </li>
 <li>
-<p>Give your instance a name in the <em>Name</em> field in the <em>Details</em> section.  We chose <em>lab-was-hpvs-lab4</em> as shown in the screen shot below. Then, it is very important to select the <em>Version</em> that ends in "<em>-10</em>"- you may have to select the field, then hover over the second entry to confirm that <em>ibm-hyper-protect-<abbr title="a running instance of an OCI image.">container</abbr>-runtime-1-0-s390x-10</em> is selected.  The screen widget may be sized such that you cannot distinguish between the image ending in <em>-9</em> and the one ending in <em>-10</em> without the benefit of the tool tip that appears when you hover the mouse for a bit. Hopefully this screen snippet clarifies this:</p>
+<p>Give your instance a name in the <em>Name</em> field in the <em>Details</em> section.  We chose <em>lab-was-hpvs-lab4</em> as shown in the screen shot below. Then, it is very important to select the <em>Version</em> that ends in "<em>-11</em>"- you may have to select the field, then hover over the entry to confirm that <em>ibm-hyper-protect-<abbr title="a running instance of an OCI image.">container</abbr>-runtime-1-0-s390x-11</em> is selected.  The screen widget may be sized such that you cannot distinguish between the image ending in <em>-10</em> and the one ending in <em>-11</em> without the benefit of the tool tip that appears when you hover the mouse for a bit. Hopefully this screen snippet clarifies this:</p>
 <p><img src="../lab/cloud/lab4/create050.png" width="1122" height="760" /></p>
 </li>
 <li>
