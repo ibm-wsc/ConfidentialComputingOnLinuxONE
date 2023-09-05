@@ -1,8 +1,8 @@
-# Demonstrate the protection of the Secure Execution-enabled HPVS 2.1.5 guest
+# Demonstrate the protection of the Secure Execution-enabled HPVS 2.1.6 guest
 
 ## Overview of this section
 
-In this section you will demonstrate the protection offered by the Secure Execution-enabled HPVS 2.1.5 guest in contrast to the ease in which a malicious insider can eavesdrop on a standard KVM guest.
+In this section you will demonstrate the protection offered by the Secure Execution-enabled HPVS 2.1.6 guest in contrast to the ease in which a malicious insider can eavesdrop on a standard KVM guest.
 
 ## Log out of your Ubuntu KVM guest 
 
@@ -52,9 +52,9 @@ Try this command to see how many strings were found in the file:
 
 Your output may differ, but when we tried this command while writing up the lab, we had 2,397,409 strings found in our dump.  Now we didn't dig much deeper than this, but it's possible that a motivated hacker might find something among those millions of strings with which to make mischief.
 
-## Go ahead and try to hack me says the HPVS 2.1.5 guest
+## Go ahead and try to hack me says the HPVS 2.1.6 guest
 
-Try to snoop on your Secure Execution-enabled Hyper Protect Virtual Servers 2.1.5 guest that is running your GREP11 Server. See what happens:
+Try to snoop on your Secure Execution-enabled Hyper Protect Virtual Servers 2.1.6 guest that is running your GREP11 Server. See what happens:
 
    ``` bash
    suffix=$(temp=$(whoami) && echo ${temp: -2}) ; sudo virsh dump grep11se${suffix} grep11se${suffix}.dump

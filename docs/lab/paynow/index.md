@@ -7,7 +7,7 @@
   <figcaption>PayNow Demo Lab Architecture</figcaption>
 </figure>
 
-Hyper Protect Virtual Servers 2.1.5 provides an IBM-provided and -supported Secure Execution-enabled KVM image that runs on a Linux LPAR on an IBM Z or LinuxONE server. 
+Hyper Protect Virtual Servers 2.1.6 provides an IBM-provided and -supported Secure Execution-enabled KVM image that runs on a Linux LPAR on an IBM Z or LinuxONE server. 
 
 Hyper Protect Virtual Servers (HPVS) requires you to specify your workload via a "contract" that you define. 
 
@@ -19,7 +19,7 @@ In the lab, you will run the a demonstration application called the *PayNow Demo
 
 You will access both instances of the PayNow demo from a web browser and enter data representing sensitive information such as name, credit card number, credit card security code, etc.  This should be fictitious data that you make up for learning purposes in the lab.
 
-From each instance of PayNow you will take a memory dump of the KVM guest and by following the lab instructions you will see that an insider attack from a malicious system administrator could extract sensitve data from the standard KVM guest, and then you will see that this insider attack fails when attempted against an HPVS KVM guest, mitigating against the insider attack, thus demonstrating the value of Confidential Computing as implemented by Hyper Protect Virtual Servers 2.1.5.
+From each instance of PayNow you will take a memory dump of the KVM guest and by following the lab instructions you will see that an insider attack from a malicious system administrator could extract sensitve data from the standard KVM guest, and then you will see that this insider attack fails when attempted against an HPVS KVM guest, mitigating against the insider attack, thus demonstrating the value of Confidential Computing as implemented by Hyper Protect Virtual Servers 2.1.6.
 
 Your HPVS KVM guest that will run PayNow will be configured to write log messages to an _rsyslog_ service.  For the lab, you will configure this rsyslog service on the same standard KVM guest that you are using for running the "unprotected" version of PayNow
 
