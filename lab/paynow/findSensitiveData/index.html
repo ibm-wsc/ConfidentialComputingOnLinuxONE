@@ -1559,7 +1559,16 @@
 </code></pre></div>
 <details class="- example">
 <summary>Sample output from dumping your KVM guest</summary>
-<div class="highlight"><pre><span></span><code>
+<div class="highlight"><pre><span></span><code>my guest Pid is 3198082
+[New LWP 3198127]
+[New LWP 3198132]
+[New LWP 3198133]
+[New LWP 3198134]
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library &quot;/lib64/libthread_db.so.1&quot;.
+0x000003ffae7f11f4 in ppoll () from target:/lib64/libc.so.6
+Saved corefile core.3198082
+[Inferior 1 (process 3198082) detached]
 </code></pre></div>
 </details>
 <p>Optional: Display the contents of the script you just ran if you are curious as to how it worked:</p>
@@ -1586,7 +1595,7 @@ chown ${SUDO_USER}:hpvs_students /home/${SUDO_USER}/core.${myPid}
 <p>Pick out sensitive credit information from the core dump:</p>
 <div class="highlight"><pre><span></span><code>strings<span class="w"> </span>core.<span class="si">${</span><span class="nv">myPid</span><span class="si">}</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>creditCard
 </code></pre></div>
-<p>You should recognize the sensitve information that you entered in the PayNow demo app.  This demonstrates how a malicious system administrator on the KVM host can look at sensitive information from a <abbr title="this is a term we use to refer to a KVM guest that is not protected with Secure Execution for Linux">standard KVM guest</abbr>.  An HPVS 2.1.5 KVM guest, which is protected by <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>, prevents this from occurring, as you will see from completing the remainder of this lab.</p>
+<p>You should recognize the sensitve information that you entered in the PayNow demo app.  This demonstrates how a malicious system administrator on the KVM host can look at sensitive information from a <abbr title="this is a term we use to refer to a KVM guest that is not protected with Secure Execution for Linux">standard KVM guest</abbr>.  An HPVS 2.1.6 KVM guest, which is protected by <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>, prevents this from occurring, as you will see from completing the remainder of this lab.</p>
 <p>Please click <em>Next</em> below to continue</p>
 
   <hr>
@@ -1594,7 +1603,7 @@ chown ${SUDO_USER}:hpvs_students /home/${SUDO_USER}/core.${myPid}
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 20, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 5, 2023</span>
       
         <br>
         Created:

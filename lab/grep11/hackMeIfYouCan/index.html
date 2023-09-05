@@ -101,7 +101,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#demonstrate-the-protection-of-the-secure-execution-enabled-hpvs-215-guest" class="md-skip">
+        <a href="#demonstrate-the-protection-of-the-secure-execution-enabled-hpvs-216-guest" class="md-skip">
           Skip to content
         </a>
       
@@ -889,8 +889,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#go-ahead-and-try-to-hack-me-says-the-hpvs-215-guest" class="md-nav__link">
-    Go ahead and try to hack me says the HPVS 2.1.5 guest
+  <a href="#go-ahead-and-try-to-hack-me-says-the-hpvs-216-guest" class="md-nav__link">
+    Go ahead and try to hack me says the HPVS 2.1.6 guest
   </a>
   
 </li>
@@ -1569,8 +1569,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#go-ahead-and-try-to-hack-me-says-the-hpvs-215-guest" class="md-nav__link">
-    Go ahead and try to hack me says the HPVS 2.1.5 guest
+  <a href="#go-ahead-and-try-to-hack-me-says-the-hpvs-216-guest" class="md-nav__link">
+    Go ahead and try to hack me says the HPVS 2.1.6 guest
   </a>
   
 </li>
@@ -1606,9 +1606,9 @@
   
 
 
-<h1 id="demonstrate-the-protection-of-the-secure-execution-enabled-hpvs-215-guest">Demonstrate the protection of the <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-enabled HPVS 2.1.5 guest<a class="headerlink" href="#demonstrate-the-protection-of-the-secure-execution-enabled-hpvs-215-guest" title="Permanent link">&para;</a></h1>
+<h1 id="demonstrate-the-protection-of-the-secure-execution-enabled-hpvs-216-guest">Demonstrate the protection of the <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-enabled HPVS 2.1.6 guest<a class="headerlink" href="#demonstrate-the-protection-of-the-secure-execution-enabled-hpvs-216-guest" title="Permanent link">&para;</a></h1>
 <h2 id="overview-of-this-section">Overview of this section<a class="headerlink" href="#overview-of-this-section" title="Permanent link">&para;</a></h2>
-<p>In this section you will demonstrate the protection offered by the <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-enabled HPVS 2.1.5 guest in contrast to the ease in which a malicious insider can eavesdrop on a <abbr title="this is a term we use to refer to a KVM guest that is not protected with Secure Execution for Linux">standard KVM guest</abbr>.</p>
+<p>In this section you will demonstrate the protection offered by the <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-enabled HPVS 2.1.6 guest in contrast to the ease in which a malicious insider can eavesdrop on a <abbr title="this is a term we use to refer to a KVM guest that is not protected with Secure Execution for Linux">standard KVM guest</abbr>.</p>
 <h2 id="log-out-of-your-ubuntu-kvm-guest">Log out of your Ubuntu KVM guest<a class="headerlink" href="#log-out-of-your-ubuntu-kvm-guest" title="Permanent link">&para;</a></h2>
 <p>All of the work in this section is performed on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5 host, so log out of your Ubuntu KVM guest. You have finished your work in the Ubuntu KVM guest for this lab:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">exit</span>
@@ -1633,8 +1633,8 @@
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>strings<span class="w"> </span><span class="k">$(</span>whoami<span class="k">)</span>.dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>--lines
 </code></pre></div>
 <p>Your output may differ, but when we tried this command while writing up the lab, we had 2,397,409 strings found in our dump.  Now we didn't dig much deeper than this, but it's possible that a motivated hacker might find something among those millions of strings with which to make mischief.</p>
-<h2 id="go-ahead-and-try-to-hack-me-says-the-hpvs-215-guest">Go ahead and try to hack me says the HPVS 2.1.5 guest<a class="headerlink" href="#go-ahead-and-try-to-hack-me-says-the-hpvs-215-guest" title="Permanent link">&para;</a></h2>
-<p>Try to snoop on your <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-enabled Hyper Protect Virtual Servers 2.1.5 guest that is running your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server. See what happens:</p>
+<h2 id="go-ahead-and-try-to-hack-me-says-the-hpvs-216-guest">Go ahead and try to hack me says the HPVS 2.1.6 guest<a class="headerlink" href="#go-ahead-and-try-to-hack-me-says-the-hpvs-216-guest" title="Permanent link">&para;</a></h2>
+<p>Try to snoop on your <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-enabled Hyper Protect Virtual Servers 2.1.6 guest that is running your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server. See what happens:</p>
 <div class="highlight"><pre><span></span><code><span class="nv">suffix</span><span class="o">=</span><span class="k">$(</span><span class="nv">temp</span><span class="o">=</span><span class="k">$(</span>whoami<span class="k">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">temp</span><span class="p">: -2</span><span class="si">}</span><span class="k">)</span><span class="w"> </span><span class="p">;</span><span class="w"> </span>sudo<span class="w"> </span>virsh<span class="w"> </span>dump<span class="w"> </span>grep11se<span class="si">${</span><span class="nv">suffix</span><span class="si">}</span><span class="w"> </span>grep11se<span class="si">${</span><span class="nv">suffix</span><span class="si">}</span>.dump
 </code></pre></div>
 <details class="example">
@@ -1651,7 +1651,7 @@ error: internal error: unable to execute QEMU command &#39;migrate&#39;: protect
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 20, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 5, 2023</span>
       
         <br>
         Created:

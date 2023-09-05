@@ -1562,7 +1562,24 @@
 </code></pre></div>
 <details class="- example">
 <summary>Sample output from dumping your HPVS KVM guest</summary>
-<div class="highlight"><pre><span></span><code>
+<div class="highlight"><pre><span></span><code>my PayNow HPVS guest Pid is 3200448
+[New LWP 3200500]
+[New LWP 3200505]
+[New LWP 3200506]
+[New LWP 3200507]
+[New LWP 3201027]
+[New LWP 3201028]
+[New LWP 3201029]
+[New LWP 3201030]
+[New LWP 3201031]
+[New LWP 3201032]
+[New LWP 3201033]
+[New LWP 3201034]
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library &quot;/lib64/libthread_db.so.1&quot;.
+0x000003ff8e1711f4 in ppoll () from target:/lib64/libc.so.6
+Saved corefile core.3200448
+[Inferior 1 (process 3200448) detached]
 </code></pre></div>
 </details>
 <p>Optional: Display the contents of the script you just ran if you are curious as to how it worked:</p>
@@ -1570,20 +1587,15 @@
 </code></pre></div>
 <details class="- example">
 <summary>Contents of the gcoreMyPaynowGuest.sh script</summary>
-<div class="highlight"><pre><span></span><code>my PayNow HPVS guest Pid is 2122519
-[New LWP 2122558]
-[New LWP 2122563]
-[New LWP 2122564]
-[New LWP 2122565]
-[New LWP 2124052]
-[New LWP 2124054]
-[New LWP 2124056]
-[New LWP 2124057]
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library &quot;/lib64/libthread_db.so.1&quot;.
-0x000003ffb3cf11f4 in ppoll () from target:/lib64/libc.so.6
-Saved corefile core.2122519
-[Inferior 1 (process 2122519) detached]
+<div class="highlight"><pre><span></span><code>#!/bin/sh
+
+myPid=$(ps aux | grep qemu | grep guest=paynowse$(temp=${SUDO_USER} &amp;&amp; echo ${temp: -2}) | awk &#39;{print $2}&#39;)
+
+echo my PayNow HPVS guest Pid is ${myPid}
+
+/opt/rh/gcc-toolset-9/root/usr/bin/gcore ${myPid} 2&gt;/dev/null
+
+chown ${SUDO_USER}:hpvs_students /home/${SUDO_USER}/core.${myPid}
 </code></pre></div>
 </details>
 <p>The script runs with root authority-  it lists processes, grabs the process ID for your HPVS guest running PayNow, takes a core (memory) dump of the process, and then assigns your userid ownership of the dump file.</p>
@@ -1594,7 +1606,7 @@ Saved corefile core.2122519
 <p>Attempt to pick out sensitive credit information from the core dump:</p>
 <div class="highlight"><pre><span></span><code>strings<span class="w"> </span>core.<span class="si">${</span><span class="nv">myHPVSPaynowPid</span><span class="si">}</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>creditCard
 </code></pre></div>
-<p>In contrast to what you saw when performing the above procedure against a <abbr title="this is a term we use to refer to a KVM guest that is not protected with Secure Execution for Linux">standard KVM guest</abbr> that was running the PayNow demo app, this time you do not see any sensitive data, due to the protection offered by Hyper Protect Virtual Servers 2.1.5!! You are protected from malicious insider attacks!</p>
+<p>In contrast to what you saw when performing the above procedure against a <abbr title="this is a term we use to refer to a KVM guest that is not protected with Secure Execution for Linux">standard KVM guest</abbr> that was running the PayNow demo app, this time you do not see any sensitive data, due to the protection offered by Hyper Protect Virtual Servers 2.1.6!! You are protected from malicious insider attacks!</p>
 <p>Please click the <em>Next</em> button at the lower right of the page in order to perform lab cleanup.</p>
 
   <hr>
@@ -1602,7 +1614,7 @@ Saved corefile core.2122519
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 20, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 5, 2023</span>
       
         <br>
         Created:
