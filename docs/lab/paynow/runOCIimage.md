@@ -19,9 +19,9 @@ Your output will look like this:
 ???+ example "Example output"
 
       ```
-      REPOSITORY   TAG       IMAGE ID       CREATED          SIZE
-      paynow       latest    429e779b94ad   12 seconds ago   935MB
-      node         19        7ecdfdb7699d   6 days ago       927MB
+      REPOSITORY   TAG       IMAGE ID       CREATED              SIZE
+      paynow       latest    fd801119534e   About a minute ago   934MB
+      node         19        f2e8386523b1   3 months ago         926MB
       ```
 
 Run the OCI image:

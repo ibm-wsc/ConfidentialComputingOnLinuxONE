@@ -9,10 +9,10 @@ Your window or tab should like like this (unless you customized the profile we p
 
 ## Overview of this page
 
-The HPVS 2.1.5-protected KVM Guest for the PayNow Demo that you will create later in the lab will log its output to an rsyslog service on the Ubuntu KVM guest that you just started at the beginning of the lab. Rsyslog on your Ubuntu KVM guest is currently not set up for this, so you will configure rsyslog in this section of the lab.
+The HPVS 2.1.6-protected KVM Guest for the PayNow Demo that you will create later in the lab will log its output to an rsyslog service on the Ubuntu KVM guest that you just started at the beginning of the lab. Rsyslog on your Ubuntu KVM guest is currently not set up for this, so you will configure rsyslog in this section of the lab.
 
 !!! Note "Logging to IBM Log Analysis on IBM Cloud"
-    You can also log the output of an HPVS 2.1.5 guest to an [IBM Log Analysis instance on IBM Cloud](https://cloud.ibm.com/catalog/services/logdna){target="_blank" rel="noopener"}.  That is not covered in this lab but if you are interested in this, it is covered in the [product documentation](https://www.ibm.com/docs/en/hpvs/2.1.x?topic=servers-logging-hyper-protect-virtual){target="_blank" rel="noopener"}.
+    You can also log the output of an HPVS 2.1.6 guest to an [IBM Log Analysis instance on IBM Cloud](https://cloud.ibm.com/catalog/services/logdna){target="_blank" rel="noopener"}.  That is not covered in this lab but if you are interested in this, it is covered in the [product documentation](https://www.ibm.com/docs/en/hpvs/2.1.x?topic=servers-logging-hyper-protect-virtual){target="_blank" rel="noopener"}.
 
 ## Install rsyslog-gnutls package
 
