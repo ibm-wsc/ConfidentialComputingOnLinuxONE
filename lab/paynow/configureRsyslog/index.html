@@ -17,7 +17,7 @@
         <link rel="next" href="../configureRsyslogForHPVS/">
       
       <link rel="icon" href="../../../images/HPVS2.1.xGraphic.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.11">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.15">
     
     
       
@@ -25,10 +25,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.85bb2934.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.26e3688c.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.a6bdf11c.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ecc896b0.min.css">
       
       
 
@@ -1976,7 +1976,7 @@ logout
 </div>
 </li>
 <li>
-<p>A <abbr title="certification authority">CA</abbr> itself has a certificate that it can send or make available to others (others being people, or computer processes, or whomever). You don't have one yet- all you have is a private key. A certificate signing request (<abbr title="certificate signing request">CSR</abbr>) can be created from a private key- it derives the public key from the private key and creates an object called a Certificate Signing Request (<abbr title="certificate signing request">CSR</abbr>) that contians the public key and other identifying information and can be sent to a <abbr title="certification authority">CA</abbr>. Create your <abbr title="certificate signing request">CSR</abbr>:</p>
+<p>A <abbr title="certification authority">CA</abbr> itself has a certificate that it can send or make available to others (others being people, or computer processes, or whomever). You don't have one yet- all you have is a private key. A certificate signing request (<abbr title="certificate signing request">CSR</abbr>) can be created from a private key- it derives the public key from the private key and creates an object called a Certificate Signing Request (<abbr title="certificate signing request">CSR</abbr>) that contains the public key and other identifying information and can be sent to a <abbr title="certification authority">CA</abbr>. Create your <abbr title="certificate signing request">CSR</abbr>:</p>
 <div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>req<span class="w"> </span>-config<span class="w"> </span>ca.cnf<span class="w"> </span>-key<span class="w"> </span>ca-key.pem<span class="w"> </span>-new<span class="w"> </span>-out<span class="w"> </span>ca-req.csr
 </code></pre></div>
 <div class="admonition info">
@@ -2245,7 +2245,7 @@ rsyslogd  1439          syslog    7u  IPv6  22402      0t0  TCP *:6514 (LISTEN)
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 5, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 7, 2023</span>
       
         <br>
         Created:
@@ -2486,7 +2486,7 @@ rsyslogd  1439          syslog    7u  IPv6  22402      0t0  TCP *:6514 (LISTEN)
     <script id="__config" type="application/json">{"base": "../../..", "features": ["header.autohide", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.footer", "search.share", "navigation.indexes", "announce.dismiss", "content.tabs.link", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.fac441b0.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.b4d07000.min.js"></script>
       
         <script src="../../../js/print-site.js"></script>
       

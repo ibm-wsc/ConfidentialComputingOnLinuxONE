@@ -13,7 +13,7 @@
       
       
       <link rel="icon" href="../images/HPVS2.1.xGraphic.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.11">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.15">
     
     
       
@@ -21,10 +21,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.85bb2934.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.26e3688c.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.a6bdf11c.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ecc896b0.min.css">
       
       
 
@@ -2932,7 +2932,7 @@ logout
 </div>
 </li>
 <li>
-<p>A <abbr title="certification authority">CA</abbr> itself has a certificate that it can send or make available to others (others being people, or computer processes, or whomever). You don't have one yet- all you have is a private key. A certificate signing request (<abbr title="certificate signing request">CSR</abbr>) can be created from a private key- it derives the public key from the private key and creates an object called a Certificate Signing Request (<abbr title="certificate signing request">CSR</abbr>) that contians the public key and other identifying information and can be sent to a <abbr title="certification authority">CA</abbr>. Create your <abbr title="certificate signing request">CSR</abbr>:</p>
+<p>A <abbr title="certification authority">CA</abbr> itself has a certificate that it can send or make available to others (others being people, or computer processes, or whomever). You don't have one yet- all you have is a private key. A certificate signing request (<abbr title="certificate signing request">CSR</abbr>) can be created from a private key- it derives the public key from the private key and creates an object called a Certificate Signing Request (<abbr title="certificate signing request">CSR</abbr>) that contains the public key and other identifying information and can be sent to a <abbr title="certification authority">CA</abbr>. Create your <abbr title="certificate signing request">CSR</abbr>:</p>
 <div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>req<span class="w"> </span>-config<span class="w"> </span>ca.cnf<span class="w"> </span>-key<span class="w"> </span>ca-key.pem<span class="w"> </span>-new<span class="w"> </span>-out<span class="w"> </span>ca-req.csr
 </code></pre></div>
 <div class="admonition info">
@@ -3657,7 +3657,7 @@ subject=C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS KVM guest f
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>
 </code></pre></div>
 <p>Create a directory structure for creating an HPVS 2.1.6 contract:</p>
-<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>contract/paynow/<span class="o">{</span>environment,workload/compose<span class="o">}</span>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>contract/paynow/<span class="o">{</span>environment,workload/play<span class="o">}</span>
 </code></pre></div>
 <p>Now see the directory structure you just created:</p>
 <div class="highlight"><pre><span></span><code>tree<span class="w"> </span>contract
@@ -3667,19 +3667,29 @@ subject=C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS KVM guest f
 <p>Switch to your workload directory:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/contract/paynow/workload
 </code></pre></div>
-<p>HPVS expects the contract to specify an <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> <abbr title="a running instance of an OCI image.">container</abbr> specified by a <em><abbr title="a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.">Docker Compose</abbr></em> file.  The <em><abbr title="a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.">Docker Compose</abbr></em> file specifies an <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> image to run and other information necessary to configure the resulting <abbr title="a running instance of an OCI image.">container</abbr>. Your workload is the PayNow Demo. You created an <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> image for that on your <abbr title="this is a term we use to refer to a KVM guest that is not protected with Secure Execution for Linux">standard KVM guest</abbr> earlier in the lab.  In order to allow tyou to perform the lab without having to have an account at Docker or Quay.io or another image registry service, the instructors have created an <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> image that is hosted in Quay.io and is used for this section of the lab.  This <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> image was created in the exact same way you created the image on your <abbr title="this is a term we use to refer to a KVM guest that is not protected with Secure Execution for Linux">standard KVM guest</abbr>.  </p>
-<h3 id="lab-paynow-createcontract-create-docker-compose-file">Create docker-compose file<a class="headerlink" href="#lab-paynow-createcontract-create-docker-compose-file" title="Permanent link">&para;</a></h3>
-<p>Switch to the directory that will hold your <abbr title="a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.">Docker Compose</abbr> file:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>compose
+<p>HPVS expects the contract to specify an <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> <abbr title="a running instance of an OCI image.">container</abbr> specified by a <em><abbr title="a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.">Docker Compose</abbr></em> file or <em>pod descriptor(s)</em>.  A <em><abbr title="a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.">Docker Compose</abbr></em> file specifies an <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> image to run and other information necessary to configure the resulting <abbr title="a running instance of an OCI image.">container</abbr>. A <em>pod descriptor</em> works much the same way but Hyper Protect supports using one or more <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> images with a <em>pod descriptor</em> as opposed to one image with a <em><abbr title="a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.">Docker Compose</abbr></em> file. Since this makes <em>pod descriptors</em> more versatile, we will be using the new hotness, <em>pod descriptors</em>, in our lab as opposed to the the OG <em><abbr title="a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.">Docker Compose</abbr></em> file format. Having said that, both are currently valid. Your workload is the PayNow Demo. You created an <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> image for that on your <abbr title="this is a term we use to refer to a KVM guest that is not protected with Secure Execution for Linux">standard KVM guest</abbr> earlier in the lab.  In order to allow you to perform the lab without having to have an account at Docker or Quay.io or another image registry service, the instructors have created an <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> image that is hosted in Quay.io and is used for this section of the lab.  This <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> image was created in the exact same way you created the image on your <abbr title="this is a term we use to refer to a KVM guest that is not protected with Secure Execution for Linux">standard KVM guest</abbr>.  </p>
+<h3 id="lab-paynow-createcontract-create-play-subsection">Create play subsection<a class="headerlink" href="#lab-paynow-createcontract-create-play-subsection" title="Permanent link">&para;</a></h3>
+<p>Switch to the directory that will hold your pod descriptors:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>play
 </code></pre></div>
-<p>Create the docker-compose file:</p>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; docker-compose.yml</span>
-<span class="s">version: &#39;3&#39;</span>
-<span class="s">services:</span>
-<span class="s">  paynow:</span>
+<div class="admonition info">
+<p class="admonition-title">Play time</p>
+<p>The <em>pod descriptors</em> use the <code>play</code> subsection which should conjure up thoughts of the <code>podman play kube</code> subcommand.</p>
+</div>
+<p>Create the <em>pod descriptor</em>:</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; pod.yml</span>
+<span class="s">apiVersion: v1</span>
+<span class="s">kind: Pod</span>
+<span class="s">metadata:</span>
+<span class="s">  name: paynow</span>
+<span class="s">spec:</span>
+<span class="s">  containers:</span>
+<span class="s">  - name: paynow</span>
 <span class="s">    image: quay.io/bsilliman/paynow@sha256:b0921f4009b33b926aeae931fef2b0536514e7a62ae013cee6c345b1ac7f11bb</span>
 <span class="s">    ports:</span>
-<span class="s">      - &quot;8443:8443&quot;</span>
+<span class="s">    - containerPort: 8443</span>
+<span class="s">      hostPort: 8443</span>
+<span class="s">  restartPolicy: Always</span>
 <span class="s">EOF</span>
 </code></pre></div>
 <p>Notice the value of the <em>image</em> key.  This is the PayNow Demo image created by the instructor and hosted on Red Hat's Quay.io registry service. </p>
@@ -3695,10 +3705,10 @@ It will be called later by another script.  Comments have been added to help exp
 <span class="l l-Scalar l-Scalar-Plain"># Create the workload section of the contract and add the contents in the workload.yaml file.</span>
 
 <span class="l l-Scalar l-Scalar-Plain">#</span><span class="w"> </span>
-<span class="l l-Scalar l-Scalar-Plain"># The Docker Compose file and all supporting configuration files are assumed to be in the ./compose directory</span>
-<span class="l l-Scalar l-Scalar-Plain"># There should not be any unnecessary files as they will get tarred up and added to the COMPOSE_B64 variable</span>
+<span class="l l-Scalar l-Scalar-Plain"># The pod descriptor and all supporting configuration files are assumed to be in the ./play directory</span>
+<span class="l l-Scalar l-Scalar-Plain"># There should not be any unnecessary files as they will get tarred up and added to the PLAY_B64 variable</span>
 <span class="l l-Scalar l-Scalar-Plain">#</span>
-<span class="l l-Scalar l-Scalar-Plain">COMPOSE_B64=\$(tar -czv -C compose . | base64 -w0)</span>
+<span class="l l-Scalar l-Scalar-Plain">PLAY_B64=\$(tar -czv -C play . | base64 -w0)</span>
 
 <span class="l l-Scalar l-Scalar-Plain">#</span>
 <span class="l l-Scalar l-Scalar-Plain"># This specifies an intermediate file that could be deleted at the end of the script but</span><span class="w"> </span>
@@ -3716,8 +3726,8 @@ It will be called later by another script.  Comments have been added to help exp
 <span class="l l-Scalar l-Scalar-Plain">WORKLOAD=workload.yaml</span>
 
 <span class="l l-Scalar l-Scalar-Plain">echo &quot;  type</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">workload</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">compose</span><span class="p p-Indicator">:</span>
-<span class="w">    </span><span class="nt">archive</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">\${COMPOSE_B64}&quot; &gt; \${WORKLOAD_PLAIN}</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">play</span><span class="p p-Indicator">:</span>
+<span class="w">    </span><span class="nt">archive</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">\${PLAY_B64}&quot; &gt; \${WORKLOAD_PLAIN}</span>
 
 <span class="c1">#</span>
 <span class="c1"># This is the encryption certificate for Hyper Protect Container Runtime and it is</span>
@@ -11387,7 +11397,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
     <script id="__config" type="application/json">{"base": "/ConfidentialComputingOnLinuxONE/", "features": ["header.autohide", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.footer", "search.share", "navigation.indexes", "announce.dismiss", "content.tabs.link", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>
+      <script src="../assets/javascripts/bundle.b4d07000.min.js"></script>
       
         <script src="../js/print-site.js"></script>
       
