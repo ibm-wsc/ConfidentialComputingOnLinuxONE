@@ -312,7 +312,7 @@ In real world practice, for external, customer-facing applications an enterprise
 		
 		Some `openssl` commands have a tendency to ask a bunch of questions which can be tedious and error-prone when typing the answers, but you can avoid that by creating a configuration file that provides the answers and thus avoids the questions.  You'll see this pattern throughout the lab.
 
-5. A CA itself has a certificate that it can send or make available to others (others being people, or computer processes, or whomever). You don't have one yet- all you have is a private key. A certificate signing request (CSR) can be created from a private key- it derives the public key from the private key and creates an object called a Certificate Signing Request (CSR) that contians the public key and other identifying information and can be sent to a CA. Create your CSR:
+5. A CA itself has a certificate that it can send or make available to others (others being people, or computer processes, or whomever). You don't have one yet- all you have is a private key. A certificate signing request (CSR) can be created from a private key- it derives the public key from the private key and creates an object called a Certificate Signing Request (CSR) that contains the public key and other identifying information and can be sent to a CA. Create your CSR:
 
 	``` bash
 	openssl req -config ca.cnf -key ca-key.pem -new -out ca-req.csr

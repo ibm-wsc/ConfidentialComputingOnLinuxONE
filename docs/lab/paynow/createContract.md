@@ -48,7 +48,7 @@ Switch to your home directory:
 Create a directory structure for creating an HPVS 2.1.5 contract:
 
    ``` bash
-   mkdir -p contract/paynow/{environment,workload/compose}
+   mkdir -p contract/paynow/{environment,workload/play}
    ```
 
 Now see the directory structure you just created:
@@ -67,26 +67,36 @@ Switch to your workload directory:
 cd ${HOME}/contract/paynow/workload
 ```
 
-HPVS expects the contract to specify an OCI container specified by a _Docker Compose_ file.  The _Docker Compose_ file specifies an OCI image to run and other information necessary to configure the resulting container. Your workload is the PayNow Demo. You created an OCI image for that on your standard KVM guest earlier in the lab.  In order to allow tyou to perform the lab without having to have an account at Docker or Quay.io or another image registry service, the instructors have created an OCI image that is hosted in Quay.io and is used for this section of the lab.  This OCI image was created in the exact same way you created the image on your standard KVM guest.  
+HPVS expects the contract to specify an OCI container specified by a _Docker Compose_ file or _pod descriptor(s)_.  A _Docker Compose_ file specifies an OCI image to run and other information necessary to configure the resulting container. A _pod descriptor_ works much the same way but Hyper Protect supports using one or more OCI images with a _pod descriptor_ as opposed to one image with a _Docker Compose_ file. Since this makes _pod descriptors_ more versatile, we will be using the new hotness, _pod descriptors_, in our lab as opposed to the the OG _Docker Compose_ file format. Having said that, both are currently valid. Your workload is the PayNow Demo. You created an OCI image for that on your standard KVM guest earlier in the lab.  In order to allow you to perform the lab without having to have an account at Docker or Quay.io or another image registry service, the instructors have created an OCI image that is hosted in Quay.io and is used for this section of the lab.  This OCI image was created in the exact same way you created the image on your standard KVM guest.  
 
-### Create docker-compose file
+### Create play subsection
 
-Switch to the directory that will hold your Docker Compose file:
+Switch to the directory that will hold your pod descriptors:
 
 ``` bash
-cd compose
+cd play
 ```
 
-Create the docker-compose file:
+!!! Info "Play time"
+
+	The _pod descriptors_ use the `play` subsection which should conjure up thoughts of the `podman play kube` subcommand.
+
+Create the _pod descriptor_:
 
 ``` bash
-cat << EOF > docker-compose.yml
-version: '3'
-services:
-  paynow:
-    image: quay.io/bsilliman/paynow@sha256:b0921f4009b33b926aeae931fef2b0536514e7a62ae013cee6c345b1ac7f11bb
+cat << EOF > pod.yml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: paynow
+spec:
+  containers:
+  - name: paynow
+	image: quay.io/bsilliman/paynow@sha256:b0921f4009b33b926aeae931fef2b0536514e7a62ae013cee6c345b1ac7f11bb
     ports:
-      - "8443:8443"
+	- containerPort: 8443
+	  hostPort: 8443
+  restartPolicy: Always
 EOF
 ```
 
@@ -111,10 +121,10 @@ Create the convenience script:
    # Create the workload section of the contract and add the contents in the workload.yaml file.
    
    # 
-   # The Docker Compose file and all supporting configuration files are assumed to be in the ./compose directory
-   # There should not be any unnecessary files as they will get tarred up and added to the COMPOSE_B64 variable
+   # The pod descriptor and all supporting configuration files are assumed to be in the ./play directory
+   # There should not be any unnecessary files as they will get tarred up and added to the PLAY_B64 variable
    #
-   COMPOSE_B64=\$(tar -czv -C compose . | base64 -w0)
+   PLAY_B64=\$(tar -czv -C play . | base64 -w0)
    
    #
    # This specifies an intermediate file that could be deleted at the end of the script but 
@@ -132,8 +142,8 @@ Create the convenience script:
    WORKLOAD=workload.yaml
    
    echo "  type: workload
-     compose:
-       archive: \${COMPOSE_B64}" > \${WORKLOAD_PLAIN}
+     play:
+       archive: \${PLAY_B64}" > \${WORKLOAD_PLAIN}
    
    #
    # This is the encryption certificate for Hyper Protect Container Runtime and it is
