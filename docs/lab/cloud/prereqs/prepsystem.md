@@ -10,6 +10,7 @@ The lab authors have tested the lab instructions using the following prep system
 | Linux | Apple M1 Silicon | running as Ubuntu guest under MacOS |
 | Linux | s390x | Hyper Protect Virtual Server for Classic free instance on IBM Cloud |
 | Linux | x86-64 | Virtual Server for Classic paid instance on IBM Cloud |
+| Windows 11 | x86-64 | using Windows Subsystem for Linux 2 with Ubuntu 22.04 installed |
 
 ## Use your workstation if it is running Linux or MacOS
 
@@ -19,9 +20,9 @@ If you already have access to a Linux system or to a MacOS system we encourage y
 
 If you have a Windows system you could try one of the following options.
 
-!!! Warning
+!!! Caution
 
-    Neither of the following two options have been tested on Windows by the lab instructors.
+    Although it should be a viable option, Option 1 has not been tested by the lab instructors.
 
 1. You could run a Linux virtual machine under a virtualization hypervisor such as VMware or VirtualBox
 

@@ -15,56 +15,78 @@
          
     If any of the above commands do not display a value after the _is_ then revisit [the section on setting environment variables](../prereqs/setup.md){target="_blank" rel="noopener"}.
              
-## Make a new directory for Lab 3
+## Make a new directory hierarchy for Lab 3
 
 1. Make a fresh directory structure and change in to it:
 
     ``` bash
-    mkdir -p ${LAB_WORKDIR}/lab3 && cd ${LAB_WORKDIR}/lab3
+    mkdir -p ${LAB_WORKDIR}/lab3/{environment,workload/play} && cd ${LAB_WORKDIR}/lab3
     ```
 
-## Create a Docker compose file to specify the application workload
+## Create a Pod descriptor to specify the application workload
 
-
-1. Create the following directory structure and then switch to the directory that will hold the docker compose file:
+1. Switch to the  directory which will hold a Pod descriptor and then switch to it:
 
     ``` bash
-    mkdir -p {environment,workload/compose} && cd workload/compose
+    cd workload/play
     ```
 
-2. Create the docker compose file (Note: this is the same docker compose file from the first two labs):
+2. Create the Pod descriptor::
 
     ``` bash
-    cat << EOF > docker-compose.yml    
-    services:
-      demo1:
-        image: docker.io/busybox@sha256:3614ca5eacf0a3a1bcc361c939202a974b4902b9334ff36eb29ffe9011aaad83
-        volumes:
-          - /mnt/data:/data
-        environment:
-          - NAME=\${firstname:-World}
-          - INTERVAL=\${interval:-60}
-        command: >
-          sh -c '
-            mkdir -p /data/cloudlabs ; env | tee -a /data/cloudlabs/env.out; cat /data/cloudlabs/env.out; head /data/cloudlabs/greetings.out ; tail /data/cloudlabs/greetings.out ; while true ; do sleep \$\${INTERVAL} ; echo hello \$\${NAME} the time is \$\$(date) | tee -a /data/cloudlabs/greetings.out ; done
-          '
+    cat << EOF > play.yml    
+      play:
+        resources:
+          - apiVersion: v1
+            kind: Pod
+            metadata:
+              name: busybox
+            spec:
+              containers:
+              - name: main
+                image: docker.io/library/busybox@sha256:3614ca5eacf0a3a1bcc361c939202a974b4902b9334ff36eb29ffe9011aaad83
+                command: ["/bin/sh", "-c"]
+                args:
+                - mkdir -p /data/cloudlabs ;
+                  env | tee -a /data/cloudlabs/env.out ;
+                  cat /data/cloudlabs/env.out ;
+                  head -20 /data/cloudlabs/env.out ;
+                  head -20 /data/cloudlabs/greetings.out ;
+                  tail -20 /data/cloudlabs/greetings.out ;
+                  while true ;
+                  do echo Hi \${name:-World} the time is \$(date) | tee -a /data/cloudlabs/greetings.out ;
+                  sleep \${interval:-60} ; 
+                  done
+                envFrom:
+                - configMapRef:
+                    name: contract.config.map
+                    optional: false
+                volumeMounts: 
+                  - mountPath: /data
+                    name: data-vol
+                    readOnly: false
+              restartPolicy: Never
+              volumes:
+                - hostPath:
+                    path: /mnt/data
+                    type: Directory
+                  name: data-vol
     EOF
     ```
 
-3. **Optional**.  This command will show that you are indeed using the same docker compose file in this lab (lab 3)  as you did in the previous lab (lab 2).  We could have had you just copy that file over instead of using the *cat* command in the prior step.
+3. Display the file's content.
+
+    ``` bash
+    cat play.yml
+    ```
+
+1. **Optional**.  This command will show that you are indeed using the same pod descriptor in this lab (lab3)  as you did in the previous lab (lab2).  We could have had you just copy that file over instead of using the *cat* command in the prior step.
 
 
     ``` bash
     diff --report-identical-files \
-      ${HOME}/cloudlabs/lab2/workload/compose/docker-compose.yml \
-      ${HOME}/cloudlabs/lab3/workload/compose/docker-compose.yml
-    ```
-
-
-4. Display the file's content.
-
-    ``` bash
-    cat docker-compose.yml
+      ${LAB_WORKDIR}/lab2/workload/play/play.yml \
+      ${LAB_WORKDIR}/lab3/workload/play/play.yml
     ```
 
 5. Change to the directory one level higher than your current location (and display it):
@@ -89,11 +111,10 @@
           filesystem: ext4
           mount: /mnt/data
           seed: seed-supplied-by-workload-persona
-      compose:
-        archive: \$(\$LAB_TAR -czv -C compose . | base64 \${LAB_WRAP})" > \${WORKLOAD_PLAIN}
+    \$(cat play/play.yml)" > \${WORKLOAD_PLAIN}
     
     # Download certificate to encrypt contract for Hyper Protect Container Runtime:
-    HPCR_rev=11
+    HPCR_rev=12
     CONTRACT_KEY=./ibm-hyper-protect-container-runtime-1-0-s390x-\${HPCR_rev}-encrypt.crt
     curl https://cloud.ibm.com/media/docs/downloads/hyper-protect-container-runtime/ibm-hyper-protect-container-runtime-1-0-s390x-\${HPCR_rev}-encrypt.crt > \${CONTRACT_KEY}
     
@@ -160,14 +181,14 @@
           ingestionKey: \${LOG_INGESTION_KEY}
           port: 6514
       env:
-        firstname: Lab 3 Student
+        name: Lab 3 Student
         interval: \"30\"
       volumes:
         data:
           seed: seed-supplied-by-env-persona" > \${ENV_PLAIN}
     
     # Download certificate to encrypt contract for Hyper Protect Container Runtime:
-    HPCR_rev=11
+    HPCR_rev=12
     CONTRACT_KEY=./ibm-hyper-protect-container-runtime-1-0-s390x-\${HPCR_rev}-encrypt.crt
     curl https://cloud.ibm.com/media/docs/downloads/hyper-protect-container-runtime/\$CONTRACT_KEY > \$CONTRACT_KEY
     
@@ -228,4 +249,3 @@
 
 Proceed to the next section to create your Hyper Protect Virtual Servers for IBM Cloud VPC instance.
 
-  

@@ -15,45 +15,69 @@
 
     If any of the above commands do not display a value after the _is_ then revisit [the section on setting environment variables](../prereqs/setup.md){target="_blank" rel="noopener"}.
 
-## Make a new directory for Lab 1
+## Make the directory hierarchy for Lab 1
 
 1. Make a fresh directory structure and change in to it:
 
     ``` bash
-    mkdir -p ${LAB_WORKDIR}/lab1 && cd ${LAB_WORKDIR}/lab1
+    mkdir -p ${LAB_WORKDIR}/lab1/play && cd ${LAB_WORKDIR}/lab1
     ```
 
-## Create a Docker compose file to specify the application workload
+## Create a Pod descriptor to specify the application workload
 
-1. Create another directory to hold a Docker compose file and switch to it:
+1. Switch to the directory that will hold a Pod descriptor:
 
     ``` bash
-    mkdir compose && cd compose
+    cd play
     ```
 
-2. Create the docker compose file:
+2. Create the Pod descriptor::
 
     ``` bash
-    cat << EOF > docker-compose.yml    
-    services:
-      demo1:
-        image: docker.io/busybox@sha256:3614ca5eacf0a3a1bcc361c939202a974b4902b9334ff36eb29ffe9011aaad83
-        volumes:
-          - /mnt/data:/data
-        environment:
-          - NAME=\${firstname:-World}
-          - INTERVAL=\${interval:-60}
-        command: >
-          sh -c '
-            mkdir -p /data/cloudlabs ; env | tee -a /data/cloudlabs/env.out; cat /data/cloudlabs/env.out; head /data/cloudlabs/greetings.out ; tail /data/cloudlabs/greetings.out ; while true ; do sleep \$\${INTERVAL} ; echo hello \$\${NAME} the time is \$\$(date) | tee -a /data/cloudlabs/greetings.out ; done
-          '
+    cat << EOF > play.yml    
+      play:
+        resources:
+          - apiVersion: v1
+            kind: Pod
+            metadata:
+              name: busybox
+            spec:
+              containers:
+              - name: main
+                image: docker.io/library/busybox@sha256:3614ca5eacf0a3a1bcc361c939202a974b4902b9334ff36eb29ffe9011aaad83
+                command: ["/bin/sh", "-c"]
+                args:
+                - mkdir -p /data/cloudlabs ;
+                  env | tee -a /data/cloudlabs/env.out ;
+                  cat /data/cloudlabs/env.out ;
+                  head -20 /data/cloudlabs/env.out ;
+                  head -20 /data/cloudlabs/greetings.out ;
+                  tail -20 /data/cloudlabs/greetings.out ;
+                  while true ;
+                  do echo Hi \${name:-World} the time is \$(date) | tee -a /data/cloudlabs/greetings.out ;
+                  sleep \${interval:-60} ; 
+                  done
+                envFrom:
+                - configMapRef:
+                    name: contract.config.map
+                    optional: false
+                volumeMounts: 
+                  - mountPath: /data
+                    name: data-vol
+                    readOnly: false
+              restartPolicy: Never
+              volumes:
+                - hostPath:
+                    path: /mnt/data
+                    type: Directory
+                  name: data-vol
     EOF
     ```
 
 3. Display the file's content.
 
     ``` bash
-    cat docker-compose.yml
+    cat play.yml
     ```
 
 ## Create the contract
@@ -79,7 +103,7 @@
            data:
              seed: seed-supplied-by-env-persona
          env:
-           firstname: Lab 1 Student
+           name: Lab 1 Student
            interval: "30"
        workload: |
          type: workload
@@ -88,8 +112,7 @@
              filesystem: ext4
              mount: /mnt/data
              seed: seed-supplied-by-workload-persona
-         compose:
-           archive: $(${LAB_TAR} -czv -C compose . | base64 ${LAB_WRAP}) 
+       $(cat play/play.yml)
        EOF
        ```
 

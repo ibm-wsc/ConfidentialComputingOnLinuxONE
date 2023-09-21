@@ -20,11 +20,11 @@ These instructions assume you are logged in to the IBM Cloud Web UI.  If not, pl
 
     <img src="../create030.png" width="801" height="504" />
 
-1. In the *Architecture* section, click the **IBM Z, LinuxONE** tile.  In the *Hosting type* section, click the **Public** tile.  At this point, a *Confidential Computing* toggle should appear.  Click it to select it.  Then, ensure that you select the correct *Zone*- that is, the one for whch you created a subnet earlier (assuming you followed the lab instructions and created only one subnet).   You are not finished filling out this screen yet, but see the below screen snippet for hints:
+1. In the *Architecture* section, click the **IBM Z, LinuxONE** tile.  At this point, a *Confidential Computing* toggle should appear.  Click it to select it.  Then, ensure that you select the correct *Zone*- that is, the one for whch you created a subnet earlier (assuming you followed the lab instructions and created only one subnet).   You are not finished filling out this screen yet, but see the below screen snippet for hints:
 
     <img src="../create040.png" width="846" height="842" />
 
-1. Give your instance a name in the *Name* field in the *Details* section.  We chose *lab-was-hpvs-lab3* in the screen shot below.  Then, it is very important to select the *Version* that ends in "*-11*"- you may have to select the field, then hover over the second entry to confirm that *ibm-hyper-protect-container-runtime-1-0-s390x-11* is selected.  The screen widget may be sized such that you cannot distinguish between the image ending in *-10* and the one ending in *-11* without the benefit of the tool tip that appears when you hover the mouse for a bit. Hopefully this screen snippet clarifies this:
+1. Give your instance a name in the *Name* field in the *Details* section.  We chose *lab-was-hpvs-lab3* in the screen shot below.  Then, it is very important to select the *Version* that ends in "*-12*". If this version is not the default selection, click the **Change image** link to select it. See this screen snippet for guidance:
 
     <img src="../create050.png" width="1136" height="770" />
 
