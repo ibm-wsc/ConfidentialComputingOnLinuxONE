@@ -13,7 +13,7 @@
       
       
       <link rel="icon" href="../images/HPVS2.1.xGraphic.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.15">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.11">
     
     
       
@@ -21,10 +21,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.26e3688c.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.85bb2934.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ecc896b0.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a6bdf11c.min.css">
       
       
 
@@ -9824,15 +9824,20 @@ error: internal error: unable to execute QEMU command &#39;migrate&#39;: protect
 <td>x86-64</td>
 <td>Virtual Server for Classic paid instance on IBM Cloud</td>
 </tr>
+<tr>
+<td>Windows 11</td>
+<td>x86-64</td>
+<td>using Windows Subsystem for Linux 2 with Ubuntu 22.04 installed</td>
+</tr>
 </tbody>
 </table>
 <h2 id="lab-cloud-prereqs-prepsystem-use-your-workstation-if-it-is-running-linux-or-macos">Use your workstation if it is running Linux or MacOS<a class="headerlink" href="#lab-cloud-prereqs-prepsystem-use-your-workstation-if-it-is-running-linux-or-macos" title="Permanent link">&para;</a></h2>
 <p>If you already have access to a Linux system or to a MacOS system we encourage you to use it as your <em>prep system</em>.  <em>prep system</em> is a term we;ve coined in these labs to refer to the system on which you will create the contracts for your Hyper Protect Virtual Servers instance. This could certainly be your laptop or workstation if you are running a Linux distribution or MacOS.</p>
 <h2 id="lab-cloud-prereqs-prepsystem-if-you-are-running-windows">If you are running Windows<a class="headerlink" href="#lab-cloud-prereqs-prepsystem-if-you-are-running-windows" title="Permanent link">&para;</a></h2>
 <p>If you have a Windows system you could try one of the following options.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Neither of the following two options have been tested on Windows by the lab instructors.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Although it should be a viable option, Option 1 has not been tested by the lab instructors.</p>
 </div>
 <ol>
 <li>
@@ -10094,42 +10099,66 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <p>If any of the above commands do not display a value after the <em>is</em> then revisit <a href="#lab-cloud-prereqs-setup" rel="noopener" target="_blank">the section on setting environment variables</a>.</p>
 </li>
 </ol>
-<h2 id="lab-cloud-lab1-prepcontract-make-a-new-directory-for-lab-1">Make a new directory for Lab 1<a class="headerlink" href="#lab-cloud-lab1-prepcontract-make-a-new-directory-for-lab-1" title="Permanent link">&para;</a></h2>
+<h2 id="lab-cloud-lab1-prepcontract-make-the-directory-hierarchy-for-lab-1">Make the directory hierarchy for Lab 1<a class="headerlink" href="#lab-cloud-lab1-prepcontract-make-the-directory-hierarchy-for-lab-1" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
 <p>Make a fresh directory structure and change in to it:</p>
-<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>/lab1<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>/lab1
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>/lab1/play<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>/lab1
 </code></pre></div>
 </li>
 </ol>
-<h2 id="lab-cloud-lab1-prepcontract-create-a-docker-compose-file-to-specify-the-application-workload">Create a Docker compose file to specify the application workload<a class="headerlink" href="#lab-cloud-lab1-prepcontract-create-a-docker-compose-file-to-specify-the-application-workload" title="Permanent link">&para;</a></h2>
+<h2 id="lab-cloud-lab1-prepcontract-create-a-pod-descriptor-to-specify-the-application-workload">Create a Pod descriptor to specify the application workload<a class="headerlink" href="#lab-cloud-lab1-prepcontract-create-a-pod-descriptor-to-specify-the-application-workload" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
-<p>Create another directory to hold a Docker compose file and switch to it:</p>
-<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>compose<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>compose
+<p>Switch to the directory that will hold a Pod descriptor:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>play
 </code></pre></div>
 </li>
 <li>
-<p>Create the docker compose file:</p>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; docker-compose.yml    </span>
-<span class="s">services:</span>
-<span class="s">  demo1:</span>
-<span class="s">    image: docker.io/busybox@sha256:3614ca5eacf0a3a1bcc361c939202a974b4902b9334ff36eb29ffe9011aaad83</span>
-<span class="s">    volumes:</span>
-<span class="s">      - /mnt/data:/data</span>
-<span class="s">    environment:</span>
-<span class="s">      - NAME=\${firstname:-World}</span>
-<span class="s">      - INTERVAL=\${interval:-60}</span>
-<span class="s">    command: &gt;</span>
-<span class="s">      sh -c &#39;</span>
-<span class="s">        mkdir -p /data/cloudlabs ; env | tee -a /data/cloudlabs/env.out; cat /data/cloudlabs/env.out; head /data/cloudlabs/greetings.out ; tail /data/cloudlabs/greetings.out ; while true ; do sleep \$\${INTERVAL} ; echo hello \$\${NAME} the time is \$\$(date) | tee -a /data/cloudlabs/greetings.out ; done</span>
-<span class="s">      &#39;</span>
+<p>Create the Pod descriptor::</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; play.yml    </span>
+<span class="s">  play:</span>
+<span class="s">    resources:</span>
+<span class="s">      - apiVersion: v1</span>
+<span class="s">        kind: Pod</span>
+<span class="s">        metadata:</span>
+<span class="s">          name: busybox</span>
+<span class="s">        spec:</span>
+<span class="s">          containers:</span>
+<span class="s">          - name: main</span>
+<span class="s">            image: docker.io/library/busybox@sha256:3614ca5eacf0a3a1bcc361c939202a974b4902b9334ff36eb29ffe9011aaad83</span>
+<span class="s">            command: [&quot;/bin/sh&quot;, &quot;-c&quot;]</span>
+<span class="s">            args:</span>
+<span class="s">            - mkdir -p /data/cloudlabs ;</span>
+<span class="s">              env | tee -a /data/cloudlabs/env.out ;</span>
+<span class="s">              cat /data/cloudlabs/env.out ;</span>
+<span class="s">              head -20 /data/cloudlabs/env.out ;</span>
+<span class="s">              head -20 /data/cloudlabs/greetings.out ;</span>
+<span class="s">              tail -20 /data/cloudlabs/greetings.out ;</span>
+<span class="s">              while true ;</span>
+<span class="s">              do echo Hi \${name:-World} the time is \$(date) | tee -a /data/cloudlabs/greetings.out ;</span>
+<span class="s">              sleep \${interval:-60} ; </span>
+<span class="s">              done</span>
+<span class="s">            envFrom:</span>
+<span class="s">            - configMapRef:</span>
+<span class="s">                name: contract.config.map</span>
+<span class="s">                optional: false</span>
+<span class="s">            volumeMounts: </span>
+<span class="s">              - mountPath: /data</span>
+<span class="s">                name: data-vol</span>
+<span class="s">                readOnly: false</span>
+<span class="s">          restartPolicy: Never</span>
+<span class="s">          volumes:</span>
+<span class="s">            - hostPath:</span>
+<span class="s">                path: /mnt/data</span>
+<span class="s">                type: Directory</span>
+<span class="s">              name: data-vol</span>
 <span class="s">EOF</span>
 </code></pre></div>
 </li>
 <li>
 <p>Display the file's content.</p>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>docker-compose.yml
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>play.yml
 </code></pre></div>
 </li>
 </ol>
@@ -10154,7 +10183,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="s">    data:</span>
 <span class="s">      seed: seed-supplied-by-env-persona</span>
 <span class="s">  env:</span>
-<span class="s">    firstname: Lab 1 Student</span>
+<span class="s">    name: Lab 1 Student</span>
 <span class="s">    interval: &quot;30&quot;</span>
 <span class="s">workload: |</span>
 <span class="s">  type: workload</span>
@@ -10163,8 +10192,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="s">      filesystem: ext4</span>
 <span class="s">      mount: /mnt/data</span>
 <span class="s">      seed: seed-supplied-by-workload-persona</span>
-<span class="s">  compose:</span>
-<span class="s">    archive: $(${LAB_TAR} -czv -C compose . | base64 ${LAB_WRAP}) </span>
+<span class="s">$(cat play/play.yml)</span>
 <span class="s">EOF</span>
 </code></pre></div>
 </li>
@@ -10191,11 +10219,11 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <p><img src="../lab/cloud/lab1/create030.png" width="801" height="504" /></p>
 </li>
 <li>
-<p>In the <em>Architecture</em> section, click the <strong>IBM Z, LinuxONE</strong> tile.  In the <em>Hosting type</em> section, click the <strong>Public</strong> tile.  At this point, a <em><abbr title="Confidential computing is a cloud computing technology that isolates sensitive data in a protected CPU enclave during processing. The contents of the enclave—the data being processed, and the techniques that are used to process it—are accessible only to authorized programming code, and are invisible and unknowable to anything or anyone else, including the cloud provider.">Confidential Computing</abbr></em> toggle should appear.  Click it to select it.  Then, ensure that you select the correct <em>Zone</em>- that is, the one for whch you created a subnet earlier (assuming you followed the lab instructions and created only one subnet).   You are not finished filling out this screen yet, but see the below screen snippet for hints:</p>
-<p><img src="../lab/cloud/lab1/create040.png" width="846" height="842" /></p>
+<p>In the <em>Architecture</em> section, click the <strong>IBM Z, LinuxONE</strong> tile.  At this point, a <em><abbr title="Confidential computing is a cloud computing technology that isolates sensitive data in a protected CPU enclave during processing. The contents of the enclave—the data being processed, and the techniques that are used to process it—are accessible only to authorized programming code, and are invisible and unknowable to anything or anyone else, including the cloud provider.">Confidential Computing</abbr></em> toggle should appear.  Click it to select it.  Then, ensure that you select the correct <em>Zone</em>- that is, the one for whch you created a subnet earlier (assuming you followed the lab instructions and created only one subnet).   You are not finished filling out this screen yet, but see the below screen snippet for hints:</p>
+<p><img src="../lab/cloud/lab1/create040.png" width="800" height="740" /></p>
 </li>
 <li>
-<p>Give your instance a name in the <em>Name</em> field in the <em>Details</em> section.  We chose <em>lab-was-hpvs-lab1</em> in the screen shot below.  Then, it is very important to select the <em>Version</em> that ends in "<em>-11</em>"- you may have to select the field, then hover over the entry to confirm that <em>ibm-hyper-protect-<abbr title="a running instance of an OCI image.">container</abbr>-runtime-1-0-s390x-11</em> is selected.  The screen widget may be sized such that you cannot distinguish between the image ending in <em>-10</em> and the one ending in <em>-11</em> without the benefit of the tool tip that appears when you hover the mouse for a bit. Hopefully this screen snippet clarifies this:</p>
+<p>Give your instance a name in the <em>Name</em> field in the <em>Details</em> section.  We chose <em>lab-was-hpvs-lab1</em> in the screen shot below.  Then, it is very important to select the <em>Version</em> that ends in "<em>-12</em>". If this version is not the default selection, click the <strong>Change image</strong> link to select it.  Hopefully this screen snippet clarifies this:</p>
 <p><img src="../lab/cloud/lab1/create050.png" width="1160" height="852" /></p>
 </li>
 <li>
@@ -10260,49 +10288,73 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <p>If any of the above commands do not display a value after the <em>is</em> then revisit <a href="#lab-cloud-prereqs-setup" rel="noopener" target="_blank">the section on setting environment variables</a>.</p>
 </li>
 </ol>
-<h2 id="lab-cloud-lab2-prepcontract-make-a-new-directory-for-lab-2">Make a new directory for Lab 2<a class="headerlink" href="#lab-cloud-lab2-prepcontract-make-a-new-directory-for-lab-2" title="Permanent link">&para;</a></h2>
+<h2 id="lab-cloud-lab2-prepcontract-make-a-new-directory-hierarchy-for-lab-2">Make a new directory hierarchy for Lab 2<a class="headerlink" href="#lab-cloud-lab2-prepcontract-make-a-new-directory-hierarchy-for-lab-2" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
 <p>Make a fresh directory structure and change in to it:</p>
-<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>/lab2<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>/lab2
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>/lab2/workload/play<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>/lab2
 </code></pre></div>
 </li>
 </ol>
-<h2 id="lab-cloud-lab2-prepcontract-create-a-docker-compose-file-to-specify-the-application-workload">Create a Docker compose file to specify the application workload<a class="headerlink" href="#lab-cloud-lab2-prepcontract-create-a-docker-compose-file-to-specify-the-application-workload" title="Permanent link">&para;</a></h2>
+<h2 id="lab-cloud-lab2-prepcontract-create-a-pod-descriptor-to-specify-the-application-workload">Create a Pod descriptor to specify the application workload<a class="headerlink" href="#lab-cloud-lab2-prepcontract-create-a-pod-descriptor-to-specify-the-application-workload" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
-<p>Create another directory to hold a docker compose file and switch to it:</p>
-<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>workload/compose<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>workload/compose
+<p>Switch to the directory that will hold a Pod descriptor:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>workload/play
 </code></pre></div>
 </li>
 <li>
-<p>Create the docker compose file (Note: this is the same docker compose file from the first lab):</p>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; docker-compose.yml    </span>
-<span class="s">services:</span>
-<span class="s">  demo1:</span>
-<span class="s">    image: docker.io/busybox@sha256:3614ca5eacf0a3a1bcc361c939202a974b4902b9334ff36eb29ffe9011aaad83</span>
-<span class="s">    volumes:</span>
-<span class="s">      - /mnt/data:/data</span>
-<span class="s">    environment:</span>
-<span class="s">      - NAME=\${firstname:-World}</span>
-<span class="s">      - INTERVAL=\${interval:-60}</span>
-<span class="s">    command: &gt;</span>
-<span class="s">      sh -c &#39;</span>
-<span class="s">        mkdir -p /data/cloudlabs ; env | tee -a /data/cloudlabs/env.out; cat /data/cloudlabs/env.out; head /data/cloudlabs/greetings.out ; tail /data/cloudlabs/greetings.out ; while true ; do sleep \$\${INTERVAL} ; echo hello \$\${NAME} the time is \$\$(date) | tee -a /data/cloudlabs/greetings.out ; done</span>
-<span class="s">      &#39;</span>
+<p>Create the Pod descriptor::</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; play.yml    </span>
+<span class="s">  play:</span>
+<span class="s">    resources:</span>
+<span class="s">      - apiVersion: v1</span>
+<span class="s">        kind: Pod</span>
+<span class="s">        metadata:</span>
+<span class="s">          name: busybox</span>
+<span class="s">        spec:</span>
+<span class="s">          containers:</span>
+<span class="s">          - name: main</span>
+<span class="s">            image: docker.io/library/busybox@sha256:3614ca5eacf0a3a1bcc361c939202a974b4902b9334ff36eb29ffe9011aaad83</span>
+<span class="s">            command: [&quot;/bin/sh&quot;, &quot;-c&quot;]</span>
+<span class="s">            args:</span>
+<span class="s">            - mkdir -p /data/cloudlabs ;</span>
+<span class="s">              env | tee -a /data/cloudlabs/env.out ;</span>
+<span class="s">              cat /data/cloudlabs/env.out ;</span>
+<span class="s">              head -20 /data/cloudlabs/env.out ;</span>
+<span class="s">              head -20 /data/cloudlabs/greetings.out ;</span>
+<span class="s">              tail -20 /data/cloudlabs/greetings.out ;</span>
+<span class="s">              while true ;</span>
+<span class="s">              do echo Hi \${name:-World} the time is \$(date) | tee -a /data/cloudlabs/greetings.out ;</span>
+<span class="s">              sleep \${interval:-60} ; </span>
+<span class="s">              done</span>
+<span class="s">            envFrom:</span>
+<span class="s">            - configMapRef:</span>
+<span class="s">                name: contract.config.map</span>
+<span class="s">                optional: false</span>
+<span class="s">            volumeMounts: </span>
+<span class="s">              - mountPath: /data</span>
+<span class="s">                name: data-vol</span>
+<span class="s">                readOnly: false</span>
+<span class="s">          restartPolicy: Never</span>
+<span class="s">          volumes:</span>
+<span class="s">            - hostPath:</span>
+<span class="s">                path: /mnt/data</span>
+<span class="s">                type: Directory</span>
+<span class="s">              name: data-vol</span>
 <span class="s">EOF</span>
 </code></pre></div>
 </li>
 <li>
-<p><strong>Optional</strong>.  This command will show that you are indeed using the same docker compose file in this lab (lab2)  as you did in the previous lab (lab1).  We could have had you just copy that file over instead of using the <em>cat</em> command in the prior step.</p>
-<div class="highlight"><pre><span></span><code>diff<span class="w"> </span>--report-identical-files<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/cloudlabs/lab1/compose/docker-compose.yml<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/cloudlabs/lab2/workload/compose/docker-compose.yml
+<p>Display the file's content.</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>play.yml
 </code></pre></div>
 </li>
 <li>
-<p>Display the file's content.</p>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>docker-compose.yml
+<p><strong>Optional</strong>.  This command will show that you are indeed using the same pod descriptor in this lab (lab2)  as you did in the previous lab (lab1).  We could have had you just copy that file over instead of using the <em>cat</em> command in the prior step.</p>
+<div class="highlight"><pre><span></span><code>diff<span class="w"> </span>--report-identical-files<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>/lab1/play/play.yml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>/lab2/workload/play/play.yml
 </code></pre></div>
 </li>
 <li>
@@ -10327,11 +10379,10 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="s">      filesystem: ext4</span>
 <span class="s">      mount: /mnt/data</span>
 <span class="s">      seed: seed-supplied-by-workload-persona</span>
-<span class="s">  compose:</span>
-<span class="s">    archive: \$(\${LAB_TAR} -czv -C compose . | base64 \${LAB_WRAP})&quot; &gt; \${WORKLOAD_PLAIN}</span>
+<span class="s">\$(cat play/play.yml)&quot; &gt; \${WORKLOAD_PLAIN}</span>
 
 <span class="s"># Download certificate to encrypt contract for Hyper Protect Container Runtime:</span>
-<span class="s">HPCR_rev=11</span>
+<span class="s">HPCR_rev=12</span>
 <span class="s">CONTRACT_KEY=./ibm-hyper-protect-container-runtime-1-0-s390x-\${HPCR_rev}-encrypt.crt</span>
 <span class="s">curl https://cloud.ibm.com/media/docs/downloads/hyper-protect-container-runtime/ibm-hyper-protect-container-runtime-1-0-s390x-\${HPCR_rev}-encrypt.crt &gt; \${CONTRACT_KEY}</span>
 
@@ -10389,7 +10440,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="s">    data:</span>
 <span class="s">      seed: seed-supplied-by-env-persona</span>
 <span class="s">  env:</span>
-<span class="s">    firstname: Lab 2 Student</span>
+<span class="s">    name: Lab 2 Student</span>
 <span class="s">    interval: &quot;30&quot;</span>
 <span class="s">EOF</span>
 </code></pre></div>
@@ -10417,11 +10468,11 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <p><img src="../lab/cloud/lab2/create030.png" width="801" height="504" /></p>
 </li>
 <li>
-<p>In the <em>Architecture</em> section, click the <strong>IBM Z, LinuxONE</strong> tile.  In the <em>Hosting type</em> section, click the <strong>Public</strong> tile.  At this point, a <em><abbr title="Confidential computing is a cloud computing technology that isolates sensitive data in a protected CPU enclave during processing. The contents of the enclave—the data being processed, and the techniques that are used to process it—are accessible only to authorized programming code, and are invisible and unknowable to anything or anyone else, including the cloud provider.">Confidential Computing</abbr></em> toggle should appear.  Click it to select it.  Then, ensure that you select the correct <em>Zone</em>- that is, the one for whch you created a subnet earlier (assuming you followed the lab instructions and created only one subnet).   You are not finished filling out this screen yet, but see the below screen snippet for hints:</p>
+<p>In the <em>Architecture</em> section, click the <strong>IBM Z, LinuxONE</strong> tile.  At this point, a <em><abbr title="Confidential computing is a cloud computing technology that isolates sensitive data in a protected CPU enclave during processing. The contents of the enclave—the data being processed, and the techniques that are used to process it—are accessible only to authorized programming code, and are invisible and unknowable to anything or anyone else, including the cloud provider.">Confidential Computing</abbr></em> toggle should appear.  Click it to select it.  Then, ensure that you select the correct <em>Zone</em>- that is, the one for whch you created a subnet earlier (assuming you followed the lab instructions and created only one subnet).   You are not finished filling out this screen yet, but see the below screen snippet for hints:</p>
 <p><img src="../lab/cloud/lab2/create040.png" width="846" height="842" /></p>
 </li>
 <li>
-<p>Give your instance a name in the <em>Name</em> field in the <em>Details</em> section.  We chose <em>lab-was-hpvs-lab2</em> in the screen shot below.  Then, it is very important to select the <em>Version</em> that ends in "<em>-11</em>"- you may have to select the field, then hover over the entry to confirm that <em>ibm-hyper-protect-<abbr title="a running instance of an OCI image.">container</abbr>-runtime-1-0-s390x-11</em> is selected.  The screen widget may be sized such that you cannot distinguish between the image ending in <em>-10</em> and the one ending in <em>-11</em> without the benefit of the tool tip that appears when you hover the mouse for a bit. Hopefully this screen snippet clarifies this:</p>
+<p>Give your instance a name in the <em>Name</em> field in the <em>Details</em> section.  We chose <em>lab-was-hpvs-lab2</em> in the screen shot below.  Then, it is very important to select the <em>Version</em> that ends in "<em>-12</em>". If this version is not the default selection, click the <strong>Change image</strong> link to select it.  Use this screen snippet as guidance:</p>
 <p><img src="../lab/cloud/lab2/create050.png" width="1143" height="843" /></p>
 </li>
 <li>
@@ -10495,49 +10546,73 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <p>If any of the above commands do not display a value after the <em>is</em> then revisit <a href="#lab-cloud-prereqs-setup" rel="noopener" target="_blank">the section on setting environment variables</a>.</p>
 </li>
 </ol>
-<h2 id="lab-cloud-lab3-prepcontract-make-a-new-directory-for-lab-3">Make a new directory for Lab 3<a class="headerlink" href="#lab-cloud-lab3-prepcontract-make-a-new-directory-for-lab-3" title="Permanent link">&para;</a></h2>
+<h2 id="lab-cloud-lab3-prepcontract-make-a-new-directory-hierarchy-for-lab-3">Make a new directory hierarchy for Lab 3<a class="headerlink" href="#lab-cloud-lab3-prepcontract-make-a-new-directory-hierarchy-for-lab-3" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
 <p>Make a fresh directory structure and change in to it:</p>
-<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>/lab3<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>/lab3
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>/lab3/<span class="o">{</span>environment,workload/play<span class="o">}</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>/lab3
 </code></pre></div>
 </li>
 </ol>
-<h2 id="lab-cloud-lab3-prepcontract-create-a-docker-compose-file-to-specify-the-application-workload">Create a Docker compose file to specify the application workload<a class="headerlink" href="#lab-cloud-lab3-prepcontract-create-a-docker-compose-file-to-specify-the-application-workload" title="Permanent link">&para;</a></h2>
+<h2 id="lab-cloud-lab3-prepcontract-create-a-pod-descriptor-to-specify-the-application-workload">Create a Pod descriptor to specify the application workload<a class="headerlink" href="#lab-cloud-lab3-prepcontract-create-a-pod-descriptor-to-specify-the-application-workload" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
-<p>Create the following directory structure and then switch to the directory that will hold the docker compose file:</p>
-<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="o">{</span>environment,workload/compose<span class="o">}</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>workload/compose
+<p>Switch to the  directory which will hold a Pod descriptor and then switch to it:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>workload/play
 </code></pre></div>
 </li>
 <li>
-<p>Create the docker compose file (Note: this is the same docker compose file from the first two labs):</p>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; docker-compose.yml    </span>
-<span class="s">services:</span>
-<span class="s">  demo1:</span>
-<span class="s">    image: docker.io/busybox@sha256:3614ca5eacf0a3a1bcc361c939202a974b4902b9334ff36eb29ffe9011aaad83</span>
-<span class="s">    volumes:</span>
-<span class="s">      - /mnt/data:/data</span>
-<span class="s">    environment:</span>
-<span class="s">      - NAME=\${firstname:-World}</span>
-<span class="s">      - INTERVAL=\${interval:-60}</span>
-<span class="s">    command: &gt;</span>
-<span class="s">      sh -c &#39;</span>
-<span class="s">        mkdir -p /data/cloudlabs ; env | tee -a /data/cloudlabs/env.out; cat /data/cloudlabs/env.out; head /data/cloudlabs/greetings.out ; tail /data/cloudlabs/greetings.out ; while true ; do sleep \$\${INTERVAL} ; echo hello \$\${NAME} the time is \$\$(date) | tee -a /data/cloudlabs/greetings.out ; done</span>
-<span class="s">      &#39;</span>
+<p>Create the Pod descriptor::</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; play.yml    </span>
+<span class="s">  play:</span>
+<span class="s">    resources:</span>
+<span class="s">      - apiVersion: v1</span>
+<span class="s">        kind: Pod</span>
+<span class="s">        metadata:</span>
+<span class="s">          name: busybox</span>
+<span class="s">        spec:</span>
+<span class="s">          containers:</span>
+<span class="s">          - name: main</span>
+<span class="s">            image: docker.io/library/busybox@sha256:3614ca5eacf0a3a1bcc361c939202a974b4902b9334ff36eb29ffe9011aaad83</span>
+<span class="s">            command: [&quot;/bin/sh&quot;, &quot;-c&quot;]</span>
+<span class="s">            args:</span>
+<span class="s">            - mkdir -p /data/cloudlabs ;</span>
+<span class="s">              env | tee -a /data/cloudlabs/env.out ;</span>
+<span class="s">              cat /data/cloudlabs/env.out ;</span>
+<span class="s">              head -20 /data/cloudlabs/env.out ;</span>
+<span class="s">              head -20 /data/cloudlabs/greetings.out ;</span>
+<span class="s">              tail -20 /data/cloudlabs/greetings.out ;</span>
+<span class="s">              while true ;</span>
+<span class="s">              do echo Hi \${name:-World} the time is \$(date) | tee -a /data/cloudlabs/greetings.out ;</span>
+<span class="s">              sleep \${interval:-60} ; </span>
+<span class="s">              done</span>
+<span class="s">            envFrom:</span>
+<span class="s">            - configMapRef:</span>
+<span class="s">                name: contract.config.map</span>
+<span class="s">                optional: false</span>
+<span class="s">            volumeMounts: </span>
+<span class="s">              - mountPath: /data</span>
+<span class="s">                name: data-vol</span>
+<span class="s">                readOnly: false</span>
+<span class="s">          restartPolicy: Never</span>
+<span class="s">          volumes:</span>
+<span class="s">            - hostPath:</span>
+<span class="s">                path: /mnt/data</span>
+<span class="s">                type: Directory</span>
+<span class="s">              name: data-vol</span>
 <span class="s">EOF</span>
 </code></pre></div>
 </li>
 <li>
-<p><strong>Optional</strong>.  This command will show that you are indeed using the same docker compose file in this lab (lab 3)  as you did in the previous lab (lab 2).  We could have had you just copy that file over instead of using the <em>cat</em> command in the prior step.</p>
-<div class="highlight"><pre><span></span><code>diff<span class="w"> </span>--report-identical-files<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/cloudlabs/lab2/workload/compose/docker-compose.yml<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/cloudlabs/lab3/workload/compose/docker-compose.yml
+<p>Display the file's content.</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>play.yml
 </code></pre></div>
 </li>
 <li>
-<p>Display the file's content.</p>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>docker-compose.yml
+<p><strong>Optional</strong>.  This command will show that you are indeed using the same pod descriptor in this lab (lab3)  as you did in the previous lab (lab2).  We could have had you just copy that file over instead of using the <em>cat</em> command in the prior step.</p>
+<div class="highlight"><pre><span></span><code>diff<span class="w"> </span>--report-identical-files<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>/lab2/workload/play/play.yml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>/lab3/workload/play/play.yml
 </code></pre></div>
 </li>
 <li>
@@ -10560,11 +10635,10 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="s">      filesystem: ext4</span>
 <span class="s">      mount: /mnt/data</span>
 <span class="s">      seed: seed-supplied-by-workload-persona</span>
-<span class="s">  compose:</span>
-<span class="s">    archive: \$(\$LAB_TAR -czv -C compose . | base64 \${LAB_WRAP})&quot; &gt; \${WORKLOAD_PLAIN}</span>
+<span class="s">\$(cat play/play.yml)&quot; &gt; \${WORKLOAD_PLAIN}</span>
 
 <span class="s"># Download certificate to encrypt contract for Hyper Protect Container Runtime:</span>
-<span class="s">HPCR_rev=11</span>
+<span class="s">HPCR_rev=12</span>
 <span class="s">CONTRACT_KEY=./ibm-hyper-protect-container-runtime-1-0-s390x-\${HPCR_rev}-encrypt.crt</span>
 <span class="s">curl https://cloud.ibm.com/media/docs/downloads/hyper-protect-container-runtime/ibm-hyper-protect-container-runtime-1-0-s390x-\${HPCR_rev}-encrypt.crt &gt; \${CONTRACT_KEY}</span>
 
@@ -10626,14 +10700,14 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="s">      ingestionKey: \${LOG_INGESTION_KEY}</span>
 <span class="s">      port: 6514</span>
 <span class="s">  env:</span>
-<span class="s">    firstname: Lab 3 Student</span>
+<span class="s">    name: Lab 3 Student</span>
 <span class="s">    interval: \&quot;30\&quot;</span>
 <span class="s">  volumes:</span>
 <span class="s">    data:</span>
 <span class="s">      seed: seed-supplied-by-env-persona&quot; &gt; \${ENV_PLAIN}</span>
 
 <span class="s"># Download certificate to encrypt contract for Hyper Protect Container Runtime:</span>
-<span class="s">HPCR_rev=11</span>
+<span class="s">HPCR_rev=12</span>
 <span class="s">CONTRACT_KEY=./ibm-hyper-protect-container-runtime-1-0-s390x-\${HPCR_rev}-encrypt.crt</span>
 <span class="s">curl https://cloud.ibm.com/media/docs/downloads/hyper-protect-container-runtime/\$CONTRACT_KEY &gt; \$CONTRACT_KEY</span>
 
@@ -10705,11 +10779,11 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <p><img src="../lab/cloud/lab3/create030.png" width="801" height="504" /></p>
 </li>
 <li>
-<p>In the <em>Architecture</em> section, click the <strong>IBM Z, LinuxONE</strong> tile.  In the <em>Hosting type</em> section, click the <strong>Public</strong> tile.  At this point, a <em><abbr title="Confidential computing is a cloud computing technology that isolates sensitive data in a protected CPU enclave during processing. The contents of the enclave—the data being processed, and the techniques that are used to process it—are accessible only to authorized programming code, and are invisible and unknowable to anything or anyone else, including the cloud provider.">Confidential Computing</abbr></em> toggle should appear.  Click it to select it.  Then, ensure that you select the correct <em>Zone</em>- that is, the one for whch you created a subnet earlier (assuming you followed the lab instructions and created only one subnet).   You are not finished filling out this screen yet, but see the below screen snippet for hints:</p>
+<p>In the <em>Architecture</em> section, click the <strong>IBM Z, LinuxONE</strong> tile.  At this point, a <em><abbr title="Confidential computing is a cloud computing technology that isolates sensitive data in a protected CPU enclave during processing. The contents of the enclave—the data being processed, and the techniques that are used to process it—are accessible only to authorized programming code, and are invisible and unknowable to anything or anyone else, including the cloud provider.">Confidential Computing</abbr></em> toggle should appear.  Click it to select it.  Then, ensure that you select the correct <em>Zone</em>- that is, the one for whch you created a subnet earlier (assuming you followed the lab instructions and created only one subnet).   You are not finished filling out this screen yet, but see the below screen snippet for hints:</p>
 <p><img src="../lab/cloud/lab3/create040.png" width="846" height="842" /></p>
 </li>
 <li>
-<p>Give your instance a name in the <em>Name</em> field in the <em>Details</em> section.  We chose <em>lab-was-hpvs-lab3</em> in the screen shot below.  Then, it is very important to select the <em>Version</em> that ends in "<em>-11</em>"- you may have to select the field, then hover over the second entry to confirm that <em>ibm-hyper-protect-<abbr title="a running instance of an OCI image.">container</abbr>-runtime-1-0-s390x-11</em> is selected.  The screen widget may be sized such that you cannot distinguish between the image ending in <em>-10</em> and the one ending in <em>-11</em> without the benefit of the tool tip that appears when you hover the mouse for a bit. Hopefully this screen snippet clarifies this:</p>
+<p>Give your instance a name in the <em>Name</em> field in the <em>Details</em> section.  We chose <em>lab-was-hpvs-lab3</em> in the screen shot below.  Then, it is very important to select the <em>Version</em> that ends in "<em>-12</em>". If this version is not the default selection, click the <strong>Change image</strong> link to select it. See this screen snippet for guidance:</p>
 <p><img src="../lab/cloud/lab3/create050.png" width="1136" height="770" /></p>
 </li>
 <li>
@@ -10781,49 +10855,66 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <p>If any of the above commands do not display a value after the <em>is</em> then revisit <a href="#lab-cloud-prereqs-setup" rel="noopener" target="_blank">the section on setting environment variables</a>.</p>
 </li>
 </ol>
-<h2 id="lab-cloud-lab4-prepcontract-make-a-new-directory-for-lab-4">Make a new directory for Lab 4<a class="headerlink" href="#lab-cloud-lab4-prepcontract-make-a-new-directory-for-lab-4" title="Permanent link">&para;</a></h2>
+<h2 id="lab-cloud-lab4-prepcontract-make-a-new-directory-hierarchy-for-lab-4">Make a new directory hierarchy for Lab 4<a class="headerlink" href="#lab-cloud-lab4-prepcontract-make-a-new-directory-hierarchy-for-lab-4" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
 <p>Make a fresh directory structure and change in to it:</p>
-<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>/lab4<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>/lab4
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>/lab4/<span class="o">{</span>environment,workload/play<span class="o">}</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">LAB_WORKDIR</span><span class="si">}</span>/lab4
 </code></pre></div>
 </li>
 </ol>
-<h2 id="lab-cloud-lab4-prepcontract-create-a-docker-compose-file-to-specify-the-application-workload">Create a Docker compose file to specify the application workload<a class="headerlink" href="#lab-cloud-lab4-prepcontract-create-a-docker-compose-file-to-specify-the-application-workload" title="Permanent link">&para;</a></h2>
+<h2 id="lab-cloud-lab4-prepcontract-create-a-pod-descriptor-to-specify-the-application-workload">Create a Pod descriptor to specify the application workload<a class="headerlink" href="#lab-cloud-lab4-prepcontract-create-a-pod-descriptor-to-specify-the-application-workload" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
-<p>Create the following directory structure and then switch to the directory that will hold the docker compose file:</p>
-<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="o">{</span>environment,workload/compose<span class="o">}</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>workload/compose
+<p>Switch to the directory with will hold a Pod descriptor:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>workload/play
 </code></pre></div>
 </li>
 <li>
-<p>Create the docker compose file (Note: this is the same docker compose file from the first three labs):</p>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; docker-compose.yml    </span>
-<span class="s">services:</span>
-<span class="s">  demo1:</span>
-<span class="s">    image: docker.io/busybox@sha256:3614ca5eacf0a3a1bcc361c939202a974b4902b9334ff36eb29ffe9011aaad83</span>
-<span class="s">    volumes:</span>
-<span class="s">      - /mnt/data:/data</span>
-<span class="s">    environment:</span>
-<span class="s">      - NAME=\${firstname:-World}</span>
-<span class="s">      - INTERVAL=\${interval:-60}</span>
-<span class="s">    command: &gt;</span>
-<span class="s">      sh -c &#39;</span>
-<span class="s">        mkdir -p /data/cloudlabs ; env | tee -a /data/cloudlabs/env.out; cat /data/cloudlabs/env.out; head /data/cloudlabs/greetings.out ; tail /data/cloudlabs/greetings.out ; while true ; do sleep \$\${INTERVAL} ; echo hello \$\${NAME} the time is \$\$(date) | tee -a /data/cloudlabs/greetings.out ; done</span>
-<span class="s">      &#39;</span>
+<p>Create the Pod descriptor::</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; play.yml    </span>
+<span class="s">  play:</span>
+<span class="s">    resources:</span>
+<span class="s">      - apiVersion: v1</span>
+<span class="s">        kind: Pod</span>
+<span class="s">        metadata:</span>
+<span class="s">          name: busybox</span>
+<span class="s">        spec:</span>
+<span class="s">          containers:</span>
+<span class="s">          - name: main</span>
+<span class="s">            image: docker.io/library/busybox@sha256:3614ca5eacf0a3a1bcc361c939202a974b4902b9334ff36eb29ffe9011aaad83</span>
+<span class="s">            command: [&quot;/bin/sh&quot;, &quot;-c&quot;]</span>
+<span class="s">            args:</span>
+<span class="s">            - mkdir -p /data/cloudlabs ;</span>
+<span class="s">              env | tee -a /data/cloudlabs/env.out ;</span>
+<span class="s">              cat /data/cloudlabs/env.out ;</span>
+<span class="s">              head -20 /data/cloudlabs/env.out ;</span>
+<span class="s">              head -20 /data/cloudlabs/greetings.out ;</span>
+<span class="s">              tail -20 /data/cloudlabs/greetings.out ;</span>
+<span class="s">              while true ;</span>
+<span class="s">              do echo Hi \${name:-World} the time is \$(date) | tee -a /data/cloudlabs/greetings.out ;</span>
+<span class="s">              sleep \${interval:-60} ; </span>
+<span class="s">              done</span>
+<span class="s">            envFrom:</span>
+<span class="s">            - configMapRef:</span>
+<span class="s">                name: contract.config.map</span>
+<span class="s">                optional: false</span>
+<span class="s">            volumeMounts: </span>
+<span class="s">              - mountPath: /data</span>
+<span class="s">                name: data-vol</span>
+<span class="s">                readOnly: false</span>
+<span class="s">          restartPolicy: Never</span>
+<span class="s">          volumes:</span>
+<span class="s">            - hostPath:</span>
+<span class="s">                path: /mnt/data</span>
+<span class="s">                type: Directory</span>
+<span class="s">              name: data-vol</span>
 <span class="s">EOF</span>
 </code></pre></div>
 </li>
 <li>
-<p><strong>Optional</strong>.  This command will show that you are indeed using the same docker compose file in this lab (lab 4)  as you did in the previous lab (lab 3).  We could have had you just copy that file over instead of using the <em>cat</em> command in the prior step.</p>
-<div class="highlight"><pre><span></span><code>diff<span class="w"> </span>--report-identical-files<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/cloudlabs/lab3/workload/compose/docker-compose.yml<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/cloudlabs/lab4/workload/compose/docker-compose.yml
-</code></pre></div>
-</li>
-<li>
 <p>Display the file's content.</p>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>docker-compose.yml
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>play.yml
 </code></pre></div>
 </li>
 </ol>
@@ -10848,11 +10939,10 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="s">      filesystem: ext4</span>
 <span class="s">      mount: /mnt/data</span>
 <span class="s">      seed: seed-supplied-by-workload-persona</span>
-<span class="s">  compose:</span>
-<span class="s">    archive: \$(\${LAB_TAR} -czv -C compose . | base64 \${LAB_WRAP})&quot; &gt; \${WORKLOAD_PLAIN}</span>
+<span class="s">\$(cat play/play.yml)&quot; &gt; \${WORKLOAD_PLAIN}</span>
 
 <span class="s"># Download certificate to encrypt contract for Hyper Protect Container Runtime:</span>
-<span class="s">HPCR_rev=11</span>
+<span class="s">HPCR_rev=12</span>
 <span class="s">CONTRACT_KEY=./ibm-hyper-protect-container-runtime-1-0-s390x-\${HPCR_rev}-encrypt.crt</span>
 <span class="s">curl https://cloud.ibm.com/media/docs/downloads/hyper-protect-container-runtime/ibm-hyper-protect-container-runtime-1-0-s390x-\${HPCR_rev}-encrypt.crt &gt; \${CONTRACT_KEY}</span>
 
@@ -10899,7 +10989,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="s">      ingestionKey: \${LOG_INGESTION_KEY}</span>
 <span class="s">      port: 6514</span>
 <span class="s">  env:</span>
-<span class="s">    firstname: Lab 4 Student</span>
+<span class="s">    name: Lab 4 Student</span>
 <span class="s">    interval: \&quot;30\&quot;</span>
 <span class="s">  volumes:</span>
 <span class="s">    data:</span>
@@ -10908,7 +10998,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="s">cat ./pubSigningKey.yaml &gt;&gt; \${ENV_PLAIN}</span>
 
 <span class="s"># Download certificate to encrypt contract for Hyper Protect Container Runtime:</span>
-<span class="s">HPCR_rev=11</span>
+<span class="s">HPCR_rev=12</span>
 <span class="s">CONTRACT_KEY=./ibm-hyper-protect-container-runtime-1-0-s390x-\${HPCR_rev}-encrypt.crt</span>
 <span class="s">curl https://cloud.ibm.com/media/docs/downloads/hyper-protect-container-runtime/\$CONTRACT_KEY &gt; \$CONTRACT_KEY</span>
 
@@ -11021,11 +11111,11 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <p><img src="../lab/cloud/lab4/create030.png" width="801" height="504" /></p>
 </li>
 <li>
-<p>In the <em>Architecture</em> section, click the <strong>IBM Z, LinuxONE</strong> tile.  In the <em>Hosting type</em> section, click the <strong>Public</strong> tile.  At this point, a <em><abbr title="Confidential computing is a cloud computing technology that isolates sensitive data in a protected CPU enclave during processing. The contents of the enclave—the data being processed, and the techniques that are used to process it—are accessible only to authorized programming code, and are invisible and unknowable to anything or anyone else, including the cloud provider.">Confidential Computing</abbr></em> toggle should appear.  Click it to select it.  Then, ensure that you select the correct <em>Zone</em>- that is, the one for whch you created a subnet earlier (assuming you followed the lab instructions and created only one subnet).   You are not finished filling out this screen yet, but see the below screen snippet for hints:</p>
+<p>In the <em>Architecture</em> section, click the <strong>IBM Z, LinuxONE</strong> tile.  At this point, a <em><abbr title="Confidential computing is a cloud computing technology that isolates sensitive data in a protected CPU enclave during processing. The contents of the enclave—the data being processed, and the techniques that are used to process it—are accessible only to authorized programming code, and are invisible and unknowable to anything or anyone else, including the cloud provider.">Confidential Computing</abbr></em> toggle should appear.  Click it to select it.  Then, ensure that you select the correct <em>Zone</em>- that is, the one for whch you created a subnet earlier (assuming you followed the lab instructions and created only one subnet).   You are not finished filling out this screen yet, but see the below screen snippet for hints:</p>
 <p><img src="../lab/cloud/lab4/create040.png" width="846" height="842" /></p>
 </li>
 <li>
-<p>Give your instance a name in the <em>Name</em> field in the <em>Details</em> section.  We chose <em>lab-was-hpvs-lab4</em> as shown in the screen shot below. Then, it is very important to select the <em>Version</em> that ends in "<em>-11</em>"- you may have to select the field, then hover over the entry to confirm that <em>ibm-hyper-protect-<abbr title="a running instance of an OCI image.">container</abbr>-runtime-1-0-s390x-11</em> is selected.  The screen widget may be sized such that you cannot distinguish between the image ending in <em>-10</em> and the one ending in <em>-11</em> without the benefit of the tool tip that appears when you hover the mouse for a bit. Hopefully this screen snippet clarifies this:</p>
+<p>Give your instance a name in the <em>Name</em> field in the <em>Details</em> section.  We chose <em>lab-was-hpvs-lab4</em> as shown in the screen shot below. Then, it is very important to select the <em>Version</em> that ends in "<em>-12</em>". If this version is not the default selection, click the <strong>Change image</strong> link to select it. See this screen snippet for guidance:</p>
 <p><img src="../lab/cloud/lab4/create050.png" width="1122" height="760" /></p>
 </li>
 <li>
@@ -11397,7 +11487,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
     <script id="__config" type="application/json">{"base": "/ConfidentialComputingOnLinuxONE/", "features": ["header.autohide", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.footer", "search.share", "navigation.indexes", "announce.dismiss", "content.tabs.link", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.b4d07000.min.js"></script>
+      <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>
       
         <script src="../js/print-site.js"></script>
       
