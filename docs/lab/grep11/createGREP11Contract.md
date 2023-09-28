@@ -132,7 +132,7 @@ services:
 EOF
 ```
 
-Notice the value of the _image_ key.  This is the GREP11 Server OCI image provided with the Crypto Express Network API for Secure Execution Enclaves 1.1.1.5 (CENA4SEE) that Garrett (_gmoney23_) has uploaded to his account on Quay.io for this lab. (Not for your production usage as it could disappear at any time).
+Notice the value of the _image_ key.  This is the GREP11 Server OCI image provided with the Crypto Express Network API for Secure Execution Enclaves 1.1.2 (CENA4SEE) that Garrett (_gmoney23_) has uploaded to his account on Quay.io for this lab. (Not for your production usage as it could disappear at any time).
 
 Notice the list of eight items under the _volumes_ section. The left side of each entry in the list specifies the name of the file on the RHEL host.  The value after the ':' specifies where that file is mapped to within the OCI container that will run in the HPVS 2.1.6 guest.  Taking the first item in the list as an example, you will create a file named _c16client.yaml_ and then within the OCI container it will be available at _/etc/c16/c16client.yaml_.  (As an aside, you can also map entire directories from your host to a Docker container, although this example only maps individual files).
 
