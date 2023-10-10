@@ -92,7 +92,7 @@ metadata:
 spec:
   containers:
   - name: paynow
-	image: quay.io/bsilliman/paynow@sha256:b0921f4009b33b926aeae931fef2b0536514e7a62ae013cee6c345b1ac7f11bb
+	image: quay.io/bsilliman/paynow@sha256:6c0d9c82bd051f4c2641d4ed9d4a3c577075894ad3bf1494f2c742a5751b93d9
     ports:
 	- containerPort: 8443
 	  hostPort: 8443
