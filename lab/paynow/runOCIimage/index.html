@@ -576,6 +576,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#run-the-oci-image" class="md-nav__link">
+    Run the OCI image
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1519,6 +1526,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#run-the-oci-image" class="md-nav__link">
+    Run the OCI image
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1566,12 +1580,27 @@ paynow       latest    fd801119534e   About a minute ago   934MB
 node         19        f2e8386523b1   3 months ago         926MB
 </code></pre></div>
 </details>
-<p>Run the <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> image:</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>-p<span class="w"> </span><span class="m">8443</span>:8443<span class="w"> </span>paynow
+<h2 id="run-the-oci-image">Run the <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> image<a class="headerlink" href="#run-the-oci-image" title="Permanent link">&para;</a></h2>
+<p>Run this command to start the PayNow app as a Docker <abbr title="a running instance of an OCI image.">container</abbr>:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">CONTAINER_ID</span><span class="o">=</span><span class="k">$(</span>docker<span class="w"> </span>run<span class="w"> </span>-itd<span class="w"> </span>--rm<span class="w"> </span>-p<span class="w"> </span><span class="m">8443</span>:8443<span class="w"> </span>paynow<span class="k">)</span>
 </code></pre></div>
-<p>You will see output like this:</p>
-<details class="- example">
-<summary>Output from starting PayNow app</summary>
+<p>The above command should have produced no visible output.  That is because we assigned the output of the <em>docker run...</em> command to the environment variable <em>CONTAINER_ID</em> instead of letting the output go to your terminal.  The output is simply the unique identifier Docker assigned to the <abbr title="a running instance of an OCI image.">container</abbr>.  </p>
+<p>This next command will show you the <abbr title="a running instance of an OCI image.">container</abbr> ID:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">CONTAINER_ID</span><span class="si">}</span>
+</code></pre></div>
+<p>You will see output similar to this- 64 hex characters- but it will be different than the example shown here:</p>
+<details class="example" open="open">
+<summary>Example Container ID</summary>
+<div class="highlight"><pre><span></span><code>8ebe1f2020951b01986a3974944a8e7689982d6ac44e45a6f360e79da9d0fd50
+</code></pre></div>
+</details>
+<p><em>Note:</em> If your output from above is different in format, then it is probably an error message and you should seek help from an instructor if necessary.</p>
+<p>Now you can display the log messages from your <abbr title="a running instance of an OCI image.">container</abbr> with this command:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>logs<span class="w"> </span><span class="si">${</span><span class="nv">CONTAINER_ID</span><span class="si">}</span>
+</code></pre></div>
+<p>You should see the following messages which indicate that the PayNow application successfully started:</p>
+<details class="example" open="open">
+<summary>Log messages from starting the PayNow app</summary>
 <div class="highlight"><pre><span></span><code>&gt; hyper-protect-pay-now@1.0.0 start
 &gt; node app.js
 </code></pre></div>
@@ -1583,7 +1612,7 @@ node         19        f2e8386523b1   3 months ago         926MB
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 5, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 11, 2023</span>
       
         <br>
         Created:
