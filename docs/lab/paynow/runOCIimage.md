@@ -24,15 +24,43 @@ Your output will look like this:
       node         19        f2e8386523b1   3 months ago         926MB
       ```
 
-Run the OCI image:
+## Run the OCI image
+
+Run this command to start the PayNow app as a Docker container:
 
    ``` bash
-   docker run -it -p 8443:8443 paynow
+   CONTAINER_ID=$(docker run -itd --rm -p 8443:8443 paynow)
    ```
 
-You will see output like this:
+The above command should have produced no visible output.  That is because we assigned the output of the *docker run...* command to the environment variable *CONTAINER_ID* instead of letting the output go to your terminal.  The output is simply the unique identifier Docker assigned to the container.  
 
-???- example "Output from starting PayNow app"
+This next command will show you the container ID:
+
+   ``` bash
+   echo ${CONTAINER_ID}
+   ```
+
+You will see output similar to this- 64 hex characters- but it will be different than the example shown here:
+
+???+ example "Example Container ID"
+      
+      ```
+
+      8ebe1f2020951b01986a3974944a8e7689982d6ac44e45a6f360e79da9d0fd50
+
+      ```
+
+*Note:* If your output from above is different in format, then it is probably an error message and you should seek help from an instructor if necessary.
+
+Now you can display the log messages from your container with this command:
+
+   ``` bash
+   docker logs ${CONTAINER_ID}
+   ```
+
+You should see the following messages which indicate that the PayNow application successfully started:
+
+???+ example "Log messages from starting the PayNow app"
 
       ```
       
