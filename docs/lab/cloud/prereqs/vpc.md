@@ -18,7 +18,7 @@ Here's a screen snippet showing the _VPC Layout_ screen when the account has no 
 
 Click the **Create a VPC** link.
 
-Choose one of the following five locations which support Hyper Protect Virtual Servers in IBM Cloud VPC:  London, Sao Paulo, Tokyo, Toronto or Washington, D.C.  These labs' instructions and screen snippets will show the Washington, D.C. region (_us-east_) in use, but you may use one of the other aforementioned regions as well- tailor your implementation of the directions appropriately if you do. 
+Choose one of the following six locations which support Hyper Protect Virtual Server for IBM Cloud VPC:  London, Madrid, Sao Paulo, Tokyo, Toronto or Washington, D.C.  These labs' instructions and screen snippets will show the Washington, D.C. region (_us-east_) in use, but you may use one of the other aforementioned regions as well- tailor your implementation of the directions appropriately if you do. 
 
 The screen snippet below shows after we've chosen the _Washington DC_ region in the _North America_ geography and given the new VPC the name _lab-was-vpc_.  Throughout the labs we will often be using the naming convention _lab-region-resource type-optional description_. If you perform the lab in the Washington, D.C., region you will be able to use the instructions almost verbatim.  If you choose to use another region you can choose to use our naming convention and tailor the _<region>_ portion of the name appropriately, or you may choose any other naming convention that suits you.
 

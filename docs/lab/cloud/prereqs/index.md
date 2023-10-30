@@ -41,7 +41,7 @@ You must be able to create the following IBM Cloud artifacts in order to complet
 | Resource | Comments |
 |---|---|
 | IBM Log Analysis | required as a target for log messages from your Hyper Protect Virtual Server instances |
-| Virtual Private Cloud | Must reside in London, Sao Paulo, Tokyo, Toronto or Washington, D.C |
+| Virtual Private Cloud | Must reside in London, Madrid, Sao Paulo, Tokyo, Toronto or Washington, D.C |
 | Subnets for VPC | created when you create your Virtual Private Cloud |
 | Public gateways for VPC | needed so that your instances can communicate with your IBM Log Analysis instance |
 | Access control lists for VPC | created automatically when you create your Virtual Private Cloud |
