@@ -63,7 +63,7 @@ On most Linux distributions you will have *tar* and it will be fine.
 
 On most MacOS systems the default *tar* command is less desirable than a version of tar provided by the GNU project, called *gtar*. *gtar* is preferred for the labs.
 
-Follow these instructions on your prep system.  The environment variables set by these instructions are in effect only for the terminal session in which you enter the commands. If you finish the labs in one sitting within the same terminal session, you will only have to repeat these instructions once.  Otherwise, you can repeat these instructions as necessary.
+Follow these instructions on your prep system.  The environment variables set by these instructions are in effect only for the terminal session in which you enter the commands. If you finish the labs in one sitting within the same terminal session, you will only have to enter these instructions once.  Otherwise, you can repeat these instructions as necessary.
 
 !!! Note
 
@@ -118,7 +118,7 @@ fi
 
 This command differs based on whether or not you are using bash or zsh.  If you are unsure of which shell you are using, enter the command `echo $0` from your shell.
 
-1. Set an environment variable for your IBM Log Analysis ingestion key. You saved this somewhere safe earlier in the lab.  If you lost track of it, revisit the section [Create an IBM Log Analysis instance](../ibmlog/#retrieve-your-ibm-log-analysis-instances-ingestion-key){target="_blank" rel="noopener"} for the steps to retrieve it. Enter the command appropriate to your shell and you will be prompted to enter your IBM Log Analysis INgestion Key.
+1. Set an environment variable for your IBM Log Analysis ingestion key. You saved this somewhere safe earlier in the lab.  If you lost track of it, revisit the section [Create an IBM Log Analysis instance](../ibmlog/#retrieve-your-ibm-log-analysis-instances-ingestion-key){target="_blank" rel="noopener"} for the steps to retrieve it. Enter the command appropriate to your shell and you will be prompted to enter your IBM Log Analysis Ingestion Key.
 
 	=== "bash"
 

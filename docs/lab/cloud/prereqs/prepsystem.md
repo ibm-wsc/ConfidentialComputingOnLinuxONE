@@ -14,7 +14,7 @@ The lab authors have tested the lab instructions using the following prep system
 
 ## Use your workstation if it is running Linux or MacOS
 
-If you already have access to a Linux system or to a MacOS system we encourage you to use it as your *prep system*.  *prep system* is a term we;ve coined in these labs to refer to the system on which you will create the contracts for your Hyper Protect Virtual Servers instance. This could certainly be your laptop or workstation if you are running a Linux distribution or MacOS.
+If you already have access to a Linux system or to a MacOS system we encourage you to use it as your *prep system*.  *prep system* is a term we've coined in these labs to refer to the system on which you will create the contracts for your Hyper Protect Virtual Servers instance. This could certainly be your laptop or workstation if you are running a Linux distribution or MacOS.
 
 ## If you are running Windows 
 
@@ -44,9 +44,9 @@ To create this instance:
 
 1. Click on the **Catalog** link at the top of the page.
 
-2. Start typing _Hyper Protect Virtual Servers_ in the search box until **Hyper Protect Virtual Servers for Classic** appears in the search results and then select it.
+2. Start typing _Hyper Protect Virtual Servers_ in the search box until **Hyper Protect Virtual Server for Classic** appears in the search results and then select it.
 
-3. Choose the **Lite** plan- select the *region* and *zone* you prefer, we prefer to use the same *zone* that we used for our virtual private cloud.  (This instance will not be running inside a VPC)
+3. Choose the **Free** plan- select the *region* and *zone* you prefer, we prefer to use the same *zone* that we used for our virtual private cloud, if possible.  (This instance will not be running inside a VPC)
 
 4. Provide your SSH public key.
 
@@ -66,7 +66,7 @@ If for some reason you cannot create an SSH key pair, a *Virtual Server for Clas
 
 The steps to create an instance are:
 
-1. From the IBM Cloud Catalog, search for *Virtual Servers for Classic* and then select it.
+1. From the IBM Cloud Catalog, search for *Virtual Server for Classic* and then select it.
 
 2. It doesn't matter where you provision it.  This instance does not run in your VPC.
 

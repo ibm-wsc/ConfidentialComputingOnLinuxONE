@@ -2,7 +2,7 @@
 
 This is a set of four labs that will introduce the student to [IBM Hyper Protect Virtual Servers for Virtual Private Cloud](https://www.ibm.com/cloud/blog/announcements/ibm-hyper-protect-virtual-servers-for-virtual-private-cloud){target="_blank" rel="noopener"}. 
 
-We will often refer to this service throughout these labs with the shorthand of *Hyper Protect Virtual Servers*.  This service is based on IBM's Secure Execution for Linux technology, which is IBM's strategic foundation for implementing *confidential computing* within the IBM Z and LinuxONE brands.  
+We will often refer to this service throughout these labs with the shorthand of *Hyper Protect Virtual Servers*.  This service is based on IBM's [Secure Execution for Linux](https://www.ibm.com/docs/en/linux-on-systems?topic=virtualization-secure-execution){target="_blank" rel="noopener"} technology, which is IBM's strategic foundation for implementing *confidential computing* within the IBM Z and LinuxONE brands.  
 
 There was an earlier version of Hyper Protect Virtual Servers that was based on an older technology called *Secure Service Containers* and is still available in IBM Cloud as a service named *Hyper Protect Virtual Server for Classic*.  
 
