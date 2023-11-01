@@ -116,7 +116,7 @@ cat << EOF > docker-compose.yml
 services:
   $(whoami)-ep11server:
 	user: "0"
-	image: quay.io/gmoney23/grep11server@sha256:a864174faadc39650e61ca45d8a3ceb01ea88602cfe6f4bd4e35c48e60556900
+	image: quay.io/bsilliman/grep11server@sha256:1ebda8a7124c99735f5e7743dfc7ff335dd3e68f7b75f5ca9a41fed6e409d513
 	ports:
 		- 9876:9876
 	volumes:
@@ -132,7 +132,7 @@ services:
 EOF
 ```
 
-Notice the value of the _image_ key.  This is the GREP11 Server OCI image provided with the Crypto Express Network API for Secure Execution Enclaves 1.1.2 (CENA4SEE) that Garrett (_gmoney23_) has uploaded to his account on Quay.io for this lab. (Not for your production usage as it could disappear at any time).
+Notice the value of the _image_ key.  This is the GREP11 Server OCI image provided with the Crypto Express Network API for Secure Execution Enclaves 1.1.2.1 (CENA4SEE) that Barry (_bsilliman_) has uploaded to his account on Quay.io for this lab. (Not for your production usage as it could disappear at any time).
 
 Notice the list of eight items under the _volumes_ section. The left side of each entry in the list specifies the name of the file on the RHEL host.  The value after the ':' specifies where that file is mapped to within the OCI container that will run in the HPVS 2.1.6 guest.  Taking the first item in the list as an example, you will create a file named _c16client.yaml_ and then within the OCI container it will be available at _/etc/c16/c16client.yaml_.  (As an aside, you can also map entire directories from your host to a Docker container, although this example only maps individual files).
 
@@ -190,9 +190,9 @@ ep11crypto:
 		serverKeepaliveTime: 30
 		serverKeepaliveTimeout: 5
 
-	# Comma-separated list of card.domain tuples. card and domain are hex numbers
-	# i.e. "08.0016,0a.0016" corresponds to 22nd (x16) domain on eighth card and 22nd domain on tenth (x0a) card
-  domain: "08.0016,0a.0016"
+  # Comma-separated list of card.domain tuples. card and domain are hex numbers
+  # i.e. "08.0016,0a.0016" corresponds to 22nd (x16) domain on eighth card and 22nd domain on tenth (x0a) card
+  domain: "08.0016"
 EOF
 ```
    

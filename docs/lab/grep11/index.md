@@ -15,7 +15,7 @@ Within the contract you specify an OCI-compliant image that provides your worklo
 
 For our lab this LPAR is running RHEL 8.5.  You can use any distribution on IBM Z or LinuxONE that supports Secure Execution- i.e., recent versions of Ubuntu and SUSE as well as RHEL.
 
-The Hyper Protect Virtual Servers 2.1.6 product provides a component, Crypto Express Network API for Secure Execution Enclaves (CENA4SEE) 1.1.2, that runs as an appliance in a Secure Service Container (SSC) LPAR that has direct-attached Crypto Express cards.  CENA4SEE also provides a GREP11 Server OCI image that communicates with the CENA4SEE appliance. 
+The Hyper Protect Virtual Servers 2.1.6 product provides a component, Crypto Express Network API for Secure Execution Enclaves (CENA4SEE) 1.1.2.1, that runs as an appliance in a Secure Service Container (SSC) LPAR that has direct-attached Crypto Express cards.  CENA4SEE also provides a GREP11 Server OCI image that communicates with the CENA4SEE appliance. 
 
 This enables GREP11 client code written to call the GREP11 Server API to  access the Crypto Express cards on the CENA4SEE SSC LPAR.
 The GREP11 client code can run from anywhere as long as it has network connectivity to the GREP11 Server.  The GREP11 Server can run anywhere as long as it has network connectivity to the CENA4SEE server.
