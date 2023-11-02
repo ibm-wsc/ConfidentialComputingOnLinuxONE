@@ -214,7 +214,7 @@ EOF
         server_cert_file: "/cfg/c16server-ca.pem"
         client_key_file: "/cfg/c16server-client.key"
         client_cert_file: "/cfg/c16server-client.pem"
-        restricted_server_cert_file: "/cfg/c16server-restricted-server.pem"
+        restrict_server_cert_file: "/cfg/c16server-restricted-server.pem"
 
     EOF
     ```
@@ -253,7 +253,7 @@ EOF
 			server_cert_file: "/cfg/c16server-ca.pem"
 			client_key_file: "/cfg/c16server-client.key"
 			client_cert_file: "/cfg/c16server-client.pem"
-			restricted_server_cert_file: "/cfg/c16server-restricted-server.pem"
+			restrict_server_cert_file: "/cfg/c16server-restricted-server.pem"
 		```
 
 ### Create x509 material for GREP11 client to GREP11 Server communication
