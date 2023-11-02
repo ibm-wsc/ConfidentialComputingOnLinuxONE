@@ -6610,7 +6610,7 @@ subject=C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS 2.1.6 Grep1
 <p>This section starts where the last section left off- on your session with the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host:</p>
 <p><img src="../images/RHELHost.png" width="351" height="216" /></p>
 <p>This command will create the directory structure expected by the lab instructions:</p>
-<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/contract/grep11Server/<span class="o">{</span>workload,environment<span class="o">}</span>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/contract/grep11Server/<span class="o">{</span>workload/compose,environment/rsyslog<span class="o">}</span>
 </code></pre></div>
 <p>A contract requires a <em>workload</em> section and an <em>environment</em> section, and they each get their own directory. Then the sections are packaged together, and signed, and the signature is added as the third section.  This final result- the contract-  will be stored in your <code>${HOME}/contract/grep11Server</code> directory.</p>
 <h2 id="lab-grep11-creategrep11contract-create-workload-section-of-the-contract">Create workload section of the contract<a class="headerlink" href="#lab-grep11-creategrep11contract-create-workload-section-of-the-contract" title="Permanent link">&para;</a></h2>
@@ -6668,21 +6668,24 @@ subject=C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS 2.1.6 Grep1
 <p>You will create or obtain x509 material to enable secure communication between <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server and the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> server </p>
 <ol>
 <li>
-<p>c16-ca.pem - this file has already been created by the instructors</p>
+<p>c16server-ca.pem - this file has already been created by the instructors</p>
 </li>
 <li>
-<p>c16-client.key</p>
+<p>c16server-client.key</p>
 </li>
 <li>
-<p>c16-client.pem - the instructors will create this file upon your request in a subsequent step in the lab</p>
+<p>c16server-client.pem - the instructors will create this file upon your request in a subsequent step in the lab</p>
+</li>
+<li>
+<p>c16server-restricted-server.pem - this file has already been created by the instructors</p>
 </li>
 </ol>
 </li>
 </ol>
 <p>Let's get started!</p>
 <h3 id="lab-grep11-creategrep11contract-create-docker-compose-file">Create docker-compose file<a class="headerlink" href="#lab-grep11-creategrep11contract-create-docker-compose-file" title="Permanent link">&para;</a></h3>
-<p>Create a directory and switch to it:</p>
-<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>compose<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>compose
+<p>Switch to the directory that will hold the docker-compose file and the files referenced by the docker-compose file:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>compose
 </code></pre></div>
 <p>Create the docker-compose file:</p>
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; docker-compose.yml</span>
@@ -6694,9 +6697,10 @@ subject=C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS 2.1.6 Grep1
 <span class="s">        - 9876:9876</span>
 <span class="s">    volumes:</span>
 <span class="s">        - ./c16client.yaml:/etc/c16/c16client.yaml</span>
-<span class="s">        - ./c16-ca.pem:/cfg/c16-ca.pem</span>
-<span class="s">        - ./c16-client.key:/cfg/c16-client.key</span>
-<span class="s">        - ./c16-client.pem:/cfg/c16-client.pem</span>
+<span class="s">        - ./c16server-ca.pem:/cfg/c16server-ca.pem</span>
+<span class="s">        - ./c16server-client.key:/cfg/c16server-client.key</span>
+<span class="s">        - ./c16server-client.pem:/cfg/c16server-client.pem</span>
+<span class="s">        - ./c16server-restricted-server.pem:/cfg/c16server-restricted-server.pem</span>
 <span class="s">        - ./grep11server.yaml:/etc/ep11server/ep11server.yaml</span>
 <span class="s">        - ./grep11-ca.pem:/cfg/grep11-ca.pem</span>
 <span class="s">        - ./grep11-server.pem:/cfg/grep11-server.pem</span>
@@ -6773,9 +6777,10 @@ subject=C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS 2.1.6 Grep1
 <span class="s">  - hostname: 192.168.22.80</span>
 <span class="s">    port: 9001</span>
 <span class="s">    mTLS: true</span>
-<span class="s">    server_cert_file: &quot;/cfg/c16-ca.pem&quot;</span>
-<span class="s">    client_key_file: &quot;/cfg/c16-client.key&quot;</span>
-<span class="s">    client_cert_file: &quot;/cfg/c16-client.pem&quot;</span>
+<span class="s">    server_cert_file: &quot;/cfg/c16server-ca.pem&quot;</span>
+<span class="s">    client_key_file: &quot;/cfg/c16server-client.key&quot;</span>
+<span class="s">    client_cert_file: &quot;/cfg/c16server-client.pem&quot;</span>
+<span class="s">    restricted_server_cert_file: &quot;/cfg/c16server-restricted-server.pem&quot;</span>
 
 <span class="s">EOF</span>
 </code></pre></div>
@@ -6803,10 +6808,11 @@ subject=C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS 2.1.6 Grep1
 <div class="highlight"><pre><span></span><code>grep<span class="w"> </span><span class="s1">&#39;file:&#39;</span><span class="w"> </span>c16client.yaml
 </code></pre></div>
 <details class="- example">
-<summary>You get the first file and create the other two [Click me]</summary>
-<div class="highlight"><pre><span></span><code>    server_cert_file: &quot;/cfg/c16-ca.pem&quot;
-    client_key_file: &quot;/cfg/c16-client.key&quot;
-    client_cert_file: &quot;/cfg/c16-client.pem&quot;
+<summary>You get the first and fourth files and create the other two [Click me]</summary>
+<div class="highlight"><pre><span></span><code>    server_cert_file: &quot;/cfg/c16server-ca.pem&quot;
+    client_key_file: &quot;/cfg/c16server-client.key&quot;
+    client_cert_file: &quot;/cfg/c16server-client.pem&quot;
+    restricted_server_cert_file: &quot;/cfg/c16server-restricted-server.pem&quot;
 </code></pre></div>
 </details>
 </li>
@@ -7181,33 +7187,34 @@ Getting CA Private Key
 <h3 id="lab-grep11-creategrep11contract-create-x509-material-for-grep11-server-to-cena4see-server-communication">Create x509 material for <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server to <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> Server communication<a class="headerlink" href="#lab-grep11-creategrep11contract-create-x509-material-for-grep11-server-to-cena4see-server-communication" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
-<p>Learn a new argument (<em>--after-context</em>) to the <em>grep</em> command and display just a portion of the docker-compose file:</p>
-<div class="highlight"><pre><span></span><code>grep<span class="w"> </span>--after-context<span class="w"> </span><span class="m">8</span><span class="w"> </span>volumes<span class="w"> </span>docker-compose.yml
+<p>Run this command to find the word <em>volumes</em> in the <strong>docker-compose.yml</strong> file and then print it and the next nine lines (<em>--after-context 9</em>):</p>
+<div class="highlight"><pre><span></span><code>grep<span class="w"> </span>--after-context<span class="w"> </span><span class="m">9</span><span class="w"> </span>volumes<span class="w"> </span>docker-compose.yml
 </code></pre></div>
 <details class="- example">
 <summary>Expected output</summary>
-<div class="highlight"><pre><span></span><code>    volumes:
-    - ./c16client.yaml:/etc/c16/c16client.yaml
-    - ./c16-ca.pem:/cfg/c16-ca.pem
-    - ./c16-client.key:/cfg/c16-client.key
-    - ./c16-client.pem:/cfg/c16-client.pem
-    - ./grep11server.yaml:/etc/ep11server/ep11server.yaml
-    - ./grep11-ca.pem:/cfg/grep11-ca.pem
-    - ./grep11-server.pem:/cfg/grep11-server.pem
-    - ./grep11-server.key:/cfg/grep11-server.key
+<div class="highlight"><pre><span></span><code>                volumes:
+                    - ./c16client.yaml:/etc/c16/c16client.yaml
+                    - ./c16server-ca.pem:/cfg/c16server-ca.pem
+                    - ./c16server-client.key:/cfg/c16server-client.key
+                    - ./c16server-client.pem:/cfg/c16server-client.pem
+                    - ./c16server-restricted-server.pem:/cfg/c16server-restricted-server.pem
+                    - ./grep11server.yaml:/etc/ep11server/ep11server.yaml
+                    - ./grep11-ca.pem:/cfg/grep11-ca.pem
+                    - ./grep11-server.pem:/cfg/grep11-server.pem
+                    - ./grep11-server.key:/cfg/grep11-server.key
 </code></pre></div>
 </details>
-<p>Of the eight files, you have created five of them:</p>
+<p>Of the nine files, you have created five of them:</p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 2 <em>.yaml</em> files</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 3 <em>grep11-*</em> files</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 3 <em>c16-*</em> files</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 4 <em>c16server*</em> files</li>
 </ul>
 </li>
 <li>
-<p>Now it is time to create or acquire the three files called for from <em>c16client.yaml</em>.</p>
+<p>Now it is time to create or acquire the four files called for from <em>c16client.yaml</em>.</p>
 <p>There is only one <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> server that all of the lab students will use.  The instructors have set this up, and have created the "self-signed" <abbr title="certification authority">CA</abbr> that governs communication between the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> server and its clients (each student's <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server is a client of the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> server). You need to acquire the certificate of the <abbr title="certification authority">CA</abbr> the instructors created:</p>
-<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-ipv<span class="w"> </span>/data/lab/c16-ca-public/c16-ca.pem<span class="w"> </span>.
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-ipv<span class="w"> </span>/data/lab/c16server-public/c16server-ca.pem<span class="w"> </span>.
 </code></pre></div>
 </li>
 <li>
@@ -7216,7 +7223,7 @@ Getting CA Private Key
 <p class="admonition-title">Certtool</p>
 <p>You used <em>openssl</em> for your previous certificate work.  You will use another tool called <em>certtool</em> now.  </p>
 </div>
-<div class="highlight"><pre><span></span><code>certtool<span class="w"> </span>--generate-privkey<span class="w"> </span>--outfile<span class="w"> </span>c16-client.key
+<div class="highlight"><pre><span></span><code>certtool<span class="w"> </span>--generate-privkey<span class="w"> </span>--outfile<span class="w"> </span>c16server-client.key
 </code></pre></div>
 <details class="- example">
 <summary>Output from private key creation</summary>
@@ -7262,9 +7269,9 @@ Getting CA Private Key
 <li>
 <p>Now create a <abbr title="certificate signing request">CSR</abbr>:</p>
 <div class="highlight"><pre><span></span><code>certtool<span class="w"> </span>--generate-request<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--load-privkey<span class="w"> </span>c16-client.key<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--load-privkey<span class="w"> </span>c16server-client.key<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--template<span class="w"> </span>csr.cfg<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--outfile<span class="w"> </span>c16-client.csr<span class="w"> </span>
+<span class="w">    </span>--outfile<span class="w"> </span>c16server-client.csr<span class="w"> </span>
 </code></pre></div>
 <details class="- example">
 <summary>Output from creating <abbr title="certificate signing request">CSR</abbr></summary>
@@ -7274,7 +7281,7 @@ Getting CA Private Key
 </li>
 <li>
 <p>Display information about your <abbr title="certificate signing request">CSR</abbr>:</p>
-<div class="highlight"><pre><span></span><code>certtool<span class="w"> </span>--crq-info<span class="w"> </span>--infile<span class="w"> </span>c16-client.csr
+<div class="highlight"><pre><span></span><code>certtool<span class="w"> </span>--crq-info<span class="w"> </span>--infile<span class="w"> </span>c16server-client.csr
 </code></pre></div>
 <p>Your output should look similar to this:</p>
 <details class="- example">
@@ -7366,15 +7373,15 @@ TNVxGDGmyklOsttcINyIfbyQGMUTURDEDYLl7xLNX8IFTcG+xtlS1g==
 <p>In the interests of transparency, this is the command the instructors will use to create your certificate (after setting the <em>${student}</em> environment variable appropriately).  Don't try to run this command as it won't work for you because you do not have access to the "self-signed" <abbr title="certification authority">CA</abbr>'s private key.  (You can try- if you succeed, you are either an excellent hacker, or the instructors are not excellent system administrators, or some combination thereof).</p>
 <div class="highlight"><pre><span></span><code><span class="c1">### for your information only</span>
 certtool<span class="w"> </span>--generate-certificate<span class="w"> </span><span class="se">\</span>
---load-request<span class="w"> </span>/home/<span class="si">${</span><span class="nv">student</span><span class="si">}</span>/contract/grep11Server/workload/compose/c16-client.csr<span class="w"> </span><span class="se">\</span>
---outfile<span class="w"> </span><span class="si">${</span><span class="nv">student</span><span class="si">}</span>-c16-client.pem<span class="w"> </span><span class="se">\</span>
+--load-request<span class="w"> </span>/home/<span class="si">${</span><span class="nv">student</span><span class="si">}</span>/contract/grep11Server/workload/compose/c16server-client.csr<span class="w"> </span><span class="se">\</span>
+--outfile<span class="w"> </span><span class="si">${</span><span class="nv">student</span><span class="si">}</span>-c16server-client.pem<span class="w"> </span><span class="se">\</span>
 --load-ca-certificate<span class="w"> </span>c16server-ca.pem<span class="w"> </span><span class="se">\</span>
 --load-ca-privkey<span class="w"> </span>c16server-ca.key<span class="w"> </span><span class="se">\</span>
 --template<span class="w"> </span>cert.cfg<span class="w"> </span>
 
-cp<span class="w"> </span>-ipv<span class="w"> </span><span class="si">${</span><span class="nv">student</span><span class="si">}</span>-c16-client.pem<span class="w"> </span>/home/<span class="si">${</span><span class="nv">student</span><span class="si">}</span>/contract/grep11Server/workload/compose/c16-client.pem
+cp<span class="w"> </span>-ipv<span class="w"> </span><span class="si">${</span><span class="nv">student</span><span class="si">}</span>-c16server-client.pem<span class="w"> </span>/home/<span class="si">${</span><span class="nv">student</span><span class="si">}</span>/contract/grep11Server/workload/compose/c16server-client.pem
 
-chown<span class="w"> </span><span class="si">${</span><span class="nv">student</span><span class="si">}</span>:hpvs_students<span class="w"> </span>/home/<span class="si">${</span><span class="nv">student</span><span class="si">}</span>/contract/grep11Server/workload/compose/c16-client.pem<span class="w"> </span>
+chown<span class="w"> </span><span class="si">${</span><span class="nv">student</span><span class="si">}</span>:hpvs_students<span class="w"> </span>/home/<span class="si">${</span><span class="nv">student</span><span class="si">}</span>/contract/grep11Server/workload/compose/c16server-client.pem<span class="w"> </span>
 </code></pre></div>
 <p>This is also for information only- it is the contents of the configuration file <em>cert.cfg</em> that the instructors use in the above command:</p>
 <div class="highlight"><span class="filename">cert.cfg</span><pre><span></span><code><span class="c1"># Expiration days</span>
@@ -7401,7 +7408,7 @@ chown<span class="w"> </span><span class="si">${</span><span class="nv">student<
 </li>
 <li>
 <p>After the instructors notify you that your certificate is ready <img alt="🕰" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f570.svg" title=":clock:" />, display it:</p>
-<div class="highlight"><pre><span></span><code>certtool<span class="w"> </span>--certificate-info<span class="w"> </span>--infile<span class="w"> </span>c16-client.pem
+<div class="highlight"><pre><span></span><code>certtool<span class="w"> </span>--certificate-info<span class="w"> </span>--infile<span class="w"> </span>c16server-client.pem
 </code></pre></div>
 <p>Your certificate will look like this:</p>
 <details class="- example">
@@ -7529,6 +7536,11 @@ m+qMiNTeERPuFX7XPko3vBnejo6sPedVv4+NbA==
 </details>
 </li>
 <li>
+<p>Run this command to acquire the X509 certificate of the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> server:</p>
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-ipv<span class="w"> </span>/data/lab/c16server-public/c16server-restricted-server.pem<span class="w"> </span>.
+</code></pre></div>
+</li>
+<li>
 <p>Switch directories:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/contract/grep11Server/workload/.
 </code></pre></div>
@@ -7632,8 +7644,8 @@ It will be called later by another script.  Comments have been added to help exp
 order to have your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server log to the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> that you configured earlier in the lab.</p>
 <ol>
 <li>
-<p>Create a directory to gather some files you will need for this <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> configuration and change to it:</p>
-<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>rsyslog<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>rsyslog
+<p>Switch to the directory from where you will gather some files you will need for this <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> configuration:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>rsyslog
 </code></pre></div>
 </li>
 <li>
