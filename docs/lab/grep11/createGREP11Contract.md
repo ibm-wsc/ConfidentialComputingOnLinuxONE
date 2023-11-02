@@ -42,7 +42,7 @@ This section starts where the last section left off- on your session with the RH
 This command will create the directory structure expected by the lab instructions:
 
 ``` bash
-mkdir -p ${HOME}/contract/grep11Server/{workload,environment}
+mkdir -p ${HOME}/contract/grep11Server/{workload/compose,environment/rsyslog}
 ```
 
 A contract requires a _workload_ section and an _environment_ section, and they each get their own directory. Then the sections are packaged together, and signed, and the signature is added as the third section.  This final result- the contract-  will be stored in your `${HOME}/contract/grep11Server` directory.
@@ -93,20 +93,22 @@ You are going to put the building blocks for the workload section of the contrac
 
 5. You will create or obtain x509 material to enable secure communication between GREP11 Server and the CENA4SEE server 
 
-    1. c16-ca.pem - this file has already been created by the instructors
+    1. c16server-ca.pem - this file has already been created by the instructors
 
-    2. c16-client.key
+    2. c16server-client.key
 
-    3. c16-client.pem - the instructors will create this file upon your request in a subsequent step in the lab
+    3. c16server-client.pem - the instructors will create this file upon your request in a subsequent step in the lab
+
+    4. c16server-restricted-server.pem - this file has already been created by the instructors
 
 Let's get started!
 
 ### Create docker-compose file
 
-Create a directory and switch to it:
+Switch to the directory that will hold the docker-compose file and the files referenced by the docker-compose file:
 
 ``` bash
-mkdir -p compose && cd compose
+cd compose
 ```
 
 Create the docker-compose file:
@@ -121,9 +123,10 @@ services:
 		- 9876:9876
 	volumes:
 		- ./c16client.yaml:/etc/c16/c16client.yaml
-		- ./c16-ca.pem:/cfg/c16-ca.pem
-		- ./c16-client.key:/cfg/c16-client.key
-		- ./c16-client.pem:/cfg/c16-client.pem
+		- ./c16server-ca.pem:/cfg/c16server-ca.pem
+		- ./c16server-client.key:/cfg/c16server-client.key
+		- ./c16server-client.pem:/cfg/c16server-client.pem
+		- ./c16server-restricted-server.pem:/cfg/c16server-restricted-server.pem
 		- ./grep11server.yaml:/etc/ep11server/ep11server.yaml
 		- ./grep11-ca.pem:/cfg/grep11-ca.pem
 		- ./grep11-server.pem:/cfg/grep11-server.pem
@@ -208,9 +211,10 @@ EOF
       - hostname: 192.168.22.80
         port: 9001
         mTLS: true
-        server_cert_file: "/cfg/c16-ca.pem"
-        client_key_file: "/cfg/c16-client.key"
-        client_cert_file: "/cfg/c16-client.pem"
+        server_cert_file: "/cfg/c16server-ca.pem"
+        client_key_file: "/cfg/c16server-client.key"
+        client_cert_file: "/cfg/c16server-client.pem"
+        restricted_server_cert_file: "/cfg/c16server-restricted-server.pem"
 
     EOF
     ```
@@ -243,12 +247,13 @@ EOF
 	grep 'file:' c16client.yaml
 	```
 
-	???- example "You get the first file and create the other two [Click me]"
+	???- example "You get the first and fourth files and create the other two [Click me]"
 
 		```
-			server_cert_file: "/cfg/c16-ca.pem"
-			client_key_file: "/cfg/c16-client.key"
-			client_cert_file: "/cfg/c16-client.pem"
+			server_cert_file: "/cfg/c16server-ca.pem"
+			client_key_file: "/cfg/c16server-client.key"
+			client_cert_file: "/cfg/c16server-client.pem"
+			restricted_server_cert_file: "/cfg/c16server-restricted-server.pem"
 		```
 
 ### Create x509 material for GREP11 client to GREP11 Server communication
@@ -645,39 +650,40 @@ In this section, you'll set up the material to enable the GREP11 Server's role a
 
 ### Create x509 material for GREP11 Server to CENA4SEE Server communication
 
-1. Learn a new argument (_--after-context_) to the _grep_ command and display just a portion of the docker-compose file:
+1. Run this command to find the word _volumes_ in the **docker-compose.yml** file and then print it and the next nine lines (_--after-context 9_):
 
 	``` bash
-	grep --after-context 8 volumes docker-compose.yml
+	grep --after-context 9 volumes docker-compose.yml
 	```
 
 	???- example "Expected output"
 
 		```
-			volumes:
-			- ./c16client.yaml:/etc/c16/c16client.yaml
-			- ./c16-ca.pem:/cfg/c16-ca.pem
-			- ./c16-client.key:/cfg/c16-client.key
-			- ./c16-client.pem:/cfg/c16-client.pem
-			- ./grep11server.yaml:/etc/ep11server/ep11server.yaml
-			- ./grep11-ca.pem:/cfg/grep11-ca.pem
-			- ./grep11-server.pem:/cfg/grep11-server.pem
-			- ./grep11-server.key:/cfg/grep11-server.key
+                        volumes:
+                            - ./c16client.yaml:/etc/c16/c16client.yaml
+                            - ./c16server-ca.pem:/cfg/c16server-ca.pem
+                            - ./c16server-client.key:/cfg/c16server-client.key
+                            - ./c16server-client.pem:/cfg/c16server-client.pem
+                            - ./c16server-restricted-server.pem:/cfg/c16server-restricted-server.pem
+                            - ./grep11server.yaml:/etc/ep11server/ep11server.yaml
+                            - ./grep11-ca.pem:/cfg/grep11-ca.pem
+                            - ./grep11-server.pem:/cfg/grep11-server.pem
+                            - ./grep11-server.key:/cfg/grep11-server.key
 		```
 
-	Of the eight files, you have created five of them:
+	Of the nine files, you have created five of them:
 
 	- [x] 2 _.yaml_ files
 	- [x] 3 _grep11-\*_ files
-	- [ ] 3 _c16-\*_ files
+	- [ ] 4 _c16server\*_ files
 
-2. Now it is time to create or acquire the three files called for from _c16client.yaml_.
+2. Now it is time to create or acquire the four files called for from _c16client.yaml_.
 
 
 	There is only one CENA4SEE server that all of the lab students will use.  The instructors have set this up, and have created the "self-signed" CA that governs communication between the CENA4SEE server and its clients (each student's GREP11 Server is a client of the CENA4SEE server). You need to acquire the certificate of the CA the instructors created:
 
 	```bash
-	cp -ipv /data/lab/c16-ca-public/c16-ca.pem .
+	cp -ipv /data/lab/c16server-public/c16server-ca.pem .
 	```
 
 3. Create an RSA private key using _certtool_:
@@ -687,7 +693,7 @@ In this section, you'll set up the material to enable the GREP11 Server's role a
 		You used _openssl_ for your previous certificate work.  You will use another tool called _certtool_ now.  
 
 	``` bash
-	certtool --generate-privkey --outfile c16-client.key
+	certtool --generate-privkey --outfile c16server-client.key
 	```
 
 	???- example "Output from private key creation"
@@ -736,9 +742,9 @@ In this section, you'll set up the material to enable the GREP11 Server's role a
 
 	``` bash
 	certtool --generate-request \
-		--load-privkey c16-client.key \
+		--load-privkey c16server-client.key \
 		--template csr.cfg \
-		--outfile c16-client.csr 
+		--outfile c16server-client.csr 
 	```
 
 	???- example "Output from creating CSR"
@@ -750,7 +756,7 @@ In this section, you'll set up the material to enable the GREP11 Server's role a
 6. Display information about your CSR:
 
 	``` bash
-	certtool --crq-info --infile c16-client.csr
+	certtool --crq-info --infile c16server-client.csr
 	```
 
 	Your output should look similar to this:
@@ -840,6 +846,8 @@ In this section, you'll set up the material to enable the GREP11 Server's role a
 		```
 
 
+        
+
 	The "self-signed" CA for the CENA4SEE server is under instructor control- since there is only one CENA4SEE for the class to share, there is only one CA.  Let the instructors know that you are ready to have a client certificate created and the instructors will create a certificate for you and place it in the same directory that you are presently working in.  
 
 	!!! Info "How the instructors will create this certificate for you"
@@ -849,15 +857,15 @@ In this section, you'll set up the material to enable the GREP11 Server's role a
 		``` bash
 		### for your information only
 		certtool --generate-certificate \
-		--load-request /home/${student}/contract/grep11Server/workload/compose/c16-client.csr \
-		--outfile ${student}-c16-client.pem \
+		--load-request /home/${student}/contract/grep11Server/workload/compose/c16server-client.csr \
+		--outfile ${student}-c16server-client.pem \
 		--load-ca-certificate c16server-ca.pem \
 		--load-ca-privkey c16server-ca.key \
 		--template cert.cfg 
 
-		cp -ipv ${student}-c16-client.pem /home/${student}/contract/grep11Server/workload/compose/c16-client.pem
+		cp -ipv ${student}-c16server-client.pem /home/${student}/contract/grep11Server/workload/compose/c16server-client.pem
 
-		chown ${student}:hpvs_students /home/${student}/contract/grep11Server/workload/compose/c16-client.pem 
+		chown ${student}:hpvs_students /home/${student}/contract/grep11Server/workload/compose/c16server-client.pem 
 		```
 
 		This is also for information only- it is the contents of the configuration file _cert.cfg_ that the instructors use in the above command:
@@ -887,7 +895,7 @@ In this section, you'll set up the material to enable the GREP11 Server's role a
 7. After the instructors notify you that your certificate is ready :clock:, display it:
 
 	``` bash
-	certtool --certificate-info --infile c16-client.pem
+	certtool --certificate-info --infile c16server-client.pem
 	```
 
 	Your certificate will look like this:
@@ -1017,13 +1025,19 @@ In this section, you'll set up the material to enable the GREP11 Server's role a
 
 		```
 
-8. Switch directories:
+8. Run this command to acquire the X509 certificate of the CENA4SEE server:
 
-	``` bash
-	cd ${HOME}/contract/grep11Server/workload/.
-	```
+    ``` bash
+    cp -ipv /data/lab/c16server-public/c16server-restricted-server.pem .
+    ```
 
-9. Time to add a convenience script
+9. Switch directories:
+
+    ``` bash
+    cd ${HOME}/contract/grep11Server/workload/.
+    ```
+
+10. Time to add a convenience script
 
 	You are almost finished with the workload section.  One thing to do is to add a convenience script to the workload directory.  This script is not
 supplied with the product, but is very useful in the creation of the contract.  Create it now and feel free to peruse it but do not run it now.
@@ -1124,10 +1138,10 @@ It will be called later by another script.  Comments have been added to help exp
 2. In the environment section of the contract you are going to specify the information in 
 order to have your GREP11 Server log to the rsyslog that you configured earlier in the lab.
 
-	1. Create a directory to gather some files you will need for this rsyslog configuration and change to it:
+	1. Switch to the directory from where you will gather some files you will need for this rsyslog configuration:
 
 		``` bash
-		mkdir -p rsyslog && cd rsyslog
+		cd rsyslog
 
 		```
 
