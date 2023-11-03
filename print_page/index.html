@@ -6612,12 +6612,78 @@ subject=C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS 2.1.6 Grep1
 <p>This command will create the directory structure expected by the lab instructions:</p>
 <div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/contract/grep11Server/<span class="o">{</span>workload/compose,environment/rsyslog<span class="o">}</span>
 </code></pre></div>
-<p>A contract requires a <em>workload</em> section and an <em>environment</em> section, and they each get their own directory. Then the sections are packaged together, and signed, and the signature is added as the third section.  This final result- the contract-  will be stored in your <code>${HOME}/contract/grep11Server</code> directory.</p>
-<h2 id="lab-grep11-creategrep11contract-create-workload-section-of-the-contract">Create workload section of the contract<a class="headerlink" href="#lab-grep11-creategrep11contract-create-workload-section-of-the-contract" title="Permanent link">&para;</a></h2>
-<p>Switch to your workload directory:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/contract/grep11Server/workload
+<p>Run the <code>tree</code> command to see the directory hiearchy you just created:</p>
+<div class="highlight"><pre><span></span><code>tree<span class="w"> </span>contract
 </code></pre></div>
-<p>HPVS expects the contract to specify an <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> <abbr title="a running instance of an OCI image.">container</abbr> specified by a <em><abbr title="a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.">Docker Compose</abbr></em> file.  The <em><abbr title="a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.">Docker Compose</abbr></em> file specifies an <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> image to run and other information necessary to configure the resulting <abbr title="a running instance of an OCI image.">container</abbr>. Your workload is the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server, so, yes, there's an <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> image for that. The <abbr title="a running instance of an OCI image.">container</abbr> that runs the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server will be configured with information such as:</p>
+<details class="info" open="open">
+<summary>Expected output from tree command</summary>
+<div class="highlight"><pre><span></span><code>[student03@bczkvm(192.168.22.64) ~ [12:23:58] (0)]$ tree contract
+contract
+└── grep11Server
+    ├── environment
+    │   └── rsyslog
+    └── workload
+        └── compose
+
+5 directories, 0 files
+</code></pre></div>
+</details>
+<p>Read about the directory structure and the purpose of each directory:</p>
+<table>
+<thead>
+<tr>
+<th>Directory</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>contract</td>
+<td>Top-level directory used for holding contracts</td>
+</tr>
+<tr>
+<td>grep11Server</td>
+<td>Top-level directory for the contract for the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server. Typically, the "workload deployer" signs the concatenation of the encrypted "environment" section that they create and the encrypted "workload" section that the "workload provider" creates.</td>
+</tr>
+<tr>
+<td>environment</td>
+<td>Used by the "workload deployer" persona to hold an encrypted environment section of the contract</td>
+</tr>
+<tr>
+<td><abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr></td>
+<td>Used to hold the artifacts needed to construct the logging subsection of the environment section</td>
+</tr>
+<tr>
+<td>workload</td>
+<td>Used by the "workload provider" to hold an encrypted workload section of the contract</td>
+</tr>
+<tr>
+<td>compose</td>
+<td>Used to hold the Docker compose file specifying the application image and supporting files</td>
+</tr>
+</tbody>
+</table>
+<p>A contract requires a <em>workload</em> section and an <em>environment</em> section, and they each get their own directory. Then the sections are packaged together, and signed, and the signature is added as the third section.  This final result- the contract-  will be stored in your <code>${HOME}/contract/grep11Server</code> directory.</p>
+<p>While creating the contract in this lab, you will be performing the role of <em>workload provider</em> and <em>workload deployer</em>. In most production scenarios these two roles would be performed by different persons or processes.  The following diagram shows at a high level how these two roles cooperate to form the contract:</p>
+<pre class="mermaid"><code>flowchart LR
+  A["Workload provider
+  creates
+  Workload section"];
+  B["Workload deployer
+  creates
+  Environment section"]
+  C["Workload provider
+  gives workload section
+  to Workload deployer"]
+  A --&gt; C
+  D["Workload deployer
+  signs combined
+  environment and
+  workload sections"]
+  B --&gt; D
+  C --&gt; D</code></pre>
+<h2 id="lab-grep11-creategrep11contract-create-workload-section-of-the-contract">Create workload section of the contract<a class="headerlink" href="#lab-grep11-creategrep11contract-create-workload-section-of-the-contract" title="Permanent link">&para;</a></h2>
+<p>Hyper Protect Virtual Servers 2.1.6  expects the contract to specify an <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> <abbr title="a running instance of an OCI image.">container</abbr> specified in one of two ways- as a <em><abbr title="a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.">Docker Compose</abbr></em> file in the <em>compose</em> subsection of the <em>workload</em> section, or as a Pod specification in the <em>play</em> subsection of the <em>workload</em> section. For this lab we will use a  <em><abbr title="a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.">Docker Compose</abbr></em> file in the <em>compose</em> subsection of the <em>workload</em> section.  This <em><abbr title="a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.">Docker Compose</abbr></em> file will specify an <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> image to run and other information necessary to configure the resulting <abbr title="a running instance of an OCI image.">container</abbr>. Your workload is the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server, so, yes, there's an <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> image for that. The <abbr title="a running instance of an OCI image.">container</abbr> that runs the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server will be configured with information such as:</p>
 <ul>
 <li>the port it listens on</li>
 <li>a configuration file that describes the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> server</li>
@@ -6685,7 +6751,7 @@ subject=C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS 2.1.6 Grep1
 <p>Let's get started!</p>
 <h3 id="lab-grep11-creategrep11contract-create-docker-compose-file">Create docker-compose file<a class="headerlink" href="#lab-grep11-creategrep11contract-create-docker-compose-file" title="Permanent link">&para;</a></h3>
 <p>Switch to the directory that will hold the docker-compose file and the files referenced by the docker-compose file:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>compose
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/contract/grep11Server/workload/compose
 </code></pre></div>
 <p>Create the docker-compose file:</p>
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; docker-compose.yml</span>
@@ -6709,7 +6775,7 @@ subject=C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS 2.1.6 Grep1
 <span class="s">EOF</span>
 </code></pre></div>
 <p>Notice the value of the <em>image</em> key.  This is the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> image provided with the Crypto Express Network API for <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr> Enclaves 1.1.2.1 (<abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr>) that Barry (<em>bsilliman</em>) has uploaded to his account on Quay.io for this lab. (Not for your production usage as it could disappear at any time).</p>
-<p>Notice the list of eight items under the <em>volumes</em> section. The left side of each entry in the list specifies the name of the file on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host.  The value after the ':' specifies where that file is mapped to within the <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> <abbr title="a running instance of an OCI image.">container</abbr> that will run in the HPVS 2.1.6 guest.  Taking the first item in the list as an example, you will create a file named <em>c16client.yaml</em> and then within the <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> <abbr title="a running instance of an OCI image.">container</abbr> it will be available at <em>/etc/c16/c16client.yaml</em>.  (As an aside, you can also map entire directories from your host to a Docker <abbr title="a running instance of an OCI image.">container</abbr>, although this example only maps individual files).</p>
+<p>Notice the list of nine items under the <em>volumes</em> section. The left side of each entry in the list specifies the name of the file on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host.  The value after the ':' specifies where that file is mapped to within the <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> <abbr title="a running instance of an OCI image.">container</abbr> that will run in the HPVS 2.1.6 guest.  Taking the first item in the list as an example, you will create a file named <em>c16client.yaml</em> and then within the <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> <abbr title="a running instance of an OCI image.">container</abbr> it will be available at <em>/etc/c16/c16client.yaml</em>.  (As an aside, you can also map entire directories from your host to a Docker <abbr title="a running instance of an OCI image.">container</abbr>, although this example only maps individual files).</p>
 <h3 id="lab-grep11-creategrep11contract-create-the-configuration-file-for-the-grep11-server">Create the configuration file for the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> server<a class="headerlink" href="#lab-grep11-creategrep11contract-create-the-configuration-file-for-the-grep11-server" title="Permanent link">&para;</a></h3>
 <p>Run this command to create the configuration file for the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> server:</p>
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; grep11server.yaml</span>
@@ -7908,7 +7974,7 @@ order to have your <abbr title="This is an API that provides a set of EP11 calls
 </li>
 <li>
 <p>Run this command (<abbr title="Red Hat Enterprise Linux">RHEL</abbr>-specific, see product documentation for Ubuntu command) in order to create the startup file, <em>ciiso.iso</em>:</p>
-<div class="highlight"><pre><span></span><code>genisoimage<span class="w"> </span>-output<span class="w"> </span>/var/lib/libvirt/images/hpvslab/<span class="k">$(</span>whoami<span class="k">)</span>/ciiso.iso<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>genisoimage<span class="w"> </span>-output<span class="w"> </span>/var/lib/libvirt/images/hpcr/<span class="k">$(</span>whoami<span class="k">)</span>/ciiso.iso<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-volid<span class="w"> </span>cidata<span class="w"> </span>-joliet<span class="w"> </span>-rock<span class="w"> </span>user-data<span class="w"> </span>meta-data<span class="w"> </span>vendor-data
 </code></pre></div>
 <p>Your output will look like this:</p>
@@ -7962,15 +8028,15 @@ But until then, start from this familiar window or tab:</p>
     &lt;emulator&gt;/usr/libexec/qemu-kvm&lt;/emulator&gt;
     &lt;disk type=&#39;file&#39; device=&#39;disk&#39;&gt;
       &lt;driver name=&#39;qemu&#39; type=&#39;qcow2&#39; iommu=&#39;on&#39;/&gt;
-      &lt;source file=&#39;/var/lib/libvirt/images/hpcr/student02/ibm-hyper-protect-container-runtime-23.6.2.qcow2&#39;/&gt;
-      &lt;backingStore/&gt;
+<span class="hll">      &lt;source file=&#39;/var/lib/libvirt/images/hpcr/student02/ibm-hyper-protect-container-runtime-23.6.2.qcow2&#39;/&gt;
+</span>      &lt;backingStore/&gt;
       &lt;target dev=&#39;vda&#39; bus=&#39;virtio&#39;/&gt;
       &lt;address type=&#39;ccw&#39; cssid=&#39;0xfe&#39; ssid=&#39;0x0&#39; devno=&#39;0x0000&#39;/&gt;
     &lt;/disk&gt;
     &lt;disk type=&#39;file&#39; device=&#39;disk&#39;&gt;
       &lt;driver name=&#39;qemu&#39; type=&#39;raw&#39; cache=&#39;none&#39; io=&#39;native&#39; iommu=&#39;on&#39;/&gt;
-      &lt;source file=&#39;/var/lib/libvirt/images/hpvslab/student02/ciiso.iso&#39;/&gt;
-      &lt;target dev=&#39;vdc&#39; bus=&#39;virtio&#39;/&gt;
+<span class="hll">      &lt;source file=&#39;/var/lib/libvirt/images/hpcr/student02/ciiso.iso&#39;/&gt;
+</span>      &lt;target dev=&#39;vdc&#39; bus=&#39;virtio&#39;/&gt;
       &lt;readonly/&gt;
       &lt;address type=&#39;ccw&#39; cssid=&#39;0xfe&#39; ssid=&#39;0x0&#39; devno=&#39;0x0002&#39;/&gt;
     &lt;/disk&gt;
@@ -7992,6 +8058,7 @@ But until then, start from this familiar window or tab:</p>
 &lt;/domain&gt;
 </code></pre></div>
 </details>
+<p>In the example output above, observe the two highlighted lines. The first line shows the <em>Hyper Protect Container Runtime</em> image that is provided by Hyper Protect Virtual Servers 2.1.6.  This is the <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-enabled KVM guest that will read your contract, validate its correctness and integrity, and then start your application workload. The second line shows the <em>ciiso.iso</em> file that you created in the previous section with the <code>genisoimage</code> command.  The <em>ciiso.iso</em> file contains your contract.</p>
 <p>Start your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server and attach to its console.  Watch the messages carefully.  You should not see any failures:</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>virsh<span class="w"> </span>start<span class="w"> </span>grep11se<span class="si">${</span><span class="nv">suffix</span><span class="si">}</span><span class="w"> </span>--console
 </code></pre></div>

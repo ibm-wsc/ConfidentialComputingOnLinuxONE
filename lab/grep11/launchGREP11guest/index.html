@@ -1601,15 +1601,15 @@ But until then, start from this familiar window or tab:</p>
     &lt;emulator&gt;/usr/libexec/qemu-kvm&lt;/emulator&gt;
     &lt;disk type=&#39;file&#39; device=&#39;disk&#39;&gt;
       &lt;driver name=&#39;qemu&#39; type=&#39;qcow2&#39; iommu=&#39;on&#39;/&gt;
-      &lt;source file=&#39;/var/lib/libvirt/images/hpcr/student02/ibm-hyper-protect-container-runtime-23.6.2.qcow2&#39;/&gt;
-      &lt;backingStore/&gt;
+<span class="hll">      &lt;source file=&#39;/var/lib/libvirt/images/hpcr/student02/ibm-hyper-protect-container-runtime-23.6.2.qcow2&#39;/&gt;
+</span>      &lt;backingStore/&gt;
       &lt;target dev=&#39;vda&#39; bus=&#39;virtio&#39;/&gt;
       &lt;address type=&#39;ccw&#39; cssid=&#39;0xfe&#39; ssid=&#39;0x0&#39; devno=&#39;0x0000&#39;/&gt;
     &lt;/disk&gt;
     &lt;disk type=&#39;file&#39; device=&#39;disk&#39;&gt;
       &lt;driver name=&#39;qemu&#39; type=&#39;raw&#39; cache=&#39;none&#39; io=&#39;native&#39; iommu=&#39;on&#39;/&gt;
-      &lt;source file=&#39;/var/lib/libvirt/images/hpvslab/student02/ciiso.iso&#39;/&gt;
-      &lt;target dev=&#39;vdc&#39; bus=&#39;virtio&#39;/&gt;
+<span class="hll">      &lt;source file=&#39;/var/lib/libvirt/images/hpcr/student02/ciiso.iso&#39;/&gt;
+</span>      &lt;target dev=&#39;vdc&#39; bus=&#39;virtio&#39;/&gt;
       &lt;readonly/&gt;
       &lt;address type=&#39;ccw&#39; cssid=&#39;0xfe&#39; ssid=&#39;0x0&#39; devno=&#39;0x0002&#39;/&gt;
     &lt;/disk&gt;
@@ -1631,6 +1631,7 @@ But until then, start from this familiar window or tab:</p>
 &lt;/domain&gt;
 </code></pre></div>
 </details>
+<p>In the example output above, observe the two highlighted lines. The first line shows the <em>Hyper Protect Container Runtime</em> image that is provided by Hyper Protect Virtual Servers 2.1.6.  This is the <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-enabled KVM guest that will read your contract, validate its correctness and integrity, and then start your application workload. The second line shows the <em>ciiso.iso</em> file that you created in the previous section with the <code>genisoimage</code> command.  The <em>ciiso.iso</em> file contains your contract.</p>
 <p>Start your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server and attach to its console.  Watch the messages carefully.  You should not see any failures:</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>virsh<span class="w"> </span>start<span class="w"> </span>grep11se<span class="si">${</span><span class="nv">suffix</span><span class="si">}</span><span class="w"> </span>--console
 </code></pre></div>
@@ -2574,7 +2575,7 @@ Sep 05 21:07:37 ubuntu2204 systemd-networkd[1777]:  br-35f22f910f6f: Gained IPv6
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 5, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 3, 2023</span>
       
         <br>
         Created:
