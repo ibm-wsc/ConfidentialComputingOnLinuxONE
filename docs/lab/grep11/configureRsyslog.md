@@ -7,6 +7,16 @@ The HPVS 2.1.6-protected GREP11 Server that you will create later in the lab wil
 !!! Note "Logging to IBM Log Analysis on IBM Cloud"
     You can also log the output of an HPVS 2.1.6 guest to an [IBM Log Analysis instance on IBM Cloud](https://cloud.ibm.com/catalog/services/logdna){target="_blank" rel="noopener"}.  That is not covered in this lab but if you are interested in this, it is covered in the [product documentation](https://www.ibm.com/docs/en/hpvs/2.1.x?topic=servers-logging-hyper-protect-virtual){target="_blank" rel="noopener"}.
 
+### Open a new terminal window or tab with the _KVM Standard Guest_ profile
+
+From your terminal window with the _RHEL Host_ profile, click on _File_ in the menu bar and then, according to your preferences, select either _New Tab_ or _New Window_, and, from either choice, select _1. KVM Standard Guest_
+
+Choosing a new tab offers compactness but you won't be able to see both the _RHEL Host_ tab and the _KVM Standard Guest_ tab at the same time- you have to switch back and forth by clicking the appropriate tab header at the top.  Choosing a new window allows you to drag your windows or otherwise rearrange them so that you can see both windows on your screen.  The choice is yours.  Advanced students may wish to open more windows and tabs but the lab is written with the assumption that you have just one window or tab with the _RHEL Host_ profile and just one window or tab with the _KVM Standard Guest_ profile.
+
+Your window or tab should like like this (unless you customized the profile we provided you):
+
+<img src="../../../images/KVMGuest.png" width="351" height="217" />
+
 ## Log in to your Ubuntu KVM guest
 
 !!! Question "How tricky can logging in be?"
@@ -60,16 +70,6 @@ The HPVS 2.1.6-protected GREP11 Server that you will create later in the lab wil
 	``` bash
 	echo "export Student_SSH_Port='${Student_SSH_Port}'" >> "${HOME}/.zshrc"
 	```
-
-### Open a new terminal window or tab with the _KVM Standard Guest_ profile
-
-From your terminal window with the _RHEL Host_ profile, click on _File_ in the menu bar and then, according to your preferences, select either _New Tab_ or _New Window_, and, from either choice, select _1. KVM Standard Guest_
-
-Choosing a new tab offers compactness but you won't be able to both the _RHEL Host_ tab and the _KVM Standard Guest_ tab at the same time- you have to switch back and forth by clicking the appropriate tab header at the top.  Choosing a new window allows you to drag your windows or otherwise rearrange them so that you can see both windows on your screen.  The choice is yours.  Advanced students may wish to open more windows and tabs but the lab is written with the assumption that you have just one window or tab with the _RHEL Host_ profile and just one window or tab with the _KVM Standard Guest_ profile.
-
-Your window or tab should like like this (unless you customized the profile we provided you):
-
-<img src="../../../images/KVMGuest.png" width="351" height="217" />
 
 You're now ready to log in to your Ubuntu KVM guest:
 
@@ -209,7 +209,7 @@ You'll modify the configuration to allow this.
 
 	???- example "Output showing rsyslog is already installed"
 
-		``` bash
+		``` bash hl_lines="2"
 		rsyslog:
 			Installed: 8.2112.0-2ubuntu2.2
 			Candidate: 8.2112.0-2ubuntu2.2
@@ -230,7 +230,7 @@ You'll modify the configuration to allow this.
 
 	???- example "Output showing rsyslog-gnutls is not installed"
 
-		```
+		``` hl_lines="2"
 		rsyslog-gnutls:
 			Installed: (none)
 			Candidate: 8.2112.0-2ubuntu2.2
@@ -290,7 +290,7 @@ You'll modify the configuration to allow this.
 
 	???- example "Output showing that rsyslog-gnutls is installed"
 
-		```
+		``` hl_lines="2"
 		rsyslog-gnutls:
 			Installed: 8.2112.0-2ubuntu2.2
 			Candidate: 8.2112.0-2ubuntu2.2
@@ -323,8 +323,8 @@ For the lab you will create your own CA- what is often called a "self-signed" CA
 	
 If you receive a piece of digital information that is signed, and the public key that corresponds to the private key used to create the signature, you can prove that whoever signed this had to have held the private key in order to create the signature.  Okay, cool.  But what if a malicious actor had the private key and gave you the public key? Would you feel so great knowing you verified the signer if they were malicious?  No!  That is where a CA comes in. The idea is that the following process occurs:
 
-1. An individual or organization submits a request for a certificate (CSR) with their public key
-2. The CA takes the effort to verify that the owner of the public key is a good actor and is who they say they are and can be trusted
+1. An individual or organization submits a request for a certificate (CSR) with their public key.
+2. The CA takes the effort to verify that the owner of the public key is a good actor and is who they say they are and can be trusted.
 3. The CA creates the certificate that holds the public key, essentially stating "I am a CA and you can trust me and the holder of this certificate that I just signed is a good person and they are who they say they are, so you can trust this certificate and anything it signs".
 
 ??? Question "How is that working out for us?"
@@ -392,7 +392,7 @@ In real world practice, for external, customer-facing applications an enterprise
 		
 		Some `openssl` commands have a tendency to ask a bunch of questions which can be tedious and error-prone when typing the answers, but you can avoid that by creating a configuration file that provides the answers and thus avoids the questions.  You'll see this pattern throughout the lab.
 
-5. A CA itself has a certificate that it can send or make available to others (others being people, or computer processes, or whomever). You don't have one yet- all you have is a private key. A certificate signing request (CSR) can be created from a private key- it derives the public key from the private key and creates an object called a Certificate Signing Request (CSR) that contians the public key and other identifying information and can be sent to a CA. Create your CSR:
+5. A CA itself has a certificate that it can send or make available to others (others being people, or computer processes, or whomever). You don't have one yet- all you have is a private key. A certificate signing request (CSR) can be created from a private key- it derives the public key from the private key and creates an object called a Certificate Signing Request (CSR) that contains the public key and other identifying information and can be sent to a CA. Create your CSR:
 
 	``` bash
 	openssl req -config ca.cnf -key ca-key.pem -new -out ca-req.csr
@@ -433,7 +433,7 @@ The process is the same as what you just went through for creating your CA for s
 1. Create a private key
 2. Create a configuration file to answer questions ahead of time
 3. Use the key and the config file to create a CSR
-4. This time you'll have your "self-signed" CA create and sign the certificate.  
+4. This time you'll have your "self-signed" CA create and sign the certificate  
 
 ### Creation time
 
@@ -651,7 +651,7 @@ Display the rsyslog service's status and notice it hasn't been active very long,
 
 ???- example "Output showing rsyslog status after restart"
 
-      ```
+      ``` hl_lines="3"
       ● rsyslog.service - System Logging Service
            Loaded: loaded (/lib/systemd/system/rsyslog.service; enabled; vendor preset: enabled)
            Active: active (running) since Tue 2023-02-14 01:30:47 UTC; 13s ago
@@ -682,7 +682,7 @@ Now when you rerun the command to see the listening TCP ports, seeing 6514 in th
    
 ???- example "Expected output showing port 6514 is listening"
 
-      ```
+      ``` hl_lines="5-6"
       COMMAND    PID            USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
       systemd-r  602 systemd-resolve   14u  IPv4  15472      0t0  TCP 127.0.0.53:53 (LISTEN)
       sshd       709            root    3u  IPv4  16871      0t0  TCP *:22 (LISTEN)

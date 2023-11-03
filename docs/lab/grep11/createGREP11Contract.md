@@ -48,7 +48,7 @@ mkdir -p ${HOME}/contract/grep11Server/{workload/compose,environment/rsyslog}
 Run the `tree` command to see the directory hiearchy you just created:
 
 ``` bash
-tree contract
+cd ${HOME} && tree contract
 ```
 
 ???+ info "Expected output from tree command"
@@ -75,7 +75,7 @@ Read about the directory structure and the purpose of each directory:
 | workload | Used by the "workload provider" to hold an encrypted workload section of the contract |
 | compose | Used to hold the Docker compose file specifying the application image and supporting files |
 
-A contract requires a _workload_ section and an _environment_ section, and they each get their own directory. Then the sections are packaged together, and signed, and the signature is added as the third section.  This final result- the contract-  will be stored in your `${HOME}/contract/grep11Server` directory.
+A contract requires a _workload_ section and an _environment_ section, so for the lab they each get their own directory. Then the sections are packaged together, and signed, and the signature is added as the third section.  This final result- the contract-  will be stored in your `${HOME}/contract/grep11Server` directory.
 
 While creating the contract in this lab, you will be performing the role of _workload provider_ and _workload deployer_. In most production scenarios these two roles would be performed by different persons or processes.  The following diagram shows at a high level how these two roles cooperate to form the contract:
 
@@ -83,10 +83,10 @@ While creating the contract in this lab, you will be performing the role of _wor
 flowchart LR
   A["Workload provider
   creates
-  Workload section"];
+  workload section"];
   B["Workload deployer
   creates
-  Environment section"]
+  environment section"]
   C["Workload provider
   gives workload section
   to Workload deployer"]
@@ -101,7 +101,7 @@ flowchart LR
 
 ## Create workload section of the contract
 
-Hyper Protect Virtual Servers 2.1.6  expects the contract to specify an OCI container specified in one of two ways- as a _Docker Compose_ file in the _compose_ subsection of the _workload_ section, or as a Pod specification in the _play_ subsection of the _workload_ section. For this lab we will use a  _Docker Compose_ file in the _compose_ subsection of the _workload_ section.  This _Docker Compose_ file will specify an OCI image to run and other information necessary to configure the resulting container. Your workload is the GREP11 Server, so, yes, there's an OCI image for that. The container that runs the GREP11 Server will be configured with information such as:
+Hyper Protect Virtual Servers 2.1.6  expects the contract to specify an OCI container in one of two ways- as a _Docker Compose_ file in the _compose_ subsection of the _workload_ section, or as a Pod specification in the _play_ subsection of the _workload_ section. For this lab we will use a  _Docker Compose_ file in the _compose_ subsection of the _workload_ section.  This _Docker Compose_ file will specify an OCI image to run and other information necessary to configure the resulting container. Your workload is the GREP11 Server, so, yes, there's an OCI image for that. The container that runs the GREP11 Server will be configured with information such as:
 
 - the port it listens on
 - a configuration file that describes the GREP11 server
@@ -1436,7 +1436,7 @@ The script creates the final contract in a file named `user_data.yaml`.  It also
 
 ## Create the startup file for the HPVS 2.1.6 GREP11 guest
 
-1. Create a copy of the `user_data.yaml` file that your created
+1. Create a copy of the `user_data.yaml` file that you created
 
 	The contract that you just created is going to be packaged with some other files into a startup file for the HPVS 2.1.6 guest that will run your GREP11 Server. One of the files expected is a file named `user-data` that is just a copy of the `user_data.yaml` file that was just created
 

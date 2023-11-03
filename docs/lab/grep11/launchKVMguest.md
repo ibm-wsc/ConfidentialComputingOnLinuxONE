@@ -10,11 +10,11 @@ You will first ensure that two crucial environment variables are set on your jum
 
 Environment variables are set in three places:
 
-1. On your jumpbox.  In most cases, the instructors will have configured your jumpbox with your student-specific environment variables
+1. On your jumpbox.  In most cases, the instructors will have configured your jumpbox with your student-specific environment variables.
 
-2. You will have a userid on the RHEL host, and this userid has been configured with student-specific environment variables 
+2. You will have a userid on the RHEL host, and this userid has been configured with student-specific environment variables.
 
-3. You will have your own KVM standard guest running Ubuntu, and your guest is also configured with student-specific environment variables
+3. You will have your own KVM standard guest running Ubuntu, and your guest is also configured with student-specific environment variables.
 
 ### Set or verify the environment variable on your jumpbox for your student ID
 

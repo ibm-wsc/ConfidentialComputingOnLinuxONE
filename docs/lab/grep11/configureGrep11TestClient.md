@@ -7,13 +7,13 @@ It doesn't get any better than this!
 
 Let's recap the highlights:
 
-You configured an _rsyslog_ service on your Ubuntu KVM guest
+You configured an _rsyslog_ service on your Ubuntu KVM guest.
 
 You did the X509 work to enable communication between the GREP11 server and the _rsyslog_ service.
 
 You did the X509 work to enable the GREP11 Server to communicate with the CENA4SEE server.
 
-You did the server side of the X509 work to enable the GREP11 Server to communicate with GREP11 clients
+You did the server side of the X509 work to enable the GREP11 Server to communicate with GREP11 clients.
 
 You created the _contract_ expected by HPVS 2.1.6.
 
@@ -27,7 +27,7 @@ In this section you will:
 
 2. Download the GREP11 client code from GitHub
 
-3. Do the client side of the X509 work to enable communication between your GREP11 Server and this GREP11 client code.
+3. Do the client side of the X509 work to enable communication between your GREP11 Server and this GREP11 client code
 
 4. Modify the GREP11 client code to point to your GREP11 Server
 

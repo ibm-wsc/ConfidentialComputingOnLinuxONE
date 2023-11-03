@@ -358,7 +358,7 @@ Steps 1 through 5 will be performed on the RHEL host.
 
 	???- example "File listing shows your client certificate (client.crt)"
 
-		``` bash
+		``` bash hl_lines="5"
 		total 16
 		-rw------- 1 student02 hpvs_students 3247 Feb 13 20:42 client-key.pem
 		-rw-r--r-- 1 student02 hpvs_students  192 Feb 13 20:44 client.cnf
