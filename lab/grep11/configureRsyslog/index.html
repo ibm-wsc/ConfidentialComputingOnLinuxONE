@@ -795,14 +795,7 @@
     Overview of this page
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#log-in-to-your-ubuntu-kvm-guest" class="md-nav__link">
-    Log in to your Ubuntu KVM guest
-  </a>
-  
-    <nav class="md-nav" aria-label="Log in to your Ubuntu KVM guest">
+    <nav class="md-nav" aria-label="Overview of this page">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -814,6 +807,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#log-in-to-your-ubuntu-kvm-guest" class="md-nav__link">
+    Log in to your Ubuntu KVM guest
+  </a>
   
 </li>
       
@@ -1612,14 +1612,7 @@
     Overview of this page
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#log-in-to-your-ubuntu-kvm-guest" class="md-nav__link">
-    Log in to your Ubuntu KVM guest
-  </a>
-  
-    <nav class="md-nav" aria-label="Log in to your Ubuntu KVM guest">
+    <nav class="md-nav" aria-label="Overview of this page">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1631,6 +1624,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#log-in-to-your-ubuntu-kvm-guest" class="md-nav__link">
+    Log in to your Ubuntu KVM guest
+  </a>
   
 </li>
       
@@ -1747,6 +1747,11 @@
 <p class="admonition-title">Logging to IBM Log Analysis on IBM Cloud</p>
 <p>You can also log the output of an HPVS 2.1.6 guest to an <a href="https://cloud.ibm.com/catalog/services/logdna" rel="noopener" target="_blank">IBM Log Analysis instance on IBM Cloud</a>.  That is not covered in this lab but if you are interested in this, it is covered in the <a href="https://www.ibm.com/docs/en/hpvs/2.1.x?topic=servers-logging-hyper-protect-virtual" rel="noopener" target="_blank">product documentation</a>.</p>
 </div>
+<h3 id="open-a-new-terminal-window-or-tab-with-the-kvm-standard-guest-profile">Open a new terminal window or tab with the <em>KVM Standard Guest</em> profile<a class="headerlink" href="#open-a-new-terminal-window-or-tab-with-the-kvm-standard-guest-profile" title="Permanent link">&para;</a></h3>
+<p>From your terminal window with the <em><abbr title="Red Hat Enterprise Linux">RHEL</abbr> Host</em> profile, click on <em>File</em> in the menu bar and then, according to your preferences, select either <em>New Tab</em> or <em>New Window</em>, and, from either choice, select <em>1. KVM Standard Guest</em></p>
+<p>Choosing a new tab offers compactness but you won't be able to see both the <em><abbr title="Red Hat Enterprise Linux">RHEL</abbr> Host</em> tab and the <em>KVM Standard Guest</em> tab at the same time- you have to switch back and forth by clicking the appropriate tab header at the top.  Choosing a new window allows you to drag your windows or otherwise rearrange them so that you can see both windows on your screen.  The choice is yours.  Advanced students may wish to open more windows and tabs but the lab is written with the assumption that you have just one window or tab with the <em><abbr title="Red Hat Enterprise Linux">RHEL</abbr> Host</em> profile and just one window or tab with the <em>KVM Standard Guest</em> profile.</p>
+<p>Your window or tab should like like this (unless you customized the profile we provided you):</p>
+<p><img src="../../../images/KVMGuest.png" width="351" height="217" /></p>
 <h2 id="log-in-to-your-ubuntu-kvm-guest">Log in to your Ubuntu KVM guest<a class="headerlink" href="#log-in-to-your-ubuntu-kvm-guest" title="Permanent link">&para;</a></h2>
 <div class="admonition question">
 <p class="admonition-title">How tricky can logging in be?</p>
@@ -1788,11 +1793,6 @@
 <div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export Student_SSH_Port=&#39;</span><span class="si">${</span><span class="nv">Student_SSH_Port</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/.zshrc&quot;</span>
 </code></pre></div>
 </div>
-<h3 id="open-a-new-terminal-window-or-tab-with-the-kvm-standard-guest-profile">Open a new terminal window or tab with the <em>KVM Standard Guest</em> profile<a class="headerlink" href="#open-a-new-terminal-window-or-tab-with-the-kvm-standard-guest-profile" title="Permanent link">&para;</a></h3>
-<p>From your terminal window with the <em><abbr title="Red Hat Enterprise Linux">RHEL</abbr> Host</em> profile, click on <em>File</em> in the menu bar and then, according to your preferences, select either <em>New Tab</em> or <em>New Window</em>, and, from either choice, select <em>1. KVM Standard Guest</em></p>
-<p>Choosing a new tab offers compactness but you won't be able to both the <em><abbr title="Red Hat Enterprise Linux">RHEL</abbr> Host</em> tab and the <em>KVM Standard Guest</em> tab at the same time- you have to switch back and forth by clicking the appropriate tab header at the top.  Choosing a new window allows you to drag your windows or otherwise rearrange them so that you can see both windows on your screen.  The choice is yours.  Advanced students may wish to open more windows and tabs but the lab is written with the assumption that you have just one window or tab with the <em><abbr title="Red Hat Enterprise Linux">RHEL</abbr> Host</em> profile and just one window or tab with the <em>KVM Standard Guest</em> profile.</p>
-<p>Your window or tab should like like this (unless you customized the profile we provided you):</p>
-<p><img src="../../../images/KVMGuest.png" width="351" height="217" /></p>
 <p>You're now ready to log in to your Ubuntu KVM guest:</p>
 <div class="highlight"><pre><span></span><code>ssh -p ${Student_SSH_Port} -l student 192.168.22.64
 </code></pre></div>
@@ -1911,8 +1911,8 @@ EOF
 <details class="- example">
 <summary>Output showing <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> is already installed</summary>
 <div class="highlight"><pre><span></span><code>rsyslog:
-<span class="w">    </span>Installed:<span class="w"> </span><span class="m">8</span>.2112.0-2ubuntu2.2
-<span class="w">    </span>Candidate:<span class="w"> </span><span class="m">8</span>.2112.0-2ubuntu2.2
+<span class="hll"><span class="w">    </span>Installed:<span class="w"> </span><span class="m">8</span>.2112.0-2ubuntu2.2
+</span><span class="w">    </span>Candidate:<span class="w"> </span><span class="m">8</span>.2112.0-2ubuntu2.2
 <span class="w">    </span>Version<span class="w"> </span>table:
 ***<span class="w"> </span><span class="m">8</span>.2112.0-2ubuntu2.2<span class="w"> </span><span class="m">500</span>
 <span class="w">        </span><span class="m">500</span><span class="w"> </span>http://ports.ubuntu.com/ubuntu-ports<span class="w"> </span>jammy-updates/main<span class="w"> </span>s390x<span class="w"> </span>Packages
@@ -1930,8 +1930,8 @@ EOF
 <details class="- example">
 <summary>Output showing <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>-gnutls is not installed</summary>
 <div class="highlight"><pre><span></span><code>rsyslog-gnutls:
-    Installed: (none)
-    Candidate: 8.2112.0-2ubuntu2.2
+<span class="hll">    Installed: (none)
+</span>    Candidate: 8.2112.0-2ubuntu2.2
     Version table:
     8.2112.0-2ubuntu2.2 500
         500 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main s390x Packages
@@ -1986,8 +1986,8 @@ No VM guests are running outdated hypervisor (qemu) binaries on this host.
 <details class="- example">
 <summary>Output showing that <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>-gnutls is installed</summary>
 <div class="highlight"><pre><span></span><code>rsyslog-gnutls:
-    Installed: 8.2112.0-2ubuntu2.2
-    Candidate: 8.2112.0-2ubuntu2.2
+<span class="hll">    Installed: 8.2112.0-2ubuntu2.2
+</span>    Candidate: 8.2112.0-2ubuntu2.2
     Version table:
 *** 8.2112.0-2ubuntu2.2 500
         500 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main s390x Packages
@@ -2014,8 +2014,8 @@ No VM guests are running outdated hypervisor (qemu) binaries on this host.
 </details>
 <p>If you receive a piece of digital information that is signed, and the public key that corresponds to the private key used to create the signature, you can prove that whoever signed this had to have held the private key in order to create the signature.  Okay, cool.  But what if a malicious actor had the private key and gave you the public key? Would you feel so great knowing you verified the signer if they were malicious?  No!  That is where a <abbr title="certification authority">CA</abbr> comes in. The idea is that the following process occurs:</p>
 <ol>
-<li>An individual or organization submits a request for a certificate (<abbr title="certificate signing request">CSR</abbr>) with their public key</li>
-<li>The <abbr title="certification authority">CA</abbr> takes the effort to verify that the owner of the public key is a good actor and is who they say they are and can be trusted</li>
+<li>An individual or organization submits a request for a certificate (<abbr title="certificate signing request">CSR</abbr>) with their public key.</li>
+<li>The <abbr title="certification authority">CA</abbr> takes the effort to verify that the owner of the public key is a good actor and is who they say they are and can be trusted.</li>
 <li>The <abbr title="certification authority">CA</abbr> creates the certificate that holds the public key, essentially stating "I am a <abbr title="certification authority">CA</abbr> and you can trust me and the holder of this certificate that I just signed is a good person and they are who they say they are, so you can trust this certificate and anything it signs".</li>
 </ol>
 <details class="question">
@@ -2076,7 +2076,7 @@ logout
 </div>
 </li>
 <li>
-<p>A <abbr title="certification authority">CA</abbr> itself has a certificate that it can send or make available to others (others being people, or computer processes, or whomever). You don't have one yet- all you have is a private key. A certificate signing request (<abbr title="certificate signing request">CSR</abbr>) can be created from a private key- it derives the public key from the private key and creates an object called a Certificate Signing Request (<abbr title="certificate signing request">CSR</abbr>) that contians the public key and other identifying information and can be sent to a <abbr title="certification authority">CA</abbr>. Create your <abbr title="certificate signing request">CSR</abbr>:</p>
+<p>A <abbr title="certification authority">CA</abbr> itself has a certificate that it can send or make available to others (others being people, or computer processes, or whomever). You don't have one yet- all you have is a private key. A certificate signing request (<abbr title="certificate signing request">CSR</abbr>) can be created from a private key- it derives the public key from the private key and creates an object called a Certificate Signing Request (<abbr title="certificate signing request">CSR</abbr>) that contains the public key and other identifying information and can be sent to a <abbr title="certification authority">CA</abbr>. Create your <abbr title="certificate signing request">CSR</abbr>:</p>
 <div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>req<span class="w"> </span>-config<span class="w"> </span>ca.cnf<span class="w"> </span>-key<span class="w"> </span>ca-key.pem<span class="w"> </span>-new<span class="w"> </span>-out<span class="w"> </span>ca-req.csr
 </code></pre></div>
 <div class="admonition info">
@@ -2110,7 +2110,7 @@ subject=C = US, O = IBM WSC IBM Z and LinuxONE, CN = CA for rsyslog for SE-enabl
 <li>Create a private key</li>
 <li>Create a configuration file to answer questions ahead of time</li>
 <li>Use the key and the config file to create a <abbr title="certificate signing request">CSR</abbr></li>
-<li>This time you'll have your "self-signed" <abbr title="certification authority">CA</abbr> create and sign the certificate.  </li>
+<li>This time you'll have your "self-signed" <abbr title="certification authority">CA</abbr> create and sign the certificate  </li>
 </ol>
 <h3 id="creation-time">Creation time<a class="headerlink" href="#creation-time" title="Permanent link">&para;</a></h3>
 <ol>
@@ -2304,8 +2304,8 @@ sshd      709            root    4u  IPv6  16882      0t0  TCP *:22 (LISTEN)
 <summary>Output showing <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> status after restart</summary>
 <div class="highlight"><pre><span></span><code>● rsyslog.service - System Logging Service
      Loaded: loaded (/lib/systemd/system/rsyslog.service; enabled; vendor preset: enabled)
-     Active: active (running) since Tue 2023-02-14 01:30:47 UTC; 13s ago
-TriggeredBy: ● syslog.socket
+<span class="hll">     Active: active (running) since Tue 2023-02-14 01:30:47 UTC; 13s ago
+</span>TriggeredBy: ● syslog.socket
        Docs: man:rsyslogd(8)
              man:rsyslog.conf(5)
              https://www.rsyslog.com/doc/
@@ -2333,9 +2333,9 @@ Feb 14 01:30:47 ubuntu2204 systemd[1]: Started System Logging Service.
 systemd-r  602 systemd-resolve   14u  IPv4  15472      0t0  TCP 127.0.0.53:53 (LISTEN)
 sshd       709            root    3u  IPv4  16871      0t0  TCP *:22 (LISTEN)
 sshd       709            root    4u  IPv6  16882      0t0  TCP *:22 (LISTEN)
-rsyslogd  1439          syslog    6u  IPv4  22401      0t0  TCP *:6514 (LISTEN)
-rsyslogd  1439          syslog    7u  IPv6  22402      0t0  TCP *:6514 (LISTEN)
-</code></pre></div>
+<span class="hll">rsyslogd  1439          syslog    6u  IPv4  22401      0t0  TCP *:6514 (LISTEN)
+</span><span class="hll">rsyslogd  1439          syslog    7u  IPv6  22402      0t0  TCP *:6514 (LISTEN)
+</span></code></pre></div>
 </details>
 <p><strong>Switch to your terminal tab or window for your session with the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host, as you will start the next section of the lab working on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host.</strong></p>
 <p>Please proceed to the next section of the lab by clicking the <em>Next</em> link on the bottom right of this page.</p>
@@ -2345,7 +2345,7 @@ rsyslogd  1439          syslog    7u  IPv6  22402      0t0  TCP *:6514 (LISTEN)
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 5, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 3, 2023</span>
       
         <br>
         Created:
