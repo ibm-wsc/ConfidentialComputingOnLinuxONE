@@ -19,9 +19,9 @@ You aren't going to change anything here since it's already been defined for you
    sudo virsh dumpxml grep11se${suffix}
    ```
 
-???- example "Definition of KVM guest for GREP11 Server"
+???- example "Definition of KVM guest for GREP11 Server" 
 
-      ```
+      ``` hl_lines="25 32" 
       <domain type='kvm'>
         <name>grep11se02</name>
         <uuid>2315f8ea-a340-4506-abbf-ae04cf7ea868</uuid>
@@ -53,7 +53,7 @@ You aren't going to change anything here since it's already been defined for you
           </disk>
           <disk type='file' device='disk'>
             <driver name='qemu' type='raw' cache='none' io='native' iommu='on'/>
-            <source file='/var/lib/libvirt/images/hpvslab/student02/ciiso.iso'/>
+            <source file='/var/lib/libvirt/images/hpcr/student02/ciiso.iso'/>
             <target dev='vdc' bus='virtio'/>
             <readonly/>
             <address type='ccw' cssid='0xfe' ssid='0x0' devno='0x0002'/>
@@ -75,6 +75,8 @@ You aren't going to change anything here since it's already been defined for you
         </devices>
       </domain>
       ```
+
+In the example output above, observe the two highlighted lines. The first line shows the _Hyper Protect Container Runtime_ image that is provided by Hyper Protect Virtual Servers 2.1.6.  This is the Secure Execution-enabled KVM guest that will read your contract, validate its correctness and integrity, and then start your application workload. The second line shows the _ciiso.iso_ file that you created in the previous section with the `genisoimage` command.  The _ciiso.iso_ file contains your contract.
 
 Start your GREP11 Server and attach to its console.  Watch the messages carefully.  You should not see any failures:
 

@@ -159,7 +159,11 @@ markdown_extensions:
   - pymdownx.snippets:
       auto_append:
         - includes/glossary.md
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tabbed:

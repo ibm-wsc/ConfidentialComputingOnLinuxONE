@@ -45,17 +45,63 @@ This command will create the directory structure expected by the lab instruction
 mkdir -p ${HOME}/contract/grep11Server/{workload/compose,environment/rsyslog}
 ```
 
+Run the `tree` command to see the directory hiearchy you just created:
+
+``` bash
+tree contract
+```
+
+???+ info "Expected output from tree command"
+      ```
+      [student03@bczkvm(192.168.22.64) ~ [12:23:58] (0)]$ tree contract
+      contract
+      └── grep11Server
+          ├── environment
+          │   └── rsyslog
+          └── workload
+              └── compose
+      
+      5 directories, 0 files
+      ```
+
+Read about the directory structure and the purpose of each directory:
+
+| Directory | Purpose |
+|---|---|
+| contract | Top-level directory used for holding contracts |
+| grep11Server | Top-level directory for the contract for the GREP11 Server. Typically, the "workload deployer" signs the concatenation of the encrypted "environment" section that they create and the encrypted "workload" section that the "workload provider" creates. |
+| environment | Used by the "workload deployer" persona to hold an encrypted environment section of the contract |
+| rsyslog | Used to hold the artifacts needed to construct the logging subsection of the environment section |
+| workload | Used by the "workload provider" to hold an encrypted workload section of the contract |
+| compose | Used to hold the Docker compose file specifying the application image and supporting files |
+
 A contract requires a _workload_ section and an _environment_ section, and they each get their own directory. Then the sections are packaged together, and signed, and the signature is added as the third section.  This final result- the contract-  will be stored in your `${HOME}/contract/grep11Server` directory.
+
+While creating the contract in this lab, you will be performing the role of _workload provider_ and _workload deployer_. In most production scenarios these two roles would be performed by different persons or processes.  The following diagram shows at a high level how these two roles cooperate to form the contract:
+
+``` mermaid
+flowchart LR
+  A["Workload provider
+  creates
+  Workload section"];
+  B["Workload deployer
+  creates
+  Environment section"]
+  C["Workload provider
+  gives workload section
+  to Workload deployer"]
+  A --> C
+  D["Workload deployer
+  signs combined
+  environment and
+  workload sections"]
+  B --> D
+  C --> D
+```
 
 ## Create workload section of the contract
 
-Switch to your workload directory:
-
-``` bash
-cd ${HOME}/contract/grep11Server/workload
-```
-
-HPVS expects the contract to specify an OCI container specified by a _Docker Compose_ file.  The _Docker Compose_ file specifies an OCI image to run and other information necessary to configure the resulting container. Your workload is the GREP11 Server, so, yes, there's an OCI image for that. The container that runs the GREP11 Server will be configured with information such as:
+Hyper Protect Virtual Servers 2.1.6  expects the contract to specify an OCI container specified in one of two ways- as a _Docker Compose_ file in the _compose_ subsection of the _workload_ section, or as a Pod specification in the _play_ subsection of the _workload_ section. For this lab we will use a  _Docker Compose_ file in the _compose_ subsection of the _workload_ section.  This _Docker Compose_ file will specify an OCI image to run and other information necessary to configure the resulting container. Your workload is the GREP11 Server, so, yes, there's an OCI image for that. The container that runs the GREP11 Server will be configured with information such as:
 
 - the port it listens on
 - a configuration file that describes the GREP11 server
@@ -108,7 +154,7 @@ Let's get started!
 Switch to the directory that will hold the docker-compose file and the files referenced by the docker-compose file:
 
 ``` bash
-cd compose
+cd ${HOME}/contract/grep11Server/workload/compose
 ```
 
 Create the docker-compose file:
@@ -137,7 +183,7 @@ EOF
 
 Notice the value of the _image_ key.  This is the GREP11 Server OCI image provided with the Crypto Express Network API for Secure Execution Enclaves 1.1.2.1 (CENA4SEE) that Barry (_bsilliman_) has uploaded to his account on Quay.io for this lab. (Not for your production usage as it could disappear at any time).
 
-Notice the list of eight items under the _volumes_ section. The left side of each entry in the list specifies the name of the file on the RHEL host.  The value after the ':' specifies where that file is mapped to within the OCI container that will run in the HPVS 2.1.6 guest.  Taking the first item in the list as an example, you will create a file named _c16client.yaml_ and then within the OCI container it will be available at _/etc/c16/c16client.yaml_.  (As an aside, you can also map entire directories from your host to a Docker container, although this example only maps individual files).
+Notice the list of nine items under the _volumes_ section. The left side of each entry in the list specifies the name of the file on the RHEL host.  The value after the ':' specifies where that file is mapped to within the OCI container that will run in the HPVS 2.1.6 guest.  Taking the first item in the list as an example, you will create a file named _c16client.yaml_ and then within the OCI container it will be available at _/etc/c16/c16client.yaml_.  (As an aside, you can also map entire directories from your host to a Docker container, although this example only maps individual files).
 
 ### Create the configuration file for the GREP11 server
 
@@ -1427,7 +1473,7 @@ The script creates the final contract in a file named `user_data.yaml`.  It also
 4. Run this command (RHEL-specific, see product documentation for Ubuntu command) in order to create the startup file, _ciiso.iso_:
 
 	``` bash
-	genisoimage -output /var/lib/libvirt/images/hpvslab/$(whoami)/ciiso.iso \
+	genisoimage -output /var/lib/libvirt/images/hpcr/$(whoami)/ciiso.iso \
 		-volid cidata -joliet -rock user-data meta-data vendor-data
 
 	```
