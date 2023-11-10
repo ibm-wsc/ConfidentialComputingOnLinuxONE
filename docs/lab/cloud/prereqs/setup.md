@@ -10,7 +10,7 @@
 
     These labs are for educational purposes at a beginning or intermediate level and do not demonstrate all product features, and may demonstrate practices not suitable for a production environment.  Usage of these labs for any purposes other than education is at your own discretion and risk. 
 
-    Support for this lab is solely in an educational context, and solely from the lab authors on a best-effort basis. In other words, there is no guarantee of timeliness of response from the authors to inquiries, nor even a guarantee that the authors will ever resolve any problems you have with these labs.  This informal support is outside of any official IBM support channels.
+    Support for these labs is solely in an educational context, and solely from the lab authors on a best-effort basis. In other words, there is no guarantee of timeliness of response from the authors to inquiries, nor even a guarantee that the authors will ever resolve any problems you have with these labs.  This informal support is outside of any official IBM support channels.
 
 On your prep system, there are some environment variables that will be used in the four labs.
 

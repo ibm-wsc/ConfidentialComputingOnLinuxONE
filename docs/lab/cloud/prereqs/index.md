@@ -10,7 +10,7 @@ Then each subsequent lab increases the complexity of the contract such that our 
 
 !!! Warning "Caution- you may incur charges from IBM Cloud for activities performed in these labs "
 
-    You may incur charges for the artifacts created during the lab.  These charges are your responsibility.  Each lab ends with instructions to delete these lab artifacts in order to minimize any costs you might incur.
+    You may incur charges for the artifacts created during the lab.  If you do the labs in one sitting and delete your lab-related resources after the lab then any charges should be negligible. These charges are your responsibility.  Each lab ends with instructions to delete these lab artifacts in order to minimize any costs you might incur.
 
 The flow of the labs can be summarized as:
 
@@ -46,10 +46,10 @@ You must be able to create the following IBM Cloud artifacts in order to complet
 | Public gateways for VPC | needed so that your instances can communicate with your IBM Log Analysis instance |
 | Access control lists for VPC | created automatically when you create your Virtual Private Cloud |
 | Security groups for VPC | created automatically when you create your Virtual Private Cloud |
-| Virtual server instances for VPC | The resource type of your Hyper Protect Virtual Server instances |
+| Virtual Server for VPC | The resource type of your Hyper Protect Virtual Server instances |
 | Block storage volumes for VPC | Used to provide persistent disk storage |
-| Hyper Protect Virtual Servers for Classic | *Optional*- can be used as a _prep system_ if you can provide an SSH key pair |
-| Virtual Servers for Classic | *Optional*- can be used as a _prep system_ if you cannot provide an SSH key pair |
+| Hyper Protect Virtual Server for Classic | *Optional*- can be used as a _prep system_ if you can provide an SSH key pair |
+| Virtual Server for Classic | *Optional*- can be used as a _prep system_ if you cannot provide an SSH key pair |
 
 ### Prep system to prepare contracts for Hyper Protect Virtual Server instances
 
@@ -63,7 +63,7 @@ If your laptop or workstation is not running Linux or MacOS there are some alter
 
     !!! Note "An attempt at clarification"
 
-        This lab focuses on the newer, Secure Execution-based implementation of *Hyper Protect Virtual Servers for IBM Cloud VPC*- not the earlier, Secure Service Container-based implementation of *Hyper Protect Virtual Servers for Classic* that we are suggesting may be used as your *prep system*.  We'd prefer that you use your own system for the *prep system* if possible.  Why? Because it will be easier for you to save the lab artifacts that way.  At the risk of confusing you, we suggest *Hyper Protect Virtual Servers for Classic* as a *prep system* for a key reason-  you can (probably) provision one for free! 
+        This lab focuses on the newer, Secure Execution-based implementation of *Hyper Protect Virtual Server for IBM Cloud VPC*- not the earlier, Secure Service Container-based implementation of *Hyper Protect Virtual Server for Classic* that we are suggesting may be used as your *prep system*.  We'd prefer that you use your own system for the *prep system* if possible.  Why? Because it will be easier for you to save the lab artifacts that way.  At the risk of confusing you, we suggest *Hyper Protect Virtual Server for Classic* as a *prep system* for a key reason-  you can (probably) provision one for free! 
 
 * If you cannot provide your SSH key pair's public key portion, you can provision a Linux server using *Virtual Server for Classic* that will enable access via a password instead of an SSH key.  This is a server running on x86 architecture and you may incur charges for this service.
 

@@ -187,5 +187,5 @@
     cat user_data.yaml
     ```
 
-Proceed to the next section to create your Hyper Protect Virtual Servers for IBM Cloud VPC instance.
+Proceed to the next section to create your Hyper Protect Virtual Server for VPC instance.
 

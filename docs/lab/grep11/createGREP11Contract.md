@@ -45,7 +45,7 @@ This command will create the directory structure expected by the lab instruction
 mkdir -p ${HOME}/contract/grep11Server/{workload/compose,environment/rsyslog}
 ```
 
-Run the `tree` command to see the directory hiearchy you just created:
+Run the `tree` command to see the directory hierarchy you just created:
 
 ``` bash
 cd ${HOME} && tree contract

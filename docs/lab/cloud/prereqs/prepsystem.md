@@ -14,7 +14,7 @@ The lab authors have tested the lab instructions using the following prep system
 
 ## Use your workstation if it is running Linux or MacOS
 
-If you already have access to a Linux system or to a MacOS system we encourage you to use it as your *prep system*.  *prep system* is a term we've coined in these labs to refer to the system on which you will create the contracts for your Hyper Protect Virtual Servers instance. This could certainly be your laptop or workstation if you are running a Linux distribution or MacOS.
+If you already have access to a Linux system or to a MacOS system we encourage you to use it as your *prep system*.  *prep system* is a term we've coined in these labs to refer to the system on which you will create the contracts for your Hyper Protect Virtual Server instance. This could certainly be your laptop or workstation if you are running a Linux distribution or MacOS.
 
 ## If you are running Windows 
 
@@ -32,7 +32,7 @@ If your own laptop or workstation is not running Linux or MacOS or if you have W
 
 ## Create a Hyper Protect Virtual Server for Classic instance on IBM Cloud 
 
-If you do not have a suitable system already or would like to, you can create a Hyper Protect Virtual Servers _Classic_ instance for free that will provide an Ubuntu system for you.  You will need to provide the public key portion of an SSH key pair when you provision this instance. 
+If you do not have a suitable system already or would like to, you can create a Hyper Protect Virtual Server for Classic instance for free that will provide an Ubuntu system for you.  You will need to provide the public key portion of an SSH key pair when you provision this instance. 
 
 **NOTE: Whether you already have a suitable system or choose to create one with the directions below, we will refer to this system as *your prep system* in the lab instructions, since you will use this system to *prepare* your contracts.**
 
@@ -44,9 +44,9 @@ To create this instance:
 
 1. Click on the **Catalog** link at the top of the page.
 
-2. Start typing _Hyper Protect Virtual Servers_ in the search box until **Hyper Protect Virtual Server for Classic** appears in the search results and then select it.
+2. Start typing _Hyper Protect Virtual Server_ in the search box until **Hyper Protect Virtual Server for Classic** appears in the search results and then select it.
 
-3. Choose the **Free** plan- select the *region* and *zone* you prefer, we prefer to use the same *zone* that we used for our virtual private cloud, if possible.  (This instance will not be running inside a VPC)
+3. Choose the **Free** plan- select the *region* and *zone* you prefer. We prefer to use the same *zone* that we used for our virtual private cloud, if possible.  (This instance will not be running inside a VPC.)
 
 4. Provide your SSH public key.
 
@@ -62,7 +62,7 @@ Once your Hyper Protect Virtual Server for Classic instance is available, you ne
 
 ## Create a Virtual Server for Classic instance on IBM Cloud
 
-If for some reason you cannot create an SSH key pair, a *Virtual Server for Classic* instance allows you to log in with a password that it creates for you at provisioning time.  Using a password for logon is less secure than using an SSH key, and this service does not appear to offer a free tier, so this our suggestion of last resort.  
+If for some reason you cannot create an SSH key pair, a *Virtual Server for Classic* instance allows you to log in with a password that it creates for you at provisioning time.  Using a password for logon is less secure than using an SSH key, and this service does not appear to offer a free tier, so this is our suggestion of last resort.  
 
 The steps to create an instance are:
 
@@ -86,6 +86,6 @@ After the instance is provisioned:
 
 4. Click the tab for passwords and click the icon to show your root userid's password
 
-5  Log in with this command:  `ssh -l root <your instance's public IP>` 
+5. Log in with this command:  `ssh -l root <your instance's public IP>` 
 
 6. Enter root's password when prompted 

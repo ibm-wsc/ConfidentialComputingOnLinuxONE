@@ -32,7 +32,7 @@ Your subnet section will look similar to this if you choose to work with only on
 
 <img src="../vpc050.png" width="1288" height="268" />
 
-You are now ready to click the blue **Create virtual private cloud** button on the lower right of your page. If this button is not enabled then you have probably forgot to enter some required information such as a name for your VPC:
+You are now ready to click the blue **Create virtual private cloud** button on the lower right of your page. If this button is not enabled then you probably forgot to enter some required information such as a name for your VPC:
 
 
 <img src="../vpc060.png" width="307" height="213" />
@@ -41,4 +41,4 @@ After clicking the button, your new VPC will be created and you'll be taken to a
 
 <img src="../vpc070.png" width="1229" height="502" />
 
-Click the **Next** link at the lower right to create a public gateway within your new VPC.
+Click the **Next** link at the lower right of this page so you can move to the next section where you will create a public gateway within your new VPC.
