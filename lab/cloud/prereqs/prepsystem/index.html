@@ -1632,7 +1632,7 @@
 </tbody>
 </table>
 <h2 id="use-your-workstation-if-it-is-running-linux-or-macos">Use your workstation if it is running Linux or MacOS<a class="headerlink" href="#use-your-workstation-if-it-is-running-linux-or-macos" title="Permanent link">&para;</a></h2>
-<p>If you already have access to a Linux system or to a MacOS system we encourage you to use it as your <em>prep system</em>.  <em>prep system</em> is a term we've coined in these labs to refer to the system on which you will create the contracts for your Hyper Protect Virtual Servers instance. This could certainly be your laptop or workstation if you are running a Linux distribution or MacOS.</p>
+<p>If you already have access to a Linux system or to a MacOS system we encourage you to use it as your <em>prep system</em>.  <em>prep system</em> is a term we've coined in these labs to refer to the system on which you will create the contracts for your Hyper Protect Virtual Server instance. This could certainly be your laptop or workstation if you are running a Linux distribution or MacOS.</p>
 <h2 id="if-you-are-running-windows">If you are running Windows<a class="headerlink" href="#if-you-are-running-windows" title="Permanent link">&para;</a></h2>
 <p>If you have a Windows system you could try one of the following options.</p>
 <div class="admonition caution">
@@ -1649,7 +1649,7 @@
 </ol>
 <p>If your own laptop or workstation is not running Linux or MacOS or if you have Windows but are unable or unwilling to try one of the two suggestions from above, keep reading..</p>
 <h2 id="create-a-hyper-protect-virtual-server-for-classic-instance-on-ibm-cloud">Create a Hyper Protect Virtual Server for Classic instance on IBM Cloud<a class="headerlink" href="#create-a-hyper-protect-virtual-server-for-classic-instance-on-ibm-cloud" title="Permanent link">&para;</a></h2>
-<p>If you do not have a suitable system already or would like to, you can create a Hyper Protect Virtual Servers <em>Classic</em> instance for free that will provide an Ubuntu system for you.  You will need to provide the public key portion of an SSH key pair when you provision this instance. </p>
+<p>If you do not have a suitable system already or would like to, you can create a Hyper Protect Virtual Server for Classic instance for free that will provide an Ubuntu system for you.  You will need to provide the public key portion of an SSH key pair when you provision this instance. </p>
 <p><strong>NOTE: Whether you already have a suitable system or choose to create one with the directions below, we will refer to this system as <em>your prep system</em> in the lab instructions, since you will use this system to <em>prepare</em> your contracts.</strong></p>
 <p>To create this instance: </p>
 <div class="admonition note">
@@ -1661,10 +1661,10 @@
 <p>Click on the <strong>Catalog</strong> link at the top of the page.</p>
 </li>
 <li>
-<p>Start typing <em>Hyper Protect Virtual Servers</em> in the search box until <strong>Hyper Protect Virtual Server for Classic</strong> appears in the search results and then select it.</p>
+<p>Start typing <em>Hyper Protect Virtual Server</em> in the search box until <strong>Hyper Protect Virtual Server for Classic</strong> appears in the search results and then select it.</p>
 </li>
 <li>
-<p>Choose the <strong>Free</strong> plan- select the <em>region</em> and <em>zone</em> you prefer, we prefer to use the same <em>zone</em> that we used for our virtual private cloud, if possible.  (This instance will not be running inside a VPC)</p>
+<p>Choose the <strong>Free</strong> plan- select the <em>region</em> and <em>zone</em> you prefer. We prefer to use the same <em>zone</em> that we used for our virtual private cloud, if possible.  (This instance will not be running inside a VPC.)</p>
 </li>
 <li>
 <p>Provide your SSH public key.</p>
@@ -1682,7 +1682,7 @@
 </li>
 </ol>
 <h2 id="create-a-virtual-server-for-classic-instance-on-ibm-cloud">Create a Virtual Server for Classic instance on IBM Cloud<a class="headerlink" href="#create-a-virtual-server-for-classic-instance-on-ibm-cloud" title="Permanent link">&para;</a></h2>
-<p>If for some reason you cannot create an SSH key pair, a <em>Virtual Server for Classic</em> instance allows you to log in with a password that it creates for you at provisioning time.  Using a password for logon is less secure than using an SSH key, and this service does not appear to offer a free tier, so this our suggestion of last resort.  </p>
+<p>If for some reason you cannot create an SSH key pair, a <em>Virtual Server for Classic</em> instance allows you to log in with a password that it creates for you at provisioning time.  Using a password for logon is less secure than using an SSH key, and this service does not appear to offer a free tier, so this is our suggestion of last resort.  </p>
 <p>The steps to create an instance are:</p>
 <ol>
 <li>
@@ -1715,10 +1715,12 @@
 <li>
 <p>Click the tab for passwords and click the icon to show your root userid's password</p>
 </li>
-</ol>
-<p>5  Log in with this command:  <code>ssh -l root &lt;your instance's public IP&gt;</code> </p>
-<ol>
-<li>Enter root's password when prompted </li>
+<li>
+<p>Log in with this command:  <code>ssh -l root &lt;your instance's public IP&gt;</code> </p>
+</li>
+<li>
+<p>Enter root's password when prompted </p>
+</li>
 </ol>
 
   <hr>
@@ -1726,7 +1728,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 30, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 10, 2023</span>
       
         <br>
         Created:

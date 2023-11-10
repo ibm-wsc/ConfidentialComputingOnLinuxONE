@@ -6612,7 +6612,7 @@ subject=C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS 2.1.6 Grep1
 <p>This command will create the directory structure expected by the lab instructions:</p>
 <div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/contract/grep11Server/<span class="o">{</span>workload/compose,environment/rsyslog<span class="o">}</span>
 </code></pre></div>
-<p>Run the <code>tree</code> command to see the directory hiearchy you just created:</p>
+<p>Run the <code>tree</code> command to see the directory hierarchy you just created:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>tree<span class="w"> </span>contract
 </code></pre></div>
 <details class="info" open="open">
@@ -9863,8 +9863,8 @@ error: internal error: unable to execute QEMU command &#39;migrate&#39;: protect
                         </h1>
                         <section class="print-page" id="lab-cloud"><h1 id="lab-cloud-ibm-cloud-based-labs">IBM Cloud-based labs<a class="headerlink" href="#lab-cloud-ibm-cloud-based-labs" title="Permanent link">&para;</a></h1>
 <p>This is a set of four labs that will introduce the student to <a href="https://www.ibm.com/cloud/blog/announcements/ibm-hyper-protect-virtual-servers-for-virtual-private-cloud" rel="noopener" target="_blank">IBM Hyper Protect Virtual Servers for Virtual Private Cloud</a>. </p>
-<p>We will often refer to this service throughout these labs with the shorthand of <em>Hyper Protect Virtual Servers</em>.  This service is based on IBM's <a href="https://www.ibm.com/docs/en/linux-on-systems?topic=virtualization-secure-execution" rel="noopener" target="_blank"><abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr> for Linux</a> technology, which is IBM's strategic foundation for implementing <em>confidential computing</em> within the IBM Z and LinuxONE brands.  </p>
-<p>There was an earlier version of Hyper Protect Virtual Servers that was based on an older technology called <em>Secure Service Containers</em> and is still available in IBM Cloud as a service named <em>Hyper Protect Virtual Server for Classic</em>.  </p>
+<p>We will often refer to this service throughout these labs with the shorthand of <em>Hyper Protect Virtual Servers</em>.  This service is based on IBM's <a href="https://www.ibm.com/docs/en/linux-on-systems?topic=virtualization-secure-execution" rel="noopener" target="_blank"><abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr> for Linux</a> technology, which is IBM's strategic foundation for implementing <a href="https://confidentialcomputing.io" rel="noopender" target="_blank"><em>confidential computing</em></a> within the IBM Z and LinuxONE brands.  </p>
+<p>There is an earlier version of Hyper Protect Virtual Servers that is based on an older, but still viable, technology called <em>Secure Service Containers</em> and is still available in IBM Cloud as a service named <em>Hyper Protect Virtual Server for Classic</em>.  </p>
 <p>This lab focuses on the newer, strategic <em>IBM Hyper Protect Virtual Servers for Virtual Private Cloud</em> service, so our shorthand of <em>Hyper Protect Virtual Servers</em> should be interpreted as a reference to the newer service.  References to the earlier service will be explicitly referred to as <em>IBM Hyper Protect Virtual Server for Classic</em>.</p></section>
                         <h2 class='nav-section-title' id='section-overview-and-prerequisites'>
                             Overview and Prerequisites <a class='headerlink' href='#section-overview-and-prerequisites' title='Permanent link'>↵</a>
@@ -9876,7 +9876,7 @@ error: internal error: unable to execute QEMU command &#39;migrate&#39;: protect
 <p>Then each subsequent lab increases the complexity of the contract such that our final lab guides you to the best practice of creating an encrypted and signed contract.</p>
 <div class="admonition warning">
 <p class="admonition-title">Caution- you may incur charges from IBM Cloud for activities performed in these labs </p>
-<p>You may incur charges for the artifacts created during the lab.  These charges are your responsibility.  Each lab ends with instructions to delete these lab artifacts in order to minimize any costs you might incur.</p>
+<p>You may incur charges for the artifacts created during the lab.  If you do the labs in one sitting and delete your lab-related resources after the lab then any charges should be negligible. These charges are your responsibility.  Each lab ends with instructions to delete these lab artifacts in order to minimize any costs you might incur.</p>
 </div>
 <p>The flow of the labs can be summarized as:</p>
 <ol>
@@ -9937,7 +9937,7 @@ error: internal error: unable to execute QEMU command &#39;migrate&#39;: protect
 <td>created automatically when you create your Virtual Private Cloud</td>
 </tr>
 <tr>
-<td>Virtual server instances for VPC</td>
+<td>Virtual Server for VPC</td>
 <td>The resource type of your Hyper Protect Virtual Server instances</td>
 </tr>
 <tr>
@@ -9945,11 +9945,11 @@ error: internal error: unable to execute QEMU command &#39;migrate&#39;: protect
 <td>Used to provide persistent disk storage</td>
 </tr>
 <tr>
-<td>Hyper Protect Virtual Servers for Classic</td>
+<td>Hyper Protect Virtual Server for Classic</td>
 <td><em>Optional</em>- can be used as a <em>prep system</em> if you can provide an SSH key pair</td>
 </tr>
 <tr>
-<td>Virtual Servers for Classic</td>
+<td>Virtual Server for Classic</td>
 <td><em>Optional</em>- can be used as a <em>prep system</em> if you cannot provide an SSH key pair</td>
 </tr>
 </tbody>
@@ -9965,7 +9965,7 @@ error: internal error: unable to execute QEMU command &#39;migrate&#39;: protect
 <p>We provide instructions on how to create a Linux server using <em>Hyper Protect Virtual Server for Classic</em> in a <a href="#lab-cloud-prereqs-prepsystem" rel="noopener" target="_blank">subsequent section</a> of the lab. This is a server running on LinuxONE servers in IBM Cloud and uses IBM's earlier, <abbr title="a type of LPAR introduced by IBM with the z14 hardware generation.  Hyper Protect Virtual Servers v1.x was built on SSC technology, and the Crypto Express Network API for Secure Execution Enclaves component of HPVS v2.x is also built on SSC technology.">Secure Service Container</abbr>-based implementation of <abbr title="Confidential computing is a cloud computing technology that isolates sensitive data in a protected CPU enclave during processing. The contents of the enclave—the data being processed, and the techniques that are used to process it—are accessible only to authorized programming code, and are invisible and unknowable to anything or anyone else, including the cloud provider.">Confidential Computing</abbr>.  You may be able to provision this for free- each account can have two free instances at any point in time. You must provide the public key portion of your SSH key pair when provisioning this. </p>
 <div class="admonition note">
 <p class="admonition-title">An attempt at clarification</p>
-<p>This lab focuses on the newer, <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-based implementation of <em>Hyper Protect Virtual Servers for IBM Cloud VPC</em>- not the earlier, <abbr title="a type of LPAR introduced by IBM with the z14 hardware generation.  Hyper Protect Virtual Servers v1.x was built on SSC technology, and the Crypto Express Network API for Secure Execution Enclaves component of HPVS v2.x is also built on SSC technology.">Secure Service Container</abbr>-based implementation of <em>Hyper Protect Virtual Servers for Classic</em> that we are suggesting may be used as your <em>prep system</em>.  We'd prefer that you use your own system for the <em>prep system</em> if possible.  Why? Because it will be easier for you to save the lab artifacts that way.  At the risk of confusing you, we suggest <em>Hyper Protect Virtual Servers for Classic</em> as a <em>prep system</em> for a key reason-  you can (probably) provision one for free! </p>
+<p>This lab focuses on the newer, <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-based implementation of <em>Hyper Protect Virtual Server for IBM Cloud VPC</em>- not the earlier, <abbr title="a type of LPAR introduced by IBM with the z14 hardware generation.  Hyper Protect Virtual Servers v1.x was built on SSC technology, and the Crypto Express Network API for Secure Execution Enclaves component of HPVS v2.x is also built on SSC technology.">Secure Service Container</abbr>-based implementation of <em>Hyper Protect Virtual Server for Classic</em> that we are suggesting may be used as your <em>prep system</em>.  We'd prefer that you use your own system for the <em>prep system</em> if possible.  Why? Because it will be easier for you to save the lab artifacts that way.  At the risk of confusing you, we suggest <em>Hyper Protect Virtual Server for Classic</em> as a <em>prep system</em> for a key reason-  you can (probably) provision one for free! </p>
 </div>
 </li>
 <li>
@@ -9990,11 +9990,11 @@ error: internal error: unable to execute QEMU command &#39;migrate&#39;: protect
 <p><img src="../lab/cloud/prereqs/vpc040.png" width="1296" height="549" /></p>
 <p>Your subnet section will look similar to this if you choose to work with only one subnet:</p>
 <p><img src="../lab/cloud/prereqs/vpc050.png" width="1288" height="268" /></p>
-<p>You are now ready to click the blue <strong>Create virtual private cloud</strong> button on the lower right of your page. If this button is not enabled then you have probably forgot to enter some required information such as a name for your VPC:</p>
+<p>You are now ready to click the blue <strong>Create virtual private cloud</strong> button on the lower right of your page. If this button is not enabled then you probably forgot to enter some required information such as a name for your VPC:</p>
 <p><img src="../lab/cloud/prereqs/vpc060.png" width="307" height="213" /></p>
 <p>After clicking the button, your new VPC will be created and you'll be taken to a screen like this.  Notice that a <em>Default Access Control List (ACL)</em> and a <em>Default Security Group</em> will be created for you, both of which will have meaningless randomly-generated names.  You can accept them as-is for the labs.</p>
 <p><img src="../lab/cloud/prereqs/vpc070.png" width="1229" height="502" /></p>
-<p>Click the <strong>Next</strong> link at the lower right to create a public gateway within your new VPC.</p></section><section class="print-page" id="lab-cloud-prereqs-gateway"><h1 id="lab-cloud-prereqs-gateway-create-a-public-gateway">Create a public gateway<a class="headerlink" href="#lab-cloud-prereqs-gateway-create-a-public-gateway" title="Permanent link">&para;</a></h1>
+<p>Click the <strong>Next</strong> link at the lower right of this page so you can move to the next section where you will create a public gateway within your new VPC.</p></section><section class="print-page" id="lab-cloud-prereqs-gateway"><h1 id="lab-cloud-prereqs-gateway-create-a-public-gateway">Create a public gateway<a class="headerlink" href="#lab-cloud-prereqs-gateway-create-a-public-gateway" title="Permanent link">&para;</a></h1>
 <p>You need a public gateway so that the Hyper Protect Virtual Servers for IBM Cloud VPC instances that you will create in the labs can send log messages to your IBM Log Analysis instance which is running outside of your VPC.</p>
 <ol>
 <li>
@@ -10079,7 +10079,7 @@ error: internal error: unable to execute QEMU command &#39;migrate&#39;: protect
 </tbody>
 </table>
 <h2 id="lab-cloud-prereqs-prepsystem-use-your-workstation-if-it-is-running-linux-or-macos">Use your workstation if it is running Linux or MacOS<a class="headerlink" href="#lab-cloud-prereqs-prepsystem-use-your-workstation-if-it-is-running-linux-or-macos" title="Permanent link">&para;</a></h2>
-<p>If you already have access to a Linux system or to a MacOS system we encourage you to use it as your <em>prep system</em>.  <em>prep system</em> is a term we've coined in these labs to refer to the system on which you will create the contracts for your Hyper Protect Virtual Servers instance. This could certainly be your laptop or workstation if you are running a Linux distribution or MacOS.</p>
+<p>If you already have access to a Linux system or to a MacOS system we encourage you to use it as your <em>prep system</em>.  <em>prep system</em> is a term we've coined in these labs to refer to the system on which you will create the contracts for your Hyper Protect Virtual Server instance. This could certainly be your laptop or workstation if you are running a Linux distribution or MacOS.</p>
 <h2 id="lab-cloud-prereqs-prepsystem-if-you-are-running-windows">If you are running Windows<a class="headerlink" href="#lab-cloud-prereqs-prepsystem-if-you-are-running-windows" title="Permanent link">&para;</a></h2>
 <p>If you have a Windows system you could try one of the following options.</p>
 <div class="admonition caution">
@@ -10096,7 +10096,7 @@ error: internal error: unable to execute QEMU command &#39;migrate&#39;: protect
 </ol>
 <p>If your own laptop or workstation is not running Linux or MacOS or if you have Windows but are unable or unwilling to try one of the two suggestions from above, keep reading..</p>
 <h2 id="lab-cloud-prereqs-prepsystem-create-a-hyper-protect-virtual-server-for-classic-instance-on-ibm-cloud">Create a Hyper Protect Virtual Server for Classic instance on IBM Cloud<a class="headerlink" href="#lab-cloud-prereqs-prepsystem-create-a-hyper-protect-virtual-server-for-classic-instance-on-ibm-cloud" title="Permanent link">&para;</a></h2>
-<p>If you do not have a suitable system already or would like to, you can create a Hyper Protect Virtual Servers <em>Classic</em> instance for free that will provide an Ubuntu system for you.  You will need to provide the public key portion of an SSH key pair when you provision this instance. </p>
+<p>If you do not have a suitable system already or would like to, you can create a Hyper Protect Virtual Server for Classic instance for free that will provide an Ubuntu system for you.  You will need to provide the public key portion of an SSH key pair when you provision this instance. </p>
 <p><strong>NOTE: Whether you already have a suitable system or choose to create one with the directions below, we will refer to this system as <em>your prep system</em> in the lab instructions, since you will use this system to <em>prepare</em> your contracts.</strong></p>
 <p>To create this instance: </p>
 <div class="admonition note">
@@ -10108,10 +10108,10 @@ error: internal error: unable to execute QEMU command &#39;migrate&#39;: protect
 <p>Click on the <strong>Catalog</strong> link at the top of the page.</p>
 </li>
 <li>
-<p>Start typing <em>Hyper Protect Virtual Servers</em> in the search box until <strong>Hyper Protect Virtual Server for Classic</strong> appears in the search results and then select it.</p>
+<p>Start typing <em>Hyper Protect Virtual Server</em> in the search box until <strong>Hyper Protect Virtual Server for Classic</strong> appears in the search results and then select it.</p>
 </li>
 <li>
-<p>Choose the <strong>Free</strong> plan- select the <em>region</em> and <em>zone</em> you prefer, we prefer to use the same <em>zone</em> that we used for our virtual private cloud, if possible.  (This instance will not be running inside a VPC)</p>
+<p>Choose the <strong>Free</strong> plan- select the <em>region</em> and <em>zone</em> you prefer. We prefer to use the same <em>zone</em> that we used for our virtual private cloud, if possible.  (This instance will not be running inside a VPC.)</p>
 </li>
 <li>
 <p>Provide your SSH public key.</p>
@@ -10129,7 +10129,7 @@ error: internal error: unable to execute QEMU command &#39;migrate&#39;: protect
 </li>
 </ol>
 <h2 id="lab-cloud-prereqs-prepsystem-create-a-virtual-server-for-classic-instance-on-ibm-cloud">Create a Virtual Server for Classic instance on IBM Cloud<a class="headerlink" href="#lab-cloud-prereqs-prepsystem-create-a-virtual-server-for-classic-instance-on-ibm-cloud" title="Permanent link">&para;</a></h2>
-<p>If for some reason you cannot create an SSH key pair, a <em>Virtual Server for Classic</em> instance allows you to log in with a password that it creates for you at provisioning time.  Using a password for logon is less secure than using an SSH key, and this service does not appear to offer a free tier, so this our suggestion of last resort.  </p>
+<p>If for some reason you cannot create an SSH key pair, a <em>Virtual Server for Classic</em> instance allows you to log in with a password that it creates for you at provisioning time.  Using a password for logon is less secure than using an SSH key, and this service does not appear to offer a free tier, so this is our suggestion of last resort.  </p>
 <p>The steps to create an instance are:</p>
 <ol>
 <li>
@@ -10162,10 +10162,12 @@ error: internal error: unable to execute QEMU command &#39;migrate&#39;: protect
 <li>
 <p>Click the tab for passwords and click the icon to show your root userid's password</p>
 </li>
-</ol>
-<p>5  Log in with this command:  <code>ssh -l root &lt;your instance's public IP&gt;</code> </p>
-<ol>
-<li>Enter root's password when prompted </li>
+<li>
+<p>Log in with this command:  <code>ssh -l root &lt;your instance's public IP&gt;</code> </p>
+</li>
+<li>
+<p>Enter root's password when prompted </p>
+</li>
 </ol></section><section class="print-page" id="lab-cloud-prereqs-setup"><h1 id="lab-cloud-prereqs-setup-set-up-environment-variables-used-throughout-the-four-ibm-cloud-based-labs">Set up environment variables used throughout the four IBM Cloud-based labs<a class="headerlink" href="#lab-cloud-prereqs-setup-set-up-environment-variables-used-throughout-the-four-ibm-cloud-based-labs" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">A note about support for these labs</p>
@@ -10173,7 +10175,7 @@ error: internal error: unable to execute QEMU command &#39;migrate&#39;: protect
 <p>There are so many Linux distributions that it is impossible to test on all of them, but we think that this lab should work on many distributions besides Ubuntu.  We will attempt to help if you are having problems on a Linux distribution other than Ubuntu, but we reserve the right to ask you to use an Ubuntu system.</p>
 <p>Similarly, since we have Apple laptops we wrote the lab to work on MacOS as well.  Since it works for us on MacOS we suspect it could work for you as well, but, again, we reserve the right to ask you to use an Ubuntu system if you ask for our help in troubleshooting.</p>
 <p>These labs are for educational purposes at a beginning or intermediate level and do not demonstrate all product features, and may demonstrate practices not suitable for a production environment.  Usage of these labs for any purposes other than education is at your own discretion and risk. </p>
-<p>Support for this lab is solely in an educational context, and solely from the lab authors on a best-effort basis. In other words, there is no guarantee of timeliness of response from the authors to inquiries, nor even a guarantee that the authors will ever resolve any problems you have with these labs.  This informal support is outside of any official IBM support channels.</p>
+<p>Support for these labs is solely in an educational context, and solely from the lab authors on a best-effort basis. In other words, there is no guarantee of timeliness of response from the authors to inquiries, nor even a guarantee that the authors will ever resolve any problems you have with these labs.  This informal support is outside of any official IBM support channels.</p>
 </div>
 <p>On your prep system, there are some environment variables that will be used in the four labs.</p>
 <table>
@@ -10698,7 +10700,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 </code></pre></div>
 </li>
 </ol>
-<p>Proceed to the next section to create your Hyper Protect Virtual Servers for IBM Cloud VPC instance.</p></section><section class="print-page" id="lab-cloud-lab2-createinstance"><h1 id="lab-cloud-lab2-createinstance-create-an-instance">Create an instance<a class="headerlink" href="#lab-cloud-lab2-createinstance-create-an-instance" title="Permanent link">&para;</a></h1>
+<p>Proceed to the next section to create your Hyper Protect Virtual Server for VPC instance.</p></section><section class="print-page" id="lab-cloud-lab2-createinstance"><h1 id="lab-cloud-lab2-createinstance-create-an-instance">Create an instance<a class="headerlink" href="#lab-cloud-lab2-createinstance-create-an-instance" title="Permanent link">&para;</a></h1>
 <p><strong>Note:</strong> There are often multiple ways to perform a task. The lab instructions may describe a particular way to go about things, but if you have prior experience with the IBM Cloud Web user interface and can perform the same task through different methods, feel free to do so.  The lab instructions themselves may provide alternative ways to accomplish the tasks in different sections of the labs.</p>
 <p>These instructions assume you are logged in to the IBM Cloud Web UI.  If not, please log in before proceeding.</p>
 <ol>
@@ -11009,7 +11011,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 </code></pre></div>
 </li>
 </ol>
-<p>Proceed to the next section to create your Hyper Protect Virtual Servers for IBM Cloud VPC instance.</p></section><section class="print-page" id="lab-cloud-lab3-createinstance"><h1 id="lab-cloud-lab3-createinstance-create-an-instance">Create an instance<a class="headerlink" href="#lab-cloud-lab3-createinstance-create-an-instance" title="Permanent link">&para;</a></h1>
+<p>Proceed to the next section to create your Hyper Protect Virtual Server for VPC instance.</p></section><section class="print-page" id="lab-cloud-lab3-createinstance"><h1 id="lab-cloud-lab3-createinstance-create-an-instance">Create an instance<a class="headerlink" href="#lab-cloud-lab3-createinstance-create-an-instance" title="Permanent link">&para;</a></h1>
 <p><strong>Note:</strong> There are often multiple ways to perform a task. The lab instructions may describe a particular way to go about things, but if you have prior experience with the IBM Cloud Web user interface and can perform the same task through different methods, feel free to do so.  The lab instructions themselves may provide alternative ways to accomplish the tasks in different sections of the labs.</p>
 <p>These instructions assume you are logged in to the IBM Cloud Web UI.  If not, please log in before proceeding.</p>
 <ol>

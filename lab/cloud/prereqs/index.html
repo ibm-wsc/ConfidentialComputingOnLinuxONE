@@ -1543,7 +1543,7 @@
 <p>Then each subsequent lab increases the complexity of the contract such that our final lab guides you to the best practice of creating an encrypted and signed contract.</p>
 <div class="admonition warning">
 <p class="admonition-title">Caution- you may incur charges from IBM Cloud for activities performed in these labs </p>
-<p>You may incur charges for the artifacts created during the lab.  These charges are your responsibility.  Each lab ends with instructions to delete these lab artifacts in order to minimize any costs you might incur.</p>
+<p>You may incur charges for the artifacts created during the lab.  If you do the labs in one sitting and delete your lab-related resources after the lab then any charges should be negligible. These charges are your responsibility.  Each lab ends with instructions to delete these lab artifacts in order to minimize any costs you might incur.</p>
 </div>
 <p>The flow of the labs can be summarized as:</p>
 <ol>
@@ -1604,7 +1604,7 @@
 <td>created automatically when you create your Virtual Private Cloud</td>
 </tr>
 <tr>
-<td>Virtual server instances for VPC</td>
+<td>Virtual Server for VPC</td>
 <td>The resource type of your Hyper Protect Virtual Server instances</td>
 </tr>
 <tr>
@@ -1612,11 +1612,11 @@
 <td>Used to provide persistent disk storage</td>
 </tr>
 <tr>
-<td>Hyper Protect Virtual Servers for Classic</td>
+<td>Hyper Protect Virtual Server for Classic</td>
 <td><em>Optional</em>- can be used as a <em>prep system</em> if you can provide an SSH key pair</td>
 </tr>
 <tr>
-<td>Virtual Servers for Classic</td>
+<td>Virtual Server for Classic</td>
 <td><em>Optional</em>- can be used as a <em>prep system</em> if you cannot provide an SSH key pair</td>
 </tr>
 </tbody>
@@ -1632,7 +1632,7 @@
 <p>We provide instructions on how to create a Linux server using <em>Hyper Protect Virtual Server for Classic</em> in a <a href="./prepsystem" rel="noopener" target="_blank">subsequent section</a> of the lab. This is a server running on LinuxONE servers in IBM Cloud and uses IBM's earlier, <abbr title="a type of LPAR introduced by IBM with the z14 hardware generation.  Hyper Protect Virtual Servers v1.x was built on SSC technology, and the Crypto Express Network API for Secure Execution Enclaves component of HPVS v2.x is also built on SSC technology.">Secure Service Container</abbr>-based implementation of <abbr title="Confidential computing is a cloud computing technology that isolates sensitive data in a protected CPU enclave during processing. The contents of the enclave—the data being processed, and the techniques that are used to process it—are accessible only to authorized programming code, and are invisible and unknowable to anything or anyone else, including the cloud provider.">Confidential Computing</abbr>.  You may be able to provision this for free- each account can have two free instances at any point in time. You must provide the public key portion of your SSH key pair when provisioning this. </p>
 <div class="admonition note">
 <p class="admonition-title">An attempt at clarification</p>
-<p>This lab focuses on the newer, <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-based implementation of <em>Hyper Protect Virtual Servers for IBM Cloud VPC</em>- not the earlier, <abbr title="a type of LPAR introduced by IBM with the z14 hardware generation.  Hyper Protect Virtual Servers v1.x was built on SSC technology, and the Crypto Express Network API for Secure Execution Enclaves component of HPVS v2.x is also built on SSC technology.">Secure Service Container</abbr>-based implementation of <em>Hyper Protect Virtual Servers for Classic</em> that we are suggesting may be used as your <em>prep system</em>.  We'd prefer that you use your own system for the <em>prep system</em> if possible.  Why? Because it will be easier for you to save the lab artifacts that way.  At the risk of confusing you, we suggest <em>Hyper Protect Virtual Servers for Classic</em> as a <em>prep system</em> for a key reason-  you can (probably) provision one for free! </p>
+<p>This lab focuses on the newer, <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-based implementation of <em>Hyper Protect Virtual Server for IBM Cloud VPC</em>- not the earlier, <abbr title="a type of LPAR introduced by IBM with the z14 hardware generation.  Hyper Protect Virtual Servers v1.x was built on SSC technology, and the Crypto Express Network API for Secure Execution Enclaves component of HPVS v2.x is also built on SSC technology.">Secure Service Container</abbr>-based implementation of <em>Hyper Protect Virtual Server for Classic</em> that we are suggesting may be used as your <em>prep system</em>.  We'd prefer that you use your own system for the <em>prep system</em> if possible.  Why? Because it will be easier for you to save the lab artifacts that way.  At the risk of confusing you, we suggest <em>Hyper Protect Virtual Server for Classic</em> as a <em>prep system</em> for a key reason-  you can (probably) provision one for free! </p>
 </div>
 </li>
 <li>
@@ -1645,7 +1645,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 30, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 10, 2023</span>
       
         <br>
         Created:
