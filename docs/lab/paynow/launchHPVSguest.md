@@ -116,7 +116,7 @@ Start your HPVS Guest for the PayNow Demo and attach to its console.  Watch the 
       hpcr-catch-success[1541]: HPL10001I: Services succeeded -> systemd triggered hpl-catch-success service
       ```
 
-You will have to enter the `Ctrl + ]` key-combination to break out of the console.
+You will have to enter the ++control+bracket-right++ key-combination to break out of the console and return to your command prompt.
 
 ## verify that messages from your HPVS KVM guest are received by rsyslog
 

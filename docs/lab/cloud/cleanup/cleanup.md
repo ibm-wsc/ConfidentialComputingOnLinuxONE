@@ -10,7 +10,7 @@
 
     The second assumption is that you created a new _IBM Log Analysis_ instance just for these labs so that you can delete the IBM Log Analysis instance without impacting any other users or resources.
 
-    If you used a pre-existing virtual private cloud or a pre-existing IBM Log Analysis instance, do not follow these instructions verbatim but take extreme care instead in deleting only the resources you created for theses labs.  Our assumption is that if you were confident enough to use pre-existing resources, then you are confident enough to know what to delete afterwards and what not to delete. Please, err on the side of caution-  ask an instructor or the appropriate person(s) in your company for help if you are unsure!  
+    ==If you used a pre-existing virtual private cloud or a pre-existing IBM Log Analysis instance, do not follow these instructions verbatim but take extreme care instead in deleting only the resources you created for theses labs.  Our assumption is that if you were confident enough to use pre-existing resources, then you are confident enough to know what to delete afterwards and what not to delete. Please, err on the side of caution-  ask an instructor or the appropriate person(s) in your company for help if you are unsure!==
 
 ## Delete your virtual private cloud
 
