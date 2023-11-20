@@ -106,7 +106,7 @@
     \$(cat play/play.yml)" > \${WORKLOAD_PLAIN}
     
     # Download certificate to encrypt contract for Hyper Protect Container Runtime:
-    HPCR_rev=12
+    HPCR_rev=13
     CONTRACT_KEY=./ibm-hyper-protect-container-runtime-1-0-s390x-\${HPCR_rev}-encrypt.crt
     curl https://cloud.ibm.com/media/docs/downloads/hyper-protect-container-runtime/ibm-hyper-protect-container-runtime-1-0-s390x-\${HPCR_rev}-encrypt.crt > \${CONTRACT_KEY}
     
@@ -163,7 +163,7 @@
     cat ./pubSigningKey.yaml >> \${ENV_PLAIN}
 
     # Download certificate to encrypt contract for Hyper Protect Container Runtime:
-    HPCR_rev=12
+    HPCR_rev=13
     CONTRACT_KEY=./ibm-hyper-protect-container-runtime-1-0-s390x-\${HPCR_rev}-encrypt.crt
     curl https://cloud.ibm.com/media/docs/downloads/hyper-protect-container-runtime/\$CONTRACT_KEY > \$CONTRACT_KEY
     

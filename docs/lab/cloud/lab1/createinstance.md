@@ -14,21 +14,30 @@ These instructions assume you are logged in to the IBM Cloud Web UI.  If not, pl
 
     <img src="../create020.png" width="531" height="287" />
 
-1. Click the link to create a virtual server instance
+2. Click the link to create a virtual server instance
 
     You may have to scroll down on the page- find and click on the "Create a virtual server instance" link:
 
     <img src="../create030.png" width="801" height="504" />
 
-1. In the *Architecture* section, click the **IBM Z, LinuxONE** tile.  At this point, a *Confidential Computing* toggle should appear.  Click it to select it.  Then, ensure that you select the correct *Zone*- that is, the one for whch you created a subnet earlier (assuming you followed the lab instructions and created only one subnet).   You are not finished filling out this screen yet, but see the below screen snippet for hints:
+3. In the *Location* section, ensure that you select the *Zone* that contains your subnet. Give your instance a name in the *Name* field in the *Details* section.  We chose *lab-was-hpvs-lab1* in the screen shot below:  
 
-    <img src="../create040.png" width="800" height="740" />
+    <img src="../create050.png" width="1692" height="1326" />
 
-1. Give your instance a name in the *Name* field in the *Details* section.  We chose *lab-was-hpvs-lab1* in the screen shot below.  Then, it is very important to select the *Version* that ends in "*-12*". If this version is not the default selection, click the **Change image** link to select it.  Hopefully this screen snippet clarifies this:
+4. Scroll down and click the **Change image** link to select it:
 
-    <img src="../create050.png" width="1160" height="852" />
+    <img src="../create052.png" width="2170" height="636" />
 
-1. These labs are going to demonstrate data persistence across virtual server instances, and for this you will need a data volume.  You will create the data volume in this lab and then reuse it in subsequent labs. In the *Storage* section, click the **Create** button in the *Data volumes* section:
+5. On the *Select an image* screen, perform the following actions:
+
+    1. Click the *IBM Z, Linux ONE* box.
+    2. Toggle the slider on for "Run your workload with an OS and a profile for Secure Execution".
+    3. Select the most recent image, *ibm-hyper-protect-container-runtime-1-0-s390x-13*.
+    4. Click the blue **Save** button.
+
+    <img src="../create053.png" width="2504" height="1746" />
+
+6. These labs are going to demonstrate data persistence across virtual server instances, and for this you will need a data volume.  You will create the data volume in this lab and then reuse it in subsequent labs. In the *Storage* section, click the **Create** button in the *Data volumes* section:
 
     <img src="../create054.png" width="1447" height="359" />
 
@@ -40,13 +49,13 @@ These instructions assume you are logged in to the IBM Cloud Web UI.  If not, pl
 
     <img src="../create058.png" width="1272" height="244" />
 
-1. Scroll down and in the *Advanced options* section, within the *Instance configuration* subsection, click the arrow at the right of the *User data* item.  Drag the lower right corner of the *User data* box that appears in order to enlarge it a bit, like we've done in the screen shot below:
+7. Scroll down and in the *Advanced options* section, within the *Instance configuration* subsection, click the arrow at the right of the *User data* item.  Drag the lower right corner of the *User data* box that appears in order to enlarge it a bit, like we've done in the screen shot below:
 
     <img src="../create060.png" width="1075" height="685" />
 
-1. At the end of the previous section of the lab, *Prepare the contract*, in the very last instruction, you displayed the contents of your `user_data.yaml`, on your prep system.  Go back to your prep system and copy the file contents that you displayed to your clipboard.  Then paste them into the *user data* box.  It should look similar to what is shown below-  we've redacted our IBM Log Analysis ingestion key from the screen shot, but you'll want your actual ingestion key to be in there. Also, for the purposes of the screen shot, we enlarged our *User data* box to be large enough to show the entire contract.  This isn't necessary to do, and for most larger contracts it will often not be possible to do so- you'll always be able to scroll in this area to see the entirety of what you pasted. See the screenshot below:
+8. At the end of the previous section of the lab, *Prepare the contract*, in the very last instruction, you displayed the contents of your `user_data.yaml`, on your prep system.  Go back to your prep system and copy the file contents that you displayed to your clipboard.  Then paste them into the *user data* box.  It should look similar to what is shown below-  we've redacted our IBM Log Analysis ingestion key from the screen shot, but you'll want your actual ingestion key to be in there. Also, for the purposes of the screen shot, we enlarged our *User data* box to be large enough to show more of the contract. Don't worry if your entire contract can't be displayed in the *User data* box since you can scroll in this area to see the entirety of what you pasted. See the screenshot below:
 
-    <img src="../create070.png" width="533" height="809" />
+    <img src="../create070.png" width="1862" height="1718" />
 
 1. Go to your IBM Log Analysis Dashboard so you can verify that you receive log messages from the instance that you're about to create.
 

@@ -14,19 +14,28 @@ These instructions assume you are logged in to the IBM Cloud Web UI.  If not, pl
 
     <img src="../create020.png" width="531" height="287" />
 
-1. Click the link to create a virtual server instance
+2. Click the link to create a virtual server instance
 
     You may have to scroll down on the page- find and click on the "Create a virtual server instance" link:
 
     <img src="../create030.png" width="801" height="504" />
 
-1. In the *Architecture* section, click the **IBM Z, LinuxONE** tile.  At this point, a *Confidential Computing* toggle should appear.  Click it to select it.  Then, ensure that you select the correct *Zone*- that is, the one for whch you created a subnet earlier (assuming you followed the lab instructions and created only one subnet).   You are not finished filling out this screen yet, but see the below screen snippet for hints:
+3. In the *Location* section, ensure that you select the *Zone* that contains your subnet. Give your instance a name in the *Name* field in the *Details* section.  We chose *lab-was-hpvs-lab2* in the screen shot below:  
 
-    <img src="../create040.png" width="846" height="842" />
+    <img src="../create050.png" width="1692" height="1326" />
 
-1. Give your instance a name in the *Name* field in the *Details* section.  We chose *lab-was-hpvs-lab2* in the screen shot below.  Then, it is very important to select the *Version* that ends in "*-12*". If this version is not the default selection, click the **Change image** link to select it.  Use this screen snippet as guidance:
+4. Scroll down and click the **Change image** link to select it:
 
-    <img src="../create050.png" width="1143" height="843" />
+    <img src="../create052.png" width="2170" height="636" />
+
+5. On the *Select an image* screen, perform the following actions:
+
+    1. Click the *IBM Z, Linux ONE* box.
+    2. Toggle the slider on for "Run your workload with an OS and a profile for Secure Execution".
+    3. Select the most recent image, *ibm-hyper-protect-container-runtime-1-0-s390x-13*.
+    4. Click the blue **Save** button.
+
+    <img src="../create053.png" width="2504" height="1746" />
 
 1. At this point in lab 1, you created a data volume that you will use across the labs.  You will **not** be able to attach that data volume until after you start your virtual server instance, so, continue with the next instruction. 
 
@@ -36,7 +45,7 @@ These instructions assume you are logged in to the IBM Cloud Web UI.  If not, pl
 
 1. At the end of the previous section of the lab, *Prepare the contract*, in the very last instruction, you displayed the contents of your `user_data.yaml`, on your prep system.  Go back to your prep system and copy the file contents that you displayed to your clipboard.  Then paste them into the *user data* box.  It should look similar to what is shown below-  we've redacted our IBM Log Analysis ingestion key from the screen shot, but you'll want your actual ingestion key to be in there. The screen shot below does not show the entire contract- the top of the encrypted workload section is not visible in the screen shot, but we are showing the entire unencrypted environment section:
 
-    <img src="../create070.png" width="533" height="809" />
+    <img src="../create070.png" width="1844" height="1688" />
 
 1. Go to your IBM Log Analysis Dashboard so you can verify that you receive log messages from the instance that you're about to create.
 
