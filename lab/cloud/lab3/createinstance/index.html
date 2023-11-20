@@ -1539,12 +1539,22 @@
 <p><img src="../create030.png" width="801" height="504" /></p>
 </li>
 <li>
-<p>In the <em>Architecture</em> section, click the <strong>IBM Z, LinuxONE</strong> tile.  At this point, a <em><abbr title="Confidential computing is a cloud computing technology that isolates sensitive data in a protected CPU enclave during processing. The contents of the enclave—the data being processed, and the techniques that are used to process it—are accessible only to authorized programming code, and are invisible and unknowable to anything or anyone else, including the cloud provider.">Confidential Computing</abbr></em> toggle should appear.  Click it to select it.  Then, ensure that you select the correct <em>Zone</em>- that is, the one for whch you created a subnet earlier (assuming you followed the lab instructions and created only one subnet).   You are not finished filling out this screen yet, but see the below screen snippet for hints:</p>
-<p><img src="../create040.png" width="846" height="842" /></p>
+<p>In the <em>Location</em> section, ensure that you select the <em>Zone</em> that contains your subnet. Give your instance a name in the <em>Name</em> field in the <em>Details</em> section.  We chose <em>lab-was-hpvs-lab3</em> in the screen shot below:  </p>
+<p><img src="../create050.png" width="1692" height="1326" /></p>
 </li>
 <li>
-<p>Give your instance a name in the <em>Name</em> field in the <em>Details</em> section.  We chose <em>lab-was-hpvs-lab3</em> in the screen shot below.  Then, it is very important to select the <em>Version</em> that ends in "<em>-12</em>". If this version is not the default selection, click the <strong>Change image</strong> link to select it. See this screen snippet for guidance:</p>
-<p><img src="../create050.png" width="1136" height="770" /></p>
+<p>Scroll down and click the <strong>Change image</strong> link to select it:</p>
+<p><img src="../create052.png" width="2170" height="636" /></p>
+</li>
+<li>
+<p>On the <em>Select an image</em> screen, perform the following actions:</p>
+<ol>
+<li>Click the <em>IBM Z, Linux ONE</em> box.</li>
+<li>Toggle the slider on for "Run your workload with an OS and a profile for <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>".</li>
+<li>Select the most recent image, <em>ibm-hyper-protect-<abbr title="a running instance of an OCI image.">container</abbr>-runtime-1-0-s390x-13</em>.</li>
+<li>Click the blue <strong>Save</strong> button.</li>
+</ol>
+<p><img src="../create053.png" width="2504" height="1746" /></p>
 </li>
 <li>
 <p>Scroll down and in the <em>Advanced options</em> section, within the <em>Instance configuration</em> subsection, click the arrow at the right of the <em>User data</em> item.  Drag the lower right corner of the <em>User data</em> box that appears in order to enlarge it a bit, like we've done in the screen shot below:</p>
@@ -1601,7 +1611,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 21, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 20, 2023</span>
       
         <br>
         Created:

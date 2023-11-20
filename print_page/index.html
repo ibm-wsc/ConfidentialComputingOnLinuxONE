@@ -10142,12 +10142,22 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <p><img src="../lab/cloud/lab1/create030.png" width="801" height="504" /></p>
 </li>
 <li>
-<p>In the <em>Architecture</em> section, click the <strong>IBM Z, LinuxONE</strong> tile.  At this point, a <em><abbr title="Confidential computing is a cloud computing technology that isolates sensitive data in a protected CPU enclave during processing. The contents of the enclave—the data being processed, and the techniques that are used to process it—are accessible only to authorized programming code, and are invisible and unknowable to anything or anyone else, including the cloud provider.">Confidential Computing</abbr></em> toggle should appear.  Click it to select it.  Then, ensure that you select the correct <em>Zone</em>- that is, the one for whch you created a subnet earlier (assuming you followed the lab instructions and created only one subnet).   You are not finished filling out this screen yet, but see the below screen snippet for hints:</p>
-<p><img src="../lab/cloud/lab1/create040.png" width="800" height="740" /></p>
+<p>In the <em>Location</em> section, ensure that you select the <em>Zone</em> that contains your subnet. Give your instance a name in the <em>Name</em> field in the <em>Details</em> section.  We chose <em>lab-was-hpvs-lab1</em> in the screen shot below:  </p>
+<p><img src="../lab/cloud/lab1/create050.png" width="1692" height="1326" /></p>
 </li>
 <li>
-<p>Give your instance a name in the <em>Name</em> field in the <em>Details</em> section.  We chose <em>lab-was-hpvs-lab1</em> in the screen shot below.  Then, it is very important to select the <em>Version</em> that ends in "<em>-12</em>". If this version is not the default selection, click the <strong>Change image</strong> link to select it.  Hopefully this screen snippet clarifies this:</p>
-<p><img src="../lab/cloud/lab1/create050.png" width="1160" height="852" /></p>
+<p>Scroll down and click the <strong>Change image</strong> link to select it:</p>
+<p><img src="../lab/cloud/lab1/create052.png" width="2170" height="636" /></p>
+</li>
+<li>
+<p>On the <em>Select an image</em> screen, perform the following actions:</p>
+<ol>
+<li>Click the <em>IBM Z, Linux ONE</em> box.</li>
+<li>Toggle the slider on for "Run your workload with an OS and a profile for <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>".</li>
+<li>Select the most recent image, <em>ibm-hyper-protect-<abbr title="a running instance of an OCI image.">container</abbr>-runtime-1-0-s390x-13</em>.</li>
+<li>Click the blue <strong>Save</strong> button.</li>
+</ol>
+<p><img src="../lab/cloud/lab1/create053.png" width="2504" height="1746" /></p>
 </li>
 <li>
 <p>These labs are going to demonstrate data persistence across virtual server instances, and for this you will need a data volume.  You will create the data volume in this lab and then reuse it in subsequent labs. In the <em>Storage</em> section, click the <strong>Create</strong> button in the <em>Data volumes</em> section:</p>
@@ -10162,8 +10172,8 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <p><img src="../lab/cloud/lab1/create060.png" width="1075" height="685" /></p>
 </li>
 <li>
-<p>At the end of the previous section of the lab, <em>Prepare the contract</em>, in the very last instruction, you displayed the contents of your <code>user_data.yaml</code>, on your prep system.  Go back to your prep system and copy the file contents that you displayed to your clipboard.  Then paste them into the <em>user data</em> box.  It should look similar to what is shown below-  we've redacted our IBM Log Analysis ingestion key from the screen shot, but you'll want your actual ingestion key to be in there. Also, for the purposes of the screen shot, we enlarged our <em>User data</em> box to be large enough to show the entire contract.  This isn't necessary to do, and for most larger contracts it will often not be possible to do so- you'll always be able to scroll in this area to see the entirety of what you pasted. See the screenshot below:</p>
-<p><img src="../lab/cloud/lab1/create070.png" width="533" height="809" /></p>
+<p>At the end of the previous section of the lab, <em>Prepare the contract</em>, in the very last instruction, you displayed the contents of your <code>user_data.yaml</code>, on your prep system.  Go back to your prep system and copy the file contents that you displayed to your clipboard.  Then paste them into the <em>user data</em> box.  It should look similar to what is shown below-  we've redacted our IBM Log Analysis ingestion key from the screen shot, but you'll want your actual ingestion key to be in there. Also, for the purposes of the screen shot, we enlarged our <em>User data</em> box to be large enough to show more of the contract. Don't worry if your entire contract can't be displayed in the <em>User data</em> box since you can scroll in this area to see the entirety of what you pasted. See the screenshot below:</p>
+<p><img src="../lab/cloud/lab1/create070.png" width="1862" height="1718" /></p>
 </li>
 <li>
 <p>Go to your IBM Log Analysis Dashboard so you can verify that you receive log messages from the instance that you're about to create.</p>
@@ -10305,7 +10315,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="s">\$(cat play/play.yml)&quot; &gt; \${WORKLOAD_PLAIN}</span>
 
 <span class="s"># Download certificate to encrypt contract for Hyper Protect Container Runtime:</span>
-<span class="s">HPCR_rev=12</span>
+<span class="s">HPCR_rev=13</span>
 <span class="s">CONTRACT_KEY=./ibm-hyper-protect-container-runtime-1-0-s390x-\${HPCR_rev}-encrypt.crt</span>
 <span class="s">curl https://cloud.ibm.com/media/docs/downloads/hyper-protect-container-runtime/ibm-hyper-protect-container-runtime-1-0-s390x-\${HPCR_rev}-encrypt.crt &gt; \${CONTRACT_KEY}</span>
 
@@ -10391,12 +10401,22 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <p><img src="../lab/cloud/lab2/create030.png" width="801" height="504" /></p>
 </li>
 <li>
-<p>In the <em>Architecture</em> section, click the <strong>IBM Z, LinuxONE</strong> tile.  At this point, a <em><abbr title="Confidential computing is a cloud computing technology that isolates sensitive data in a protected CPU enclave during processing. The contents of the enclave—the data being processed, and the techniques that are used to process it—are accessible only to authorized programming code, and are invisible and unknowable to anything or anyone else, including the cloud provider.">Confidential Computing</abbr></em> toggle should appear.  Click it to select it.  Then, ensure that you select the correct <em>Zone</em>- that is, the one for whch you created a subnet earlier (assuming you followed the lab instructions and created only one subnet).   You are not finished filling out this screen yet, but see the below screen snippet for hints:</p>
-<p><img src="../lab/cloud/lab2/create040.png" width="846" height="842" /></p>
+<p>In the <em>Location</em> section, ensure that you select the <em>Zone</em> that contains your subnet. Give your instance a name in the <em>Name</em> field in the <em>Details</em> section.  We chose <em>lab-was-hpvs-lab2</em> in the screen shot below:  </p>
+<p><img src="../lab/cloud/lab2/create050.png" width="1692" height="1326" /></p>
 </li>
 <li>
-<p>Give your instance a name in the <em>Name</em> field in the <em>Details</em> section.  We chose <em>lab-was-hpvs-lab2</em> in the screen shot below.  Then, it is very important to select the <em>Version</em> that ends in "<em>-12</em>". If this version is not the default selection, click the <strong>Change image</strong> link to select it.  Use this screen snippet as guidance:</p>
-<p><img src="../lab/cloud/lab2/create050.png" width="1143" height="843" /></p>
+<p>Scroll down and click the <strong>Change image</strong> link to select it:</p>
+<p><img src="../lab/cloud/lab2/create052.png" width="2170" height="636" /></p>
+</li>
+<li>
+<p>On the <em>Select an image</em> screen, perform the following actions:</p>
+<ol>
+<li>Click the <em>IBM Z, Linux ONE</em> box.</li>
+<li>Toggle the slider on for "Run your workload with an OS and a profile for <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>".</li>
+<li>Select the most recent image, <em>ibm-hyper-protect-<abbr title="a running instance of an OCI image.">container</abbr>-runtime-1-0-s390x-13</em>.</li>
+<li>Click the blue <strong>Save</strong> button.</li>
+</ol>
+<p><img src="../lab/cloud/lab2/create053.png" width="2504" height="1746" /></p>
 </li>
 <li>
 <p>At this point in lab 1, you created a data volume that you will use across the labs.  You will <strong>not</strong> be able to attach that data volume until after you start your virtual server instance, so, continue with the next instruction. </p>
@@ -10407,7 +10427,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 </li>
 <li>
 <p>At the end of the previous section of the lab, <em>Prepare the contract</em>, in the very last instruction, you displayed the contents of your <code>user_data.yaml</code>, on your prep system.  Go back to your prep system and copy the file contents that you displayed to your clipboard.  Then paste them into the <em>user data</em> box.  It should look similar to what is shown below-  we've redacted our IBM Log Analysis ingestion key from the screen shot, but you'll want your actual ingestion key to be in there. The screen shot below does not show the entire contract- the top of the encrypted workload section is not visible in the screen shot, but we are showing the entire unencrypted environment section:</p>
-<p><img src="../lab/cloud/lab2/create070.png" width="533" height="809" /></p>
+<p><img src="../lab/cloud/lab2/create070.png" width="1844" height="1688" /></p>
 </li>
 <li>
 <p>Go to your IBM Log Analysis Dashboard so you can verify that you receive log messages from the instance that you're about to create.</p>
@@ -10561,7 +10581,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="s">\$(cat play/play.yml)&quot; &gt; \${WORKLOAD_PLAIN}</span>
 
 <span class="s"># Download certificate to encrypt contract for Hyper Protect Container Runtime:</span>
-<span class="s">HPCR_rev=12</span>
+<span class="s">HPCR_rev=13</span>
 <span class="s">CONTRACT_KEY=./ibm-hyper-protect-container-runtime-1-0-s390x-\${HPCR_rev}-encrypt.crt</span>
 <span class="s">curl https://cloud.ibm.com/media/docs/downloads/hyper-protect-container-runtime/ibm-hyper-protect-container-runtime-1-0-s390x-\${HPCR_rev}-encrypt.crt &gt; \${CONTRACT_KEY}</span>
 
@@ -10630,7 +10650,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="s">      seed: seed-supplied-by-env-persona&quot; &gt; \${ENV_PLAIN}</span>
 
 <span class="s"># Download certificate to encrypt contract for Hyper Protect Container Runtime:</span>
-<span class="s">HPCR_rev=12</span>
+<span class="s">HPCR_rev=13</span>
 <span class="s">CONTRACT_KEY=./ibm-hyper-protect-container-runtime-1-0-s390x-\${HPCR_rev}-encrypt.crt</span>
 <span class="s">curl https://cloud.ibm.com/media/docs/downloads/hyper-protect-container-runtime/\$CONTRACT_KEY &gt; \$CONTRACT_KEY</span>
 
@@ -10702,12 +10722,22 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <p><img src="../lab/cloud/lab3/create030.png" width="801" height="504" /></p>
 </li>
 <li>
-<p>In the <em>Architecture</em> section, click the <strong>IBM Z, LinuxONE</strong> tile.  At this point, a <em><abbr title="Confidential computing is a cloud computing technology that isolates sensitive data in a protected CPU enclave during processing. The contents of the enclave—the data being processed, and the techniques that are used to process it—are accessible only to authorized programming code, and are invisible and unknowable to anything or anyone else, including the cloud provider.">Confidential Computing</abbr></em> toggle should appear.  Click it to select it.  Then, ensure that you select the correct <em>Zone</em>- that is, the one for whch you created a subnet earlier (assuming you followed the lab instructions and created only one subnet).   You are not finished filling out this screen yet, but see the below screen snippet for hints:</p>
-<p><img src="../lab/cloud/lab3/create040.png" width="846" height="842" /></p>
+<p>In the <em>Location</em> section, ensure that you select the <em>Zone</em> that contains your subnet. Give your instance a name in the <em>Name</em> field in the <em>Details</em> section.  We chose <em>lab-was-hpvs-lab3</em> in the screen shot below:  </p>
+<p><img src="../lab/cloud/lab3/create050.png" width="1692" height="1326" /></p>
 </li>
 <li>
-<p>Give your instance a name in the <em>Name</em> field in the <em>Details</em> section.  We chose <em>lab-was-hpvs-lab3</em> in the screen shot below.  Then, it is very important to select the <em>Version</em> that ends in "<em>-12</em>". If this version is not the default selection, click the <strong>Change image</strong> link to select it. See this screen snippet for guidance:</p>
-<p><img src="../lab/cloud/lab3/create050.png" width="1136" height="770" /></p>
+<p>Scroll down and click the <strong>Change image</strong> link to select it:</p>
+<p><img src="../lab/cloud/lab3/create052.png" width="2170" height="636" /></p>
+</li>
+<li>
+<p>On the <em>Select an image</em> screen, perform the following actions:</p>
+<ol>
+<li>Click the <em>IBM Z, Linux ONE</em> box.</li>
+<li>Toggle the slider on for "Run your workload with an OS and a profile for <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>".</li>
+<li>Select the most recent image, <em>ibm-hyper-protect-<abbr title="a running instance of an OCI image.">container</abbr>-runtime-1-0-s390x-13</em>.</li>
+<li>Click the blue <strong>Save</strong> button.</li>
+</ol>
+<p><img src="../lab/cloud/lab3/create053.png" width="2504" height="1746" /></p>
 </li>
 <li>
 <p>Scroll down and in the <em>Advanced options</em> section, within the <em>Instance configuration</em> subsection, click the arrow at the right of the <em>User data</em> item.  Drag the lower right corner of the <em>User data</em> box that appears in order to enlarge it a bit, like we've done in the screen shot below:</p>
@@ -10865,7 +10895,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="s">\$(cat play/play.yml)&quot; &gt; \${WORKLOAD_PLAIN}</span>
 
 <span class="s"># Download certificate to encrypt contract for Hyper Protect Container Runtime:</span>
-<span class="s">HPCR_rev=12</span>
+<span class="s">HPCR_rev=13</span>
 <span class="s">CONTRACT_KEY=./ibm-hyper-protect-container-runtime-1-0-s390x-\${HPCR_rev}-encrypt.crt</span>
 <span class="s">curl https://cloud.ibm.com/media/docs/downloads/hyper-protect-container-runtime/ibm-hyper-protect-container-runtime-1-0-s390x-\${HPCR_rev}-encrypt.crt &gt; \${CONTRACT_KEY}</span>
 
@@ -10921,7 +10951,7 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <span class="s">cat ./pubSigningKey.yaml &gt;&gt; \${ENV_PLAIN}</span>
 
 <span class="s"># Download certificate to encrypt contract for Hyper Protect Container Runtime:</span>
-<span class="s">HPCR_rev=12</span>
+<span class="s">HPCR_rev=13</span>
 <span class="s">CONTRACT_KEY=./ibm-hyper-protect-container-runtime-1-0-s390x-\${HPCR_rev}-encrypt.crt</span>
 <span class="s">curl https://cloud.ibm.com/media/docs/downloads/hyper-protect-container-runtime/\$CONTRACT_KEY &gt; \$CONTRACT_KEY</span>
 
@@ -11034,12 +11064,22 @@ which<span class="w"> </span>gtar<span class="w"> </span><span class="m">1</span
 <p><img src="../lab/cloud/lab4/create030.png" width="801" height="504" /></p>
 </li>
 <li>
-<p>In the <em>Architecture</em> section, click the <strong>IBM Z, LinuxONE</strong> tile.  At this point, a <em><abbr title="Confidential computing is a cloud computing technology that isolates sensitive data in a protected CPU enclave during processing. The contents of the enclave—the data being processed, and the techniques that are used to process it—are accessible only to authorized programming code, and are invisible and unknowable to anything or anyone else, including the cloud provider.">Confidential Computing</abbr></em> toggle should appear.  Click it to select it.  Then, ensure that you select the correct <em>Zone</em>- that is, the one for whch you created a subnet earlier (assuming you followed the lab instructions and created only one subnet).   You are not finished filling out this screen yet, but see the below screen snippet for hints:</p>
-<p><img src="../lab/cloud/lab4/create040.png" width="846" height="842" /></p>
+<p>In the <em>Location</em> section, ensure that you select the <em>Zone</em> that contains your subnet. Give your instance a name in the <em>Name</em> field in the <em>Details</em> section.  We chose <em>lab-was-hpvs-lab4</em> in the screen shot below:  </p>
+<p><img src="../lab/cloud/lab4/create050.png" width="1692" height="1326" /></p>
 </li>
 <li>
-<p>Give your instance a name in the <em>Name</em> field in the <em>Details</em> section.  We chose <em>lab-was-hpvs-lab4</em> as shown in the screen shot below. Then, it is very important to select the <em>Version</em> that ends in "<em>-12</em>". If this version is not the default selection, click the <strong>Change image</strong> link to select it. See this screen snippet for guidance:</p>
-<p><img src="../lab/cloud/lab4/create050.png" width="1122" height="760" /></p>
+<p>Scroll down and click the <strong>Change image</strong> link to select it:</p>
+<p><img src="../lab/cloud/lab4/create052.png" width="2170" height="636" /></p>
+</li>
+<li>
+<p>On the <em>Select an image</em> screen, perform the following actions:</p>
+<ol>
+<li>Click the <em>IBM Z, Linux ONE</em> box.</li>
+<li>Toggle the slider on for "Run your workload with an OS and a profile for <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>".</li>
+<li>Select the most recent image, <em>ibm-hyper-protect-<abbr title="a running instance of an OCI image.">container</abbr>-runtime-1-0-s390x-13</em>.</li>
+<li>Click the blue <strong>Save</strong> button.</li>
+</ol>
+<p><img src="../lab/cloud/lab4/create053.png" width="2504" height="1746" /></p>
 </li>
 <li>
 <p>Scroll down and in the <em>Advanced options</em> section, within the <em>Instance configuration</em> subsection, click the arrow at the right of the <em>User data</em> item.  Drag the lower right corner of the <em>User data</em> box that appears in order to enlarge it a bit, like we've done in the screen shot below:</p>
