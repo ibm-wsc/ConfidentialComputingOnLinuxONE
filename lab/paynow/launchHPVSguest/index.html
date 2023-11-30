@@ -844,8 +844,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#launch-the-hpvs-216-kvm-guest" class="md-nav__link">
-    launch the HPVS 2.1.6 KVM guest
+  <a href="#launch-the-hpvs-21x-kvm-guest" class="md-nav__link">
+    launch the HPVS 2.1.x KVM guest
   </a>
   
 </li>
@@ -1538,8 +1538,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#launch-the-hpvs-216-kvm-guest" class="md-nav__link">
-    launch the HPVS 2.1.6 KVM guest
+  <a href="#launch-the-hpvs-21x-kvm-guest" class="md-nav__link">
+    launch the HPVS 2.1.x KVM guest
   </a>
   
 </li>
@@ -1585,12 +1585,12 @@
 <h1 id="launch-hpvs-guest-for-paynow">Launch HPVS guest for PayNow<a class="headerlink" href="#launch-hpvs-guest-for-paynow" title="Permanent link">&para;</a></h1>
 <p>You will start this section from your login session on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host. Start from this familiar window or tab:</p>
 <p><img src="../../../images/RHELHost.png" width="351" height="216" ></p>
-<h2 id="launch-the-hpvs-216-kvm-guest">launch the HPVS 2.1.6 KVM guest<a class="headerlink" href="#launch-the-hpvs-216-kvm-guest" title="Permanent link">&para;</a></h2>
+<h2 id="launch-the-hpvs-21x-kvm-guest">launch the HPVS 2.1.x KVM guest<a class="headerlink" href="#launch-the-hpvs-21x-kvm-guest" title="Permanent link">&para;</a></h2>
 <p>This fancy command figures out (and displays) the last two characters of your assigned userid and is used in other commands in this section, so that the lab instructions will work for everybody:</p>
 <div class="highlight"><pre><span></span><code><span class="nv">suffix</span><span class="o">=</span><span class="k">$(</span><span class="nv">temp</span><span class="o">=</span><span class="k">$(</span>whoami<span class="k">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">temp</span><span class="p">: -2</span><span class="si">}</span><span class="k">)</span><span class="w"> </span><span class="se">\</span>
 <span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span>Your<span class="w"> </span>student<span class="w"> </span>suffix<span class="w"> </span>is<span class="w"> </span><span class="si">${</span><span class="nv">suffix</span><span class="si">}</span>
 </code></pre></div>
-<p>You aren't going to change anything here since it's already been defined for you by the instructors, but you can display the definition of your HPVS 2.1.6 KVM guest for the PayNow demo:</p>
+<p>You aren't going to change anything here since it's already been defined for you by the instructors, but you can display the definition of your HPVS 2.1.x KVM guest for the PayNow demo:</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>virsh<span class="w"> </span>dumpxml<span class="w"> </span>paynowse<span class="si">${</span><span class="nv">suffix</span><span class="si">}</span>
 </code></pre></div>
 <details class="- example">
@@ -1619,7 +1619,7 @@
     &lt;emulator&gt;/usr/libexec/qemu-kvm&lt;/emulator&gt;
     &lt;disk type=&#39;file&#39; device=&#39;disk&#39;&gt;
       &lt;driver name=&#39;qemu&#39; type=&#39;qcow2&#39; iommu=&#39;on&#39;/&gt;
-      &lt;source file=&#39;/var/lib/libvirt/images/labs/paynow/student04/ibm-hyper-protect-container-runtime-23.6.2.qcow2&#39;/&gt;
+      &lt;source file=&#39;/var/lib/libvirt/images/labs/paynow/student04/ibm-hyper-protect-container-runtime-23.11.0.qcow2&#39;/&gt;
       &lt;backingStore/&gt;
       &lt;target dev=&#39;vda&#39; bus=&#39;virtio&#39;/&gt;
       &lt;address type=&#39;ccw&#39; cssid=&#39;0xfe&#39; ssid=&#39;0x0&#39; devno=&#39;0x0000&#39;/&gt;
@@ -2696,7 +2696,7 @@ Sep 05 22:22:54 ubuntu2204 systemd-networkd[26262]:  veth5f369da: Gained IPv6LL
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 13, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 30, 2023</span>
       
         <br>
         Created:

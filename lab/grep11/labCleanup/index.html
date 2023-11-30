@@ -633,8 +633,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#shut-down-your-hpvs-216-guest-your-grep11-server" class="md-nav__link">
-    Shut down your HPVS 2.1.6 guest (your GREP11 server):
+  <a href="#shut-down-your-hpvs-21x-guest-your-grep11-server" class="md-nav__link">
+    Shut down your HPVS 2.1.x guest (your GREP11 server):
   </a>
   
 </li>
@@ -1559,8 +1559,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#shut-down-your-hpvs-216-guest-your-grep11-server" class="md-nav__link">
-    Shut down your HPVS 2.1.6 guest (your GREP11 server):
+  <a href="#shut-down-your-hpvs-21x-guest-your-grep11-server" class="md-nav__link">
+    Shut down your HPVS 2.1.x guest (your GREP11 server):
   </a>
   
 </li>
@@ -1618,7 +1618,7 @@
 <p>Enter this command to shut down your standard Ubuntu KVM guest:</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>virsh<span class="w"> </span>shutdown<span class="w"> </span><span class="k">$(</span>whoami<span class="k">)</span>
 </code></pre></div>
-<h2 id="shut-down-your-hpvs-216-guest-your-grep11-server">Shut down your HPVS 2.1.6 guest (your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> server):<a class="headerlink" href="#shut-down-your-hpvs-216-guest-your-grep11-server" title="Permanent link">&para;</a></h2>
+<h2 id="shut-down-your-hpvs-21x-guest-your-grep11-server">Shut down your HPVS 2.1.x guest (your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> server):<a class="headerlink" href="#shut-down-your-hpvs-21x-guest-your-grep11-server" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="nv">suffix</span><span class="o">=</span><span class="k">$(</span><span class="nv">temp</span><span class="o">=</span><span class="k">$(</span>whoami<span class="k">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">temp</span><span class="p">: -2</span><span class="si">}</span><span class="k">)</span><span class="w"> </span><span class="p">;</span><span class="w"> </span>sudo<span class="w"> </span>virsh<span class="w"> </span>shutdown<span class="w"> </span>grep11se<span class="si">${</span><span class="nv">suffix</span><span class="si">}</span><span class="w"> </span>
 </code></pre></div>
 <h2 id="clean-up-the-home-directory-of-your-userid-on-the-rhel-85-host">Clean up the home directory of your userid on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5 host:<a class="headerlink" href="#clean-up-the-home-directory-of-your-userid-on-the-rhel-85-host" title="Permanent link">&para;</a></h2>
@@ -1635,7 +1635,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 5, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 30, 2023</span>
       
         <br>
         Created:

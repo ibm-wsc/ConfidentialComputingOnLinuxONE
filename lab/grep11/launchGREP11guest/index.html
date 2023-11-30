@@ -101,7 +101,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#start-the-grep11-server-as-a-secure-execution-enabled-hpvs-216-guest" class="md-skip">
+        <a href="#start-the-grep11-server-as-a-secure-execution-enabled-hpvs-21x-guest" class="md-skip">
           Skip to content
         </a>
       
@@ -584,8 +584,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#launch-the-hpvs-216-grep11-server" class="md-nav__link">
-    launch the HPVS 2.1.6 GREP11 server
+  <a href="#launch-the-hpvs-21x-grep11-server" class="md-nav__link">
+    launch the HPVS 2.1.x GREP11 server
   </a>
   
 </li>
@@ -1538,8 +1538,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#launch-the-hpvs-216-grep11-server" class="md-nav__link">
-    launch the HPVS 2.1.6 GREP11 server
+  <a href="#launch-the-hpvs-21x-grep11-server" class="md-nav__link">
+    launch the HPVS 2.1.x GREP11 server
   </a>
   
 </li>
@@ -1582,15 +1582,15 @@
   
 
 
-<h1 id="start-the-grep11-server-as-a-secure-execution-enabled-hpvs-216-guest">Start the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server as a <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-enabled, HPVS 2.1.6 guest<a class="headerlink" href="#start-the-grep11-server-as-a-secure-execution-enabled-hpvs-216-guest" title="Permanent link">&para;</a></h1>
-<h2 id="launch-the-hpvs-216-grep11-server">launch the HPVS 2.1.6 <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> server<a class="headerlink" href="#launch-the-hpvs-216-grep11-server" title="Permanent link">&para;</a></h2>
+<h1 id="start-the-grep11-server-as-a-secure-execution-enabled-hpvs-21x-guest">Start the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server as a <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-enabled, HPVS 2.1.x guest<a class="headerlink" href="#start-the-grep11-server-as-a-secure-execution-enabled-hpvs-21x-guest" title="Permanent link">&para;</a></h1>
+<h2 id="launch-the-hpvs-21x-grep11-server">launch the HPVS 2.1.x <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> server<a class="headerlink" href="#launch-the-hpvs-21x-grep11-server" title="Permanent link">&para;</a></h2>
 <p>You will start this section from your login session on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host, and will soon be instructed to switch to your Ubuntu KVM guest session.
 But until then, start from this familiar window or tab:</p>
 <p><img src="../../../images/RHELHost.png" width="351" height="216" ></p>
 <p>This fancy command figures out the last two characters of your assigned userid and is used in other commands in this section, so that the lab instructions will work for everybody:</p>
 <div class="highlight"><pre><span></span><code><span class="nv">suffix</span><span class="o">=</span><span class="k">$(</span><span class="nv">temp</span><span class="o">=</span><span class="k">$(</span>whoami<span class="k">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">temp</span><span class="p">: -2</span><span class="si">}</span><span class="k">)</span>
 </code></pre></div>
-<p>You aren't going to change anything here since it's already been defined for you by the instructors, but you can display the KVM guest definition of your HPVS 2.1.6 <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server:</p>
+<p>You aren't going to change anything here since it's already been defined for you by the instructors, but you can display the KVM guest definition of your HPVS 2.1.x <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server:</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>virsh<span class="w"> </span>dumpxml<span class="w"> </span>grep11se<span class="si">${</span><span class="nv">suffix</span><span class="si">}</span>
 </code></pre></div>
 <details class="- example">
@@ -1619,7 +1619,7 @@ But until then, start from this familiar window or tab:</p>
     &lt;emulator&gt;/usr/libexec/qemu-kvm&lt;/emulator&gt;
     &lt;disk type=&#39;file&#39; device=&#39;disk&#39;&gt;
       &lt;driver name=&#39;qemu&#39; type=&#39;qcow2&#39; iommu=&#39;on&#39;/&gt;
-<span class="hll">      &lt;source file=&#39;/var/lib/libvirt/images/hpcr/student02/ibm-hyper-protect-container-runtime-23.6.2.qcow2&#39;/&gt;
+<span class="hll">      &lt;source file=&#39;/var/lib/libvirt/images/hpcr/student02/ibm-hyper-protect-container-runtime-23.11.0.qcow2&#39;/&gt;
 </span>      &lt;backingStore/&gt;
       &lt;target dev=&#39;vda&#39; bus=&#39;virtio&#39;/&gt;
       &lt;address type=&#39;ccw&#39; cssid=&#39;0xfe&#39; ssid=&#39;0x0&#39; devno=&#39;0x0000&#39;/&gt;
@@ -1649,7 +1649,7 @@ But until then, start from this familiar window or tab:</p>
 &lt;/domain&gt;
 </code></pre></div>
 </details>
-<p>In the example output above, observe the two highlighted lines. The first line shows the <em>Hyper Protect Container Runtime</em> image that is provided by Hyper Protect Virtual Servers 2.1.6.  This is the <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-enabled KVM guest that will read your contract, validate its correctness and integrity, and then start your application workload. The second line shows the <em>ciiso.iso</em> file that you created in the previous section with the <code>genisoimage</code> command.  The <em>ciiso.iso</em> file contains your contract.</p>
+<p>In the example output above, observe the two highlighted lines. The first line shows the <em>Hyper Protect Container Runtime</em> image that is provided by Hyper Protect Virtual Servers 2.1.x.  This is the <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-enabled KVM guest that will read your contract, validate its correctness and integrity, and then start your application workload. The second line shows the <em>ciiso.iso</em> file that you created in the previous section with the <code>genisoimage</code> command.  The <em>ciiso.iso</em> file contains your contract.</p>
 <p>Start your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server and attach to its console.  Watch the messages carefully.  You should not see any failures:</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>virsh<span class="w"> </span>start<span class="w"> </span>grep11se<span class="si">${</span><span class="nv">suffix</span><span class="si">}</span><span class="w"> </span>--console
 </code></pre></div>
@@ -2739,14 +2739,14 @@ Nov 03 21:17:38 ubuntu2204 systemd[1623]:  systemd-fsckd.service: Deactivated su
 Nov 03 21:17:39 ubuntu2204 systemd[1623]:  systemd-hostnamed.service: Deactivated successfully.
 </code></pre></div>
 </details>
-<p><em>Congratulations!</em> You have reached a significant milestone in the lab.  You have successfully configured and launched your HPVS 2.1.6 <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server. Now all that is left is to test its functionality with some sample <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> client code.  You will set that up on your Ubuntu KVM guest.  Click <em>Next</em> at the bottom right of the page to continue.</p>
+<p><em>Congratulations!</em> You have reached a significant milestone in the lab.  You have successfully configured and launched your HPVS 2.1.x <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server. Now all that is left is to test its functionality with some sample <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> client code.  You will set that up on your Ubuntu KVM guest.  Click <em>Next</em> at the bottom right of the page to continue.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 13, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 30, 2023</span>
       
         <br>
         Created:
