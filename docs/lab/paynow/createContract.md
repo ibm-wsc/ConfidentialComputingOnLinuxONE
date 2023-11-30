@@ -4,7 +4,7 @@
 
 IBM provides the Secure Execution feature on z15 and newer generations of its IBM Z and LinuxONE servers.  Currently, that's z15 and LinuxONE III for the "z15" generation and z16 and LinuxONE Emperor 4 for the "z16" generation.
 
-You could create your own Secure Execution-enabled KVM guests and run a workload in it without Hyper Protect Virtual Servers 2.1.6.  However, there's non-trivial work involved in setting this up.  HPVS 2.1.6 has done that hard work for you, and provided a KVM guest image that will run your application workload as an OCI-compliant (again, think "Docker" in the popular vernacular) container within the HPVS 2.1.6 KVM guest.  There is still some work involved in setting up the contract that HPVS 2.1.6 expects- but this is work closer to the _application_ or _business_ level. There is also added value in HPVS 2.1.6 in areas such as:
+You could create your own Secure Execution-enabled KVM guests and run a workload in it without Hyper Protect Virtual Servers 2.1.x.  However, there's non-trivial work involved in setting this up.  HPVS 2.1.x has done that hard work for you, and provided a KVM guest image that will run your application workload as an OCI-compliant (again, think "Docker" in the popular vernacular) container within the HPVS 2.1.x KVM guest.  There is still some work involved in setting up the contract that HPVS 2.1.x expects- but this is work closer to the _application_ or _business_ level. There is also added value in HPVS 2.1.x in areas such as:
 
 - [x] logging
 - [ ] attestation
@@ -22,10 +22,10 @@ One of the things we just mentioned in the previous paragraph was _separation of
 
 Then, you could imagine the following scenario taking place:
 
-1. application owner can encrypt their piece of the contract such that it can only be decrypted within the HPVS 2.1.6 runtime
+1. application owner can encrypt their piece of the contract such that it can only be decrypted within the HPVS 2.1.x runtime
 2. application owner passes their encrypted piece of the contract to the _systems administrator_
 3. the _systems administrator_ encrypts their own section
-4. the _systems administrator_ combines the two sections and signs the resultant contract so that it can be verified by the HPVS 2.1.6 runtime.
+4. the _systems administrator_ combines the two sections and signs the resultant contract so that it can be verified by the HPVS 2.1.x runtime.
 
 !!! Question "Your inquiring mind may say, well that's all well and good, but what about the disk storage of the machine?"
 	
@@ -45,7 +45,7 @@ Switch to your home directory:
    cd ${HOME}
    ```
 
-Create a directory structure for creating an HPVS 2.1.6 contract:
+Create a directory structure for creating an HPVS 2.1.x contract:
 
    ``` bash
    mkdir -p contract/paynow/{environment,workload/play}
@@ -147,9 +147,9 @@ Create the convenience script:
    
    #
    # This is the encryption certificate for Hyper Protect Container Runtime and it is
-   # provided with the Hyper Protect Virtual Servers v2.1.6 product
+   # provided with the Hyper Protect Virtual Servers v2.1.7 product
    #
-   CONTRACT_KEY=/data/lab/hpvs216Certs/ibm-hyper-protect-container-runtime-23.6.2-encrypt.crt
+   CONTRACT_KEY=/data/lab/hpvs217Certs/ibm-hyper-protect-container-runtime-23.11.0-encrypt.crt
    
    #
    # This variable holds a random password:
@@ -321,9 +321,9 @@ order to have your HPVS KVM Guest log to the rsyslog service that you configured
 		cat ./pubSigningKey.yaml >> \${ENV_PLAIN}
 
 		# This is the encryption certificate for Hyper Protect Container Runtime and it is
-		# provided with the Hyper Protect Virtual Servers v2.1.6 product
+		# provided with the Hyper Protect Virtual Servers v2.1.7 product
 		#
-		CONTRACT_KEY=/data/lab/hpvs216Certs/ibm-hyper-protect-container-runtime-23.6.2-encrypt.crt
+		CONTRACT_KEY=/data/lab/hpvs217Certs/ibm-hyper-protect-container-runtime-23.11.0-encrypt.crt
 
 		#
 		# This variable holds a random password:

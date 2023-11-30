@@ -1,6 +1,6 @@
-# Start the GREP11 Server as a Secure Execution-enabled, HPVS 2.1.6 guest
+# Start the GREP11 Server as a Secure Execution-enabled, HPVS 2.1.x guest
 
-## launch the HPVS 2.1.6 GREP11 server
+## launch the HPVS 2.1.x GREP11 server
 
 You will start this section from your login session on the RHEL host, and will soon be instructed to switch to your Ubuntu KVM guest session.
 But until then, start from this familiar window or tab:
@@ -13,7 +13,7 @@ This fancy command figures out the last two characters of your assigned userid a
    suffix=$(temp=$(whoami) && echo ${temp: -2})
    ```
 
-You aren't going to change anything here since it's already been defined for you by the instructors, but you can display the KVM guest definition of your HPVS 2.1.6 GREP11 Server:
+You aren't going to change anything here since it's already been defined for you by the instructors, but you can display the KVM guest definition of your HPVS 2.1.x GREP11 Server:
 
    ``` bash
    sudo virsh dumpxml grep11se${suffix}
@@ -46,7 +46,7 @@ You aren't going to change anything here since it's already been defined for you
           <emulator>/usr/libexec/qemu-kvm</emulator>
           <disk type='file' device='disk'>
             <driver name='qemu' type='qcow2' iommu='on'/>
-            <source file='/var/lib/libvirt/images/hpcr/student02/ibm-hyper-protect-container-runtime-23.6.2.qcow2'/>
+            <source file='/var/lib/libvirt/images/hpcr/student02/ibm-hyper-protect-container-runtime-23.11.0.qcow2'/>
             <backingStore/>
             <target dev='vda' bus='virtio'/>
             <address type='ccw' cssid='0xfe' ssid='0x0' devno='0x0000'/>
@@ -76,7 +76,7 @@ You aren't going to change anything here since it's already been defined for you
       </domain>
       ```
 
-In the example output above, observe the two highlighted lines. The first line shows the _Hyper Protect Container Runtime_ image that is provided by Hyper Protect Virtual Servers 2.1.6.  This is the Secure Execution-enabled KVM guest that will read your contract, validate its correctness and integrity, and then start your application workload. The second line shows the _ciiso.iso_ file that you created in the previous section with the `genisoimage` command.  The _ciiso.iso_ file contains your contract.
+In the example output above, observe the two highlighted lines. The first line shows the _Hyper Protect Container Runtime_ image that is provided by Hyper Protect Virtual Servers 2.1.x.  This is the Secure Execution-enabled KVM guest that will read your contract, validate its correctness and integrity, and then start your application workload. The second line shows the _ciiso.iso_ file that you created in the previous section with the `genisoimage` command.  The _ciiso.iso_ file contains your contract.
 
 Start your GREP11 Server and attach to its console.  Watch the messages carefully.  You should not see any failures:
 
@@ -1182,4 +1182,4 @@ There are a lot of messages logged, a veritable trove of treasure for the curiou
       Nov 03 21:17:39 ubuntu2204 systemd[1623]:  systemd-hostnamed.service: Deactivated successfully.
       ```
 
-*Congratulations!* You have reached a significant milestone in the lab.  You have successfully configured and launched your HPVS 2.1.6 GREP11 Server. Now all that is left is to test its functionality with some sample GREP11 client code.  You will set that up on your Ubuntu KVM guest.  Click _Next_ at the bottom right of the page to continue.
+*Congratulations!* You have reached a significant milestone in the lab.  You have successfully configured and launched your HPVS 2.1.x GREP11 Server. Now all that is left is to test its functionality with some sample GREP11 client code.  You will set that up on your Ubuntu KVM guest.  Click _Next_ at the bottom right of the page to continue.

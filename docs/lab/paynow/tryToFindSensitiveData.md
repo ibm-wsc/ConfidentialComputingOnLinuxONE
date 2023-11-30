@@ -81,7 +81,7 @@ Attempt to pick out sensitive credit information from the core dump:
    strings core.${myHPVSPaynowPid} | grep creditCard
    ```
 
-In contrast to what you saw when performing the above procedure against a standard KVM guest that was running the PayNow demo app, this time you do not see any sensitive data, due to the protection offered by Hyper Protect Virtual Servers 2.1.6!! You are protected from malicious insider attacks!
+In contrast to what you saw when performing the above procedure against a standard KVM guest that was running the PayNow demo app, this time you do not see any sensitive data, due to the protection offered by Hyper Protect Virtual Servers 2.1.x!! You are protected from malicious insider attacks!
 
 
 Please click the *Next* button at the lower right of the page in order to perform lab cleanup.

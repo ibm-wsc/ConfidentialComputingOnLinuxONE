@@ -64,6 +64,6 @@ Pick out sensitive credit information from the core dump:
    strings core.${myPid} | grep creditCard
    ```
 
-You should recognize the sensitve information that you entered in the PayNow demo app.  This demonstrates how a malicious system administrator on the KVM host can look at sensitive information from a standard KVM guest.  An HPVS 2.1.6 KVM guest, which is protected by Secure Execution, prevents this from occurring, as you will see from completing the remainder of this lab.
+You should recognize the sensitve information that you entered in the PayNow demo app.  This demonstrates how a malicious system administrator on the KVM host can look at sensitive information from a standard KVM guest.  An HPVS 2.1.x KVM guest, which is protected by Secure Execution, prevents this from occurring, as you will see from completing the remainder of this lab.
 
 Please click *Next* below to continue

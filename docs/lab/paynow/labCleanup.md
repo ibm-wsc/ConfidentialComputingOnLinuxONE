@@ -6,7 +6,7 @@ All of the work in this section is performed on the RHEL 8.5 host:
 
  You should already be logged in to it if you have been following this lab in order.
 
-## Shut down your HPVS 2.1.6 guest that was running PayNow demo
+## Shut down your HPVS 2.1.x guest that was running PayNow demo
 
    ``` bash
    suffix=$(temp=$(whoami) && echo ${temp: -2}) ;\

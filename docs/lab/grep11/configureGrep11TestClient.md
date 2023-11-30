@@ -15,9 +15,9 @@ You did the X509 work to enable the GREP11 Server to communicate with the CENA4S
 
 You did the server side of the X509 work to enable the GREP11 Server to communicate with GREP11 clients.
 
-You created the _contract_ expected by HPVS 2.1.6.
+You created the _contract_ expected by HPVS 2.1.x.
 
-You successfully launched the GREP11 server as a Secure Execution-protected HPVS 2.1.6 KVM Guest!
+You successfully launched the GREP11 server as a Secure Execution-protected HPVS 2.1.x KVM Guest!
 
 Your last task is to run some GREP11 client code to verify that everything is working from end-to-end!
 
