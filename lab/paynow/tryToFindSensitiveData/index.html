@@ -291,11 +291,15 @@
   
 
 
-  <li class="md-tabs__item">
-    <a href="../../../additionalResources/" class="md-tabs__link">
-      Additional Resources
-    </a>
-  </li>
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../onpremises/filesCreated/" class="md-tabs__link">
+        Additional Resources
+      </a>
+    </li>
+  
 
       
         
@@ -1481,10 +1485,50 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          Additional Resources
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Additional Resources
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../../additionalResources/" class="md-nav__link">
-        Additional Resources
+      <a href="../../onpremises/filesCreated/" class="md-nav__link">
+        Files created in the on-premises labs
       </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -1618,7 +1662,9 @@ chown ${SUDO_USER}:hpvs_students /home/${SUDO_USER}/core.${myPid}
 </details>
 <p>The script runs with root authority-  it lists processes, grabs the process ID for your HPVS guest running PayNow, takes a core (memory) dump of the process, and then assigns your userid ownership of the dump file.</p>
 <p>Set an environment variable for the process ID for your Ubuntu KVM guest.  The script you ran did this as well but it was only set for the duration of the script execution, so you need to do it again:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">myHPVSPaynowPid</span><span class="o">=</span><span class="k">$(</span>ps<span class="w"> </span>aux<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>qemu<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>paynowse<span class="k">$(</span><span class="nv">temp</span><span class="o">=</span><span class="k">$(</span>whoami<span class="k">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">temp</span><span class="p">: -2</span><span class="si">}</span><span class="k">)</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="k">)</span>
+<div class="highlight"><pre><span></span><code><span class="nv">myHPVSPaynowPid</span><span class="o">=</span><span class="k">$(</span>ps<span class="w"> </span>aux<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>qemu<span class="w"> </span><span class="se">\</span>
+<span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>paynowse<span class="k">$(</span><span class="nv">temp</span><span class="o">=</span><span class="k">$(</span>whoami<span class="k">)</span><span class="w"> </span><span class="se">\</span>
+<span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">temp</span><span class="p">: -2</span><span class="si">}</span><span class="k">)</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="k">)</span>
 <span class="nb">echo</span><span class="w"> </span>My<span class="w"> </span>HPVS<span class="w"> </span>Guest<span class="w"> </span><span class="k">for</span><span class="w"> </span>PayNow<span class="w"> </span>demo<span class="w"> </span>process<span class="w"> </span>id<span class="w"> </span>is<span class="w"> </span><span class="si">${</span><span class="nv">myHPVSPaynowPid</span><span class="si">}</span>
 </code></pre></div>
 <p>Attempt to pick out sensitive credit information from the core dump:</p>

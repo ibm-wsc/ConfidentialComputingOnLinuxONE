@@ -291,11 +291,15 @@
   
 
 
-  <li class="md-tabs__item">
-    <a href="../../../additionalResources/" class="md-tabs__link">
-      Additional Resources
-    </a>
-  </li>
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../onpremises/filesCreated/" class="md-tabs__link">
+        Additional Resources
+      </a>
+    </li>
+  
 
       
         
@@ -1536,10 +1540,50 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          Additional Resources
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Additional Resources
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../../additionalResources/" class="md-nav__link">
-        Additional Resources
+      <a href="../../onpremises/filesCreated/" class="md-nav__link">
+        Files created in the on-premises labs
       </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -1711,24 +1755,79 @@
 <h2 id="creation-of-directory-structure-for-contract">Creation of directory structure for contract<a class="headerlink" href="#creation-of-directory-structure-for-contract" title="Permanent link">&para;</a></h2>
 <p>This section starts where the last section left off- on your session with the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host:</p>
 <p><img src="../../../images/RHELHost.png" width="351" height="216" /></p>
-<p>Switch to your home directory:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>
-</code></pre></div>
 <p>Create a directory structure for creating an HPVS 2.1.x contract:</p>
-<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>contract/paynow/<span class="o">{</span>environment,workload/play<span class="o">}</span>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/paynowLab/contract/<span class="o">{</span>environment/rsyslog,workload/play<span class="o">}</span>
 </code></pre></div>
 <p>Now see the directory structure you just created:</p>
-<div class="highlight"><pre><span></span><code>tree<span class="w"> </span>contract
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>tree<span class="w"> </span>paynowLab/contract
 </code></pre></div>
-<p>A contract requires a <em>workload</em> section and an <em>environment</em> section, and they each get their own directory. Then the sections are packaged together, and signed, and the signature is added as the third section.  This final result- the contract-  will be stored in your <code>${HOME}/contract/paynow</code> directory.</p>
+<details class="info" open="open">
+<summary>Expected output from tree command</summary>
+<div class="highlight"><pre><span></span><code>  [student03@bczkvm(192.168.22.64) ~ [12:23:58] (0)]$ tree paynowLab/contract
+  paynowLab/contract
+  ├── environment
+  │   └── rsyslog
+  └── workload
+      └── play
+
+  4 directories, 0 files
+</code></pre></div>
+</details>
+<p>Read about the directory structure and the purpose of each directory:</p>
+<table>
+<thead>
+<tr>
+<th>Directory</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>paynowLab/contract</td>
+<td>Top-level directory for the contract for the PayNow application. Typically, the "workload deployer" signs the concatenation of the encrypted "environment" section that they create and the encrypted "workload" section that the "workload provider" creates.</td>
+</tr>
+<tr>
+<td>environment</td>
+<td>Used by the "workload deployer" persona to hold an encrypted environment section of the contract</td>
+</tr>
+<tr>
+<td><abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr></td>
+<td>Used to hold the artifacts needed to construct the logging subsection of the environment section</td>
+</tr>
+<tr>
+<td>workload</td>
+<td>Used by the "workload provider" to hold an encrypted workload section of the contract</td>
+</tr>
+<tr>
+<td>play</td>
+<td>Used to hold the pod descriptor file specifying the application image and supporting files</td>
+</tr>
+</tbody>
+</table>
+<p>A contract requires a <em>workload</em> section and an <em>environment</em> section, and they each get their own directory. Then the sections are packaged together, and signed, and the signature is added as the third section.  This final result- the contract-  will be stored in your <code>${HOME}/paynowLab/contract</code> directory.</p>
+<p>While creating the contract in this lab, you will be performing the role of <em>workload provider</em> and <em>workload deployer</em>. In most production scenarios these two roles would be performed by different persons or processes.  The following diagram shows at a high level how these two roles cooperate to form the contract:</p>
+<pre class="mermaid"><code>flowchart LR
+  A["Workload provider
+  creates
+  workload section"];
+  B["Workload deployer
+  creates
+  environment section"]
+  C["Workload provider
+  gives workload section
+  to Workload deployer"]
+  A --&gt; C
+  D["Workload deployer
+  signs combined
+  environment and
+  workload sections"]
+  B --&gt; D
+  C --&gt; D</code></pre>
 <h2 id="create-workload-section-of-the-contract">Create workload section of the contract<a class="headerlink" href="#create-workload-section-of-the-contract" title="Permanent link">&para;</a></h2>
-<p>Switch to your workload directory:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/contract/paynow/workload
-</code></pre></div>
 <p>HPVS expects the contract to specify an <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> <abbr title="a running instance of an OCI image.">container</abbr> specified by a <em><abbr title="a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.">Docker Compose</abbr></em> file or <em>pod descriptor(s)</em>.  A <em><abbr title="a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.">Docker Compose</abbr></em> file specifies an <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> image to run and other information necessary to configure the resulting <abbr title="a running instance of an OCI image.">container</abbr>. A <em>pod descriptor</em> works much the same way but Hyper Protect supports using one or more <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> images with a <em>pod descriptor</em> as opposed to one image with a <em><abbr title="a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.">Docker Compose</abbr></em> file. Since this makes <em>pod descriptors</em> more versatile, we will be using the new hotness, <em>pod descriptors</em>, in our lab as opposed to the the OG <em><abbr title="a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.">Docker Compose</abbr></em> file format. Having said that, both are currently valid. Your workload is the PayNow Demo. You created an <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> image for that on your <abbr title="this is a term we use to refer to a KVM guest that is not protected with Secure Execution for Linux">standard KVM guest</abbr> earlier in the lab.  In order to allow you to perform the lab without having to have an account at Docker or Quay.io or another image registry service, the instructors have created an <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> image that is hosted in Quay.io and is used for this section of the lab.  This <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> image was created in the exact same way you created the image on your <abbr title="this is a term we use to refer to a KVM guest that is not protected with Secure Execution for Linux">standard KVM guest</abbr>.  </p>
 <h3 id="create-play-subsection">Create play subsection<a class="headerlink" href="#create-play-subsection" title="Permanent link">&para;</a></h3>
 <p>Switch to the directory that will hold your pod descriptors:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>play
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/paynowLab/contract/workload/play
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Play time</p>
@@ -1756,7 +1855,7 @@
 supplied with the product, but is very useful in the creation of the contract.  Create it now and feel free to peruse it but do not run it now.
 It will be called later by another script.  Comments have been added to help explain what the script does. </p>
 <p>Switch directories:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/contract/paynow/workload/
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/paynowLab/contract/workload/
 </code></pre></div>
 <p>Create the convenience script:</p>
 <div class="highlight"><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">cat &lt;&lt;-EOF &gt; flow.workload</span>
@@ -1851,25 +1950,25 @@ It will be called later by another script.  Comments have been added to help exp
 order to have your HPVS KVM Guest log to the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service that you configured earlier in the lab.</p>
 <ol>
 <li>
-<p>Create a directory to gather some files you will need for this <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> configuration and change to it:</p>
-<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>rsyslog<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>rsyslog
+<p>Switch to the directory from where you will gather some files you will need for this <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> configuration:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>rsyslog
 </code></pre></div>
 </li>
 <li>
 <p>You will need the <abbr title="certification authority">CA</abbr> certificate of the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service that you created on your Ubuntu KVM guest which you can get via <em>scp</em>:</p>
-<div class="highlight"><pre><span></span><code>scp<span class="w"> </span>student@<span class="si">${</span><span class="nv">StudentGuestIP</span><span class="si">}</span>:rsyslogWork/ca.crt<span class="w"> </span>.
+<div class="highlight"><pre><span></span><code>scp<span class="w"> </span>student@<span class="si">${</span><span class="nv">StudentGuestIP</span><span class="si">}</span>:x509Work/rsyslog/CA/ca.crt<span class="w"> </span>.
 </code></pre></div>
 </li>
 <li>
 <p>Copy your <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> client certificate from your working directory:</p>
-<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-ipv<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/rsyslogClientWork/client.crt<span class="w"> </span>.
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-ipv<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/paynowLab/x509Work/rsyslogClient/paynowLab-client.crt<span class="w"> </span>.
 </code></pre></div>
 </li>
 <li>
 <p>Convert the client certificate to PKCS#8 format</p>
 <p>The directory you just copied the client certificate from also has your private key that you need. However, the <abbr title="Hyper Protect Container Runtime- this is the name given to the Secure Execution-enabled qcow2 image that is provided with Hyper Protect Virtual Servers 2.1.x. The container runtime provided within this image launches the customer's workload as an OCI container, in accordance with the &quot;contract&quot; specified by the customer.">HPCR</abbr> image requires this to be in PKCS#8  (Public Key Cryptography Standard #8) format. Therefore you can't just copy it over- you need to convert it to PKCS#8 format:</p>
 <div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>pkcs8<span class="w"> </span>-topk8<span class="w"> </span>-inform<span class="w"> </span>PEM<span class="w"> </span>-outform<span class="w"> </span>PEM<span class="w"> </span>-nocrypt<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-in<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/rsyslogClientWork/client-key.pem<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-in<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/paynowLab/x509Work/rsyslogClient/client-key.pem<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-out<span class="w"> </span>client-key-pkcs8.pem
 </code></pre></div>
 </li>
@@ -1888,7 +1987,7 @@ order to have your HPVS KVM Guest log to the <abbr title="rsyslog is a system ut
 <span class="l l-Scalar l-Scalar-Plain"># set some file locations at the top of the file here</span>
 <span class="l l-Scalar l-Scalar-Plain">#</span>
 <span class="l l-Scalar l-Scalar-Plain">RSYSLOG_CA_CRT=&quot;./rsyslog/ca.crt&quot;</span>
-<span class="l l-Scalar l-Scalar-Plain">RSYSLOG_CLIENT_CRT=&quot;./rsyslog/client.crt&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">RSYSLOG_CLIENT_CRT=&quot;./rsyslog/paynowLab-client.crt&quot;</span>
 <span class="l l-Scalar l-Scalar-Plain">RSYSLOG_CLIENT_KEY=&quot;./rsyslog/client-key-pkcs8.pem&quot;</span>
 
 <span class="l l-Scalar l-Scalar-Plain">#</span>

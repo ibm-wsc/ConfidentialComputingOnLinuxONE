@@ -291,11 +291,15 @@
   
 
 
-  <li class="md-tabs__item">
-    <a href="../../../additionalResources/" class="md-tabs__link">
-      Additional Resources
-    </a>
-  </li>
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../onpremises/filesCreated/" class="md-tabs__link">
+        Additional Resources
+      </a>
+    </li>
+  
 
       
         
@@ -1523,10 +1527,50 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          Additional Resources
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Additional Resources
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../../additionalResources/" class="md-nav__link">
-        Additional Resources
+      <a href="../../onpremises/filesCreated/" class="md-nav__link">
+        Files created in the on-premises labs
       </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -1693,7 +1737,7 @@ It doesn't get any better than this!</p>
 <p>You'll be given some ideas on how to install it:</p>
 <details class="- example">
 <summary>Output when go is not installed</summary>
-<div class="highlight"><pre><span></span><code>sudo snap install go         # version 1.19.5, or
+<div class="highlight"><pre><span></span><code>sudo snap install go         # version 1.21.4, or
 sudo apt  install golang-go  # version 2:1.18~0ubuntu2
 sudo apt  install gccgo-go   # version 2:1.18~0ubuntu2
 See &#39;snap info go&#39; for additional versions.
@@ -1985,7 +2029,7 @@ No VM guests are running outdated hypervisor (qemu) binaries on this host.
 </details>
 <p>The version of go that you see may differ slightly if a newer version has become available.</p>
 <h2 id="download-the-grep11-code-repo">Download the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> code repo<a class="headerlink" href="#download-the-grep11-code-repo" title="Permanent link">&para;</a></h2>
-<p>You are probably already in your home directory, but this command won't cause any harm if you are:</p>
+<p>Go to your home directory:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~
 </code></pre></div>
 <p>The instructor has created a <em>fork</em> of a GitHub repo that is provided by an <em>IBM Cloud</em> GitHub repo. 
@@ -2021,12 +2065,19 @@ Resolving deltas: 100% (22/22), done.
 </code></pre></div>
 <p>You read that right- more X509 work!! </p>
 <h2 id="create-tls-certificate-and-key-for-your-grep11-client">Create TLS certificate and key for your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Client<a class="headerlink" href="#create-tls-certificate-and-key-for-your-grep11-client" title="Permanent link">&para;</a></h2>
-<p>Go to the <code>certs</code> directory:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>certs
+<ol>
+<li>
+<p>Create a working directory to use for the creation of a certificate to allow you to be a client of the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server, and then change into it:</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>~/x509Work/GREP11Client<span class="w"> </span><span class="se">\</span>
+<span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/x509Work/GREP11Client
 </code></pre></div>
-<p>Create an RSA private key (this is one of three files needed in this directory)</p>
+</li>
+<li>
+<p>Create an RSA private key</p>
 <div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>genrsa<span class="w"> </span>-out<span class="w"> </span>client.key<span class="w"> </span><span class="m">2048</span>
 </code></pre></div>
+</li>
+<li>
 <p>Create a configuration file to avoid interrogation by <em>openssl</em>:</p>
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; client.cnf</span>
 <span class="s">RANDFILE               = \$ENV::HOME/.rnd</span>
@@ -2057,9 +2108,13 @@ Resolving deltas: 100% (22/22), done.
 <span class="s">basicConstraints       = critical,CA:TRUE</span>
 <span class="s">EOF</span>
 </code></pre></div>
+</li>
+<li>
 <p>Create a certificate signing request:</p>
 <div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>req<span class="w"> </span>-new<span class="w"> </span>-key<span class="w"> </span>client.key<span class="w"> </span>-out<span class="w"> </span>client.csr<span class="w"> </span>-config<span class="w"> </span>client.cnf
 </code></pre></div>
+</li>
+<li>
 <p>Display the <abbr title="certificate signing request">CSR</abbr> that you created:</p>
 <div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>req<span class="w"> </span>-noout<span class="w"> </span>-text<span class="w"> </span>-in<span class="w"> </span>client.csr
 </code></pre></div>
@@ -2115,20 +2170,36 @@ Resolving deltas: 100% (22/22), done.
         5d:24:b0:9b
 </code></pre></div>
 </details>
+</li>
+<li>
 <p>Your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> <abbr title="certification authority">CA</abbr> is on your account on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host. Send your <abbr title="certificate signing request">CSR</abbr> to it:</p>
-<div class="highlight"><pre><span></span><code>scp<span class="w"> </span>client.csr<span class="w"> </span><span class="si">${</span><span class="nv">StudentID</span><span class="si">}</span>@192.168.22.64:GREP11CAwork/.<span class="w"> </span>
+<div class="highlight"><pre><span></span><code>scp<span class="w"> </span>client.csr<span class="w"> </span><span class="se">\</span>
+<span class="si">${</span><span class="nv">StudentID</span><span class="si">}</span>@192.168.22.64:grep11Lab/x509Work/GREP11Server/clients/.<span class="w"> </span>
 </code></pre></div>
+</li>
+<li>
 <p><strong>Switch to your terminal tab or window for your <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host session.:</strong></p>
 <p><img src="../../../images/RHELHost.png" width="351" height="216" /></p>
+</li>
+<li>
 <p>Change to your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> <abbr title="certification authority">CA</abbr> working directory:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/GREP11CAwork
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/grep11Lab/x509Work/GREP11Server/CA
 </code></pre></div>
+</li>
+<li>
 <p>Display the <abbr title="certificate signing request">CSR</abbr> that the client sent you:</p>
-<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>req<span class="w"> </span>-noout<span class="w"> </span>-text<span class="w"> </span>-in<span class="w"> </span>client.csr
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>req<span class="w"> </span>-noout<span class="w"> </span>-text<span class="w"> </span>-in<span class="w"> </span>../clients/client.csr
 </code></pre></div>
 <p><em>Note:</em> The output is not shown here as it should look the same as when you displayed this same certificate moments ago when you were in "client" mode.</p>
+</li>
+<li>
 <p>Create the certificate for the client:</p>
-<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-req<span class="w"> </span>-days<span class="w"> </span><span class="m">300</span><span class="w"> </span>-in<span class="w"> </span>client.csr<span class="w"> </span>-CA<span class="w"> </span>grep11-ca.pem<span class="w"> </span>-CAcreateserial<span class="w"> </span>-CAkey<span class="w"> </span>grep11-ca-key.pem<span class="w"> </span>-out<span class="w"> </span>client.pem
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-req<span class="w"> </span>-days<span class="w"> </span><span class="m">300</span><span class="w"> </span><span class="se">\</span>
+-in<span class="w"> </span>../clients/client.csr<span class="w"> </span><span class="se">\</span>
+-CA<span class="w"> </span>grep11-ca.pem<span class="w"> </span><span class="se">\</span>
+-CAcreateserial<span class="w"> </span><span class="se">\</span>
+-CAkey<span class="w"> </span>grep11-ca-key.pem<span class="w"> </span><span class="se">\</span>
+-out<span class="w"> </span>../clients/client.pem
 </code></pre></div>
 <details class="- example">
 <summary>Output from certificate creation</summary>
@@ -2137,8 +2208,10 @@ subject=C = US, ST = Virginia, L = Herndon, O = IBM, OU = Washington Systems Cen
 Getting CA Private Key
 </code></pre></div>
 </details>
+</li>
+<li>
 <p>Display the certificate before sending it to the client:</p>
-<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-noout<span class="w"> </span>-text<span class="w"> </span>-in<span class="w"> </span>client.pem
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-noout<span class="w"> </span>-text<span class="w"> </span>-in<span class="w"> </span>../clients/client.pem
 </code></pre></div>
 <details class="- example">
 <summary>Display of <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> client certificate</summary>
@@ -2177,43 +2250,66 @@ Getting CA Private Key
                     79:23
                 Exponent: 65537 (0x10001)
     Signature Algorithm: sha256WithRSAEncryption
-         66:9c:1a:d8:75:5b:52:1c:8c:f7:d7:63:f6:ea:1e:4e:b1:fa:
-         92:78:1a:ab:83:11:7d:73:50:b9:ce:34:2b:33:d1:97:1f:90:
-         f6:c7:85:45:20:9f:95:6d:f7:16:f9:64:fd:7b:3d:48:44:33:
-         af:9e:dc:5a:f4:56:dd:50:27:6f:3e:9e:75:f2:52:d1:cf:fe:
-         76:52:98:8a:0b:cd:62:a6:68:49:34:43:f9:d2:e3:ab:f6:b3:
-         3f:fd:ff:3a:92:06:32:2b:c0:64:29:b5:00:c4:b8:66:57:07:
-         de:64:8a:7a:88:0b:27:79:5a:6d:8f:4d:52:bf:cc:5e:03:53:
-         4a:40:4d:22:e5:e7:0f:c3:1e:6c:2a:cf:79:f2:d5:4b:b3:13:
-         be:dd:51:c7:2f:2d:8b:f5:97:1e:3f:86:2e:6c:13:c5:43:0f:
-         a6:49:ed:a4:a2:7e:ec:3f:f9:9b:f4:65:f1:ff:d5:9c:60:0f:
-         90:a8:18:a7:e0:2a:e4:b9:f2:4c:36:d9:f7:94:c9:a5:71:10:
-         bf:56:0d:df:d7:3e:71:a7:f7:d0:cc:dc:52:49:bf:c1:71:72:
-         e3:46:89:d6:5d:d4:60:04:a3:5b:46:84:ef:9f:de:02:8c:c8:
-         69:89:5a:ef:49:5a:48:fc:72:af:09:21:dd:22:f7:91:b5:57:
-         3b:50:e3:58
+        66:9c:1a:d8:75:5b:52:1c:8c:f7:d7:63:f6:ea:1e:4e:b1:fa:
+        92:78:1a:ab:83:11:7d:73:50:b9:ce:34:2b:33:d1:97:1f:90:
+        f6:c7:85:45:20:9f:95:6d:f7:16:f9:64:fd:7b:3d:48:44:33:
+        af:9e:dc:5a:f4:56:dd:50:27:6f:3e:9e:75:f2:52:d1:cf:fe:
+        76:52:98:8a:0b:cd:62:a6:68:49:34:43:f9:d2:e3:ab:f6:b3:
+        3f:fd:ff:3a:92:06:32:2b:c0:64:29:b5:00:c4:b8:66:57:07:
+        de:64:8a:7a:88:0b:27:79:5a:6d:8f:4d:52:bf:cc:5e:03:53:
+        4a:40:4d:22:e5:e7:0f:c3:1e:6c:2a:cf:79:f2:d5:4b:b3:13:
+        be:dd:51:c7:2f:2d:8b:f5:97:1e:3f:86:2e:6c:13:c5:43:0f:
+        a6:49:ed:a4:a2:7e:ec:3f:f9:9b:f4:65:f1:ff:d5:9c:60:0f:
+        90:a8:18:a7:e0:2a:e4:b9:f2:4c:36:d9:f7:94:c9:a5:71:10:
+        bf:56:0d:df:d7:3e:71:a7:f7:d0:cc:dc:52:49:bf:c1:71:72:
+        e3:46:89:d6:5d:d4:60:04:a3:5b:46:84:ef:9f:de:02:8c:c8:
+        69:89:5a:ef:49:5a:48:fc:72:af:09:21:dd:22:f7:91:b5:57:
+        3b:50:e3:58
 </code></pre></div>
 </details>
+</li>
+<li>
 <p>Send the certificate back to the client that requested it:</p>
-<div class="highlight"><pre><span></span><code>scp<span class="w"> </span>client.pem<span class="w"> </span>student@<span class="si">${</span><span class="nv">StudentGuestIP</span><span class="si">}</span>:./hpcs-grep11-go/certs/.<span class="w">   </span>
+<div class="highlight"><pre><span></span><code>scp<span class="w"> </span>../clients/client.pem<span class="w"> </span><span class="se">\</span>
+student@<span class="si">${</span><span class="nv">StudentGuestIP</span><span class="si">}</span>:./x509Work/GREP11Client/.<span class="w">   </span>
 </code></pre></div>
+</li>
+<li>
 <p>Your work as a <abbr title="certification authority">CA</abbr> registrar is done for the remainder of the lab!  </p>
 <p><strong>Switch to your terminal tab or window for your Ubuntu KVM guest session:</strong></p>
 <p><img src="../../../images/KVMGuest.png" width="351" height="217" /></p>
-<p>Change to the directory that has your certificates and key:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/hpcs-grep11-go/certs
+</li>
+<li>
+<p>Ensure you're in the directory that has your certificates and key:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/x509Work/GREP11Client
 </code></pre></div>
+</li>
+<li>
 <p>Display the client certificate that your <abbr title="certification authority">CA</abbr> registrar sent you:</p>
 <div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-noout<span class="w"> </span>-text<span class="w"> </span>-in<span class="w"> </span>client.pem
 </code></pre></div>
 <p>You know that you know what it should look like so we won't repeat the output here.</p>
+</li>
+<li>
+<p>Now that you have your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> client certificate, copy it, along with its corresponding private key, into the directory where your sample code will be looking for it:</p>
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-ipv<span class="w"> </span>client.pem<span class="w"> </span>client.key<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/hpcs-grep11-go/certs/.
+</code></pre></div>
+</li>
+<li>
 <p>Get your <abbr title="certification authority">CA</abbr>'s public certificate so that you can authenticate your connection with the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server:</p>
-<div class="highlight"><pre><span></span><code>scp<span class="w"> </span><span class="si">${</span><span class="nv">StudentID</span><span class="si">}</span>@192.168.22.64:GREP11CAwork/grep11-ca.pem<span class="w"> </span>.
+<div class="highlight"><pre><span></span><code>scp<span class="w"> </span><span class="si">${</span><span class="nv">StudentID</span><span class="si">}</span>@192.168.22.64:grep11Lab/x509Work/GREP11Server/CA/grep11-ca.pem<span class="w"> </span><span class="se">\</span>
+<span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/hpcs-grep11-go/certs/.
 </code></pre></div>
+</li>
+</ol>
 <h2 id="modify-grep11-code-for-authentication-to-your-grep11-server">Modify <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> code for authentication to your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server<a class="headerlink" href="#modify-grep11-code-for-authentication-to-your-grep11-server" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
 <p>Switch to this directory:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>../examples
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/hpcs-grep11-go/examples
 </code></pre></div>
+</li>
+<li>
 <p>Run this command to see the one line you need to change in the source code you downloaded:</p>
 <div class="highlight"><pre><span></span><code>grep<span class="w"> </span>--after-context<span class="w"> </span><span class="m">3</span><span class="w"> </span>STUDENT<span class="w"> </span>server_test.go
 </code></pre></div>
@@ -2226,9 +2322,13 @@ const key = &quot;../certs/client.key&quot;
 const ca = &quot;../certs/grep11-ca.pem&quot;
 </code></pre></div>
 </details>
-<p>This also shows the three files in the <em>certs</em> directory that you have already taken care of, but the first line is the only line you need to change:</p>
+</li>
+<li>
+<p>This command changes the generic placeholder string <em>STUDENT_GREPSERVER_IP</em> with the IP of your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server, which the instructors stored in an environment variable in your bash login profile at <em>~/.bashrc</em>:</p>
 <div class="highlight"><pre><span></span><code>sed -i -e &quot;s/STUDENT_GREP11SERVER_IP/${GREP11ServerIP}/g&quot; server_test.go
 </code></pre></div>
+</li>
+<li>
 <p>Run this command to ensure that you made the change correctly:</p>
 <div class="highlight"><pre><span></span><code>grep --after-context 3 ${GREP11ServerIP} server_test.go
 </code></pre></div>
@@ -2240,12 +2340,16 @@ const key = &quot;../certs/client.key&quot;
 const ca = &quot;../certs/grep11-ca.pem&quot;
 </code></pre></div>
 </details>
+</li>
+</ol>
 <h2 id="run-the-grep11-client-code">Run the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> client code<a class="headerlink" href="#run-the-grep11-client-code" title="Permanent link">&para;</a></h2>
 <p>Drum roll please...</p>
+<ol>
+<li>
 <p>Enter this command to test your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> client code:</p>
 <div class="highlight"><pre><span></span><code>go<span class="w"> </span><span class="nb">test</span><span class="w"> </span>-v
 </code></pre></div>
-<p>Your output should look like this. If it does, you have reached a successful conclusion to the lab!!!</p>
+<p>Your output should look like this. If it does, you have achieved great success in the lab!!!</p>
 <details class="- example">
 <summary>Expected output from testing the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> client code</summary>
 <div class="highlight"><pre><span></span><code>go: downloading google.golang.org/grpc v1.34.0
@@ -2267,9 +2371,9 @@ Verified
         Skipping the rewrapKeyBlob test. To enable, comment out the t.Skipf and message lines within the Test_rewrapKeyBlob test
 
         NOTE: This test contains two pauses that require the user to type CTRL-c after ensuring
-              that the stated pre-requisite activity has been completed.  There needs to be 
-              coordination with your HPCS cloud service contact in order to place your HSM
-              into the required states.
+            that the stated pre-requisite activity has been completed.  There needs to be 
+            coordination with your HPCS cloud service contact in order to place your HSM
+            into the required states.
 
 --- SKIP: Test_rewrapKeyBlob (0.00s)
 === RUN   Example_getMechanismInfo
@@ -2299,13 +2403,17 @@ Verified
 === RUN   Example_tls
 --- PASS: Example_tls (0.03s)
 PASS
-ok    github.com/IBM-Cloud/hpcs-grep11-go/examples    2.373s
+ok      github.com/IBM-Cloud/hpcs-grep11-go/examples    2.373s
 </code></pre></div>
 </details>
+</li>
+<li>
 <p>Before you go, check out the your <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> log messages to see evidence of the test you just ran:</p>
 <div class="highlight"><pre><span></span><code>journalctl<span class="w"> </span>--since<span class="w"> </span><span class="s2">&quot;-5 minutes &quot;</span><span class="w"> </span>--output<span class="w"> </span>short-full<span class="w"> </span>--no-pager
 </code></pre></div>
 <p>The above command assumes you ran this within five minutes of running the test.  If you missed the boat, then just rerun the test again or change the argument to <em>--since</em> to show a longer timeframe of messages.</p>
+</li>
+</ol>
 
   <hr>
 <div class="md-source-file">

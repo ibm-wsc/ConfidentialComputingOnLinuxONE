@@ -291,11 +291,15 @@
   
 
 
-  <li class="md-tabs__item">
-    <a href="../../../additionalResources/" class="md-tabs__link">
-      Additional Resources
-    </a>
-  </li>
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../onpremises/filesCreated/" class="md-tabs__link">
+        Additional Resources
+      </a>
+    </li>
+  
 
       
         
@@ -1495,10 +1499,50 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          Additional Resources
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Additional Resources
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../../additionalResources/" class="md-nav__link">
-        Additional Resources
+      <a href="../../onpremises/filesCreated/" class="md-nav__link">
+        Files created in the on-premises labs
       </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -1622,7 +1666,8 @@
 <ol>
 <li>
 <p>Create a working directory and switch to it:</p>
-<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>~/rsyslogClientWork<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>rsyslogClientWork
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>~/paynowLab/x509Work/rsyslogClient<span class="w"> </span><span class="se">\</span>
+<span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/paynowLab/x509Work/rsyslogClient
 </code></pre></div>
 </li>
 <li>
@@ -1659,23 +1704,22 @@ e is 65537 (0x010001)
 </li>
 <li>
 <p>Create a certificate signing request (<abbr title="certificate signing request">CSR</abbr>):</p>
-<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>req<span class="w"> </span>-config<span class="w"> </span>client.cnf<span class="w"> </span>-key<span class="w"> </span>client-key.pem<span class="w"> </span>-new<span class="w"> </span>-out<span class="w"> </span>client-req.csr
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>req<span class="w"> </span><span class="se">\</span>
+-config<span class="w"> </span>client.cnf<span class="w"> </span><span class="se">\</span>
+-key<span class="w"> </span>client-key.pem<span class="w"> </span><span class="se">\</span>
+-new<span class="w"> </span><span class="se">\</span>
+-out<span class="w"> </span>paynowLab-client-req.csr
 </code></pre></div>
 </li>
 <li>
 <p>Now you are going to use a pattern that is similar to a real-world pattern:</p>
 <p>You are going to send your <abbr title="certificate signing request">CSR</abbr>, which you just created on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host, to the Rsyslog <abbr title="certification authority">CA</abbr> which you created on your Ubuntu KVM guest:</p>
-<div class="highlight"><pre><span></span><code>scp<span class="w"> </span>client-req.csr<span class="w"> </span>student@<span class="si">${</span><span class="nv">StudentGuestIP</span><span class="si">}</span>:./rsyslogWork/.
+<div class="highlight"><pre><span></span><code>scp<span class="w"> </span>paynowLab-client-req.csr<span class="w"> </span><span class="se">\</span>
+student@<span class="si">${</span><span class="nv">StudentGuestIP</span><span class="si">}</span>:./x509Work/rsyslog/clients/.
 </code></pre></div>
-<p>As shown in the sample output below, you may need to type <em>yes</em> since this is the first connection between the two systems, and you may have to enter a password that will be supplied by the instructors:</p>
 <details class="- example">
 <summary>Example prompt and output when sending file</summary>
-<div class="highlight"><pre><span></span><code>The authenticity of host &#39;172.16.0.42 (172.16.0.42)&#39; can&#39;t be established.
-ECDSA key fingerprint is SHA256:QBZpZnpbKTyu8uG3XmcB3z2STnArtTjeVPwBtQONSnc.
-Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-Warning: Permanently added &#39;172.16.0.42&#39; (ECDSA) to the list of known hosts.
-student@172.16.0.42&#39;s password: 
-client-req.csr                                                          100% 1691     9.2MB/s   00:00 
+<div class="highlight"><pre><span></span><code>paynowLab-client-req.csr                                                          100% 1691     9.2MB/s   00:00 
 </code></pre></div>
 </details>
 </li>
@@ -1688,17 +1732,17 @@ client-req.csr                                                          100% 169
 </li>
 <li>
 <p>You are now the <abbr title="certification authority">CA</abbr> registrar. Switch to your working directory and find the certificate signing request(<abbr title="certificate signing request">CSR</abbr>) that your customer (i.e., you) sent to you.  </p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/rsyslogWork<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>ls<span class="w"> </span>-l<span class="w"> </span>client*.csr
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/x509Work/rsyslog/clients<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>ls<span class="w"> </span>-l<span class="w"> </span>paynowLab-client*.csr
 </code></pre></div>
 <details class="- example">
 <summary>Make sure your csr is listed</summary>
-<div class="highlight"><pre><span></span><code>-rw-r--r-- 1 student student 1691 Feb 14 01:47 client-req.csr
+<div class="highlight"><pre><span></span><code>-rw-r--r-- 1 student student 1691 Feb 14 01:47 paynowLab-client-req.csr
 </code></pre></div>
 </details>
 </li>
 <li>
 <p>You will do your due diligence and check the contents of the <abbr title="certificate signing request">CSR</abbr>:</p>
-<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>req<span class="w"> </span>-noout<span class="w"> </span>-text<span class="w"> </span>-in<span class="w"> </span>client-req.csr
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>req<span class="w"> </span>-noout<span class="w"> </span>-text<span class="w"> </span>-in<span class="w"> </span>paynowLab-client-req.csr
 </code></pre></div>
 <details class="- example">
 <summary>Example human-readable display of <abbr title="certificate signing request">CSR</abbr></summary>
@@ -1789,9 +1833,9 @@ client-req.csr                                                          100% 169
 <p class="admonition-title">Due diligence check</p>
 <p>For the purposes of this lab assume you've done a background check on the customer, checked their reviews on Yelp and NextDoor, looked at their Facebook page and LinkedIn profiles.  You're a little concerned with some of those college fraternity party pictures on Facebook, but, what the heck, their check has cleared the bank, so you decide to go ahead and <em><abbr title="certification authority-speak for create">mint</abbr></em> the certificate.</p>
 </div>
-<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-req<span class="w"> </span>-in<span class="w"> </span>client-req.csr<span class="w"> </span><span class="se">\</span>
-<span class="w">      </span>-days<span class="w"> </span><span class="m">365</span><span class="w"> </span>-CA<span class="w"> </span>ca.crt<span class="w"> </span>-CAkey<span class="w"> </span>ca-key.pem<span class="w"> </span><span class="se">\</span>
-<span class="w">      </span>-CAcreateserial<span class="w"> </span>-out<span class="w"> </span>client.crt
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-req<span class="w"> </span>-in<span class="w"> </span>paynowLab-client-req.csr<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>-days<span class="w"> </span><span class="m">365</span><span class="w"> </span>-CA<span class="w"> </span>../CA/ca.crt<span class="w"> </span>-CAkey<span class="w"> </span>../CA/ca-key.pem<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>-CAcreateserial<span class="w"> </span>-out<span class="w"> </span>paynowLab-client.crt
 </code></pre></div>
 <details class="- example">
 <summary>Output from creating the certificate</summary>
@@ -1802,7 +1846,7 @@ subject=C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS KVM guest f
 </li>
 <li>
 <p>Your quality control department asks you to display the certificate before sending it to the customer:</p>
-<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-noout<span class="w"> </span>-text<span class="w"> </span>-in<span class="w"> </span>client.crt<span class="w"> </span>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-noout<span class="w"> </span>-text<span class="w"> </span>-in<span class="w"> </span>paynowLab-client.crt<span class="w"> </span>
 </code></pre></div>
 <details class="- example">
 <summary>It should look similar to this [click to expand]</summary>
@@ -1893,18 +1937,12 @@ subject=C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS KVM guest f
 </li>
 <li>
 <p>Now you send the certificate to the customer:</p>
-<div class="highlight"><pre><span></span><code>scp<span class="w"> </span>client.crt<span class="w"> </span><span class="si">${</span><span class="nv">StudentID</span><span class="si">}</span>@192.168.22.64:./rsyslogClientWork/.
+<div class="highlight"><pre><span></span><code>scp<span class="w"> </span>paynowLab-client.crt<span class="w"> </span><span class="se">\</span>
+<span class="si">${</span><span class="nv">StudentID</span><span class="si">}</span>@192.168.22.64:./paynowLab/x509Work/rsyslogClient/.
 </code></pre></div>
-<p>You may be prompted to type <em>yes</em> before connecting and you may be asked to enter an instructor-provided password, as shown in the example below:</p>
 <details class="- example">
 <summary>Example prompt and output from sending file</summary>
-<div class="highlight"><pre><span></span><code>The authenticity of host &#39;192.168.22.64 (192.168.22.64)&#39; can&#39;t be established.
-ED25519 key fingerprint is SHA256:IJQFhwQnu7GDWPZmz+ICLIIld9FBLJcD+anb2Bu9y7w.
-This key is not known by any other names
-Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-Warning: Permanently added &#39;192.168.22.64&#39; (ED25519) to the list of known hosts.
-student02@192.168.22.64&#39;s password: 
-client.crt                                                              100% 1907     9.7MB/s   00:00 
+<div class="highlight"><pre><span></span><code>client.crt                                                              100% 1907     9.7MB/s   00:00 
 </code></pre></div>
 </details>
 </li>
@@ -1917,21 +1955,21 @@ client.crt                                                              100% 190
 </li>
 <li>
 <p>Switch to the directory where the <abbr title="certification authority">CA</abbr> "sent" your new certificate and list the files:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/rsyslogClientWork/<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>ls<span class="w"> </span>-ltr
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/paynowLab/x509Work/rsyslogClient/<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>ls<span class="w"> </span>-ltr
 </code></pre></div>
 <details class="- example">
 <summary>File listing shows your client certificate (client.crt)</summary>
 <div class="highlight"><pre><span></span><code>total<span class="w"> </span><span class="m">16</span>
 -rw-------<span class="w"> </span><span class="m">1</span><span class="w"> </span>student02<span class="w"> </span>hpvs_students<span class="w"> </span><span class="m">3247</span><span class="w"> </span>Feb<span class="w"> </span><span class="m">13</span><span class="w"> </span><span class="m">20</span>:42<span class="w"> </span>client-key.pem
 -rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>student02<span class="w"> </span>hpvs_students<span class="w">  </span><span class="m">192</span><span class="w"> </span>Feb<span class="w"> </span><span class="m">13</span><span class="w"> </span><span class="m">20</span>:44<span class="w"> </span>client.cnf
--rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>student02<span class="w"> </span>hpvs_students<span class="w"> </span><span class="m">1691</span><span class="w"> </span>Feb<span class="w"> </span><span class="m">13</span><span class="w"> </span><span class="m">20</span>:45<span class="w"> </span>client-req.csr
--rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>student02<span class="w"> </span>hpvs_students<span class="w"> </span><span class="m">1907</span><span class="w"> </span>Feb<span class="w"> </span><span class="m">13</span><span class="w"> </span><span class="m">21</span>:06<span class="w"> </span>client.crt
+-rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>student02<span class="w"> </span>hpvs_students<span class="w"> </span><span class="m">1691</span><span class="w"> </span>Feb<span class="w"> </span><span class="m">13</span><span class="w"> </span><span class="m">20</span>:45<span class="w"> </span>paynowLab-client-req.csr
+-rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>student02<span class="w"> </span>hpvs_students<span class="w"> </span><span class="m">1907</span><span class="w"> </span>Feb<span class="w"> </span><span class="m">13</span><span class="w"> </span><span class="m">21</span>:06<span class="w"> </span>paynowLab-client.crt
 </code></pre></div>
 </details>
 </li>
 <li>
 <p>Display your certificate in human-readable form to make sure your <abbr title="certification authority">CA</abbr> did their job correctly:</p>
-<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-noout<span class="w"> </span>-text<span class="w"> </span>-issuer<span class="w"> </span>-subject<span class="w"> </span>-in<span class="w"> </span>client.crt
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-noout<span class="w"> </span>-text<span class="w"> </span>-issuer<span class="w"> </span>-subject<span class="w"> </span>-in<span class="w"> </span>paynowLab-client.crt
 </code></pre></div>
 <details class="- example">
 <summary>Example display of certificate</summary>

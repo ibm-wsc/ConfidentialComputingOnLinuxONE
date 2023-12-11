@@ -291,11 +291,15 @@
   
 
 
-  <li class="md-tabs__item">
-    <a href="../../../additionalResources/" class="md-tabs__link">
-      Additional Resources
-    </a>
-  </li>
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../onpremises/filesCreated/" class="md-tabs__link">
+        Additional Resources
+      </a>
+    </li>
+  
 
       
         
@@ -806,11 +810,31 @@
     Overview of this page
   </a>
   
+    <nav class="md-nav" aria-label="Overview of this page">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#switch-to-your-terminal-window-or-tab-with-the-kvm-standard-guest-profile" class="md-nav__link">
+    Switch to your terminal window or tab with the KVM Standard Guest profile
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
   <a href="#install-rsyslog-gnutls-package" class="md-nav__link">
     Install rsyslog-gnutls package
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-rsyslog-to-listen-for-tls-enabled-connections-on-port-6514" class="md-nav__link">
+    Configure rsyslog to listen for TLS-enabled connections on port 6514
   </a>
   
 </li>
@@ -831,8 +855,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#hands-on-keyboard-time" class="md-nav__link">
-    Hands on keyboard time
+  <a href="#create-the-certificate-authority-for-your-rsyslog-service-if-it-doesnt-exist-yet" class="md-nav__link">
+    Create the Certificate Authority for your rsyslog service if it doesn't exist yet
   </a>
   
 </li>
@@ -843,11 +867,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-certificate-and-key-for-your-rsyslog-service" class="md-nav__link">
-    Create certificate and key for your rsyslog service
+  <a href="#create-a-certificate-and-key-for-your-rsyslog-service" class="md-nav__link">
+    Create a certificate and key for your rsyslog service
   </a>
   
-    <nav class="md-nav" aria-label="Create certificate and key for your rsyslog service">
+    <nav class="md-nav" aria-label="Create a certificate and key for your rsyslog service">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1556,10 +1580,50 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          Additional Resources
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Additional Resources
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../../additionalResources/" class="md-nav__link">
-        Additional Resources
+      <a href="../../onpremises/filesCreated/" class="md-nav__link">
+        Files created in the on-premises labs
       </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -1610,11 +1674,31 @@
     Overview of this page
   </a>
   
+    <nav class="md-nav" aria-label="Overview of this page">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#switch-to-your-terminal-window-or-tab-with-the-kvm-standard-guest-profile" class="md-nav__link">
+    Switch to your terminal window or tab with the KVM Standard Guest profile
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
   <a href="#install-rsyslog-gnutls-package" class="md-nav__link">
     Install rsyslog-gnutls package
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-rsyslog-to-listen-for-tls-enabled-connections-on-port-6514" class="md-nav__link">
+    Configure rsyslog to listen for TLS-enabled connections on port 6514
   </a>
   
 </li>
@@ -1635,8 +1719,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#hands-on-keyboard-time" class="md-nav__link">
-    Hands on keyboard time
+  <a href="#create-the-certificate-authority-for-your-rsyslog-service-if-it-doesnt-exist-yet" class="md-nav__link">
+    Create the Certificate Authority for your rsyslog service if it doesn't exist yet
   </a>
   
 </li>
@@ -1647,11 +1731,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-certificate-and-key-for-your-rsyslog-service" class="md-nav__link">
-    Create certificate and key for your rsyslog service
+  <a href="#create-a-certificate-and-key-for-your-rsyslog-service" class="md-nav__link">
+    Create a certificate and key for your rsyslog service
   </a>
   
-    <nav class="md-nav" aria-label="Create certificate and key for your rsyslog service">
+    <nav class="md-nav" aria-label="Create a certificate and key for your rsyslog service">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1719,34 +1803,37 @@
 
 
 <h1 id="configure-rsyslog-service">Configure <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service<a class="headerlink" href="#configure-rsyslog-service" title="Permanent link">&para;</a></h1>
-<p>You will be performing this section from your Ubuntu KVM guest, so switch back to your terminal session for your Ubuntu KVM guest. </p>
-<p>Your window or tab should like like this (unless you customized the profile we provided you):</p>
-<p><img src="../../../images/KVMGuest.png" width="351" height="217" /></p>
 <h2 id="overview-of-this-page">Overview of this page<a class="headerlink" href="#overview-of-this-page" title="Permanent link">&para;</a></h2>
-<p>The HPVS 2.1.x-protected KVM Guest for the PayNow Demo that you will create later in the lab will log its output to an <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service on the Ubuntu KVM guest that you just started at the beginning of the lab. Rsyslog on your Ubuntu KVM guest is currently not set up for this, so you will configure <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> in this section of the lab.</p>
+<p>The HPVS 2.1.x-protected PayNow application that you will create later in the lab will log its output to an <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service on the Ubuntu KVM guest that you just started in the previous section. Rsyslog on your Ubuntu KVM guest is initially not set up for this, so you will configure <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> in this section of the lab.  You may, however, have already set some of this up if you did the <em><abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> with <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> Lab</em> prior to doing this <em>PayNow Lab</em>.  Carefully follow the instructions as they are written to succeed in either scenario if you follow them closely!  </p>
 <div class="admonition note">
 <p class="admonition-title">Logging to IBM Log Analysis on IBM Cloud</p>
 <p>You can also log the output of an HPVS 2.1.x guest to an <a href="https://cloud.ibm.com/catalog/services/logdna" rel="noopener" target="_blank">IBM Log Analysis instance on IBM Cloud</a>.  That is not covered in this lab but if you are interested in this, it is covered in the <a href="https://www.ibm.com/docs/en/hpvs/2.1.x?topic=servers-logging-hyper-protect-virtual" rel="noopener" target="_blank">product documentation</a>.</p>
 </div>
+<h3 id="switch-to-your-terminal-window-or-tab-with-the-kvm-standard-guest-profile">Switch to your terminal window or tab with the <em>KVM Standard Guest</em> profile<a class="headerlink" href="#switch-to-your-terminal-window-or-tab-with-the-kvm-standard-guest-profile" title="Permanent link">&para;</a></h3>
+<p>Your window or tab should like like this (unless you customized the profile we provided you):</p>
+<p><img src="../../../images/KVMGuest.png" width="351" height="217" /></p>
+<p>Continue to enter commands in your KVM Standard Guest terminal tab or window until directed to switch to your other tab or window.</p>
 <h2 id="install-rsyslog-gnutls-package">Install <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>-gnutls package<a class="headerlink" href="#install-rsyslog-gnutls-package" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
 <p>The initial installation of Ubuntu installed an <em><abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr></em> service.  Display it with this command:</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>rsyslog
 </code></pre></div>
 <details class="- example">
 <summary>Example output</summary>
 <div class="highlight"><pre><span></span><code>● rsyslog.service - System Logging Service
-     Loaded: loaded (/lib/systemd/system/rsyslog.service; enabled; vendor preset: enabled)
-     Active: active (running) since Tue 2023-02-14 00:24:49 UTC; 12min ago
+   Loaded: loaded (/lib/systemd/system/rsyslog.service; enabled; vendor preset: enabled)
+   Active: active (running) since Tue 2023-02-14 00:24:49 UTC; 12min ago
 TriggeredBy: ● syslog.socket
-       Docs: man:rsyslogd(8)
-             man:rsyslog.conf(5)
-             https://www.rsyslog.com/doc/
-   Main PID: 654 (rsyslogd)
-      Tasks: 4 (limit: 2350)
-     Memory: 2.2M
-        CPU: 8ms
-     CGroup: /system.slice/rsyslog.service
-             └─654 /usr/sbin/rsyslogd -n -iNONE
+     Docs: man:rsyslogd(8)
+           man:rsyslog.conf(5)
+           https://www.rsyslog.com/doc/
+ Main PID: 654 (rsyslogd)
+    Tasks: 4 (limit: 2350)
+   Memory: 2.2M
+      CPU: 8ms
+   CGroup: /system.slice/rsyslog.service
+           └─654 /usr/sbin/rsyslogd -n -iNONE
 
 Feb 14 00:24:49 ubuntu2204 systemd[1]: Starting System Logging Service...
 Feb 14 00:24:49 ubuntu2204 systemd[1]: Started System Logging Service.
@@ -1760,77 +1847,16 @@ lines 1-22/22 (END)
 </code></pre></div>
 </details>
 <p>If you're having trouble getting back to a command prompt, press <em>q</em> (for <em>quit</em>). </p>
-<p>The default installation of <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> needs to be modified to allow it to receive messages sent across the network using the TCP protocol and with mutual TLS authentication.</p>
-<p>You'll modify the configuration to allow this.  </p>
-<ol>
-<li>
-<p>Become the root user:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>su<span class="w"> </span>-
-</code></pre></div>
-<details class="- example">
-<summary>Example output when becoming root</summary>
-<div class="highlight"><pre><span></span><code>student@ubuntu2204:~$ sudo su -
-root@ubuntu2204:~# 
-</code></pre></div>
-</details>
 </li>
 <li>
-<p>Create the proper configuration file in the <em>/etc/<abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>.d/</em> directory:</p>
-<div class="highlight"><pre><span></span><code>cat &lt;&lt; EOF &gt; /etc/rsyslog.d/server.conf
-# output to journal
-module(load=&quot;omjournal&quot;)
-template(name=&quot;journal&quot; type=&quot;list&quot;) {
-# can add other metadata here
-property(outname=&quot;PRIORITY&quot; name=&quot;pri&quot;)
-property(outname=&quot;SYSLOG_FACILITY&quot; name=&quot;syslogfacility&quot;)
-property(outname=&quot;SYSLOG_IDENTIFIER&quot; name=&quot;app-name&quot;)
-property(outname=&quot;HOSTNAME&quot; name=&quot;hostname&quot;)
-property(outname=&quot;MESSAGE&quot;  name=&quot;msg&quot;)
-}
-
-ruleset(name=&quot;journal-output&quot;) {
-action(type=&quot;omjournal&quot; template=&quot;journal&quot;)
-}
-
-<span class="hll"># make gtls driver the default and set certificate files
-</span><span class="hll">\$DefaultNetstreamDriver &quot;gtls&quot;
-</span><span class="hll">\$DefaultNetstreamDriverCAFile /var/lib/rsyslog/x509/ca.crt
-</span><span class="hll">\$DefaultNetstreamDriverCertFile /var/lib/rsyslog/x509/server.crt
-</span><span class="hll">\$DefaultNetstreamDriverKeyFile /var/lib/rsyslog/x509/server-key.pem
-</span>
-<span class="hll"># load TCP listener
-</span><span class="hll">module(
-</span><span class="hll">load=&quot;imtcp&quot;
-</span><span class="hll">StreamDriver.Name=&quot;gtls&quot;
-</span><span class="hll">StreamDriver.Mode=&quot;1&quot;
-</span><span class="hll">StreamDriver.Authmode=&quot;x509/certvalid&quot;
-</span><span class="hll">)
-</span>
-# start up listener at port 6514
-input(
-type=&quot;imtcp&quot;
-port=&quot;6514&quot;
-ruleset=&quot;journal-output&quot;
-)
-
-EOF
-</code></pre></div>
-<p>We might have had you put the cart before the horse a little bit because there is some work to do to ensure that what you've added to this configuration file actually works! But we did this so that we can point out the sections that are requiring this extra work.</p>
-<div class="admonition tip">
-<p class="admonition-title">Take a look close to the bottom of the file</p>
-<p>There are two sections of interest that are highlighted in the above code block. If these lines could speak to you, they would say, "We are going to receive TCP messages, and we will use TLS to authenticate with the sender of these messages and to enable encryption of the messages, and here are the certificate and keys needed to enable this to work".</p>
-</div>
-<p>For this configuration file to work, you'll need to install a software package to allow <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> to receive TLS-authenticated TCP messages and you'll need to create the certificate and keys and put them where the configuration file says you put them.</p>
-</li>
-<li>
-<p>Prove to yourself that the <em><abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr></em> package has already been installed (by the "bare-bones" default Ubuntu setup):</p>
-<div class="highlight"><pre><span></span><code>apt-cache<span class="w"> </span>policy<span class="w"> </span>rsyslog
+<p>The default implementation of <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> uses the <em><abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr></em> package. Run this command to see which version of this packge is installed: Prove to yourself that the <em><abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr></em> package has already been installed (by the "bare-bones" default Ubuntu setup):</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-cache<span class="w"> </span>policy<span class="w"> </span>rsyslog
 </code></pre></div>
 <details class="- example">
 <summary>Output showing <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> is already installed</summary>
 <div class="highlight"><pre><span></span><code>rsyslog:
-<span class="w">    </span>Installed:<span class="w"> </span><span class="m">8</span>.2112.0-2ubuntu2.2
-<span class="w">    </span>Candidate:<span class="w"> </span><span class="m">8</span>.2112.0-2ubuntu2.2
+<span class="hll"><span class="w">    </span>Installed:<span class="w"> </span><span class="m">8</span>.2112.0-2ubuntu2.2
+</span><span class="w">    </span>Candidate:<span class="w"> </span><span class="m">8</span>.2112.0-2ubuntu2.2
 <span class="w">    </span>Version<span class="w"> </span>table:
 ***<span class="w"> </span><span class="m">8</span>.2112.0-2ubuntu2.2<span class="w"> </span><span class="m">500</span>
 <span class="w">        </span><span class="m">500</span><span class="w"> </span>http://ports.ubuntu.com/ubuntu-ports<span class="w"> </span>jammy-updates/main<span class="w"> </span>s390x<span class="w"> </span>Packages
@@ -1842,14 +1868,17 @@ EOF
 </details>
 </li>
 <li>
-<p>Prove to yourself that the <em><abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>-gnutls</em> package has not been installed yet:</p>
-<div class="highlight"><pre><span></span><code>apt-cache<span class="w"> </span>policy<span class="w"> </span>rsyslog-gnutls
+<p>The default implementation of <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> needs to be modified to allow it to receive messages sent across the network using the TCP protocol and with mutual TLS authentication. This will require the installation of the <em><abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>-gnutls</em> package. </p>
+<p>Run this command to see if the <em><abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>-gnutls</em> package is installed:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-cache<span class="w"> </span>policy<span class="w"> </span>rsyslog-gnutls
 </code></pre></div>
-<details class="- example">
-<summary>Output showing <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>-gnutls is not installed</summary>
+<p>The second line of your output will indicate whether or not <em><abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>-gnutls</em> is already installed.  Choose the tab below that matches your output and follow the instructions.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Output showing <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>-gnutls is not installed</label><label for="__tabbed_1_2">Output showing <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>-gnutls is installed</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>rsyslog-gnutls:
-    Installed: (none)
-    Candidate: 8.2112.0-2ubuntu2.2
+<span class="hll">    Installed: (none)
+</span>    Candidate: 8.2112.0-2ubuntu2.2
     Version table:
     8.2112.0-2ubuntu2.2 500
         500 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main s390x Packages
@@ -1857,12 +1886,12 @@ EOF
     8.2112.0-2ubuntu2 500
         500 http://ports.ubuntu.com/ubuntu-ports jammy/main s390x Packages
 </code></pre></div>
-</details>
-</li>
+<ol>
 <li>
-<p>Remedy the situation (not having <em><abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>-gnutls</em> package installed):</p>
-<div class="highlight"><pre><span></span><code>apt-get<span class="w"> </span>install<span class="w"> </span>rsyslog-gnutls
+<p>Run the following command to install <em><abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>-gnutls</em>:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>rsyslog-gnutls
 </code></pre></div>
+<p>Your output should look like this:</p>
 <details class="- example">
 <summary>Output from installing <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>-gnutls</summary>
 <div class="highlight"><pre><span></span><code>Reading package lists... Done
@@ -1898,28 +1927,155 @@ No VM guests are running outdated hypervisor (qemu) binaries on this host.
 </details>
 </li>
 <li>
-<p><em>Optional</em>: Repeat <code>apt-cache policy rsyslog-gnutls</code> to see that the package is now installed:</p>
-<div class="highlight"><pre><span></span><code>apt-cache<span class="w"> </span>policy<span class="w"> </span>rsyslog-gnutls
-</code></pre></div>
-<details class="- example">
-<summary>Output showing that <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>-gnutls is installed</summary>
+<p>Return to the beginning of this step (step 3) and rerun the <em>sudo apt-cache policy...</em> command.</p>
+</li>
+</ol>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>rsyslog-gnutls:
-    Installed: 8.2112.0-2ubuntu2.2
-    Candidate: 8.2112.0-2ubuntu2.2
+<span class="hll">    Installed: 8.2112.0-2ubuntu2.2
+</span>    Candidate: 8.2112.0-2ubuntu2.2
     Version table:
-*** 8.2112.0-2ubuntu2.2 500
+    8.2112.0-2ubuntu2.2 500
         500 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main s390x Packages
         500 http://ports.ubuntu.com/ubuntu-ports jammy-security/main s390x Packages
-        100 /var/lib/dpkg/status
     8.2112.0-2ubuntu2 500
         500 http://ports.ubuntu.com/ubuntu-ports jammy/main s390x Packages
 </code></pre></div>
+<p>Proceed to the next step.</p>
+</div>
+</div>
+</div>
+</li>
+</ol>
+<h2 id="configure-rsyslog-to-listen-for-tls-enabled-connections-on-port-6514">Configure <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> to listen for TLS-enabled connections on port 6514<a class="headerlink" href="#configure-rsyslog-to-listen-for-tls-enabled-connections-on-port-6514" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Run this command to see if your <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> server has already been configured to listen for TLS-enabled connections on port 6514:</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/etc/rsyslog.d/server.conf
+</code></pre></div>
+<p>Choose the tab below based on your output from the above command:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Your configuration file does not exist</label><label for="__tabbed_2_2">Your configuration file already exists</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>cat: /etc/rsyslog.d/server.conf: No such file or directory
+</code></pre></div>
+<ol>
+<li>
+<p>Become the root user:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>su<span class="w"> </span>-
+</code></pre></div>
+<details class="- example">
+<summary>Example output when becoming root</summary>
+<div class="highlight"><pre><span></span><code>student@ubuntu2204:~$ sudo su -
+root@ubuntu2204:~# 
+</code></pre></div>
 </details>
+</li>
+<li>
+<p>Run this command which will create the configuration file:</p>
+<div class="highlight"><pre><span></span><code>cat &lt;&lt; EOF &gt; /etc/rsyslog.d/server.conf
+# output to journal
+module(load=&quot;omjournal&quot;)
+template(name=&quot;journal&quot; type=&quot;list&quot;) {
+# can add other metadata here
+property(outname=&quot;PRIORITY&quot; name=&quot;pri&quot;)
+property(outname=&quot;SYSLOG_FACILITY&quot; name=&quot;syslogfacility&quot;)
+property(outname=&quot;SYSLOG_IDENTIFIER&quot; name=&quot;app-name&quot;)
+property(outname=&quot;HOSTNAME&quot; name=&quot;hostname&quot;)
+property(outname=&quot;MESSAGE&quot;  name=&quot;msg&quot;)
+}
+
+ruleset(name=&quot;journal-output&quot;) {
+action(type=&quot;omjournal&quot; template=&quot;journal&quot;)
+}
+
+# make gtls driver the default and set certificate files
+\$DefaultNetstreamDriver &quot;gtls&quot;
+\$DefaultNetstreamDriverCAFile /var/lib/rsyslog/x509/ca.crt
+\$DefaultNetstreamDriverCertFile /var/lib/rsyslog/x509/server.crt
+\$DefaultNetstreamDriverKeyFile /var/lib/rsyslog/x509/server-key.pem
+
+# load TCP listener
+module(
+load=&quot;imtcp&quot;
+StreamDriver.Name=&quot;gtls&quot;
+StreamDriver.Mode=&quot;1&quot;
+StreamDriver.Authmode=&quot;x509/certvalid&quot;
+)
+
+# start up listener at port 6514
+input(
+type=&quot;imtcp&quot;
+port=&quot;6514&quot;
+ruleset=&quot;journal-output&quot;
+)
+
+EOF
+</code></pre></div>
+</li>
+<li>
+<p>Exit from being the root user:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">exit</span>
+</code></pre></div>
+<p>Your command prompt should now end with a dollar sign ($) indicating you are operating with regular authority as userid <em>student</em>, as opposed to the hash sign (#) prompt that you had when you were operating with <em>root</em> authority.</p>
+</li>
+<li>
+<p>Return to the beginning of this step (step 1) and rerun the <em>cat /etc/<abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>.d/server.conf</em> command.</p>
+</li>
+</ol>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>    # output to journal
+    module(load=&quot;omjournal&quot;)
+    template(name=&quot;journal&quot; type=&quot;list&quot;) {
+    # can add other metadata here
+    property(outname=&quot;PRIORITY&quot; name=&quot;pri&quot;)
+    property(outname=&quot;SYSLOG_FACILITY&quot; name=&quot;syslogfacility&quot;)
+    property(outname=&quot;SYSLOG_IDENTIFIER&quot; name=&quot;app-name&quot;)
+    property(outname=&quot;HOSTNAME&quot; name=&quot;hostname&quot;)
+    property(outname=&quot;MESSAGE&quot;  name=&quot;msg&quot;)
+    }
+
+    ruleset(name=&quot;journal-output&quot;) {
+    action(type=&quot;omjournal&quot; template=&quot;journal&quot;)
+    }
+
+<span class="hll">    # make gtls driver the default and set certificate files
+</span><span class="hll">    $DefaultNetstreamDriver &quot;gtls&quot;
+</span><span class="hll">    $DefaultNetstreamDriverCAFile /var/lib/rsyslog/x509/ca.crt
+</span><span class="hll">    $DefaultNetstreamDriverCertFile /var/lib/rsyslog/x509/server.crt
+</span><span class="hll">    $DefaultNetstreamDriverKeyFile /var/lib/rsyslog/x509/server-key.pem
+</span>
+<span class="hll">    # load TCP listener
+</span><span class="hll">    module(
+</span><span class="hll">    load=&quot;imtcp&quot;
+</span><span class="hll">    StreamDriver.Name=&quot;gtls&quot;
+</span><span class="hll">    StreamDriver.Mode=&quot;1&quot;
+</span><span class="hll">    StreamDriver.Authmode=&quot;x509/certvalid&quot;
+</span><span class="hll">    )
+</span>
+<span class="hll">    # start up listener at port 6514
+</span><span class="hll">    input(
+</span><span class="hll">    type=&quot;imtcp&quot;
+</span><span class="hll">    port=&quot;6514&quot;
+</span><span class="hll">    ruleset=&quot;journal-output&quot;
+</span><span class="hll">    )
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Take a look at the bottom of the file</p>
+<p>There are three sections of interest that are highlighted in the above code block. If these lines could speak to you, they would say, "We are going to receive TCP messages on port 6514, and we will use TLS to authenticate with the sender of these messages and to enable encryption of the messages, and here are the certificate and keys needed to enable this to work".</p>
+</div>
+<p>Proceed to the next step.</p>
+</div>
+</div>
+</div>
 </li>
 </ol>
 <h2 id="create-a-certification-authority-ca-for-your-rsyslog-service">Create a Certification Authority (<abbr title="certification authority">CA</abbr>) for your <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service<a class="headerlink" href="#create-a-certification-authority-ca-for-your-rsyslog-service" title="Permanent link">&para;</a></h2>
+<p>For this configuration file to work, you'll need to create the certificate and keys and put them where the configuration file says you put them- in the <code>/var/lib/rsyslog/x509/</code> directory.</p>
 <h3 id="background-information">Background Information<a class="headerlink" href="#background-information" title="Permanent link">&para;</a></h3>
-<p>The TLS authentication for communication with the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service requires an X509 certificate and private key.  An X509 certificate contains a public key that goes with the private key.  An X509 certificate also contains metadata including the identification of the holder of the certificate, the purposes the certificate is intended for, and more. Think of a public key as a yummy cake baked with yellow dough, it's moist and tastes pretty good- but the X509 certificate wrapped around it is like the chocolate icing and the rainbow sprinkles- it's delicious!  (Break time!!) If you haven't given up on the analogy, think of the private key as the secret recipe to bake the cake that nobody but you knows about.  For a slightly more technical (but still just scratching the surface), but perhaps not as tasty, description of public key cryptography check out this <a href="https://ibm-wsc.github.io/hyper-protect-virtual-servers-workshop/grep11-lab/lab-exercise3/#public-key-cryptography-in-simple-terms" rel="noopener" target="_blank">description from one of our earlier labs</a>.</p>
+<p>The TLS authentication for communication with the rysyslog service requires an X509 certificate and private key.  An X509 certificate contains a public key that goes with the private key.  An X509 certificate also contains metadata including the identification of the holder of the certificate, the purposes the certificate is intended for, and more. Think of a public key as a yummy cake baked with yellow dough, it's moist and tastes pretty good- but the X509 certificate wrapped around it is like the chocolate icing and the rainbow sprinkles- it's delicious!  (Break time!!) If you haven't given up on the analogy, think of the private key as the secret recipe to bake the cake that nobody but you knows about.  For a slightly more technical (but still just scratching the surface), but perhaps not as tasty, description of public key cryptography check out this <a href="https://ibm-wsc.github.io/hyper-protect-virtual-servers-workshop/grep11-lab/lab-exercise3/#public-key-cryptography-in-simple-terms" rel="noopener" target="_blank">description from one of our earlier labs</a>.</p>
 <p>An X509 certificate needs to be created and signed by a certification authority (<abbr title="certification authority">CA</abbr>). </p>
 <div class="admonition info">
 <p class="admonition-title">The authority prefers certification</p>
@@ -1934,45 +2090,47 @@ No VM guests are running outdated hypervisor (qemu) binaries on this host.
 <ol>
 <li>An individual or organization submits a request for a certificate (<abbr title="certificate signing request">CSR</abbr>) with their public key.</li>
 <li>The <abbr title="certification authority">CA</abbr> takes the effort to verify that the owner of the public key is a good actor and is who they say they are and can be trusted.</li>
-<li>The <abbr title="certification authority">CA</abbr> creates the certificate that holds the public key, essentially stating "I am a <abbr title="certification authority">CA</abbr> and you can trust me when I say that the holder of this certificate that I just signed is a good person and they are who they say they are, so you can trust this certificate and anything it signs".</li>
+<li>The <abbr title="certification authority">CA</abbr> creates the certificate that holds the public key, essentially stating "I am a <abbr title="certification authority">CA</abbr> and you can trust me and the holder of this certificate that I just signed is a good person and they are who they say they are, so you can trust this certificate and anything it signs".</li>
 </ol>
 <details class="question">
 <summary>How is that working out for us?</summary>
 <p>The X509 Certification Authority protocol is outstanding in theory. In practice its vulnerability lies in the need for the holders of private keys to protect them with diligence.  Losing your private key is akin to losing your wallet or your house key or your drivers license or ... you get the picture.  Attacks such as <a href="https://www.google.com/search?q=software+supply+chain+attacks" rel="noopener" target="_blank">software supply chain attacks</a> are often accomplished by malicious actors who have stolen others' private keys.  This is why initiatives like <abbr title="Confidential computing is a cloud computing technology that isolates sensitive data in a protected CPU enclave during processing. The contents of the enclave—the data being processed, and the techniques that are used to process it—are accessible only to authorized programming code, and are invisible and unknowable to anything or anyone else, including the cloud provider.">Confidential Computing</abbr> and technologies like Hardware Security Modules are important.</p>
 </details>
 <p>In real world practice, for external, customer-facing applications an enterprise will ask a well-known and trusted third-party <abbr title="certification authority">CA</abbr> to issue its certificates. In many cases an enterprise may run its own internal <abbr title="certification authority">CA</abbr> for certificates for internal applications.   In this lab you're going to create your own CAs.  Hopefully, you trust yourself <img alt="🤞" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f91e.svg" title=":fingers_crossed:" /> enough to feel comfortable with this...</p>
-<h3 id="hands-on-keyboard-time">Hands on keyboard time<a class="headerlink" href="#hands-on-keyboard-time" title="Permanent link">&para;</a></h3>
+<h3 id="create-the-certificate-authority-for-your-rsyslog-service-if-it-doesnt-exist-yet">Create the Certificate Authority for your <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service if it doesn't exist yet<a class="headerlink" href="#create-the-certificate-authority-for-your-rsyslog-service-if-it-doesnt-exist-yet" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
-<p>Get out of root for the moment, as you'll be doing this certificate work with your regular authority:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">exit</span>
+<p>Run this command to see if these files already exist:</p>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-l<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/x509Work/rsyslog/CA/<span class="o">{</span>ca.crt,ca-key.pem<span class="o">}</span>
 </code></pre></div>
-<details class="- example">
-<summary>Output when getting out of root</summary>
-<div class="highlight"><pre><span></span><code>root@ubuntu2204:~# exit
-logout
+<p>Choose the tab below that resembles your output from the above command:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Your <abbr title="certification authority">CA</abbr> for <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> does not yet exist</label><label for="__tabbed_3_2">Your <abbr title="certification authority">CA</abbr> for <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> exists</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>ls: cannot access &#39;/home/student/x509Work/rsyslog/CA/ca.crt&#39;: No such file or directory
+ls: cannot access &#39;/home/student/x509Work/rsyslog/CA/ca-key.pem&#39;: No such file or directory
 </code></pre></div>
-</details>
-<p>Your prompt should now end with a dollar sign ($) indicating you are operating with your regular authority as userid <em>student</em>, as opposed to the hash sign (#) prompt that you had when you were operating with <em>root</em> authority.  </p>
-</li>
+<ol>
 <li>
-<p>Run this command sequence:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>rsyslogWork<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>rsyslogWork
+<p>Run this command sequence (which we've split across multiple lines for readability):</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>x509Work/rsyslog/<span class="o">{</span>CA,server,clients<span class="o">}</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="nb">cd</span><span class="w"> </span>x509Work/rsyslog/CA
 </code></pre></div>
 <p>It accomplishes the following:</p>
 <ol>
 <li>Ensures you are in your home directory (which you already are in unless you wandered off on your own)</li>
-<li>Creates a fresh directory that you'll work in for this activity</li>
-<li>Switches to this new directory</li>
+<li>Creates a fresh directory structure, if it doesn't yet exist, that you'll work in for this activity (and also later in the lab)</li>
+<li>Switches to the directory intended for use in creating a self-signed <abbr title="certification authority">CA</abbr>- in fact, while the command should not have produced any output, you should notice that your command prompt shows that you are now in your <strong>~/x509Work/<abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>/<abbr title="certification authority">CA</abbr></strong> directory</li>
 </ol>
 </li>
 <li>
-<p>Create a private key. It will be the private key your self-signed <abbr title="certification authority">CA</abbr> will use so call it <code>ca-key.pem</code>:</p>
+<p>Create a private key. It will be the private key your self-signed <abbr title="certification authority">CA</abbr> for <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> will use and we'll call it <code>ca-key.pem</code>:</p>
 <div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>genrsa<span class="w"> </span>-out<span class="w"> </span>ca-key.pem<span class="w"> </span><span class="m">4096</span>
 </code></pre></div>
 </li>
 <li>
-<p>Run the following command to create a configuration file for your <abbr title="certification authority">CA</abbr></p>
+<p>Run the following command to create a configuration file for your <abbr title="certification authority">CA</abbr>:</p>
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; ca.cnf</span>
 <span class="s">[ req ]</span>
 <span class="s">default_bits = 2048</span>
@@ -2015,25 +2173,57 @@ subject=C = US, O = IBM WSC IBM Z and LinuxONE, CN = CA for rsyslog for SE-enabl
 </code></pre></div>
 </details>
 </li>
+<li>
+<p>Return to the beginning of this step (step 1) to rerun the <strong>ls</strong> command to ensure you completed these instructions successfully.</p>
+</li>
 </ol>
-<h2 id="create-certificate-and-key-for-your-rsyslog-service">Create certificate and key for your <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service<a class="headerlink" href="#create-certificate-and-key-for-your-rsyslog-service" title="Permanent link">&para;</a></h2>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>-rw------- 1 student student 3268 Dec  7 22:46 /home/student/x509Work/rsyslog/CA/ca-key.pem
+-rw-rw-r-- 1 student student 1903 Dec  7 22:47 /home/student/x509Work/rsyslog/CA/ca.crt
+</code></pre></div>
+<p>Congratulations!  Continue to the next step in the lab.</p>
+</div>
+</div>
+</div>
+</li>
+</ol>
+<h2 id="create-a-certificate-and-key-for-your-rsyslog-service">Create a certificate and key for your <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service<a class="headerlink" href="#create-a-certificate-and-key-for-your-rsyslog-service" title="Permanent link">&para;</a></h2>
 <h3 id="process-overview">Process Overview<a class="headerlink" href="#process-overview" title="Permanent link">&para;</a></h3>
 <p>In real life, a <abbr title="certification authority">CA</abbr> will probably issue lots of certificates- it's how they make money.  Your <abbr title="certification authority">CA</abbr> is only going to create a couple:</p>
 <ul>
 <li>a certificate for the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service which you will create next.</li>
-<li>a certificate for the client (your future HPVS KVM guest for the PayNow demo) of the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service, which you will create later in the lab.  </li>
+<li>a certificate for the client (your future <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server) of the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service, which you will create later in the lab. </li>
+<li>if you also do the <em>PayNow Lab</em> you will create a separate client certificate in that lab (or maybe you already created it if you did that lab first).</li>
 </ul>
-<p>The process is the same as what you just went through for creating your <abbr title="certification authority">CA</abbr> for steps 1-3 below but differs slightly for step 4:</p>
+<p>In this section we will create the certificate for the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service.  The process is the same as what you just went through for creating your <abbr title="certification authority">CA</abbr> for steps 1-3 below, and differs slightly for step 4:</p>
 <ol>
 <li>Create a private key</li>
 <li>Create a configuration file to answer questions ahead of time</li>
 <li>Use the key and the config file to create a <abbr title="certificate signing request">CSR</abbr></li>
-<li>This time you'll have your "self-signed" <abbr title="certification authority">CA</abbr> create and sign the certificate.  </li>
+<li>This time you'll have your "self-signed" <abbr title="certification authority">CA</abbr> create and sign the certificate that your <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service uses</li>
 </ol>
 <h3 id="creation-time">Creation time<a class="headerlink" href="#creation-time" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
-<p>Create the private key:</p>
+<p>Check to see if the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> certificate and key has already been created:</p>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-l<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/x509Work/rsyslog/server/<span class="o">{</span>server-key.pem,server.crt<span class="o">}</span>
+</code></pre></div>
+<p>Choose the tab below that resembles your output from the above command:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Your <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> server certificate and key do not yet exist</label><label for="__tabbed_4_2">Your <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> server certificate and key exist</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>ls: cannot access &#39;/home/student/x509Work/rsyslog/server/server-key.pem&#39;: No such file or directory
+ls: cannot access &#39;/home/student/x509Work/rsyslog/server/server.crt&#39;: No such file or directory
+</code></pre></div>
+<ol>
+<li>
+<p>Change to the directory that you will use for the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service's certificate and key:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/x509Work/rsyslog/server
+</code></pre></div>
+</li>
+<li>
+<p>Create a private key that your <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service will use:</p>
 <div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>genrsa<span class="w"> </span>-out<span class="w"> </span>server-key.pem<span class="w"> </span><span class="m">4096</span>
 </code></pre></div>
 </li>
@@ -2063,13 +2253,24 @@ cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; server.cnf</span>
 </code></pre></div>
 </li>
 <li>
-<p>Create the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service's <abbr title="certificate signing request">CSR</abbr>:</p>
-<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>req<span class="w"> </span>-config<span class="w"> </span>server.cnf<span class="w"> </span>-key<span class="w"> </span>server-key.pem<span class="w"> </span>-new<span class="w"> </span>-out<span class="w"> </span>server-req.csr
+<p>Create the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service's Certificate Signing Request:</p>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>req<span class="w"> </span>-config<span class="w"> </span>server.cnf<span class="w"> </span><span class="se">\</span>
+-key<span class="w"> </span>server-key.pem<span class="w"> </span><span class="se">\</span>
+-new<span class="w"> </span><span class="se">\</span>
+-out<span class="w"> </span>server-req.csr
 </code></pre></div>
 </li>
 <li>
-<p>"Send" the request to your "self-signed" <abbr title="certification authority">CA</abbr> in order to create the certificate:</p>
-<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-req<span class="w"> </span>-in<span class="w"> </span>server-req.csr<span class="w"> </span>-days<span class="w"> </span><span class="m">365</span><span class="w"> </span>-CA<span class="w"> </span>ca.crt<span class="w"> </span>-CAkey<span class="w"> </span>ca-key.pem<span class="w"> </span>-CAcreateserial<span class="w"> </span>-extfile<span class="w"> </span>server.cnf<span class="w"> </span>-extensions<span class="w"> </span>server<span class="w"> </span>-out<span class="w"> </span>server.crt
+<p>You will use the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> "self-signed" <abbr title="certification authority">CA</abbr> to create the certificate for your <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> server, by running this command:</p>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-req<span class="w"> </span><span class="se">\</span>
+-in<span class="w"> </span>server-req.csr<span class="w"> </span><span class="se">\</span>
+-days<span class="w"> </span><span class="m">365</span><span class="w"> </span><span class="se">\</span>
+-CA<span class="w"> </span>../CA/ca.crt<span class="w"> </span><span class="se">\</span>
+-CAkey<span class="w"> </span>../CA/ca-key.pem<span class="w"> </span><span class="se">\</span>
+-CAcreateserial<span class="w"> </span><span class="se">\</span>
+-extfile<span class="w"> </span>server.cnf<span class="w"> </span><span class="se">\</span>
+-extensions<span class="w"> </span>server<span class="w"> </span><span class="se">\</span>
+-out<span class="w"> </span>server.crt
 </code></pre></div>
 <details class="- example">
 <summary>Example output from certificate creation</summary>
@@ -2077,7 +2278,7 @@ cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; server.cnf</span>
 subject=C = US, O = Rsyslog Test Server, CN = 172.16.0.42
 </code></pre></div>
 </details>
-<ol>
+</li>
 <li>
 <p>Run this command to display the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service's certificate in a form that a human can comprehend:</p>
 <div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-noout<span class="w"> </span>-text<span class="w"> </span>-in<span class="w"> </span>server.crt<span class="w"> </span>
@@ -2179,60 +2380,111 @@ subject=C = US, O = Rsyslog Test Server, CN = 172.16.0.42
 </code></pre></div>
 </details>
 </li>
+<li>
+<p>Return to the beginning of this step (step 1) to rerun the <strong>ls</strong> command to ensure you completed these instructions successfully.</p>
+</li>
 </ol>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>-rw------- 1 student student 3272 Dec  7 23:06 /home/student/x509Work/rsyslog/server/server-key.pem
+-rw-rw-r-- 1 student student 2151 Dec  7 23:17 /home/student/x509Work/rsyslog/server/server.crt
+</code></pre></div>
+<p>Congratulations!  Continue to the next step in the lab.</p>
+</div>
+</div>
+</div>
 </li>
 </ol>
 <h2 id="copy-certificates-and-private-key-to-the-location-specified-in-the-etcrsyslogdserverconf-file">Copy certificates and private key to the location specified in the /etc/<abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>.d/server.conf file<a class="headerlink" href="#copy-certificates-and-private-key-to-the-location-specified-in-the-etcrsyslogdserverconf-file" title="Permanent link">&para;</a></h2>
-<p>The configuration file you created in <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> a little while ago (near the top of this page) specified <code>/var/lib/rsyslog/x509</code> as the directory to hold some files. You just created these files in your <em>rsyslogWork</em> directory, so now create the <em>/var/lib/<abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>/x509</em> directory and copy the files in there:</p>
+<p>You used directories under <code>${HOME}/x509Work/rsyslog</code> to create your <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> <abbr title="certification authority">CA</abbr> and your <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service's certficate.  The <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> <abbr title="certification authority">CA</abbr>'s certificate and both the certificate and key for the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service need to be in the <code>/var/lib/rsyslog/x509/</code> directory, because that's the location you specified in <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>'s configuration file. </p>
+<p>In this section you'll check to see if they are already present in <code>/var/lib/rsyslog/x509/</code>, and if they aren't, the instructions will get them there for you!</p>
+<ol>
+<li>
+<p>Run this command to see if these files are already in their proper place:</p>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-l<span class="w"> </span>/var/lib/rsyslog/x509/<span class="o">{</span>ca.crt,server.crt,server-key.pem<span class="o">}</span>
+</code></pre></div>
+<p>Choose the tab below that resembles your output from the above command:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">The files are not there</label><label for="__tabbed_5_2">The files are in their proper place</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>ls: cannot access &#39;/var/lib/rsyslog/x509/ca.crt&#39;: No such file or directory
+ls: cannot access &#39;/var/lib/rsyslog/x509/server.crt&#39;: No such file or directory
+ls: cannot access &#39;/var/lib/rsyslog/x509/server-key.pem&#39;: No such file or directory
+</code></pre></div>
+<ol>
+<li>
+<p>Run the following command to copy the files to where they belong and to set the ownership of the files to the user and group that the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service runs under:</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/var/lib/rsyslog/x509<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
-<span class="k">for</span><span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span>ca.crt<span class="w"> </span>server.crt<span class="w"> </span>server-key.pem<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>sudo<span class="w"> </span>cp<span class="w"> </span>-ipv<span class="w"> </span><span class="si">${</span><span class="nv">file</span><span class="si">}</span><span class="w"> </span>/var/lib/rsyslog/x509/.<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="se">\</span>
-<span class="k">done</span><span class="w"> </span><span class="se">\</span>
-<span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span>syslog:syslog<span class="w"> </span>/var/lib/rsyslog
+sudo<span class="w"> </span>cp<span class="w"> </span>-ipv<span class="w"> </span>../CA/ca.crt<span class="w"> </span>/var/lib/rsyslog/x509/.<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+sudo<span class="w"> </span>cp<span class="w"> </span>-ipv<span class="w"> </span>server.crt<span class="w"> </span>/var/lib/rsyslog/x509/.<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+sudo<span class="w"> </span>cp<span class="w"> </span>-ipv<span class="w"> </span>server-key.pem<span class="w"> </span>/var/lib/rsyslog/x509/.<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span>syslog:syslog<span class="w"> </span>/var/lib/rsyslog
 </code></pre></div>
 <details class="- example">
 <summary>Output from copying files</summary>
-<div class="highlight"><pre><span></span><code>&#39;ca.crt&#39; -&gt; &#39;/var/lib/rsyslog/x509/./ca.crt&#39;
+<div class="highlight"><pre><span></span><code>&#39;../CA/ca.crt&#39; -&gt; &#39;/var/lib/rsyslog/x509/./ca.crt&#39;
 &#39;server.crt&#39; -&gt; &#39;/var/lib/rsyslog/x509/./server.crt&#39;
 &#39;server-key.pem&#39; -&gt; &#39;/var/lib/rsyslog/x509/./server-key.pem&#39;
 </code></pre></div>
 </details>
+</li>
+<li>
+<p>Return to the top of this step (step 1) to repeat the <em>ls</em> command to ensure these instructions succeeded.</p>
+</li>
+</ol>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>-rw-rw-r-- 1 syslog syslog 1903 Dec  7 22:47 /var/lib/rsyslog/x509/ca.crt
+-rw------- 1 syslog syslog 3272 Dec  7 23:06 /var/lib/rsyslog/x509/server-key.pem
+-rw-rw-r-- 1 syslog syslog 2151 Dec  7 23:17 /var/lib/rsyslog/x509/server.crt
+</code></pre></div>
+<p>Continue to the next section.</p>
+</div>
+</div>
+</div>
+</li>
+</ol>
 <h2 id="restart-your-rsyslog-service">Restart your <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service<a class="headerlink" href="#restart-your-rsyslog-service" title="Permanent link">&para;</a></h2>
-<p>You'll truly know that you configured everything correctly later in the lab when you try to write messages to it from your yet-to-be-created HPVS KVM guest for the PayNow demo. But for now, you will verify it somewhat by taking a before and after snapshot of which TCP ports on your system are listening.  </p>
-<p>Run this command, and then in a moment you'll repeat the command.  What you should notice here is the absence of port 6514 in the output:</p>
+<p>You'll truly know that you configured everything correctly later in the lab when you try to write messages to it from your yet-to-be-created HPVS 2.1.x <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server. But for now, you will verify it somewhat by checking which TCP ports on your system are listening and looking in the output to see if <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> is listening on port 6514.</p>
+<ol>
+<li>
+<p>Run this command:</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>lsof<span class="w"> </span>-nP<span class="w"> </span>-iTCP<span class="w"> </span>-sTCP:LISTEN
 </code></pre></div>
-<details class="- example">
-<summary>Output showing listening TCP ports</summary>
-<div class="highlight"><pre><span></span><code>COMMAND   PID            USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
-systemd-r 602 systemd-resolve   14u  IPv4  15472      0t0  TCP 127.0.0.53:53 (LISTEN)
-sshd      709            root    3u  IPv4  16871      0t0  TCP *:22 (LISTEN)
-sshd      709            root    4u  IPv6  16882      0t0  TCP *:22 (LISTEN)
+<p>Choose the appropriate tab depending on whether you see port 6514 in your command output:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Port 6514 not in output</label><label for="__tabbed_6_2"><abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> is listening on port 6514</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>systemd-r 578 systemd-resolve   14u  IPv4  14169      0t0  TCP 127.0.0.53:53 (LISTEN)
+sshd      719            root    3u  IPv4  16746      0t0  TCP *:22 (LISTEN)
+sshd      719            root    4u  IPv6  16757      0t0  TCP *:22 (LISTEN)
 </code></pre></div>
-</details>
-<p>You are now ready to restart the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service on your machine:</p>
+<ol>
+<li>
+<p>Restart the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service:</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>rsyslog
 </code></pre></div>
 <p>No news is good news on the above command- it's pretty quiet when it works.</p>
+</li>
+<li>
 <p>Display the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service's status and notice it hasn't been active very long, since it was just restarted:</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>rsyslog
 </code></pre></div>
-<p><em>Reminder</em>:  <em>q</em> gets you back to a command prompt.</p>
 <details class="- example">
 <summary>Output showing <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> status after restart</summary>
 <div class="highlight"><pre><span></span><code>● rsyslog.service - System Logging Service
-     Loaded: loaded (/lib/systemd/system/rsyslog.service; enabled; vendor preset: enabled)
-     Active: active (running) since Tue 2023-02-14 01:30:47 UTC; 13s ago
-TriggeredBy: ● syslog.socket
-       Docs: man:rsyslogd(8)
-             man:rsyslog.conf(5)
-             https://www.rsyslog.com/doc/
-   Main PID: 1439 (rsyslogd)
-      Tasks: 9 (limit: 2350)
-     Memory: 1.8M
+    Loaded: loaded (/lib/systemd/system/rsyslog.service; enabled; vendor preset: enabled)
+<span class="hll">    Active: active (running) since Tue 2023-02-14 01:30:47 UTC; 13s ago
+</span>TriggeredBy: ● syslog.socket
+        Docs: man:rsyslogd(8)
+            man:rsyslog.conf(5)
+            https://www.rsyslog.com/doc/
+    Main PID: 1439 (rsyslogd)
+        Tasks: 9 (limit: 2350)
+    Memory: 1.8M
         CPU: 1.008s
-     CGroup: /system.slice/rsyslog.service
-             └─1439 /usr/sbin/rsyslogd -n -iNONE
+    CGroup: /system.slice/rsyslog.service
+            └─1439 /usr/sbin/rsyslogd -n -iNONE
 
 Feb 14 01:30:46 ubuntu2204 systemd[1]: Starting System Logging Service...
 Feb 14 01:30:47 ubuntu2204 rsyslogd[1439]: imuxsock: Acquired UNIX socket &#39;/run/systemd/journal/syslog&#39; (&gt;
@@ -2242,19 +2494,26 @@ Feb 14 01:30:47 ubuntu2204 rsyslogd[1439]: [origin software=&quot;rsyslogd&quot;
 Feb 14 01:30:47 ubuntu2204 systemd[1]: Started System Logging Service.
 </code></pre></div>
 </details>
-<p>Now when you rerun the command to see the listening TCP ports, seeing 6514 in the output is an indication of success.  If you don't see 6514 in the output, it's time to make those instructors earn their keep:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>lsof<span class="w"> </span>-nP<span class="w"> </span>-iTCP<span class="w"> </span>-sTCP:LISTEN
-</code></pre></div>
-<details class="- example">
-<summary>Expected output showing port 6514 is listening</summary>
+</li>
+<li>
+<p>Return to the top of this step (step 1) to repeat the <em>sudo lsof ...</em> command to ensure these instructions succeeded.</p>
+</li>
+</ol>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>COMMAND    PID            USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
 systemd-r  602 systemd-resolve   14u  IPv4  15472      0t0  TCP 127.0.0.53:53 (LISTEN)
 sshd       709            root    3u  IPv4  16871      0t0  TCP *:22 (LISTEN)
 sshd       709            root    4u  IPv6  16882      0t0  TCP *:22 (LISTEN)
-rsyslogd  1439          syslog    6u  IPv4  22401      0t0  TCP *:6514 (LISTEN)
-rsyslogd  1439          syslog    7u  IPv6  22402      0t0  TCP *:6514 (LISTEN)
-</code></pre></div>
-</details>
+<span class="hll">rsyslogd  1439          syslog    6u  IPv4  22401      0t0  TCP *:6514 (LISTEN)
+</span><span class="hll">rsyslogd  1439          syslog    7u  IPv6  22402      0t0  TCP *:6514 (LISTEN) 
+</span></code></pre></div>
+<p>Notice that <em>rsyslogd</em> is listening on port 6514.  You have configured the <em><abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr></em> service correctly and may continue in the lab.</p>
+</div>
+</div>
+</div>
+</li>
+</ol>
 <p><strong>Switch to your terminal tab or window for your session with the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host, as you will start the next section of the lab working on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host.</strong></p>
 <p>Please proceed to the next section of the lab by clicking the <em>Next</em> link on the bottom right of this page.</p>
 

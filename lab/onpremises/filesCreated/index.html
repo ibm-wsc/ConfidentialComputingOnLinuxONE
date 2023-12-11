@@ -1,0 +1,2626 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ibm-wsc.github.io/ConfidentialComputingOnLinuxONE/lab/onpremises/filesCreated/">
+      
+      
+        <link rel="prev" href="../../../localdocbuild/">
+      
+      
+      <link rel="icon" href="../../../images/HPVS2.1.xGraphic.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.11">
+    
+    
+      
+        <title>Files created in the on-premises labs - Confidential Computing LinuxONE Workshop</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.85bb2934.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.a6bdf11c.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/print-site-enum-headings1.css">
+    
+      <link rel="stylesheet" href="../../../css/print-site-enum-headings2.css">
+    
+      <link rel="stylesheet" href="../../../css/print-site-enum-headings3.css">
+    
+      <link rel="stylesheet" href="../../../css/print-site-enum-headings4.css">
+    
+      <link rel="stylesheet" href="../../../css/print-site-enum-headings5.css">
+    
+      <link rel="stylesheet" href="../../../css/print-site-enum-headings6.css">
+    
+      <link rel="stylesheet" href="../../../css/print-site.css">
+    
+      <link rel="stylesheet" href="../../../css/print-site-material.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-GYNTJ48K9Y"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-GYNTJ48K9Y",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-GYNTJ48K9Y",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>var consent;"undefined"==typeof __md_analytics||(consent=__md_get("__consent"))&&consent.analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="yellow">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#files-created-in-the-on-premises-labs" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Confidential Computing LinuxONE Workshop" class="md-header__button md-logo" aria-label="Confidential Computing LinuxONE Workshop" data-md-component="logo">
+      
+  <img src="../../../images/HPVS2.1.xGraphic.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Confidential Computing LinuxONE Workshop
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Files created in the on-premises labs
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="yellow"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+            
+              <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="yellow"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+            
+              <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+              </label>
+            
+          
+        </form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../access/" class="md-tabs__link">
+        On-premises Labs
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../cloud/" class="md-tabs__link">
+        IBM Cloud-based labs
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../localdocbuild/" class="md-tabs__link">
+      Locally Building docs
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./" class="md-tabs__link md-tabs__link--active">
+        Additional Resources
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../print_page/" class="md-tabs__link">
+      Print Site
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Confidential Computing LinuxONE Workshop" class="md-nav__button md-logo" aria-label="Confidential Computing LinuxONE Workshop" data-md-component="logo">
+      
+  <img src="../../../images/HPVS2.1.xGraphic.png" alt="logo">
+
+    </a>
+    Confidential Computing LinuxONE Workshop
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          On-premises Labs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          On-premises Labs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../access/" class="md-nav__link">
+        Lab Access
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../grep11/">GREP11 with CENA4SEE Lab</a>
+          
+            <label for="__nav_2_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          GREP11 with CENA4SEE Lab
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grep11/launchKVMguest/" class="md-nav__link">
+        Launch Ubuntu KVM guest
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grep11/configureRsyslog/" class="md-nav__link">
+        Configure rsyslog on your KVM guest
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grep11/configureRsyslogForGREP11/" class="md-nav__link">
+        Configure rsyslog client certs on the RHEL host
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grep11/createGREP11Contract/" class="md-nav__link">
+        Create Contract for GREP11 Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grep11/launchGREP11guest/" class="md-nav__link">
+        Launch GREP11 Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grep11/configureGrep11TestClient/" class="md-nav__link">
+        Run GREP11 Client code
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grep11/hackMeIfYouCan/" class="md-nav__link">
+        Standard guest vs. SE-enabled HPVS 2.1.x guest
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grep11/labCleanup/" class="md-nav__link">
+        Lab Cleanup
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../paynow/">PayNow Lab</a>
+          
+            <label for="__nav_2_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          PayNow Lab
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paynow/launchKVMguest/" class="md-nav__link">
+        Launch Ubuntu KVM guest
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paynow/downloadPayNowRepo/" class="md-nav__link">
+        Download PayNow GitHub repo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paynow/createOCIimage/" class="md-nav__link">
+        Create OCI image
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paynow/runOCIimage/" class="md-nav__link">
+        Run OCI image
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paynow/useWebApp/" class="md-nav__link">
+        Use the PayNow demo app
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paynow/findSensitiveData/" class="md-nav__link">
+        Find sensitive data in core dump
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paynow/configureRsyslog/" class="md-nav__link">
+        Configure rsyslog on your KVM guest
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paynow/configureRsyslogForHPVS/" class="md-nav__link">
+        Configure rsyslog client certs on the RHEL host
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paynow/createContract/" class="md-nav__link">
+        Create contract for HPVS guest
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paynow/launchHPVSguest/" class="md-nav__link">
+        Launch HPVS guest for PayNow
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paynow/useHPVSWebApp/" class="md-nav__link">
+        Use the HPVS-based PayNow demo app
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paynow/tryToFindSensitiveData/" class="md-nav__link">
+        Try to find sensitive data in core dump
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paynow/labCleanup/" class="md-nav__link">
+        Lab Cleanup
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../cloud/">IBM Cloud-based labs</a>
+          
+            <label for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          IBM Cloud-based labs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_2" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../cloud/prereqs/">Overview and Prerequisites</a>
+          
+            <label for="__nav_3_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Overview and Prerequisites
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/prereqs/vpc/" class="md-nav__link">
+        Create a Virtual Private Cloud
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/prereqs/gateway/" class="md-nav__link">
+        Create a Public Gateway
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/prereqs/ibmlog/" class="md-nav__link">
+        Create an IBM Log Analysis instance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/prereqs/prepsystem/" class="md-nav__link">
+        Establish a "prep system" to use to create contracts
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/prereqs/setup/" class="md-nav__link">
+        Set environment variables for lab
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../cloud/lab1/">Lab 1 - simple plaintext contract</a>
+          
+            <label for="__nav_3_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Lab 1 - simple plaintext contract
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/lab1/prepcontract/" class="md-nav__link">
+        Prepare the contract
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/lab1/createinstance/" class="md-nav__link">
+        Create your Hyper Protect Virtual Servers for IBM Cloud VPC instance
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_4" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../cloud/lab2/">Lab 2 - partially encrypted contract</a>
+          
+            <label for="__nav_3_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_4">
+          <span class="md-nav__icon md-icon"></span>
+          Lab 2 - partially encrypted contract
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/lab2/prepcontract/" class="md-nav__link">
+        Prepare the contract
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/lab2/createinstance/" class="md-nav__link">
+        Create your Hyper Protect Virtual Servers for IBM Cloud VPC instance
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_5" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../cloud/lab3/">Lab 3 - encrypted contract</a>
+          
+            <label for="__nav_3_5">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_5">
+          <span class="md-nav__icon md-icon"></span>
+          Lab 3 - encrypted contract
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/lab3/prepcontract/" class="md-nav__link">
+        Prepare the contract
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/lab3/createinstance/" class="md-nav__link">
+        Create your Hyper Protect Virtual Servers for IBM Cloud VPC instance
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_6" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../cloud/lab4/">Lab 4 - encrypted and signed contract</a>
+          
+            <label for="__nav_3_6">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_6">
+          <span class="md-nav__icon md-icon"></span>
+          Lab 4 - encrypted and signed contract
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/lab4/prepcontract/" class="md-nav__link">
+        Prepare the contract
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/lab4/createinstance/" class="md-nav__link">
+        Create your Hyper Protect Virtual Servers for IBM Cloud VPC instance
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/cleanup/cleanup/" class="md-nav__link">
+        IBM Cloud-based labs cleanup
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../localdocbuild/" class="md-nav__link">
+        Locally Building docs
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          Additional Resources
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Additional Resources
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Files created in the on-premises labs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Files created in the on-premises labs
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#directories-created-on-your-ubuntu-kvm-guest" class="md-nav__link">
+    Directories created on your Ubuntu KVM guest
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directories-created-in-your-host-rhel-studentxx-userids-home-directory" class="md-nav__link">
+    Directories created in your host RHEL studentxx userid's home directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-in-your-ubuntu-guests-x509workgrep11client-directory" class="md-nav__link">
+    Files in your Ubuntu guest's x509work/GREP11Client/ directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-in-your-ubuntu-guestss-x509workrsyslogca-directory" class="md-nav__link">
+    Files in your Ubuntu guests's x509Work/rsyslog/CA/ directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-in-your-ubuntu-guestss-x509workrsyslogclients-directory" class="md-nav__link">
+    Files in your Ubuntu guests's x509Work/rsyslog/clients/ directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-in-your-ubuntu-guests-x509workrsyslogserver-directory" class="md-nav__link">
+    Files in your Ubuntu guest's x509Work/rsyslog/server/ directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-in-your-host-rhel-studentxxs-grep11labcontractenvironmentrsyslog-directory" class="md-nav__link">
+    Files in your host RHEL studentxx's grep11Lab/contract/environment/rsyslog/ directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-in-your-host-rhel-studentxxs-grep11labcontractenvironment-directory" class="md-nav__link">
+    Files in your host RHEL studentxx's grep11Lab/contract/environment/ directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-in-your-host-rhel-studentxxs-grep11labcontractworkloadcompose-directory" class="md-nav__link">
+    Files in your host RHEL studentxx's grep11Lab/contract/workload/compose/ directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-in-your-host-rhel-studentxxs-grep11labcontractworkload-directory" class="md-nav__link">
+    Files in your host RHEL studentxx's grep11Lab/contract/workload/ directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-in-your-host-rhel-studentxxs-grep11labcontract-directory" class="md-nav__link">
+    Files in your host RHEL studentxx's grep11Lab/contract/ directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-in-your-host-rhel-studentxxs-grep11labx509workcena4seeclient-directory" class="md-nav__link">
+    Files in your host RHEL studentxx's grep11Lab/x509Work/CENA4SEEClient/ directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-in-your-host-rhel-studentxxs-grep11labx509workgrep11serverca-directory" class="md-nav__link">
+    Files in your host RHEL studentxx's grep11Lab/x509Work/GREP11Server/CA/ directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-in-your-host-rhel-studentxxs-grep11labx509workgrep11serverclients-directory" class="md-nav__link">
+    Files in your host RHEL studentxx's grep11Lab/x509Work/GREP11Server/clients/ directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-in-your-host-rhel-studentxxs-grep11labx509workgrep11serverserver-directory" class="md-nav__link">
+    Files in your host RHEL studentxx's grep11Lab/x509Work/GREP11Server/server/ directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-in-your-host-rhel-studentxxs-grep11labx509workrsyslogclient-directory" class="md-nav__link">
+    Files in your host RHEL studentxx's grep11Lab/x509Work/rsyslogClient/ directory
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../print_page/" class="md-nav__link">
+        Print Site
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#directories-created-on-your-ubuntu-kvm-guest" class="md-nav__link">
+    Directories created on your Ubuntu KVM guest
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directories-created-in-your-host-rhel-studentxx-userids-home-directory" class="md-nav__link">
+    Directories created in your host RHEL studentxx userid's home directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-in-your-ubuntu-guests-x509workgrep11client-directory" class="md-nav__link">
+    Files in your Ubuntu guest's x509work/GREP11Client/ directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-in-your-ubuntu-guestss-x509workrsyslogca-directory" class="md-nav__link">
+    Files in your Ubuntu guests's x509Work/rsyslog/CA/ directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-in-your-ubuntu-guestss-x509workrsyslogclients-directory" class="md-nav__link">
+    Files in your Ubuntu guests's x509Work/rsyslog/clients/ directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-in-your-ubuntu-guests-x509workrsyslogserver-directory" class="md-nav__link">
+    Files in your Ubuntu guest's x509Work/rsyslog/server/ directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-in-your-host-rhel-studentxxs-grep11labcontractenvironmentrsyslog-directory" class="md-nav__link">
+    Files in your host RHEL studentxx's grep11Lab/contract/environment/rsyslog/ directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-in-your-host-rhel-studentxxs-grep11labcontractenvironment-directory" class="md-nav__link">
+    Files in your host RHEL studentxx's grep11Lab/contract/environment/ directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-in-your-host-rhel-studentxxs-grep11labcontractworkloadcompose-directory" class="md-nav__link">
+    Files in your host RHEL studentxx's grep11Lab/contract/workload/compose/ directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-in-your-host-rhel-studentxxs-grep11labcontractworkload-directory" class="md-nav__link">
+    Files in your host RHEL studentxx's grep11Lab/contract/workload/ directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-in-your-host-rhel-studentxxs-grep11labcontract-directory" class="md-nav__link">
+    Files in your host RHEL studentxx's grep11Lab/contract/ directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-in-your-host-rhel-studentxxs-grep11labx509workcena4seeclient-directory" class="md-nav__link">
+    Files in your host RHEL studentxx's grep11Lab/x509Work/CENA4SEEClient/ directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-in-your-host-rhel-studentxxs-grep11labx509workgrep11serverca-directory" class="md-nav__link">
+    Files in your host RHEL studentxx's grep11Lab/x509Work/GREP11Server/CA/ directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-in-your-host-rhel-studentxxs-grep11labx509workgrep11serverclients-directory" class="md-nav__link">
+    Files in your host RHEL studentxx's grep11Lab/x509Work/GREP11Server/clients/ directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-in-your-host-rhel-studentxxs-grep11labx509workgrep11serverserver-directory" class="md-nav__link">
+    Files in your host RHEL studentxx's grep11Lab/x509Work/GREP11Server/server/ directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-in-your-host-rhel-studentxxs-grep11labx509workrsyslogclient-directory" class="md-nav__link">
+    Files in your host RHEL studentxx's grep11Lab/x509Work/rsyslogClient/ directory
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE/edit/main/docs/lab/onpremises/filesCreated.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE/raw/main/docs/lab/onpremises/filesCreated.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="files-created-in-the-on-premises-labs">Files created in the on-premises labs<a class="headerlink" href="#files-created-in-the-on-premises-labs" title="Permanent link">&para;</a></h1>
+<h2 id="directories-created-on-your-ubuntu-kvm-guest">Directories created on your Ubuntu KVM guest<a class="headerlink" href="#directories-created-on-your-ubuntu-kvm-guest" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Directory</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x509Work</td>
+<td>High-level directory for doing x509 work</td>
+</tr>
+<tr>
+<td>x509Work/GREP11Client</td>
+<td>Directory for creating certificate for your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Client code</td>
+</tr>
+<tr>
+<td>x509Work/<abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr></td>
+<td>High-level directory for x509 work related to <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service on your Ubuntu KVM guest</td>
+</tr>
+<tr>
+<td>x509Work/<abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>/<abbr title="certification authority">CA</abbr></td>
+<td>Directory that holds a Certificate Authority certificate for your <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service</td>
+</tr>
+<tr>
+<td>x509Work/<abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>/clients</td>
+<td>For each lab you send a <abbr title="certificate signing request">CSR</abbr> to this directory from your host <abbr title="Red Hat Enterprise Linux">RHEL</abbr> userid</td>
+</tr>
+<tr>
+<td>x509Work/<abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>/server</td>
+<td>You use this as a working directory to create the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service's certificate</td>
+</tr>
+<tr>
+<td>hpcs-grep11-go</td>
+<td>From the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> lab, this is where the GitHub repo is cloned so that you can modify and run the sample <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> code</td>
+</tr>
+<tr>
+<td>paynow-website</td>
+<td>From the PayNow lab, this is where the GitHub repo is cloned so that you can build and run the <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> image</td>
+</tr>
+</tbody>
+</table>
+<h2 id="directories-created-in-your-host-rhel-studentxx-userids-home-directory">Directories created in your host <abbr title="Red Hat Enterprise Linux">RHEL</abbr> studentxx userid's home directory<a class="headerlink" href="#directories-created-in-your-host-rhel-studentxx-userids-home-directory" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Directory</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>grep11Lab</td>
+<td>High-level directory for Grep11 Lab</td>
+</tr>
+<tr>
+<td>grep11Lab/contract</td>
+<td>High-level directory for creating the contract used by the HPVS KVM guest for the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server</td>
+</tr>
+<tr>
+<td>grep11Lab/contract/environment</td>
+<td>Directory used by the "workload deployer" persona to create the environment section of the contract</td>
+</tr>
+<tr>
+<td>grep11Lab/contract/environment/<abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr></td>
+<td>Directory to contain the x509 material needed to establish a mutual TLS connection with the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service that you set up on your Ubuntu KVM guest</td>
+</tr>
+<tr>
+<td>grep11Lab/contract/workload</td>
+<td>Directory used by the "workload provider" persona to create the workload section of the contract</td>
+</tr>
+<tr>
+<td>grep11Lab/contract/workload/compose</td>
+<td>Directory containing the <abbr title="a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.">Docker Compose</abbr> file and files referenced by the <abbr title="a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.">Docker Compose</abbr> file</td>
+</tr>
+<tr>
+<td>grep11Lab/x509Work</td>
+<td>High-level directory for x509 work</td>
+</tr>
+<tr>
+<td>grep11Lab/x509Work/CENA4SEEClient</td>
+<td>Directory used for creating client certificate for access to the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> server.  Your HPVS <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server is a client to the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> server.</td>
+</tr>
+<tr>
+<td>grep11Lab/x509Work/GREP11Server</td>
+<td>High-level directory for x509 work related to the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server and mutual authentication with its clients (the sample <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> client code in this lab)</td>
+</tr>
+<tr>
+<td>grep11Lab/x509Work/GREP11Server/<abbr title="certification authority">CA</abbr></td>
+<td>Directory that holds a Certificate Authority certificate for the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server</td>
+</tr>
+<tr>
+<td>grep11Lab/x509Work/GREP11Server/clients</td>
+<td>You send a <abbr title="certificate signing request">CSR</abbr> to this directory from your Ubuntu guest on behalf of your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Client code which runs in your Ubuntu guest</td>
+</tr>
+<tr>
+<td>grep11Lab/x509Work/GREP11Server/server</td>
+<td>You use this as a working directory to create the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> server's certificate</td>
+</tr>
+<tr>
+<td>grep11Lab/x509Work/rsyslogClient</td>
+<td>work directory used for creating the client certificate that will allow your HPVS <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server to send log messages to your <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service running on your Ubuntu guest</td>
+</tr>
+<tr>
+<td>paynowLab</td>
+<td>High-level directory for the PayNow Lab</td>
+</tr>
+<tr>
+<td>paynowLab/contract</td>
+<td>High-level directory for creating the contract used by the HPVS KVM guest for the PayNow app</td>
+</tr>
+<tr>
+<td>paynowLab/contract/environment/<abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr></td>
+<td>Directory to contain the x509 material needed to establish a mutual TLS connection with the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service that you set up on your Ubuntu KVM guest</td>
+</tr>
+<tr>
+<td>paynowLab/contract/workload</td>
+<td>Directory used by the "workload provider" persona to create the workload section of the contract</td>
+</tr>
+<tr>
+<td>paynowLab/contract/workload/play</td>
+<td>Directory containing the pod descriptor file which specifies the <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> image to run</td>
+</tr>
+<tr>
+<td>paynowLab/x509Work</td>
+<td>High-level directory for x509 work</td>
+</tr>
+<tr>
+<td>paynowLab/x509Work/rsyslogClient</td>
+<td>work directory used for creating the client certificate that will allow your HPVS PayNow app to send log messages to your <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service running on your Ubuntu guest</td>
+</tr>
+</tbody>
+</table>
+<h2 id="files-in-your-ubuntu-guests-x509workgrep11client-directory">Files in your Ubuntu guest's x509work/GREP11Client/ directory<a class="headerlink" href="#files-in-your-ubuntu-guests-x509workgrep11client-directory" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>client.cnf</td>
+<td>Configuration file used so that openssl command does not ask interactive questions</td>
+</tr>
+<tr>
+<td>client.csr</td>
+<td>Certificate signing request you create and then send to the "<abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> <abbr title="certification authority">CA</abbr>" registrar on your host <abbr title="Red Hat Enterprise Linux">RHEL</abbr> account</td>
+</tr>
+<tr>
+<td>client.key</td>
+<td>Private key associated with your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> client certificate</td>
+</tr>
+<tr>
+<td>client.pem</td>
+<td><abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> client certificate that your "<abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> <abbr title="certification authority">CA</abbr>" registrar on your host <abbr title="Red Hat Enterprise Linux">RHEL</abbr> account sends to you</td>
+</tr>
+</tbody>
+</table>
+<h2 id="files-in-your-ubuntu-guestss-x509workrsyslogca-directory">Files in your Ubuntu guests's x509Work/<abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>/<abbr title="certification authority">CA</abbr>/ directory<a class="headerlink" href="#files-in-your-ubuntu-guestss-x509workrsyslogca-directory" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ca-key.pem</td>
+<td>Private key you create for your <abbr title="certification authority">CA</abbr> certificate for <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr></td>
+</tr>
+<tr>
+<td>ca-req.csr</td>
+<td><abbr title="certificate signing request">CSR</abbr> request you create which you use to create the <abbr title="certification authority">CA</abbr> certificate for <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr></td>
+</tr>
+<tr>
+<td>ca.cnf</td>
+<td>Configuration file used so that openssl command does not ask interactive questions</td>
+</tr>
+<tr>
+<td>ca.crt</td>
+<td>Self-signed <abbr title="certification authority">CA</abbr> certificate for the <abbr title="certification authority">CA</abbr> used by the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service and its clients.  In our labs the client to <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> is the HPVS guest you create in each lab</td>
+</tr>
+</tbody>
+</table>
+<h2 id="files-in-your-ubuntu-guestss-x509workrsyslogclients-directory">Files in your Ubuntu guests's x509Work/<abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>/clients/ directory<a class="headerlink" href="#files-in-your-ubuntu-guestss-x509workrsyslogclients-directory" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>grep11Lab-client-req.csr</td>
+<td><abbr title="certificate signing request">CSR</abbr> sent to you from your host <abbr title="Red Hat Enterprise Linux">RHEL</abbr> userid so that the HPVS <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server can authenticate with <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr></td>
+</tr>
+<tr>
+<td>grep11Lab-client.crt</td>
+<td>Certificate you create on your Ubuntu guest and then send to your host <abbr title="Red Hat Enterprise Linux">RHEL</abbr> userid</td>
+</tr>
+<tr>
+<td>paynowLab-client-req.csr</td>
+<td><abbr title="certificate signing request">CSR</abbr> sent to you from your host <abbr title="Red Hat Enterprise Linux">RHEL</abbr> userid so that the HPVS PayNow app can authenticate with <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr></td>
+</tr>
+<tr>
+<td>paynowLab-client.crt</td>
+<td>Certificate you create on your Ubuntu guest and then send to your host <abbr title="Red Hat Enterprise Linux">RHEL</abbr> userid</td>
+</tr>
+</tbody>
+</table>
+<h2 id="files-in-your-ubuntu-guests-x509workrsyslogserver-directory">Files in your Ubuntu guest's x509Work/<abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>/server/ directory<a class="headerlink" href="#files-in-your-ubuntu-guests-x509workrsyslogserver-directory" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>server-key.pem</td>
+<td>private key you create which is used with your <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service's certificate</td>
+</tr>
+<tr>
+<td>server-req.csr</td>
+<td><abbr title="certificate signing request">CSR</abbr> you create so that your "<abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> <abbr title="certification authority">CA</abbr>" registrar can create your <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service's certificate</td>
+</tr>
+<tr>
+<td>server.cnf</td>
+<td>Configuration file used so that openssl command does not ask interactive questions</td>
+</tr>
+<tr>
+<td>server.crt</td>
+<td><abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service's certificate that your "<abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> <abbr title="certification authority">CA</abbr>" registrar creates from your <abbr title="certificate signing request">CSR</abbr></td>
+</tr>
+</tbody>
+</table>
+<h2 id="files-in-your-host-rhel-studentxxs-grep11labcontractenvironmentrsyslog-directory">Files in your host <abbr title="Red Hat Enterprise Linux">RHEL</abbr> studentxx's grep11Lab/contract/environment/<abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr>/ directory<a class="headerlink" href="#files-in-your-host-rhel-studentxxs-grep11labcontractenvironmentrsyslog-directory" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ca.crt</td>
+<td>The self-signed <abbr title="certification authority">CA</abbr> certificate used by the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service and its clients. You copy it from your Ubuntu KVM host, which is where the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service and its <abbr title="certification authority">CA</abbr> reside.</td>
+</tr>
+<tr>
+<td>client-key-pkcs8.pem</td>
+<td>This is your HPVS <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server's private key used for authentication with the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service, after it has been converted to PKCS #8 format</td>
+</tr>
+<tr>
+<td>grep11Lab-client.crt</td>
+<td>This is your HPVS <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server's client certificte used for authentication with the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service. It is created by your "<abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> <abbr title="certification authority">CA</abbr>" registrar on your Ubuntu guest, sent to you in your working directory, and from there you copy it into this directory so that it can be included in the workload section of the contract</td>
+</tr>
+</tbody>
+</table>
+<h2 id="files-in-your-host-rhel-studentxxs-grep11labcontractenvironment-directory">Files in your host <abbr title="Red Hat Enterprise Linux">RHEL</abbr> studentxx's grep11Lab/contract/environment/ directory<a class="headerlink" href="#files-in-your-host-rhel-studentxxs-grep11labcontractenvironment-directory" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>env.yaml.plaintext</td>
+<td>This file is created by the <em>flow.env</em> convenience script and is in plaintext.  It is used within the <em>flow.env</em> script as input to produce an encrypted environment section of the contract. In this lab we've left the script intact for educational purposes. In a production environment you would either delete this plaintext file or restrict access to it as it contains sensitive information.</td>
+</tr>
+<tr>
+<td>flow.env</td>
+<td>This is a convenience script that encompasses many of the manual commands that are listed in the product documentation. Careful study of this script will be worthwhile for those who want a deep understanding of how an environment section of the contract is created and encrypted.</td>
+</tr>
+<tr>
+<td>pubSigningKey.yaml</td>
+<td>This is the public key corresponding to the private key that is used to sign the contract.  It is created by the <em>flow.prepare</em> convenience script and then added to the environment section of the contract.  The <abbr title="Hyper Protect Container Runtime- this is the name given to the Secure Execution-enabled qcow2 image that is provided with Hyper Protect Virtual Servers 2.1.x. The container runtime provided within this image launches the customer's workload as an OCI container, in accordance with the &quot;contract&quot; specified by the customer.">HPCR</abbr> runtime uses this to verify the signature on the contract.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="files-in-your-host-rhel-studentxxs-grep11labcontractworkloadcompose-directory">Files in your host <abbr title="Red Hat Enterprise Linux">RHEL</abbr> studentxx's grep11Lab/contract/workload/compose/ directory<a class="headerlink" href="#files-in-your-host-rhel-studentxxs-grep11labcontractworkloadcompose-directory" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>c16client.yaml</td>
+<td>Configuration file for the connection between your HPVS <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server and the Crypto Express Network API for <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr> Enclaves (<abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr>) appliance</td>
+</tr>
+<tr>
+<td>c16server-ca.pem</td>
+<td>The self-signed <abbr title="certification authority">CA</abbr> certificate used by the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> appliance and its clients.  It is created by the instructors and copied into this directory by you during the lab. All students share a single <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> appliance, so control of this appliance's <abbr title="certification authority">CA</abbr> is in the hands of the instructors.</td>
+</tr>
+<tr>
+<td>c16server-client.key</td>
+<td>Private key you create used for authentication between your HPVS <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server and the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> appliance.</td>
+</tr>
+<tr>
+<td>c16server-client.pem</td>
+<td>Certificate created for you by the instructors and used for authentication between your HPVS <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server and the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> appliance. All students share a single <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> appliance, so control of this appliance's <abbr title="certification authority">CA</abbr> is in the hands of the instructors, which is why the instructors have to create this certificate for you.</td>
+</tr>
+<tr>
+<td>c16server-restricted-server.pem</td>
+<td>This is the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> appliance's server certificate. It is specified in the <em>c16client.yaml</em> file which prevents the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server from communicating with the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> appliance if it does not present this certficiate.</td>
+</tr>
+<tr>
+<td>docker-compose.yml</td>
+<td>This file specifies the <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr> image for the application worklaod (the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server in this case), as well as references to several files that the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server needs.</td>
+</tr>
+<tr>
+<td>grep11-ca.pem</td>
+<td>The self-signed <abbr title="certification authority">CA</abbr> certificate for the "<abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server" <abbr title="certification authority">CA</abbr>. It is required for mutual TLS authentication with clients to the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server.</td>
+</tr>
+<tr>
+<td>grep11-server.key</td>
+<td>The private key used by the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server's server certificate. It is required for mutual TLS authentication with clients to the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server.</td>
+</tr>
+<tr>
+<td>grep11-server.pem</td>
+<td>The <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server's server certificate. It is required for mutual TLS authentication with clients to the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server.</td>
+</tr>
+<tr>
+<td>grep11server.yaml</td>
+<td>Configuration file that governs communication with <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> clients and also specifies with crypto card domain on the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> appliance LPAR this <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server is associated with.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="files-in-your-host-rhel-studentxxs-grep11labcontractworkload-directory">Files in your host <abbr title="Red Hat Enterprise Linux">RHEL</abbr> studentxx's grep11Lab/contract/workload/ directory<a class="headerlink" href="#files-in-your-host-rhel-studentxxs-grep11labcontractworkload-directory" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>flow.workload</td>
+<td>This is a convenience script that encompasses many of the manual commands that are listed in the product documentation. Careful study of this script will be worthwhile for those who want a deep understanding of how a workload section of the contract is created and encrypted.</td>
+</tr>
+<tr>
+<td>workload.yaml.plaintext</td>
+<td>This file is created by the <em>flow.workload</em> convenience script and is in plaintext.  It is used within the <em>flow.workload</em> script as input to produce an encrypted workload section of the contract. In this lab we've left the script intact for educational purposes. In a production environment you would either delete this plaintext file or restrict access to it as it contains sensitive information. In some use cases the <em>workload deployer</em> persona would never even have access to the plaintext workload section because the <em>workload provider</em> persona would provide the workload section that is already encrypted by the Hyper Protect Container Runtime image's public key.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="files-in-your-host-rhel-studentxxs-grep11labcontract-directory">Files in your host <abbr title="Red Hat Enterprise Linux">RHEL</abbr> studentxx's grep11Lab/contract/ directory<a class="headerlink" href="#files-in-your-host-rhel-studentxxs-grep11labcontract-directory" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>contract.yaml</td>
+<td>This is an intermediate file created by the flow.signature script.  It is the concatenation of the encrypted workload and the encrypted environment sections of the contract.  It is then signed in the flow.signature script and the signature is then appended to ths file to product the final contract that is passed to the HPVS instance</td>
+</tr>
+<tr>
+<td>env.yaml</td>
+<td>Intermediate file created by the flow.env script.  It is the encrypted environment section of the contract.</td>
+</tr>
+<tr>
+<td>flow.clear</td>
+<td>Convenience script that deletes some of the intermediate files created by the convenience scripts.</td>
+</tr>
+<tr>
+<td>flow.prepare</td>
+<td>Convenience script that creates an RSA key pair which will be used to sign the encrypted environment and workload sections of the contract.</td>
+</tr>
+<tr>
+<td>flow.signature</td>
+<td>Convenience script that signs the encrypted environment and workload sections of the contract using the RSA key pair created by flow.prepare. flow.signature then appends the signature to the encrypted sections that it just signed.</td>
+</tr>
+<tr>
+<td>makeContract</td>
+<td>High-level, or "wrapper", script that runs all of the "flow.*" scripts in the proper order in order to create the contract</td>
+</tr>
+<tr>
+<td>meta-data</td>
+<td>Input file used in created the ISO image. It contains the hostname that will be assigned to the HPVS instance.</td>
+</tr>
+<tr>
+<td>private.pem</td>
+<td>Private key created in flow.prepare that is used to create the signature over the contract.</td>
+</tr>
+<tr>
+<td>public.pem</td>
+<td>Public key created in flow.prepare.  It is passed to the contract so that the <abbr title="Hyper Protect Container Runtime- this is the name given to the Secure Execution-enabled qcow2 image that is provided with Hyper Protect Virtual Servers 2.1.x. The container runtime provided within this image launches the customer's workload as an OCI container, in accordance with the &quot;contract&quot; specified by the customer.">HPCR</abbr> can verify the signature on the contract.</td>
+</tr>
+<tr>
+<td>signature.yaml</td>
+<td>The signature over the contract, created in flow.signature and then added to the contract as the 'envWorkloadSignature' key.</td>
+</tr>
+<tr>
+<td>user-data</td>
+<td>Output of the makeContract script, it is the signed and encrypted contract.</td>
+</tr>
+<tr>
+<td>user_data.yaml</td>
+<td>A copy of user-data that is then used as input to the genisoimage command that generates the ISO image that contains the contract</td>
+</tr>
+<tr>
+<td>vendor-data</td>
+<td>Input to the command that generates the ISO image. Not much of interest in it for these labs.</td>
+</tr>
+<tr>
+<td>workoad.yaml</td>
+<td>Intermediate file created by the flow.workload script. It is the encrypted workload section of the contract.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="files-in-your-host-rhel-studentxxs-grep11labx509workcena4seeclient-directory">Files in your host <abbr title="Red Hat Enterprise Linux">RHEL</abbr> studentxx's grep11Lab/x509Work/CENA4SEEClient/ directory<a class="headerlink" href="#files-in-your-host-rhel-studentxxs-grep11labx509workcena4seeclient-directory" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>c16server-client.csr</td>
+<td><abbr title="certificate signing request">CSR</abbr> for your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server, which will be used by the instructors to create your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server's certificate that will allow it to authenticate with the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> Server.</td>
+</tr>
+<tr>
+<td>c16server-client.key</td>
+<td>Private key associated with your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server's certificate that will allow it to authenticate with the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> Server.</td>
+</tr>
+<tr>
+<td>c16server-client.pem</td>
+<td>Certificate created by the instructors that will allow your HPVS <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server to communicate with the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> Serer.</td>
+</tr>
+<tr>
+<td>csr.cfg</td>
+<td>Configuration file used in created the <abbr title="certificate signing request">CSR</abbr> that will prevent interactive questions during the <abbr title="certificate signing request">CSR</abbr> creation.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="files-in-your-host-rhel-studentxxs-grep11labx509workgrep11serverca-directory">Files in your host <abbr title="Red Hat Enterprise Linux">RHEL</abbr> studentxx's grep11Lab/x509Work/GREP11Server/<abbr title="certification authority">CA</abbr>/ directory<a class="headerlink" href="#files-in-your-host-rhel-studentxxs-grep11labx509workgrep11serverca-directory" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ca.cnf</td>
+<td>Configuration file used to avoid interactive questions while creating the <abbr title="certificate signing request">CSR</abbr></td>
+</tr>
+<tr>
+<td>grep11-ca-key.pem</td>
+<td>Private key associated with the self-signed <abbr title="certification authority">CA</abbr> root certificate used for authentication between the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server and its clients.</td>
+</tr>
+<tr>
+<td>grep11-ca.pem</td>
+<td>Self-signed <abbr title="certification authority">CA</abbr> root certificate used for authentication between the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server and its clients.</td>
+</tr>
+<tr>
+<td>grep11-ca.srl</td>
+<td>File created during the creation of the self-signed <abbr title="certification authority">CA</abbr> root certificate</td>
+</tr>
+<tr>
+<td>grep11-server.csr</td>
+<td>Copy of the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server <abbr title="certificate signing request">CSR</abbr> request that you create in the '../server' directory and then copy into this directory.  Think of the '../server' directory as belonging to a "<abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server administrator" persona and the directory in this table as belong to a "<abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> <abbr title="certification authority">CA</abbr> Registrar" persona.</td>
+</tr>
+<tr>
+<td>grep11-server.pem</td>
+<td>The <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server certificate that the "<abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> <abbr title="certification authority">CA</abbr> Registrar" persona creates in this directory and then copies to the "../server" directory.</td>
+</tr>
+<tr>
+<td>server.cnf</td>
+<td>Configuration file to avoid interactive questions</td>
+</tr>
+</tbody>
+</table>
+<h2 id="files-in-your-host-rhel-studentxxs-grep11labx509workgrep11serverclients-directory">Files in your host <abbr title="Red Hat Enterprise Linux">RHEL</abbr> studentxx's grep11Lab/x509Work/GREP11Server/clients/ directory<a class="headerlink" href="#files-in-your-host-rhel-studentxxs-grep11labx509workgrep11serverclients-directory" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>client.csr</td>
+<td><abbr title="certificate signing request">CSR</abbr> sent from your Ubuntu KVM guest</td>
+</tr>
+<tr>
+<td>client.pem</td>
+<td>Certificate that you create on behalf of your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Client code. You send this certificate back to your Ubuntu KVM guest so that your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Client code that runs there can authenticate with your HPVS <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="files-in-your-host-rhel-studentxxs-grep11labx509workgrep11serverserver-directory">Files in your host <abbr title="Red Hat Enterprise Linux">RHEL</abbr> studentxx's grep11Lab/x509Work/GREP11Server/server/ directory<a class="headerlink" href="#files-in-your-host-rhel-studentxxs-grep11labx509workgrep11serverserver-directory" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>grep11-ca.pem</td>
+<td>A copy of the "<abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> <abbr title="certification authority">CA</abbr>" Registrar's self-signed public <abbr title="certification authority">CA</abbr> certificate. Copying it from the "../<abbr title="certification authority">CA</abbr>" directory to this directory is simply a simulation of a real-world scenario where the "<abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server administrator" persona would obtain this certificate by some means.</td>
+</tr>
+<tr>
+<td>grep11-server.csr</td>
+<td>The <abbr title="certificate signing request">CSR</abbr> that the "<abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server administraro" creates and then copies to the "../<abbr title="certification authority">CA</abbr>" directory as s simulation of a real-world scenario where the "<abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server administrator" would send a <abbr title="certificate signing request">CSR</abbr> to the "<abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> <abbr title="certification authority">CA</abbr> Registrar".</td>
+</tr>
+<tr>
+<td>grep11-server.pem</td>
+<td>The "<abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> <abbr title="certification authority">CA</abbr> Registrar" creates this in the "../<abbr title="certification authority">CA</abbr>" directory and then copies it here in a simulation of a real-world scenario where the "<abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> <abbr title="certification authority">CA</abbr> Registrar" creates the certificate and then delivers it to the "<abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server administrator" by some means.</td>
+</tr>
+<tr>
+<td>serverCSR.cnf</td>
+<td>Configuration file used to avoid interactive questions.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="files-in-your-host-rhel-studentxxs-grep11labx509workrsyslogclient-directory">Files in your host <abbr title="Red Hat Enterprise Linux">RHEL</abbr> studentxx's grep11Lab/x509Work/rsyslogClient/ directory<a class="headerlink" href="#files-in-your-host-rhel-studentxxs-grep11labx509workrsyslogclient-directory" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>client.cnf</td>
+<td>Configuration file used to avoid interactive questions.</td>
+</tr>
+<tr>
+<td>client-key.pem</td>
+<td>Private key associated with the <abbr title="certificate signing request">CSR</abbr> you create (and the certificate created from the <abbr title="certificate signing request">CSR</abbr>) that is used in authenticating your HPVS <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server to the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service that you set up on your Ubuntu KVM guest.</td>
+</tr>
+<tr>
+<td>grep11Lab-client.crt</td>
+<td>Certificate created on your Ubuntu KVM guest by your "Rsyslog <abbr title="certification authority">CA</abbr> Registrar" persona and then sent to you here by that persona.</td>
+</tr>
+<tr>
+<td>grep11Lab-client-req.csr</td>
+<td><abbr title="certificate signing request">CSR</abbr> that you create here and then send to your Ubuntu KVM guest, where the "Rsyslog <abbr title="certification authority">CA</abbr> Registrar" persona creates the certificate.</td>
+</tr>
+</tbody>
+</table>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 11, 2023</span>
+      
+        <br>
+        Created:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 11, 2023</span>
+      
+    
+  </small>
+</div>
+
+
+  
+
+
+
+  <form class="md-feedback" name="feedback" hidden>
+    <fieldset>
+      <legend class="md-feedback__title">
+        Was this page helpful?
+      </legend>
+      <div class="md-feedback__inner">
+        <div class="md-feedback__list">
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page was helpful" data-md-value="1">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 21.35-1.45-1.32C5.4 15.36 2 12.27 2 8.5 2 5.41 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.08C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53L12 21.35Z"/></svg>
+            </button>
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page could be improved" data-md-value="0">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 21.35-1.45-1.32C5.4 15.36 2 12.27 2 8.5 2 5.41 4.42 3 7.5 3c.67 0 1.32.12 1.94.33L13 9.35l-4 5 3 7M16.5 3C19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53L12 21.35l-1-7 4.5-5-2.65-5.08C13.87 3.47 15.17 3 16.5 3Z"/></svg>
+            </button>
+          
+        </div>
+        <div class="md-feedback__note">
+          
+            <div data-md-value="1" hidden>
+              
+              
+                
+              
+              Thanks for your feedback!
+            </div>
+          
+            <div data-md-value="0" hidden>
+              
+              
+                
+              
+              Thanks for your feedback! Help us improve this page by using our <a href="https://github.com/ibm-wsc/ConfidentialComputingOnLinuxONE/issues/new/?title=[Feedback]+Files%20created%20in%20the%20on-premises%20labs+-+/lab/onpremises/filesCreated/" target="_blank" rel="noopener">feedback form</a>.
+            </div>
+          
+        </div>
+      </div>
+    </fieldset>
+  </form>
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../../localdocbuild/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Locally Building docs" rel="prev">
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Locally Building docs
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 IBM – <a href="#__consent">Change cookie settings</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/ibm-wsc" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://hub.docker.com/u/s390x" target="_blank" rel="noopener" title="hub.docker.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+  
+    
+  
+
+
+  
+    
+  
+
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make the documentation as good as possible.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="analytics" checked>
+          <span class="task-list-indicator"></span>
+          Google Analytics
+        </label>
+      </li>
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="github" checked>
+          <span class="task-list-indicator"></span>
+          GitHub
+        </label>
+      </li>
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["header.autohide", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.footer", "search.share", "navigation.indexes", "announce.dismiss", "content.tabs.link", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.fac441b0.min.js"></script>
+      
+        <script src="../../../js/print-site.js"></script>
+      
+    
+  </body>
+</html>

@@ -291,11 +291,15 @@
   
 
 
-  <li class="md-tabs__item">
-    <a href="../../../additionalResources/" class="md-tabs__link">
-      Additional Resources
-    </a>
-  </li>
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../onpremises/filesCreated/" class="md-tabs__link">
+        Additional Resources
+      </a>
+    </li>
+  
 
       
         
@@ -1488,10 +1492,50 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          Additional Resources
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Additional Resources
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../../additionalResources/" class="md-nav__link">
-        Additional Resources
+      <a href="../../onpremises/filesCreated/" class="md-nav__link">
+        Files created in the on-premises labs
       </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -1619,15 +1663,15 @@
     &lt;emulator&gt;/usr/libexec/qemu-kvm&lt;/emulator&gt;
     &lt;disk type=&#39;file&#39; device=&#39;disk&#39;&gt;
       &lt;driver name=&#39;qemu&#39; type=&#39;qcow2&#39; iommu=&#39;on&#39;/&gt;
-      &lt;source file=&#39;/var/lib/libvirt/images/labs/paynow/student04/ibm-hyper-protect-container-runtime-23.11.0.qcow2&#39;/&gt;
-      &lt;backingStore/&gt;
+<span class="hll">      &lt;source file=&#39;/var/lib/libvirt/images/labs/paynow/student04/ibm-hyper-protect-container-runtime-23.11.0.qcow2&#39;/&gt;
+</span>      &lt;backingStore/&gt;
       &lt;target dev=&#39;vda&#39; bus=&#39;virtio&#39;/&gt;
       &lt;address type=&#39;ccw&#39; cssid=&#39;0xfe&#39; ssid=&#39;0x0&#39; devno=&#39;0x0000&#39;/&gt;
     &lt;/disk&gt;
     &lt;disk type=&#39;file&#39; device=&#39;disk&#39;&gt;
       &lt;driver name=&#39;qemu&#39; type=&#39;raw&#39; cache=&#39;none&#39; io=&#39;native&#39; iommu=&#39;on&#39;/&gt;
-      &lt;source file=&#39;/var/lib/libvirt/images/labs/paynow/student04/ciiso.iso&#39;/&gt;
-      &lt;target dev=&#39;vdc&#39; bus=&#39;virtio&#39;/&gt;
+<span class="hll">      &lt;source file=&#39;/var/lib/libvirt/images/labs/paynow/student04/ciiso.iso&#39;/&gt;
+</span>      &lt;target dev=&#39;vdc&#39; bus=&#39;virtio&#39;/&gt;
       &lt;readonly/&gt;
       &lt;address type=&#39;ccw&#39; cssid=&#39;0xfe&#39; ssid=&#39;0x0&#39; devno=&#39;0x0002&#39;/&gt;
     &lt;/disk&gt;
@@ -2681,11 +2725,11 @@ Sep 05 22:22:53 ubuntu2204 systemd[26262]:  Starting Record Runlevel Change in U
 Sep 05 22:22:53 ubuntu2204 systemd[26262]:  systemd-update-utmp-runlevel.service: Deactivated successfully.
 Sep 05 22:22:53 ubuntu2204 systemd[26262]:  Finished Record Runlevel Change in UTMP.
 Sep 05 22:22:53 ubuntu2204 systemd[26262]:  Startup finished in 28.387s (kernel) + 25.442s (userspace) = 53.830s.
-Sep 05 22:22:53 ubuntu2204 compose-paynow-1[26262]:  
-Sep 05 22:22:53 ubuntu2204 compose-paynow-1[26262]:  &gt; hyper-protect-pay-now@1.0.0 start
-Sep 05 22:22:53 ubuntu2204 compose-paynow-1[26262]:  &gt; node app.js
-Sep 05 22:22:53 ubuntu2204 compose-paynow-1[26262]:  
-Sep 05 22:22:54 ubuntu2204 systemd-networkd[26262]:  br-18668bffa6c4: Gained IPv6LL
+<span class="hll">Sep 05 22:22:53 ubuntu2204 compose-paynow-1[26262]:  
+</span><span class="hll">Sep 05 22:22:53 ubuntu2204 compose-paynow-1[26262]:  &gt; hyper-protect-pay-now@1.0.0 start
+</span><span class="hll">Sep 05 22:22:53 ubuntu2204 compose-paynow-1[26262]:  &gt; node app.js
+</span><span class="hll">Sep 05 22:22:53 ubuntu2204 compose-paynow-1[26262]:  
+</span>Sep 05 22:22:54 ubuntu2204 systemd-networkd[26262]:  br-18668bffa6c4: Gained IPv6LL
 Sep 05 22:22:54 ubuntu2204 systemd-networkd[26262]:  veth5f369da: Gained IPv6LL
 </code></pre></div>
 </details>

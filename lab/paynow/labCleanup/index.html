@@ -291,11 +291,15 @@
   
 
 
-  <li class="md-tabs__item">
-    <a href="../../../additionalResources/" class="md-tabs__link">
-      Additional Resources
-    </a>
-  </li>
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../onpremises/filesCreated/" class="md-tabs__link">
+        Additional Resources
+      </a>
+    </li>
+  
 
       
         
@@ -900,8 +904,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#clean-up-the-home-directory-of-your-userid-on-the-rhel-85-host" class="md-nav__link">
-    Clean up the home directory of your userid on the RHEL 8.5 host:
+  <a href="#delete-the-core-dumps-in-the-home-directory-of-your-userid-on-the-rhel-85-host" class="md-nav__link">
+    Delete the core dumps in the home directory of your userid on the RHEL 8.5 host:
   </a>
   
 </li>
@@ -1502,10 +1506,50 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          Additional Resources
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Additional Resources
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../../additionalResources/" class="md-nav__link">
-        Additional Resources
+      <a href="../../onpremises/filesCreated/" class="md-nav__link">
+        Files created in the on-premises labs
       </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -1566,8 +1610,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#clean-up-the-home-directory-of-your-userid-on-the-rhel-85-host" class="md-nav__link">
-    Clean up the home directory of your userid on the RHEL 8.5 host:
+  <a href="#delete-the-core-dumps-in-the-home-directory-of-your-userid-on-the-rhel-85-host" class="md-nav__link">
+    Delete the core dumps in the home directory of your userid on the RHEL 8.5 host:
   </a>
   
 </li>
@@ -1622,14 +1666,15 @@ sudo<span class="w"> </span>virsh<span class="w"> </span>shutdown<span class="w"
 <p>Enter this command to shut down your standard Ubuntu KVM guest:</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>virsh<span class="w"> </span>shutdown<span class="w"> </span><span class="k">$(</span>whoami<span class="k">)</span>
 </code></pre></div>
-<h2 id="clean-up-the-home-directory-of-your-userid-on-the-rhel-85-host">Clean up the home directory of your userid on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5 host:<a class="headerlink" href="#clean-up-the-home-directory-of-your-userid-on-the-rhel-85-host" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>rsyslogClientWork<span class="w"> </span>contract<span class="w"> </span>core.*
+<h2 id="delete-the-core-dumps-in-the-home-directory-of-your-userid-on-the-rhel-85-host">Delete the core dumps in the home directory of your userid on the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> 8.5 host:<a class="headerlink" href="#delete-the-core-dumps-in-the-home-directory-of-your-userid-on-the-rhel-85-host" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-vf<span class="w"> </span>core.*
 </code></pre></div>
 <h2 id="log-out-of-the-rhel-host">Log out of the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host:<a class="headerlink" href="#log-out-of-the-rhel-host" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="nb">exit</span>
 </code></pre></div>
-<p>Thank you for cleaning up and congratulations on finishing the lab!  We hope you enjoyed it and learned from it and we welcome your feedback on how to make it better.</p>
-<p>There is no need to click the <code>Next</code> link at the bottom as that will take you to a page that is for instructor usage.  Feel free to check it out though, as it will give you insight into the tools that we use to create and update the lab documentation. </p>
+<p>Thank you for cleaning up and congratulations on finishing the <em>PayNow Lab</em>!  We hope you enjoyed it and learned from it and we welcome your feedback on how to make it better.</p>
+<p>If you haven't yet taken the <em><abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> with <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> Lab</em>, consider doing that lab now. </p>
+<p>If you have an IBM Cloud account, you are free at any time to do the <em>IBM Cloud-based labs</em> which are available from the <em>Next</em> link at the lower right of this page.  Please read the instructions carefully and be aware that your IBM Cloud account may incur modest charges as a result of doing those labs.  </p>
 
   <hr>
 <div class="md-source-file">

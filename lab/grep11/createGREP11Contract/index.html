@@ -291,11 +291,15 @@
   
 
 
-  <li class="md-tabs__item">
-    <a href="../../../additionalResources/" class="md-tabs__link">
-      Additional Resources
-    </a>
-  </li>
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../onpremises/filesCreated/" class="md-tabs__link">
+        Additional Resources
+      </a>
+    </li>
+  
 
       
         
@@ -622,6 +626,13 @@
           <li class="md-nav__item">
   <a href="#create-x509-material-for-grep11-server-to-cena4see-server-communication" class="md-nav__link">
     Create x509 material for GREP11 Server to CENA4SEE Server communication
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-convenience-script-for-creating-workload-section-of-contract" class="md-nav__link">
+    Create a convenience script for creating workload section of contract
   </a>
   
 </li>
@@ -1557,10 +1568,50 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          Additional Resources
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Additional Resources
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../../additionalResources/" class="md-nav__link">
-        Additional Resources
+      <a href="../../onpremises/filesCreated/" class="md-nav__link">
+        Files created in the on-premises labs
       </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -1663,6 +1714,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#create-a-convenience-script-for-creating-workload-section-of-contract" class="md-nav__link">
+    Create a convenience script for creating workload section of contract
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1754,22 +1812,21 @@
 <p>This section starts where the last section left off- on your session with the <abbr title="Red Hat Enterprise Linux">RHEL</abbr> host:</p>
 <p><img src="../../../images/RHELHost.png" width="351" height="216" /></p>
 <p>This command will create the directory structure expected by the lab instructions:</p>
-<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/contract/grep11Server/<span class="o">{</span>workload/compose,environment/rsyslog<span class="o">}</span>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/grep11Lab/contract/<span class="o">{</span>workload/compose,environment/rsyslog<span class="o">}</span>
 </code></pre></div>
 <p>Run the <code>tree</code> command to see the directory hierarchy you just created:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>tree<span class="w"> </span>contract
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>tree<span class="w"> </span>grep11Lab/contract
 </code></pre></div>
 <details class="info" open="open">
 <summary>Expected output from tree command</summary>
-<div class="highlight"><pre><span></span><code>[student03@bczkvm(192.168.22.64) ~ [12:23:58] (0)]$ tree contract
-contract
-└── grep11Server
-    ├── environment
-    │   └── rsyslog
-    └── workload
-        └── compose
+<div class="highlight"><pre><span></span><code>  [student03@bczkvm(192.168.22.64) ~ [12:23:58] (0)]$ tree grep11Lab/contract
+  grep11Lab/contract
+  ├── environment
+  │   └── rsyslog
+  └── workload
+      └── compose
 
-5 directories, 0 files
+  4 directories, 0 files
 </code></pre></div>
 </details>
 <p>Read about the directory structure and the purpose of each directory:</p>
@@ -1782,11 +1839,7 @@ contract
 </thead>
 <tbody>
 <tr>
-<td>contract</td>
-<td>Top-level directory used for holding contracts</td>
-</tr>
-<tr>
-<td>grep11Server</td>
+<td>grep11Lab/contract</td>
 <td>Top-level directory for the contract for the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server. Typically, the "workload deployer" signs the concatenation of the encrypted "environment" section that they create and the encrypted "workload" section that the "workload provider" creates.</td>
 </tr>
 <tr>
@@ -1807,7 +1860,7 @@ contract
 </tr>
 </tbody>
 </table>
-<p>A contract requires a <em>workload</em> section and an <em>environment</em> section, so for the lab they each get their own directory. Then the sections are packaged together, and signed, and the signature is added as the third section.  This final result- the contract-  will be stored in your <code>${HOME}/contract/grep11Server</code> directory.</p>
+<p>A contract requires a <em>workload</em> section and an <em>environment</em> section, so for the lab they each get their own directory. Then the sections are packaged together, and signed, and the signature is added as the third section.  This final result- the contract-  will be stored in your <code>${HOME}/grep11Lab/contract</code> directory.</p>
 <p>While creating the contract in this lab, you will be performing the role of <em>workload provider</em> and <em>workload deployer</em>. In most production scenarios these two roles would be performed by different persons or processes.  The following diagram shows at a high level how these two roles cooperate to form the contract:</p>
 <pre class="mermaid"><code>flowchart LR
   A["Workload provider
@@ -1895,7 +1948,7 @@ contract
 <p>Let's get started!</p>
 <h3 id="create-docker-compose-file">Create docker-compose file<a class="headerlink" href="#create-docker-compose-file" title="Permanent link">&para;</a></h3>
 <p>Switch to the directory that will hold the docker-compose file and the files referenced by the docker-compose file:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/contract/grep11Server/workload/compose
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/grep11Lab/contract/workload/compose
 </code></pre></div>
 <p>Create the docker-compose file:</p>
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; docker-compose.yml</span>
@@ -2033,8 +2086,10 @@ contract
 <ol>
 <li>
 <p>Create and change to a new directory which you will use for your self-signed <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server <abbr title="certification authority">CA</abbr>:</p>
-<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/GREP11CAwork<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/GREP11CAwork
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/grep11Lab/x509Work/GREP11Server/<span class="o">{</span>CA,server,clients<span class="o">}</span><span class="w"> </span><span class="se">\</span>
+<span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/grep11Lab/x509Work/GREP11Server/CA
 </code></pre></div>
+<p>(The above command also creates some other directories that you'll use later in the lab)</p>
 </li>
 <li>
 <p>Create an RSA private key for your self-signed <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server <abbr title="certification authority">CA</abbr>:</p>
@@ -2149,11 +2204,11 @@ contract
         d1:4d:7f:36
 </code></pre></div>
 </details>
-<p>Within your <code>${HOME}/GREP11CAWork</code> directory, you are a certification authority!</p>
+<p>Within your <code>${HOME}/grep11Lab/x509Work/GREP11Server/CA</code> directory, you are a certification authority!</p>
 </li>
 <li>
 <p>If you change to this directory, you will be soon be a customer of your <abbr title="certification authority">CA</abbr>:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/contract/grep11Server/workload/compose
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/grep11Lab/x509Work/GREP11Server/server
 </code></pre></div>
 </li>
 <li>
@@ -2218,14 +2273,14 @@ contract
 </code></pre></div>
 </li>
 <li>
-<p>In your current directory, <code>${HOME}/contract/grep11Server/workload/compose</code>, you are a "customer" of the <abbr title="certification authority">CA</abbr> you created in <code>${HOME}/GREP11CAwork</code>. 
+<p>In your current directory, <code>${HOME}/grep11Lab/x509Work/GREP11Server/server</code>, you are a "customer" of the <abbr title="certification authority">CA</abbr> you created in <code>${HOME}/grep11Lab/x509Work/GREP11Server/CA</code>. 
     Thus, "send" your <abbr title="certificate signing request">CSR</abbr> to your <abbr title="certification authority">CA</abbr>:</p>
-<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-ipv<span class="w"> </span>grep11-server.csr<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/GREP11CAwork/.
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-ipv<span class="w"> </span>grep11-server.csr<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/grep11Lab/x509Work/GREP11Server/CA/.
 </code></pre></div>
 </li>
 <li>
 <p>Put your <abbr title="certification authority">CA</abbr> hat back on and go to the <abbr title="certification authority">CA</abbr> directory:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/GREP11CAwork/
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/grep11Lab/x509Work/GREP11Server/CA/
 </code></pre></div>
 </li>
 <li>
@@ -2380,25 +2435,34 @@ Getting CA Private Key
 </li>
 <li>
 <p>"Send" the completed certificate to the "customer":</p>
-<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-ipv<span class="w"> </span>grep11-server.pem<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/contract/grep11Server/workload/compose/.
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-ipv<span class="w"> </span>grep11-server.pem<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/grep11Lab/x509Work/GREP11Server/server/.
 </code></pre></div>
 </li>
 <li>
 <p>Also send your public certificate to the customer as they will need it to verify certificates that are sent by their connection partners. (<abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> clients in this case).</p>
-<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-ipv<span class="w"> </span>grep11-ca.pem<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/contract/grep11Server/workload/compose/.
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-ipv<span class="w"> </span>grep11-ca.pem<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/grep11Lab/x509Work/GREP11Server/server/.
 </code></pre></div>
 </li>
 <li>
-<p>Switch directories again:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/contract/grep11Server/workload/compose
+<p>From the work you've done in this section, three files are referenced in the <abbr title="a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.">Docker Compose</abbr> file you created earlier-  the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server <abbr title="certification authority">CA</abbr>'s self-signed certificate, and the <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server's certificate and private key.  Copy them into the same directory that holds your <abbr title="a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.">Docker Compose</abbr> file:</p>
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-ipv<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/grep11Lab/x509Work/GREP11Server/server/<span class="o">{</span>grep11-ca.pem,grep11-server.pem,grep11-server.key<span class="o">}</span><span class="w"> </span><span class="se">\</span>
+<span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/grep11Lab/contract/workload/compose/.
 </code></pre></div>
+<details class="- example">
+<summary>Example output from cp command</summary>
+<div class="highlight"><pre><span></span><code>&#39;/home/student07/grep11Lab/x509Work/GREP11Server/server/grep11-ca.pem&#39; -&gt; &#39;/home/student07/grep11Lab/contract/workload/compose/./grep11-ca.pem&#39;
+&#39;/home/student07/grep11Lab/x509Work/GREP11Server/server/grep11-server.pem&#39; -&gt; &#39;/home/student07/grep11Lab/contract/workload/compose/./grep11-server.pem&#39;
+&#39;/home/student07/grep11Lab/x509Work/GREP11Server/server/grep11-server.key&#39; -&gt; &#39;/home/student07/grep11Lab/contract/workload/compose/./grep11-server.key&#39;
+</code></pre></div>
+</details>
 </li>
 </ol>
 <h3 id="create-x509-material-for-grep11-server-to-cena4see-server-communication">Create x509 material for <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server to <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> Server communication<a class="headerlink" href="#create-x509-material-for-grep11-server-to-cena4see-server-communication" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
 <p>Run this command to find the word <em>volumes</em> in the <strong>docker-compose.yml</strong> file and then print it and the next nine lines (<em>--after-context 9</em>):</p>
-<div class="highlight"><pre><span></span><code>grep<span class="w"> </span>--after-context<span class="w"> </span><span class="m">9</span><span class="w"> </span>volumes<span class="w"> </span>docker-compose.yml
+<div class="highlight"><pre><span></span><code>grep<span class="w"> </span>--after-context<span class="w"> </span><span class="m">9</span><span class="w"> </span>volumes<span class="w"> </span><span class="se">\</span>
+<span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/grep11Lab/contract/workload/compose/docker-compose.yml
 </code></pre></div>
 <details class="- example">
 <summary>Expected output</summary>
@@ -2423,8 +2487,15 @@ Getting CA Private Key
 </li>
 <li>
 <p>Now it is time to create or acquire the four files called for from <em>c16client.yaml</em>.</p>
-<p>There is only one <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> server that all of the lab students will use.  The instructors have set this up, and have created the "self-signed" <abbr title="certification authority">CA</abbr> that governs communication between the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> server and its clients (each student's <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server is a client of the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> server). You need to acquire the certificate of the <abbr title="certification authority">CA</abbr> the instructors created:</p>
-<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-ipv<span class="w"> </span>/data/lab/c16server-public/c16server-ca.pem<span class="w"> </span>.
+<p>There is only one <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> server that all of the lab students will use.  The instructors have set this up, and have created the both the "self-signed" <abbr title="certification authority">CA</abbr> that governs communication between the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> server and its clients (each student's <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server is a client of the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> server), and the certificate for the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> server itself. You need to acquire these certificates that the instructors created:</p>
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-ipv<span class="w"> </span>/data/lab/c16server-public/<span class="o">{</span>c16server-ca.pem,c16server-restricted-server.pem<span class="o">}</span><span class="w"> </span><span class="se">\</span>
+<span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/grep11Lab/contract/workload/compose/.
+</code></pre></div>
+</li>
+<li>
+<p>You just got the instructor-provided certificates, so now it's time to start the process of creating a certificate that will allow your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server to make calls to the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr>.  Start by creating another working directory and switching to it.</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/grep11Lab/x509Work/CENA4SEEClient<span class="w"> </span><span class="se">\</span>
+<span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/grep11Lab/x509Work/CENA4SEEClient
 </code></pre></div>
 </li>
 <li>
@@ -2583,15 +2654,17 @@ TNVxGDGmyklOsttcINyIfbyQGMUTURDEDYLl7xLNX8IFTcG+xtlS1g==
 <p>In the interests of transparency, this is the command the instructors will use to create your certificate (after setting the <em>${student}</em> environment variable appropriately).  Don't try to run this command as it won't work for you because you do not have access to the "self-signed" <abbr title="certification authority">CA</abbr>'s private key.  (You can try- if you succeed, you are either an excellent hacker, or the instructors are not excellent system administrators, or some combination thereof).</p>
 <div class="highlight"><pre><span></span><code><span class="c1">### for your information only</span>
 certtool<span class="w"> </span>--generate-certificate<span class="w"> </span><span class="se">\</span>
---load-request<span class="w"> </span>/home/<span class="si">${</span><span class="nv">student</span><span class="si">}</span>/contract/grep11Server/workload/compose/c16server-client.csr<span class="w"> </span><span class="se">\</span>
+--load-request<span class="w"> </span>/home/<span class="si">${</span><span class="nv">student</span><span class="si">}</span>/grep11Lab/x509Work/CENA4SEEClient/c16server-client.csr<span class="w"> </span><span class="se">\</span>
 --outfile<span class="w"> </span><span class="si">${</span><span class="nv">student</span><span class="si">}</span>-c16server-client.pem<span class="w"> </span><span class="se">\</span>
 --load-ca-certificate<span class="w"> </span>c16server-ca.pem<span class="w"> </span><span class="se">\</span>
 --load-ca-privkey<span class="w"> </span>c16server-ca.key<span class="w"> </span><span class="se">\</span>
 --template<span class="w"> </span>cert.cfg<span class="w"> </span>
 
-cp<span class="w"> </span>-ipv<span class="w"> </span><span class="si">${</span><span class="nv">student</span><span class="si">}</span>-c16server-client.pem<span class="w"> </span>/home/<span class="si">${</span><span class="nv">student</span><span class="si">}</span>/contract/grep11Server/workload/compose/c16server-client.pem
+cp<span class="w"> </span>-ipv<span class="w"> </span><span class="si">${</span><span class="nv">student</span><span class="si">}</span>-c16server-client.pem<span class="w"> </span><span class="se">\</span>
+/home/<span class="si">${</span><span class="nv">student</span><span class="si">}</span>/grep11Lab/x509Work/CENA4SEEClient/c16server-client.pem
 
-chown<span class="w"> </span><span class="si">${</span><span class="nv">student</span><span class="si">}</span>:hpvs_students<span class="w"> </span>/home/<span class="si">${</span><span class="nv">student</span><span class="si">}</span>/contract/grep11Server/workload/compose/c16server-client.pem<span class="w"> </span>
+chown<span class="w"> </span><span class="si">${</span><span class="nv">student</span><span class="si">}</span>:hpvs_students<span class="w"> </span><span class="se">\</span>
+/home/<span class="si">${</span><span class="nv">student</span><span class="si">}</span>/grep11Lab/x509Work/CENA4SEEClient/c16server-client.pem<span class="w"> </span>
 </code></pre></div>
 <p>This is also for information only- it is the contents of the configuration file <em>cert.cfg</em> that the instructors use in the above command:</p>
 <div class="highlight"><span class="filename">cert.cfg</span><pre><span></span><code><span class="c1"># Expiration days</span>
@@ -2746,20 +2819,43 @@ m+qMiNTeERPuFX7XPko3vBnejo6sPedVv4+NbA==
 </details>
 </li>
 <li>
-<p>Run this command to acquire the X509 certificate of the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> server:</p>
-<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-ipv<span class="w"> </span>/data/lab/c16server-public/c16server-restricted-server.pem<span class="w"> </span>.
+<p>You need to copy the <abbr title="This is an instructor-coined acronym for the Crypto Express Network API for Secure Execution Enclaves component of the Hyper Protect Virtual Servers product. You will not see CENA4SEE in official product documentation- official documentation often uses the mnemonic c16 to refer to the server provided by Crypto Expres Network API for Secure Execution Enclaves.  You can consider 'c16', 'c16 server'  and 'CENA4SEE' to be synonyms of each other for the purposes of this lab.">CENA4SEE</abbr> client certificate that the instructors just created for you, along with the certificate's matching private key, into the directory where your <abbr title="a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.">Docker Compose</abbr> file resides:</p>
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-ipv<span class="w"> </span><span class="se">\</span>
+<span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/grep11Lab/x509Work/CENA4SEEClient/c16server-client.<span class="o">{</span>pem,key<span class="o">}</span><span class="w"> </span><span class="se">\</span>
+<span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/grep11Lab/contract/workload/compose/.
 </code></pre></div>
 </li>
 <li>
-<p>Switch directories:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/contract/grep11Server/workload/.
+<p>You have now created or obtained all nine files that are referenced in the <abbr title="a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.">Docker Compose</abbr> file.  List this directory and you should see ten files- the <abbr title="a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.">Docker Compose</abbr> file itself and the nine files that it references in its <em>volumes</em> section:</p>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-l<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/grep11Lab/contract/workload/compose
+</code></pre></div>
+<details class="-">
+<summary>Expected output (dates of files will differ)</summary>
+<div class="highlight"><pre><span></span><code>total 44
+-rw-r--r-- 1 student07 hpvs_students  354 Dec  8 10:23 c16client.yaml
+-rw-r--r-- 1 student07 hpvs_students 1407 Sep 26 15:23 c16server-ca.pem
+-rw------- 1 student07 hpvs_students 8167 Dec  8 10:59 c16server-client.key
+-rw-r--r-- 1 student07 hpvs_students 1700 Dec  8 11:05 c16server-client.pem
+-rw-r--r-- 1 student07 hpvs_students 1424 Oct 31 16:09 c16server-restricted-server.pem
+-rw-r--r-- 1 student07 hpvs_students  721 Dec  8 10:23 docker-compose.yml
+-rw-r--r-- 1 student07 hpvs_students 1590 Dec  8 10:29 grep11-ca.pem
+-rw------- 1 student07 hpvs_students 1675 Dec  8 10:32 grep11-server.key
+-rw-r--r-- 1 student07 hpvs_students 1614 Dec  8 10:37 grep11-server.pem
+-rw-r--r-- 1 student07 hpvs_students 1591 Dec  8 10:23 grep11server.yaml
+</code></pre></div>
+</details>
+</li>
+</ol>
+<h3 id="create-a-convenience-script-for-creating-workload-section-of-contract">Create a convenience script for creating workload section of contract<a class="headerlink" href="#create-a-convenience-script-for-creating-workload-section-of-contract" title="Permanent link">&para;</a></h3>
+<p>You are almost finished with the workload section.  One thing to do is to add a convenience script to the workload directory.  This script is not supplied with the product, but is very useful in the creation of the contract.  </p>
+<ol>
+<li>
+<p>Switch to the directory for your <em>workload</em> section of the contract:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/grep11Lab/contract/workload
 </code></pre></div>
 </li>
 <li>
-<p>Time to add a convenience script</p>
-<p>You are almost finished with the workload section.  One thing to do is to add a convenience script to the workload directory.  This script is not
-supplied with the product, but is very useful in the creation of the contract.  Create it now and feel free to peruse it but do not run it now.
-It will be called later by another script.  Comments have been added to help explain what the script does. </p>
+<p>Run this command to create the convenience script. This command creates the script, but does not actually execute it.  That comes later in the lab. Comments have been added to help explain what the script does.</p>
 <div class="highlight"><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">cat &lt;&lt;-EOF &gt; flow.workload</span>
 <span class="l l-Scalar l-Scalar-Plain"># Create the workload section of the contract and add the contents in the workload.yaml file.</span>
 
@@ -2860,19 +2956,19 @@ order to have your <abbr title="This is an API that provides a set of EP11 calls
 </li>
 <li>
 <p>You will need the <abbr title="certification authority">CA</abbr> certificate of the <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> service that you created on your Ubuntu KVM guest which you can get via <em>scp</em>:</p>
-<div class="highlight"><pre><span></span><code>scp<span class="w"> </span>student@<span class="si">${</span><span class="nv">StudentGuestIP</span><span class="si">}</span>:rsyslogWork/ca.crt<span class="w"> </span>.
+<div class="highlight"><pre><span></span><code>scp<span class="w"> </span>student@<span class="si">${</span><span class="nv">StudentGuestIP</span><span class="si">}</span>:x509Work/rsyslog/CA/ca.crt<span class="w"> </span>.
 </code></pre></div>
 </li>
 <li>
 <p>Copy your <abbr title="rsyslog is a system utility providing support for message logging.  Support of both internet and unix domain sockets enables this utility to support both local and remote logging">rsyslog</abbr> client certificate from your working directory:</p>
-<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-ipv<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/rsyslogClientWork/client.crt<span class="w"> </span>.
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-ipv<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/grep11Lab/x509Work/rsyslogClient/grep11Lab-client.crt<span class="w"> </span>.
 </code></pre></div>
 </li>
 <li>
 <p>Convert the client certificate to PKCS#8 format</p>
 <p>The directory you just copied the client certificate from also has your private key that you need. However, the <abbr title="Hyper Protect Container Runtime- this is the name given to the Secure Execution-enabled qcow2 image that is provided with Hyper Protect Virtual Servers 2.1.x. The container runtime provided within this image launches the customer's workload as an OCI container, in accordance with the &quot;contract&quot; specified by the customer.">HPCR</abbr> image requires this to be in PKCS#8  (Public Key Cryptography Standard #8) format. Therefore you can't just copy it over- you need to convert it to PKCS#8 format:</p>
 <div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>pkcs8<span class="w"> </span>-topk8<span class="w"> </span>-inform<span class="w"> </span>PEM<span class="w"> </span>-outform<span class="w"> </span>PEM<span class="w"> </span>-nocrypt<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-in<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/rsyslogClientWork/client-key.pem<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-in<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/grep11Lab/x509Work/rsyslogClient/client-key.pem<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-out<span class="w"> </span>client-key-pkcs8.pem
 </code></pre></div>
 </li>
@@ -2891,7 +2987,7 @@ order to have your <abbr title="This is an API that provides a set of EP11 calls
 <span class="l l-Scalar l-Scalar-Plain"># set some file locations at the top of the file here</span>
 <span class="l l-Scalar l-Scalar-Plain">#</span>
 <span class="l l-Scalar l-Scalar-Plain">RSYSLOG_CA_CRT=&quot;./rsyslog/ca.crt&quot;</span>
-<span class="l l-Scalar l-Scalar-Plain">RSYSLOG_CLIENT_CRT=&quot;./rsyslog/client.crt&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">RSYSLOG_CLIENT_CRT=&quot;./rsyslog/grep11Lab-client.crt&quot;</span>
 <span class="l l-Scalar l-Scalar-Plain">RSYSLOG_CLIENT_KEY=&quot;./rsyslog/client-key-pkcs8.pem&quot;</span>
 
 <span class="l l-Scalar l-Scalar-Plain">#</span>
