@@ -39,33 +39,65 @@ This section starts where the last section left off- on your session with the RH
 
 <img src="../../../images/RHELHost.png" width="351" height="216" />
 
-Switch to your home directory:
-
-   ``` bash
-   cd ${HOME}
-   ```
-
 Create a directory structure for creating an HPVS 2.1.x contract:
 
    ``` bash
-   mkdir -p contract/paynow/{environment,workload/play}
+   mkdir -p ${HOME}/paynowLab/contract/{environment/rsyslog,workload/play}
    ```
 
 Now see the directory structure you just created:
 
    ``` bash
-   tree contract
+   cd ${HOME} && tree paynowLab/contract
    ```
 
-A contract requires a _workload_ section and an _environment_ section, and they each get their own directory. Then the sections are packaged together, and signed, and the signature is added as the third section.  This final result- the contract-  will be stored in your `${HOME}/contract/paynow` directory.
+???+ info "Expected output from tree command"
+      ```
+      	[student03@bczkvm(192.168.22.64) ~ [12:23:58] (0)]$ tree paynowLab/contract
+		paynowLab/contract
+		├── environment
+		│   └── rsyslog
+		└── workload
+			└── play
+
+		4 directories, 0 files
+      ```
+
+Read about the directory structure and the purpose of each directory:
+
+| Directory | Purpose |
+|---|---|
+| paynowLab/contract | Top-level directory for the contract for the PayNow application. Typically, the "workload deployer" signs the concatenation of the encrypted "environment" section that they create and the encrypted "workload" section that the "workload provider" creates. |
+| environment | Used by the "workload deployer" persona to hold an encrypted environment section of the contract |
+| rsyslog | Used to hold the artifacts needed to construct the logging subsection of the environment section |
+| workload | Used by the "workload provider" to hold an encrypted workload section of the contract |
+| play | Used to hold the pod descriptor file specifying the application image and supporting files |
+
+A contract requires a _workload_ section and an _environment_ section, and they each get their own directory. Then the sections are packaged together, and signed, and the signature is added as the third section.  This final result- the contract-  will be stored in your `${HOME}/paynowLab/contract` directory.
+
+While creating the contract in this lab, you will be performing the role of _workload provider_ and _workload deployer_. In most production scenarios these two roles would be performed by different persons or processes.  The following diagram shows at a high level how these two roles cooperate to form the contract:
+
+``` mermaid
+flowchart LR
+  A["Workload provider
+  creates
+  workload section"];
+  B["Workload deployer
+  creates
+  environment section"]
+  C["Workload provider
+  gives workload section
+  to Workload deployer"]
+  A --> C
+  D["Workload deployer
+  signs combined
+  environment and
+  workload sections"]
+  B --> D
+  C --> D
+```
 
 ## Create workload section of the contract
-
-Switch to your workload directory:
-
-``` bash
-cd ${HOME}/contract/paynow/workload
-```
 
 HPVS expects the contract to specify an OCI container specified by a _Docker Compose_ file or _pod descriptor(s)_.  A _Docker Compose_ file specifies an OCI image to run and other information necessary to configure the resulting container. A _pod descriptor_ works much the same way but Hyper Protect supports using one or more OCI images with a _pod descriptor_ as opposed to one image with a _Docker Compose_ file. Since this makes _pod descriptors_ more versatile, we will be using the new hotness, _pod descriptors_, in our lab as opposed to the the OG _Docker Compose_ file format. Having said that, both are currently valid. Your workload is the PayNow Demo. You created an OCI image for that on your standard KVM guest earlier in the lab.  In order to allow you to perform the lab without having to have an account at Docker or Quay.io or another image registry service, the instructors have created an OCI image that is hosted in Quay.io and is used for this section of the lab.  This OCI image was created in the exact same way you created the image on your standard KVM guest.  
 
@@ -74,7 +106,7 @@ HPVS expects the contract to specify an OCI container specified by a _Docker Com
 Switch to the directory that will hold your pod descriptors:
 
 ``` bash
-cd play
+cd ${HOME}/paynowLab/contract/workload/play
 ```
 
 !!! Info "Play time"
@@ -111,7 +143,7 @@ It will be called later by another script.  Comments have been added to help exp
 Switch directories:
 
    ``` bash
-   cd ${HOME}/contract/paynow/workload/
+   cd ${HOME}/paynowLab/contract/workload/
    ```
 
 Create the convenience script:
@@ -210,34 +242,33 @@ Create the convenience script:
 2. In the environment section of the contract you are going to specify the information in 
 order to have your HPVS KVM Guest log to the rsyslog service that you configured earlier in the lab.
 
-	1. Create a directory to gather some files you will need for this rsyslog configuration and change to it:
+	1. Switch to the directory from where you will gather some files you will need for this rsyslog configuration:
 
 		``` bash
-		mkdir -p rsyslog && cd rsyslog
-
+		cd rsyslog
 		```
 
 	2. You will need the CA certificate of the rsyslog service that you created on your Ubuntu KVM guest which you can get via _scp_:
 
 		``` bash
-		scp student@${StudentGuestIP}:rsyslogWork/ca.crt .
+		scp student@${StudentGuestIP}:x509Work/rsyslog/CA/ca.crt .
 
 		```
 
 	3. Copy your rsyslog client certificate from your working directory:
 
 		``` bash
-		cp -ipv ${HOME}/rsyslogClientWork/client.crt .
+		cp -ipv ${HOME}/paynowLab/x509Work/rsyslogClient/paynowLab-client.crt .
 
 		```
 
-	4. Convert the client certificate to PKCS#8 format
+	4. Convert the private key to PKCS#8 format
 	
 		The directory you just copied the client certificate from also has your private key that you need. However, the HPCR image requires this to be in PKCS#8  (Public Key Cryptography Standard #8) format. Therefore you can't just copy it over- you need to convert it to PKCS#8 format:
 
 		``` bash
 		openssl pkcs8 -topk8 -inform PEM -outform PEM -nocrypt \
-			-in ${HOME}/rsyslogClientWork/client-key.pem \
+			-in ${HOME}/paynowLab/x509Work/rsyslogClient/client-key.pem \
 			-out client-key-pkcs8.pem
 
 		```
@@ -261,7 +292,7 @@ order to have your HPVS KVM Guest log to the rsyslog service that you configured
 		# set some file locations at the top of the file here
 		#
 		RSYSLOG_CA_CRT="./rsyslog/ca.crt"
-		RSYSLOG_CLIENT_CRT="./rsyslog/client.crt"
+		RSYSLOG_CLIENT_CRT="./rsyslog/paynowLab-client.crt"
 		RSYSLOG_CLIENT_KEY="./rsyslog/client-key-pkcs8.pem"
 
 		#

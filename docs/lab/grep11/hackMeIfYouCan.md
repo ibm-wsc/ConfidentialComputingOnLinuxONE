@@ -57,7 +57,8 @@ Your output may differ, but when we tried this command while writing up the lab,
 Try to snoop on your Secure Execution-enabled Hyper Protect Virtual Servers 2.1.x guest that is running your GREP11 Server. See what happens:
 
    ``` bash
-   suffix=$(temp=$(whoami) && echo ${temp: -2}) ; sudo virsh dump grep11se${suffix} grep11se${suffix}.dump
+   suffix=$(temp=$(whoami) && echo ${temp: -2}) ; \
+   sudo virsh dump grep11se${suffix} grep11se${suffix}.dump
    ```
 
 ??? example "Shot down in flames, ain't it a shame"

@@ -1,4 +1,4 @@
-# Lab Overview
+# PayNow Lab Overview
 
 ## Lab environment topology
 

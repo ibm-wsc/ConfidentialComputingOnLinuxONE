@@ -187,7 +187,7 @@ We named your Ubuntu KVM guest the same as your userid on the RHEL host, which i
 
 ???- example "Example virsh dumpxml output [Click me]"
 
-      ```
+      ``` hl_lines="20"
       <domain type='kvm'>
         <name>student02</name>
         <uuid>531199d9-3671-424e-a9c9-74ff5ca3980b</uuid>

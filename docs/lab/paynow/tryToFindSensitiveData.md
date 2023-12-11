@@ -71,7 +71,9 @@ The script runs with root authority-  it lists processes, grabs the process ID f
 Set an environment variable for the process ID for your Ubuntu KVM guest.  The script you ran did this as well but it was only set for the duration of the script execution, so you need to do it again:
 
    ``` bash
-   myHPVSPaynowPid=$(ps aux | grep qemu | grep paynowse$(temp=$(whoami) && echo ${temp: -2}) | awk '{print $2}')
+   myHPVSPaynowPid=$(ps aux | grep qemu \
+   | grep paynowse$(temp=$(whoami) \
+   && echo ${temp: -2}) | awk '{print $2}')
    echo My HPVS Guest for PayNow demo process id is ${myHPVSPaynowPid}
    ```
 

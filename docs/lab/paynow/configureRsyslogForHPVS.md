@@ -35,7 +35,8 @@ Steps 1 through 5 will be performed on the RHEL host.
 1. Create a working directory and switch to it:
 
 	``` bash
-	mkdir ~/rsyslogClientWork && cd rsyslogClientWork
+	mkdir -p ~/paynowLab/x509Work/rsyslogClient \
+    && cd ~/paynowLab/x509Work/rsyslogClient
 	```
 
 2. Create a new private key:
@@ -77,7 +78,11 @@ Steps 1 through 5 will be performed on the RHEL host.
 4. Create a certificate signing request (CSR):
 
 	``` bash
-	openssl req -config client.cnf -key client-key.pem -new -out client-req.csr
+	openssl req \
+    -config client.cnf \
+    -key client-key.pem \
+    -new \
+    -out paynowLab-client-req.csr
 	```
 
 5. Now you are going to use a pattern that is similar to a real-world pattern:
@@ -85,20 +90,14 @@ Steps 1 through 5 will be performed on the RHEL host.
 	You are going to send your CSR, which you just created on the RHEL host, to the Rsyslog CA which you created on your Ubuntu KVM guest:
 
 	``` bash
-	scp client-req.csr student@${StudentGuestIP}:./rsyslogWork/.
+	scp paynowLab-client-req.csr \
+    student@${StudentGuestIP}:./x509Work/rsyslog/clients/.
 	```
-
-	As shown in the sample output below, you may need to type _yes_ since this is the first connection between the two systems, and you may have to enter a password that will be supplied by the instructors:
 
 	???- example "Example prompt and output when sending file"
 
 		```
-		The authenticity of host '172.16.0.42 (172.16.0.42)' can't be established.
-		ECDSA key fingerprint is SHA256:QBZpZnpbKTyu8uG3XmcB3z2STnArtTjeVPwBtQONSnc.
-		Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-		Warning: Permanently added '172.16.0.42' (ECDSA) to the list of known hosts.
-		student@172.16.0.42's password: 
-		client-req.csr                                                          100% 1691     9.2MB/s   00:00 
+		paynowLab-client-req.csr                                                          100% 1691     9.2MB/s   00:00 
 		```
 
 6. Switch to your terminal tab or window for your KVM Ubuntu guest.  Yes, this one:
@@ -112,19 +111,19 @@ Steps 1 through 5 will be performed on the RHEL host.
 8. You are now the CA registrar. Switch to your working directory and find the certificate signing request(CSR) that your customer (i.e., you) sent to you.  
 
 	``` bash
-	cd ${HOME}/rsyslogWork && ls -l client*.csr
+	cd ${HOME}/x509Work/rsyslog/clients && ls -l paynowLab-client*.csr
 	```
 
 	???- example "Make sure your csr is listed"
 
 		```
-		-rw-r--r-- 1 student student 1691 Feb 14 01:47 client-req.csr
+		-rw-r--r-- 1 student student 1691 Feb 14 01:47 paynowLab-client-req.csr
 		```
 
 9. You will do your due diligence and check the contents of the CSR:
 
 	``` bash
-	openssl req -noout -text -in client-req.csr
+	openssl req -noout -text -in paynowLab-client-req.csr
 	```
 
 	???- example "Example human-readable display of CSR"
@@ -216,9 +215,9 @@ Steps 1 through 5 will be performed on the RHEL host.
 		For the purposes of this lab assume you've done a background check on the customer, checked their reviews on Yelp and NextDoor, looked at their Facebook page and LinkedIn profiles.  You're a little concerned with some of those college fraternity party pictures on Facebook, but, what the heck, their check has cleared the bank, so you decide to go ahead and _mint_ the certificate.
 
 	``` bash
-	openssl x509 -req -in client-req.csr \
-          -days 365 -CA ca.crt -CAkey ca-key.pem \
-          -CAcreateserial -out client.crt
+	openssl x509 -req -in paynowLab-client-req.csr \
+          -days 365 -CA ../CA/ca.crt -CAkey ../CA/ca-key.pem \
+          -CAcreateserial -out paynowLab-client.crt
 	```
 
 	???- example "Output from creating the certificate"
@@ -231,7 +230,7 @@ Steps 1 through 5 will be performed on the RHEL host.
 11. Your quality control department asks you to display the certificate before sending it to the customer:
 
 	``` bash
-	openssl x509 -noout -text -in client.crt 
+	openssl x509 -noout -text -in paynowLab-client.crt 
 	```
 
 	???- example "It should look similar to this [click to expand]"
@@ -324,20 +323,13 @@ Steps 1 through 5 will be performed on the RHEL host.
 12. Now you send the certificate to the customer:
 
 	``` bash
-	scp client.crt ${StudentID}@192.168.22.64:./rsyslogClientWork/.
+	scp paynowLab-client.crt \
+    ${StudentID}@192.168.22.64:./paynowLab/x509Work/rsyslogClient/.
 	```
-
-	You may be prompted to type _yes_ before connecting and you may be asked to enter an instructor-provided password, as shown in the example below:
 
 	???- example "Example prompt and output from sending file"
 
 		```
-		The authenticity of host '192.168.22.64 (192.168.22.64)' can't be established.
-		ED25519 key fingerprint is SHA256:IJQFhwQnu7GDWPZmz+ICLIIld9FBLJcD+anb2Bu9y7w.
-		This key is not known by any other names
-		Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-		Warning: Permanently added '192.168.22.64' (ED25519) to the list of known hosts.
-		student02@192.168.22.64's password: 
 		client.crt                                                              100% 1907     9.7MB/s   00:00 
 		```
 
@@ -350,7 +342,7 @@ Steps 1 through 5 will be performed on the RHEL host.
 15. Switch to the directory where the CA "sent" your new certificate and list the files:
 
 	``` bash
-	cd ${HOME}/rsyslogClientWork/ && ls -ltr
+	cd ${HOME}/paynowLab/x509Work/rsyslogClient/ && ls -ltr
 	```
 
 	???- example "File listing shows your client certificate (client.crt)"
@@ -359,14 +351,14 @@ Steps 1 through 5 will be performed on the RHEL host.
 		total 16
 		-rw------- 1 student02 hpvs_students 3247 Feb 13 20:42 client-key.pem
 		-rw-r--r-- 1 student02 hpvs_students  192 Feb 13 20:44 client.cnf
-		-rw-r--r-- 1 student02 hpvs_students 1691 Feb 13 20:45 client-req.csr
-		-rw-r--r-- 1 student02 hpvs_students 1907 Feb 13 21:06 client.crt
+		-rw-r--r-- 1 student02 hpvs_students 1691 Feb 13 20:45 paynowLab-client-req.csr
+		-rw-r--r-- 1 student02 hpvs_students 1907 Feb 13 21:06 paynowLab-client.crt
 		```
 
 16. Display your certificate in human-readable form to make sure your CA did their job correctly:
 
 	``` bash
-	openssl x509 -noout -text -issuer -subject -in client.crt
+	openssl x509 -noout -text -issuer -subject -in paynowLab-client.crt
 	```
 
 	???- example "Example display of certificate"

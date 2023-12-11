@@ -4,7 +4,7 @@
 
 IBM provides the Secure Execution feature on z15 and newer generations of its IBM Z and LinuxONE servers.  Currently, that's z15 and LinuxONE III for the "z15" generation and z16 and LinuxONE Emperor 4 for the "z16" generation.
 
-You could create your own Secure Execution-enabled KVM guests and run a workload in it without Hyper Protect Virtual Servers 2.1.x.  However, there's non-trivial work involved in setting this up.  HPVS 2.1.x has done that hard work for you, and provided a KVM guest image that will run your application workload as an OCI-compliant (again, think "Docker" in the popular vernacular) container within the HPVS 2.1.x KVM guest.  There is still some work involved in setting up the contract that HPVS 2.1.x expects- but this is work closer to the _application_ or _business_ level. There is also added value in HPVS 2.1.x in areas such as:
+You could create your own Secure Execution-enabled KVM guests and run a workload in it without Hyper Protect Virtual Servers 2.1.x.  However, there's non-trivial work involved in setting this up.  HPVS 2.1.x has done that hard work for you, and provided a KVM guest image that will run your application workload as one or more OCI-compliant (again, think "Docker" in the popular vernacular) containers within the HPVS 2.1.x KVM guest.  There is still some work involved in setting up the contract that HPVS 2.1.x expects- but this is work closer to the _application_ or _business_ level. There is also added value in HPVS 2.1.x in areas such as:
 
 - [x] logging
 - [ ] attestation
@@ -42,40 +42,38 @@ This section starts where the last section left off- on your session with the RH
 This command will create the directory structure expected by the lab instructions:
 
 ``` bash
-mkdir -p ${HOME}/contract/grep11Server/{workload/compose,environment/rsyslog}
+mkdir -p ${HOME}/grep11Lab/contract/{workload/compose,environment/rsyslog}
 ```
 
 Run the `tree` command to see the directory hierarchy you just created:
 
 ``` bash
-cd ${HOME} && tree contract
+cd ${HOME} && tree grep11Lab/contract
 ```
 
 ???+ info "Expected output from tree command"
       ```
-      [student03@bczkvm(192.168.22.64) ~ [12:23:58] (0)]$ tree contract
-      contract
-      └── grep11Server
-          ├── environment
-          │   └── rsyslog
-          └── workload
-              └── compose
-      
-      5 directories, 0 files
+      	[student03@bczkvm(192.168.22.64) ~ [12:23:58] (0)]$ tree grep11Lab/contract
+		grep11Lab/contract
+		├── environment
+		│   └── rsyslog
+		└── workload
+			└── compose
+
+		4 directories, 0 files
       ```
 
 Read about the directory structure and the purpose of each directory:
 
 | Directory | Purpose |
 |---|---|
-| contract | Top-level directory used for holding contracts |
-| grep11Server | Top-level directory for the contract for the GREP11 Server. Typically, the "workload deployer" signs the concatenation of the encrypted "environment" section that they create and the encrypted "workload" section that the "workload provider" creates. |
+| grep11Lab/contract | Top-level directory for the contract for the GREP11 Server. Typically, the "workload deployer" signs the concatenation of the encrypted "environment" section that they create and the encrypted "workload" section that the "workload provider" creates. |
 | environment | Used by the "workload deployer" persona to hold an encrypted environment section of the contract |
 | rsyslog | Used to hold the artifacts needed to construct the logging subsection of the environment section |
 | workload | Used by the "workload provider" to hold an encrypted workload section of the contract |
 | compose | Used to hold the Docker compose file specifying the application image and supporting files |
 
-A contract requires a _workload_ section and an _environment_ section, so for the lab they each get their own directory. Then the sections are packaged together, and signed, and the signature is added as the third section.  This final result- the contract-  will be stored in your `${HOME}/contract/grep11Server` directory.
+A contract requires a _workload_ section and an _environment_ section, so for the lab they each get their own directory. Then the sections are packaged together, and signed, and the signature is added as the third section.  This final result- the contract-  will be stored in your `${HOME}/grep11Lab/contract` directory.
 
 While creating the contract in this lab, you will be performing the role of _workload provider_ and _workload deployer_. In most production scenarios these two roles would be performed by different persons or processes.  The following diagram shows at a high level how these two roles cooperate to form the contract:
 
@@ -154,7 +152,7 @@ Let's get started!
 Switch to the directory that will hold the docker-compose file and the files referenced by the docker-compose file:
 
 ``` bash
-cd ${HOME}/contract/grep11Server/workload/compose
+cd ${HOME}/grep11Lab/contract/workload/compose
 ```
 
 Create the docker-compose file:
@@ -311,8 +309,11 @@ In this section, you'll set up the material to enable the GREP11 Server's role a
 1. Create and change to a new directory which you will use for your self-signed GREP11 Server CA:
 
 	``` bash
-	mkdir -p ${HOME}/GREP11CAwork && cd ${HOME}/GREP11CAwork
+	mkdir -p ${HOME}/grep11Lab/x509Work/GREP11Server/{CA,server,clients} \
+	&& cd ${HOME}/grep11Lab/x509Work/GREP11Server/CA
 	```
+
+	(The above command also creates some other directories that you'll use later in the lab)
 
 2. Create an RSA private key for your self-signed GREP11 Server CA:
 
@@ -434,12 +435,12 @@ In this section, you'll set up the material to enable the GREP11 Server's role a
 				d1:4d:7f:36
 		```
 
-	Within your `${HOME}/GREP11CAWork` directory, you are a certification authority!
+	Within your `${HOME}/grep11Lab/x509Work/GREP11Server/CA` directory, you are a certification authority!
 
 6. If you change to this directory, you will be soon be a customer of your CA:
 
 	``` bash
-	cd ${HOME}/contract/grep11Server/workload/compose
+	cd ${HOME}/grep11Lab/x509Work/GREP11Server/server
 	```
 
 7. You want to create a certificate for your GREP11 Server to use for authenticating to GREP11 clients.  Start by creating an RSA private key:
@@ -506,17 +507,17 @@ In this section, you'll set up the material to enable the GREP11 Server's role a
 		-out grep11-server.csr -config serverCSR.cnf
 	```
 
-10. In your current directory, `${HOME}/contract/grep11Server/workload/compose`, you are a "customer" of the CA you created in `${HOME}/GREP11CAwork`. 
+10. In your current directory, `${HOME}/grep11Lab/x509Work/GREP11Server/server`, you are a "customer" of the CA you created in `${HOME}/grep11Lab/x509Work/GREP11Server/CA`. 
 	Thus, "send" your CSR to your CA:
 
 	``` bash
-	cp -ipv grep11-server.csr ${HOME}/GREP11CAwork/.
+	cp -ipv grep11-server.csr ${HOME}/grep11Lab/x509Work/GREP11Server/CA/.
 	```
 
 11. Put your CA hat back on and go to the CA directory:
 
 	``` bash
-	cd ${HOME}/GREP11CAwork/
+	cd ${HOME}/grep11Lab/x509Work/GREP11Server/CA/
 	```
 
 12. Create a configuration file to assist the creation of your GREP11 Server certificate:
@@ -679,27 +680,37 @@ In this section, you'll set up the material to enable the GREP11 Server's role a
 15. "Send" the completed certificate to the "customer":
 
 	``` bash
-	cp -ipv grep11-server.pem ${HOME}/contract/grep11Server/workload/compose/.
+	cp -ipv grep11-server.pem ${HOME}/grep11Lab/x509Work/GREP11Server/server/.
 	``` 
 
 16. Also send your public certificate to the customer as they will need it to verify certificates that are sent by their connection partners. (GREP11 clients in this case).
 
 	``` bash
-	cp -ipv grep11-ca.pem ${HOME}/contract/grep11Server/workload/compose/.
+	cp -ipv grep11-ca.pem ${HOME}/grep11Lab/x509Work/GREP11Server/server/.
 	```
 
-17. Switch directories again:
+17. From the work you've done in this section, three files are referenced in the Docker Compose file you created earlier-  the GREP11 Server CA's self-signed certificate, and the GREP11 Server's certificate and private key.  Copy them into the same directory that holds your Docker Compose file:
 
 	``` bash
-	cd ${HOME}/contract/grep11Server/workload/compose
+	cp -ipv ${HOME}/grep11Lab/x509Work/GREP11Server/server/{grep11-ca.pem,grep11-server.pem,grep11-server.key} \
+	${HOME}/grep11Lab/contract/workload/compose/.
 	```
+
+	???- example "Example output from cp command"
+
+		```
+		'/home/student07/grep11Lab/x509Work/GREP11Server/server/grep11-ca.pem' -> '/home/student07/grep11Lab/contract/workload/compose/./grep11-ca.pem'
+		'/home/student07/grep11Lab/x509Work/GREP11Server/server/grep11-server.pem' -> '/home/student07/grep11Lab/contract/workload/compose/./grep11-server.pem'
+		'/home/student07/grep11Lab/x509Work/GREP11Server/server/grep11-server.key' -> '/home/student07/grep11Lab/contract/workload/compose/./grep11-server.key'
+		```
 
 ### Create x509 material for GREP11 Server to CENA4SEE Server communication
 
 1. Run this command to find the word _volumes_ in the **docker-compose.yml** file and then print it and the next nine lines (_--after-context 9_):
 
 	``` bash
-	grep --after-context 9 volumes docker-compose.yml
+	grep --after-context 9 volumes \
+	${HOME}/grep11Lab/contract/workload/compose/docker-compose.yml
 	```
 
 	???- example "Expected output"
@@ -726,10 +737,18 @@ In this section, you'll set up the material to enable the GREP11 Server's role a
 2. Now it is time to create or acquire the four files called for from _c16client.yaml_.
 
 
-	There is only one CENA4SEE server that all of the lab students will use.  The instructors have set this up, and have created the "self-signed" CA that governs communication between the CENA4SEE server and its clients (each student's GREP11 Server is a client of the CENA4SEE server). You need to acquire the certificate of the CA the instructors created:
+	There is only one CENA4SEE server that all of the lab students will use.  The instructors have set this up, and have created the both the "self-signed" CA that governs communication between the CENA4SEE server and its clients (each student's GREP11 Server is a client of the CENA4SEE server), and the certificate for the CENA4SEE server itself. You need to acquire these certificates that the instructors created:
 
 	```bash
-	cp -ipv /data/lab/c16server-public/c16server-ca.pem .
+	cp -ipv /data/lab/c16server-public/{c16server-ca.pem,c16server-restricted-server.pem} \
+	${HOME}/grep11Lab/contract/workload/compose/.
+	```
+
+3. You just got the instructor-provided certificates, so now it's time to start the process of creating a certificate that will allow your GREP11 Server to make calls to the CENA4SEE.  Start by creating another working directory and switching to it.
+
+	``` bash
+	mkdir -p ${HOME}/grep11Lab/x509Work/CENA4SEEClient \
+	&& cd ${HOME}/grep11Lab/x509Work/CENA4SEEClient
 	```
 
 3. Create an RSA private key using _certtool_:
@@ -903,15 +922,17 @@ In this section, you'll set up the material to enable the GREP11 Server's role a
 		``` bash
 		### for your information only
 		certtool --generate-certificate \
-		--load-request /home/${student}/contract/grep11Server/workload/compose/c16server-client.csr \
+		--load-request /home/${student}/grep11Lab/x509Work/CENA4SEEClient/c16server-client.csr \
 		--outfile ${student}-c16server-client.pem \
 		--load-ca-certificate c16server-ca.pem \
 		--load-ca-privkey c16server-ca.key \
 		--template cert.cfg 
 
-		cp -ipv ${student}-c16server-client.pem /home/${student}/contract/grep11Server/workload/compose/c16server-client.pem
+		cp -ipv ${student}-c16server-client.pem \
+		/home/${student}/grep11Lab/x509Work/CENA4SEEClient/c16server-client.pem
 
-		chown ${student}:hpvs_students /home/${student}/contract/grep11Server/workload/compose/c16server-client.pem 
+		chown ${student}:hpvs_students \
+		/home/${student}/grep11Lab/x509Work/CENA4SEEClient/c16server-client.pem 
 		```
 
 		This is also for information only- it is the contents of the configuration file _cert.cfg_ that the instructors use in the above command:
@@ -1071,24 +1092,48 @@ In this section, you'll set up the material to enable the GREP11 Server's role a
 
 		```
 
-8. Run this command to acquire the X509 certificate of the CENA4SEE server:
+
+9. You need to copy the CENA4SEE client certificate that the instructors just created for you, along with the certificate's matching private key, into the directory where your Docker Compose file resides:
 
     ``` bash
-    cp -ipv /data/lab/c16server-public/c16server-restricted-server.pem .
-    ```
+	cp -ipv \
+	${HOME}/grep11Lab/x509Work/CENA4SEEClient/c16server-client.{pem,key} \
+	${HOME}/grep11Lab/contract/workload/compose/.
+	```
 
-9. Switch directories:
+10. You have now created or obtained all nine files that are referenced in the Docker Compose file.  List this directory and you should see ten files- the Docker Compose file itself and the nine files that it references in its *volumes* section:
 
-    ``` bash
-    cd ${HOME}/contract/grep11Server/workload/.
-    ```
+	``` bash
+	ls -l ${HOME}/grep11Lab/contract/workload/compose
+	```
 
-10. Time to add a convenience script
+	???- "Expected output (dates of files will differ)"
 
-	You are almost finished with the workload section.  One thing to do is to add a convenience script to the workload directory.  This script is not
-supplied with the product, but is very useful in the creation of the contract.  Create it now and feel free to peruse it but do not run it now.
-It will be called later by another script.  Comments have been added to help explain what the script does. 
+		```
+		total 44
+		-rw-r--r-- 1 student07 hpvs_students  354 Dec  8 10:23 c16client.yaml
+		-rw-r--r-- 1 student07 hpvs_students 1407 Sep 26 15:23 c16server-ca.pem
+		-rw------- 1 student07 hpvs_students 8167 Dec  8 10:59 c16server-client.key
+		-rw-r--r-- 1 student07 hpvs_students 1700 Dec  8 11:05 c16server-client.pem
+		-rw-r--r-- 1 student07 hpvs_students 1424 Oct 31 16:09 c16server-restricted-server.pem
+		-rw-r--r-- 1 student07 hpvs_students  721 Dec  8 10:23 docker-compose.yml
+		-rw-r--r-- 1 student07 hpvs_students 1590 Dec  8 10:29 grep11-ca.pem
+		-rw------- 1 student07 hpvs_students 1675 Dec  8 10:32 grep11-server.key
+		-rw-r--r-- 1 student07 hpvs_students 1614 Dec  8 10:37 grep11-server.pem
+		-rw-r--r-- 1 student07 hpvs_students 1591 Dec  8 10:23 grep11server.yaml
+		```
 
+### Create a convenience script for creating workload section of contract
+
+You are almost finished with the workload section.  One thing to do is to add a convenience script to the workload directory.  This script is not supplied with the product, but is very useful in the creation of the contract.  
+
+1. Switch to the directory for your _workload_ section of the contract:
+
+	``` bash
+	cd ${HOME}/grep11Lab/contract/workload
+	```
+	
+2. Run this command to create the convenience script. This command creates the script, but does not actually execute it.  That comes later in the lab. Comments have been added to help explain what the script does.
 
 	``` yaml
 	cat <<-EOF > flow.workload
@@ -1194,24 +1239,24 @@ order to have your GREP11 Server log to the rsyslog that you configured earlier 
 	2. You will need the CA certificate of the rsyslog service that you created on your Ubuntu KVM guest which you can get via _scp_:
 
 		``` bash
-		scp student@${StudentGuestIP}:rsyslogWork/ca.crt .
+		scp student@${StudentGuestIP}:x509Work/rsyslog/CA/ca.crt .
 
 		```
 
 	3. Copy your rsyslog client certificate from your working directory:
 
 		``` bash
-		cp -ipv ${HOME}/rsyslogClientWork/client.crt .
+		cp -ipv ${HOME}/grep11Lab/x509Work/rsyslogClient/grep11Lab-client.crt .
 
 		```
 
-	4. Convert the client certificate to PKCS#8 format
+	4. Convert the private key to PKCS#8 format
 	
 		The directory you just copied the client certificate from also has your private key that you need. However, the HPCR image requires this to be in PKCS#8  (Public Key Cryptography Standard #8) format. Therefore you can't just copy it over- you need to convert it to PKCS#8 format:
 
 		``` bash
 		openssl pkcs8 -topk8 -inform PEM -outform PEM -nocrypt \
-			-in ${HOME}/rsyslogClientWork/client-key.pem \
+			-in ${HOME}/grep11Lab/x509Work/rsyslogClient/client-key.pem \
 			-out client-key-pkcs8.pem
 
 		```
@@ -1235,7 +1280,7 @@ order to have your GREP11 Server log to the rsyslog that you configured earlier 
 		# set some file locations at the top of the file here
 		#
 		RSYSLOG_CA_CRT="./rsyslog/ca.crt"
-		RSYSLOG_CLIENT_CRT="./rsyslog/client.crt"
+		RSYSLOG_CLIENT_CRT="./rsyslog/grep11Lab-client.crt"
 		RSYSLOG_CLIENT_KEY="./rsyslog/client-key-pkcs8.pem"
 
 		#

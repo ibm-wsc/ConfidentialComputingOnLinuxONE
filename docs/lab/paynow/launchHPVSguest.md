@@ -23,7 +23,7 @@ You aren't going to change anything here since it's already been defined for you
 
 ???- example "Definition of HPVS KVM guest for PayNow Demo"
 
-      ```
+      ``` hl_lines="25 32"
       <domain type='kvm'>
         <name>paynowse04</name>
         <uuid>2315f8ea-a340-4506-abbf-ae04cf7ea868</uuid>
@@ -91,7 +91,7 @@ Start your HPVS Guest for the PayNow Demo and attach to its console.  Watch the 
       Domain 'paynowse02' started
       Connected to domain 'paynowse02'
       Escape character is ^] (Ctrl + ])
-      # HPL11 build:23.8.5 enabler:23.6.0
+      # HPL11 build:23.11.0 enabler:23.6.0
       # Tue Sep  5 22:22:00 UTC 2023
       # Machine Type/Plant/Serial: 8561/02/31A38
       # create new root partition...
@@ -104,11 +104,11 @@ Start your HPVS Guest for the PayNow Demo and attach to its console.  Watch the 
       # set hostname...
       # finish root disk setup...
       # Tue Sep  5 22:22:27 UTC 2023
-      # HPL11 build:23.8.5 enabler:23.6.0
+      # HPL11 build:23.11.0 enabler:23.6.0
       # HPL11099I: bootloader end
       hpcr-dnslookup[890]: HPL14000I: Network connectivity check completed successfully.
       hpcr-logging[1038]: Configuring logging ...
-      hpcr-logging[1039]: Version [1.1.145]
+      hpcr-logging[1039]: Version [1.1.147]
       hpcr-logging[1039]: Configuring logging, input [/var/hyperprotect/user-data.decrypted] ...
       hpcr-logging[1039]: HPL01010I: Logging has been setup successfully.
       hpcr-logging[1038]: Logging has been configured
@@ -136,7 +136,7 @@ There are a lot of messages logged, a veritable trove of treasure for the curiou
 
 ???- example "Log messages in rsyslog from starting your HPVS KVM guest for the PayNow demo"
 
-      ```
+      ``` hl_lines="989-992"
       Sep 05 22:22:29 ubuntu2204 vpcnode[26262]: authentication probe
       Sep 05 22:22:30 ubuntu2204 kernel[26262]:  Linux version 5.15.0-79-generic (buildd@bos02-s390x-016) (gcc (Ubuntu 11.3.0-1ubuntu1~22.04.1) 11.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #86-Ubuntu SMP Mon Jul 10 16:19:54 UTC 2023 (Ubuntu 5.15.0-79.86-generic 5.15.111)
       Sep 05 22:22:30 ubuntu2204 kernel[26262]:  setup: Linux is running under KVM in 64-bit mode

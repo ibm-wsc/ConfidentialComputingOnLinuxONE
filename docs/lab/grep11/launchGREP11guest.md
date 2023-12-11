@@ -91,7 +91,7 @@ Start your GREP11 Server and attach to its console.  Watch the messages carefull
       Domain 'grep11se02' started
       Connected to domain 'grep11se02'
       Escape character is ^] (Ctrl + ])
-      # HPL11 build:23.8.5 enabler:23.6.0
+      # HPL11 build:23.11.0 enabler:23.6.0
       # Tue Sep  5 21:07:01 UTC 2023
       # Machine Type/Plant/Serial: 8561/02/31A38
       # create new root partition...
@@ -104,11 +104,11 @@ Start your GREP11 Server and attach to its console.  Watch the messages carefull
       # set hostname...
       # finish root disk setup...
       # Tue Sep  5 21:07:29 UTC 2023
-      # HPL11 build:23.8.5 enabler:23.6.0
+      # HPL11 build:23.11.0 enabler:23.6.0
       # HPL11099I: bootloader end
       hpcr-dnslookup[729]: HPL14000I: Network connectivity check completed successfully.
       hpcr-logging[871]: Configuring logging ...
-      hpcr-logging[872]: Version [1.1.145]
+      hpcr-logging[872]: Version [1.1.147]
       hpcr-logging[872]: Configuring logging, input [/var/hyperprotect/user-data.decrypted] ...
       hpcr-logging[872]: HPL01010I: Logging has been setup successfully.
       hpcr-logging[871]: Logging has been configured
