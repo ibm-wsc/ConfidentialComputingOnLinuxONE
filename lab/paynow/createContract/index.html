@@ -1965,7 +1965,7 @@ order to have your HPVS KVM Guest log to the <abbr title="rsyslog is a system ut
 </code></pre></div>
 </li>
 <li>
-<p>Convert the client certificate to PKCS#8 format</p>
+<p>Convert the private key to PKCS#8 format</p>
 <p>The directory you just copied the client certificate from also has your private key that you need. However, the <abbr title="Hyper Protect Container Runtime- this is the name given to the Secure Execution-enabled qcow2 image that is provided with Hyper Protect Virtual Servers 2.1.x. The container runtime provided within this image launches the customer's workload as an OCI container, in accordance with the &quot;contract&quot; specified by the customer.">HPCR</abbr> image requires this to be in PKCS#8  (Public Key Cryptography Standard #8) format. Therefore you can't just copy it over- you need to convert it to PKCS#8 format:</p>
 <div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>pkcs8<span class="w"> </span>-topk8<span class="w"> </span>-inform<span class="w"> </span>PEM<span class="w"> </span>-outform<span class="w"> </span>PEM<span class="w"> </span>-nocrypt<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-in<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/paynowLab/x509Work/rsyslogClient/client-key.pem<span class="w"> </span><span class="se">\</span>
@@ -2238,7 +2238,7 @@ Max brk space used 0
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 30, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 11, 2023</span>
       
         <br>
         Created:

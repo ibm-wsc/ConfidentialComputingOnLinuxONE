@@ -3248,7 +3248,7 @@ subject=C = US, O = IBM WSC IBM Z and LinuxONE, CN = SE-enabled HPVS 2.1.x Grep1
 <p>Click the <em>Next</em> link at the bottom of the page to continue to the next part of the lab, where you will create the <em>contract</em> that HPVS 2.1.x expects, so that you can run your <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server.</p></section><section class="print-page" id="lab-grep11-creategrep11contract"><h1 id="lab-grep11-creategrep11contract-create-contract-for-grep11-server">Create Contract for <abbr title="This is an API that provides a set of EP11 calls over the gRPC protocol.  EP11 itself stands for 'Enterprise PKCS#11' which is an IBM-proprietary interface that is similar to the PKCS#11 standard.">GREP11</abbr> Server<a class="headerlink" href="#lab-grep11-creategrep11contract-create-contract-for-grep11-server" title="Permanent link">&para;</a></h1>
 <h2 id="lab-grep11-creategrep11contract-overview-of-this-section">Overview of this section<a class="headerlink" href="#lab-grep11-creategrep11contract-overview-of-this-section" title="Permanent link">&para;</a></h2>
 <p>IBM provides the <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr> feature on z15 and newer generations of its IBM Z and LinuxONE servers.  Currently, that's z15 and LinuxONE III for the "z15" generation and z16 and LinuxONE Emperor 4 for the "z16" generation.</p>
-<p>You could create your own <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-enabled KVM guests and run a workload in it without Hyper Protect Virtual Servers 2.1.x.  However, there's non-trivial work involved in setting this up.  HPVS 2.1.x has done that hard work for you, and provided a KVM guest image that will run your application workload as an <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr>-compliant (again, think "Docker" in the popular vernacular) <abbr title="a running instance of an OCI image.">container</abbr> within the HPVS 2.1.x KVM guest.  There is still some work involved in setting up the contract that HPVS 2.1.x expects- but this is work closer to the <em>application</em> or <em>business</em> level. There is also added value in HPVS 2.1.x in areas such as:</p>
+<p>You could create your own <abbr title="IBM® Secure Execution for Linux® is a z/Architecture® security technology that is introduced with IBM z15™ and LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment. In particular, no hardware administrator, no KVM code, and no KVM administrator can access the data in a guest that was started as an IBM Secure Execution guest.">Secure Execution</abbr>-enabled KVM guests and run a workload in it without Hyper Protect Virtual Servers 2.1.x.  However, there's non-trivial work involved in setting this up.  HPVS 2.1.x has done that hard work for you, and provided a KVM guest image that will run your application workload as one or more <abbr title="Open Container Initiative: an open governance structure for the express purpose of creating open industry standards around container formats and runtimes. There are 3 specifications: the Runtime Specification (runtime-spec), the Image Specification (image-spec) and the Distribution Specification (distribution-spec)">OCI</abbr>-compliant (again, think "Docker" in the popular vernacular) containers within the HPVS 2.1.x KVM guest.  There is still some work involved in setting up the contract that HPVS 2.1.x expects- but this is work closer to the <em>application</em> or <em>business</em> level. There is also added value in HPVS 2.1.x in areas such as:</p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> logging</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> attestation</li>
@@ -4432,7 +4432,7 @@ order to have your <abbr title="This is an API that provides a set of EP11 calls
 </code></pre></div>
 </li>
 <li>
-<p>Convert the client certificate to PKCS#8 format</p>
+<p>Convert the private key to PKCS#8 format</p>
 <p>The directory you just copied the client certificate from also has your private key that you need. However, the <abbr title="Hyper Protect Container Runtime- this is the name given to the Secure Execution-enabled qcow2 image that is provided with Hyper Protect Virtual Servers 2.1.x. The container runtime provided within this image launches the customer's workload as an OCI container, in accordance with the &quot;contract&quot; specified by the customer.">HPCR</abbr> image requires this to be in PKCS#8  (Public Key Cryptography Standard #8) format. Therefore you can't just copy it over- you need to convert it to PKCS#8 format:</p>
 <div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>pkcs8<span class="w"> </span>-topk8<span class="w"> </span>-inform<span class="w"> </span>PEM<span class="w"> </span>-outform<span class="w"> </span>PEM<span class="w"> </span>-nocrypt<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-in<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/grep11Lab/x509Work/rsyslogClient/client-key.pem<span class="w"> </span><span class="se">\</span>
@@ -4774,7 +4774,7 @@ But until then, start from this familiar window or tab:</p>
 <div class="highlight"><pre><span></span><code>Domain &#39;grep11se02&#39; started
 Connected to domain &#39;grep11se02&#39;
 Escape character is ^] (Ctrl + ])
-# HPL11 build:23.8.5 enabler:23.6.0
+# HPL11 build:23.11.0 enabler:23.6.0
 # Tue Sep  5 21:07:01 UTC 2023
 # Machine Type/Plant/Serial: 8561/02/31A38
 # create new root partition...
@@ -4787,11 +4787,11 @@ Escape character is ^] (Ctrl + ])
 # set hostname...
 # finish root disk setup...
 # Tue Sep  5 21:07:29 UTC 2023
-# HPL11 build:23.8.5 enabler:23.6.0
+# HPL11 build:23.11.0 enabler:23.6.0
 # HPL11099I: bootloader end
 hpcr-dnslookup[729]: HPL14000I: Network connectivity check completed successfully.
 hpcr-logging[871]: Configuring logging ...
-hpcr-logging[872]: Version [1.1.145]
+hpcr-logging[872]: Version [1.1.147]
 hpcr-logging[872]: Configuring logging, input [/var/hyperprotect/user-data.decrypted] ...
 hpcr-logging[872]: HPL01010I: Logging has been setup successfully.
 hpcr-logging[871]: Logging has been configured
@@ -8640,7 +8640,7 @@ order to have your HPVS KVM Guest log to the <abbr title="rsyslog is a system ut
 </code></pre></div>
 </li>
 <li>
-<p>Convert the client certificate to PKCS#8 format</p>
+<p>Convert the private key to PKCS#8 format</p>
 <p>The directory you just copied the client certificate from also has your private key that you need. However, the <abbr title="Hyper Protect Container Runtime- this is the name given to the Secure Execution-enabled qcow2 image that is provided with Hyper Protect Virtual Servers 2.1.x. The container runtime provided within this image launches the customer's workload as an OCI container, in accordance with the &quot;contract&quot; specified by the customer.">HPCR</abbr> image requires this to be in PKCS#8  (Public Key Cryptography Standard #8) format. Therefore you can't just copy it over- you need to convert it to PKCS#8 format:</p>
 <div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>pkcs8<span class="w"> </span>-topk8<span class="w"> </span>-inform<span class="w"> </span>PEM<span class="w"> </span>-outform<span class="w"> </span>PEM<span class="w"> </span>-nocrypt<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-in<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/paynowLab/x509Work/rsyslogClient/client-key.pem<span class="w"> </span><span class="se">\</span>
@@ -8981,7 +8981,7 @@ Max brk space used 0
 <div class="highlight"><pre><span></span><code>Domain &#39;paynowse02&#39; started
 Connected to domain &#39;paynowse02&#39;
 Escape character is ^] (Ctrl + ])
-# HPL11 build:23.8.5 enabler:23.6.0
+# HPL11 build:23.11.0 enabler:23.6.0
 # Tue Sep  5 22:22:00 UTC 2023
 # Machine Type/Plant/Serial: 8561/02/31A38
 # create new root partition...
@@ -8994,11 +8994,11 @@ Escape character is ^] (Ctrl + ])
 # set hostname...
 # finish root disk setup...
 # Tue Sep  5 22:22:27 UTC 2023
-# HPL11 build:23.8.5 enabler:23.6.0
+# HPL11 build:23.11.0 enabler:23.6.0
 # HPL11099I: bootloader end
 hpcr-dnslookup[890]: HPL14000I: Network connectivity check completed successfully.
 hpcr-logging[1038]: Configuring logging ...
-hpcr-logging[1039]: Version [1.1.145]
+hpcr-logging[1039]: Version [1.1.147]
 hpcr-logging[1039]: Configuring logging, input [/var/hyperprotect/user-data.decrypted] ...
 hpcr-logging[1039]: HPL01010I: Logging has been setup successfully.
 hpcr-logging[1038]: Logging has been configured
