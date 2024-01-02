@@ -1166,9 +1166,9 @@ You are almost finished with the workload section.  One thing to do is to add a 
 
 	#
 	# This is the encryption certificate for Hyper Protect Container Runtime and it is
-	# provided with the Hyper Protect Virtual Servers v2.1.7 product
+	# provided with the Hyper Protect Virtual Servers v2.1.7.1 product
 	#
-	CONTRACT_KEY=/data/lab/hpvs217Certs/ibm-hyper-protect-container-runtime-23.11.0-encrypt.crt
+	CONTRACT_KEY=/data/lab/hpvs2171Certs/ibm-hyper-protect-container-runtime-23.11.1-encrypt.crt
 
 	#
 	# This variable holds a random password:
@@ -1340,9 +1340,9 @@ order to have your GREP11 Server log to the rsyslog that you configured earlier 
 		cat ./pubSigningKey.yaml >> \${ENV_PLAIN}
 
 		# This is the encryption certificate for Hyper Protect Container Runtime and it is
-		# provided with the Hyper Protect Virtual Servers v2.1.7 product
+		# provided with the Hyper Protect Virtual Servers v2.1.7.1 product
 		#
-		CONTRACT_KEY=/data/lab/hpvs217Certs/ibm-hyper-protect-container-runtime-23.11.0-encrypt.crt
+		CONTRACT_KEY=/data/lab/hpvs2171Certs/ibm-hyper-protect-container-runtime-23.11.1-encrypt.crt
 
 		#
 		# This variable holds a random password:

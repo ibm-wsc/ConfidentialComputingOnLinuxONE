@@ -46,7 +46,7 @@ You aren't going to change anything here since it's already been defined for you
           <emulator>/usr/libexec/qemu-kvm</emulator>
           <disk type='file' device='disk'>
             <driver name='qemu' type='qcow2' iommu='on'/>
-            <source file='/var/lib/libvirt/images/hpcr/student02/ibm-hyper-protect-container-runtime-23.11.0.qcow2'/>
+            <source file='/var/lib/libvirt/images/hpcr/student02/ibm-hyper-protect-container-runtime-23.11.1.qcow2'/>
             <backingStore/>
             <target dev='vda' bus='virtio'/>
             <address type='ccw' cssid='0xfe' ssid='0x0' devno='0x0000'/>
