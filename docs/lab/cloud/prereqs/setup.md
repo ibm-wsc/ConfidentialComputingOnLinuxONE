@@ -118,7 +118,7 @@ fi
 
 This command differs based on whether or not you are using bash or zsh.  If you are unsure of which shell you are using, enter the command `echo $0` from your shell.
 
-1. Set an environment variable for your IBM Log Analysis ingestion key. You saved this somewhere safe earlier in the lab.  If you lost track of it, revisit the section [Create an IBM Log Analysis instance](../ibmlog/#retrieve-your-ibm-log-analysis-instances-ingestion-key){target="_blank" rel="noopener"} for the steps to retrieve it. Enter the command appropriate to your shell and you will be prompted to enter your IBM Log Analysis Ingestion Key.
+1. Set an environment variable for your IBM Log Analysis ingestion key. You saved this somewhere safe earlier in the lab.  If you lost track of it, revisit the section [Create an IBM Log Analysis instance](ibmlog.md/#retrieve-your-ibm-log-analysis-instances-ingestion-key){target="_blank" rel="noopener"} for the steps to retrieve it. Enter the command appropriate to your shell and you will be prompted to enter your IBM Log Analysis Ingestion Key.
 
 	=== "bash"
 
@@ -136,7 +136,7 @@ This command differs based on whether or not you are using bash or zsh.  If you 
 
 This command differs based on whether or not you are using bash or zsh.  If you are unsure of which shell you are using, enter the command `echo $0` from your shell.
 
-1. Set an environment variable for the hostname of your IBM Log Analysis instance. You saved this somewhere safe earlier in the lab. If you lost track of it, revisit the section [Create an IBM Log Analysis instance](../ibmlog/#retrieve-your-ibm-log-analysis-instances-host-name){target="_blank" rel="noopener"} for the steps to retrieve it. Enter the command appropriate for your shell and you will be prompted to enter the hostname of your IBM Log Analysis instance.
+1. Set an environment variable for the hostname of your IBM Log Analysis instance. You saved this somewhere safe earlier in the lab. If you lost track of it, revisit the section [Create an IBM Log Analysis instance](ibmlog.md/#retrieve-your-ibm-log-analysis-instances-host-name){target="_blank" rel="noopener"} for the steps to retrieve it. Enter the command appropriate for your shell and you will be prompted to enter the hostname of your IBM Log Analysis instance.
     
 	=== "bash"
 

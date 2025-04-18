@@ -59,7 +59,7 @@ If your laptop or workstation is not running Linux or MacOS there are some alter
 
 * If you have a Windows system you can try to use the [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/){target="_blank" rel="noopener"} or you can create a Linux server elsewhere. 
 
-* We provide instructions on how to create a Linux server using *Hyper Protect Virtual Server for Classic* in a [subsequent section](./prepsystem){target="_blank" rel="noopener"} of the lab. This is a server running on LinuxONE servers in IBM Cloud and uses IBM's earlier, Secure Service Container-based implementation of Confidential Computing.  You may be able to provision this for free- each account can have two free instances at any point in time. You must provide the public key portion of your SSH key pair when provisioning this. 
+* We provide instructions on how to create a Linux server using *Hyper Protect Virtual Server for Classic* in a [subsequent section](./prepsystem.md){target="_blank" rel="noopener"} of the lab. This is a server running on LinuxONE servers in IBM Cloud and uses IBM's earlier, Secure Service Container-based implementation of Confidential Computing.  You may be able to provision this for free- each account can have two free instances at any point in time. You must provide the public key portion of your SSH key pair when provisioning this. 
 
     !!! Note "An attempt at clarification"
 
